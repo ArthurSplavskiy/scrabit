@@ -18,7 +18,6 @@ export const Header: FC = () => {
 	const { scrollY, direction } = useScrollY();
 	const [menuOpen, setMenuOpen] = useState(false);
 	const { isMobile, isDesktop } = useDevice();
-	const { user } = useProfile();
 	const { data, isLoading } = useQuery(queryKeys.commonMenu, api.common.getMenu);
 
 	const handleClick = () => {

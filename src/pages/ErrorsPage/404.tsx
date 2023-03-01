@@ -1,10 +1,8 @@
 import { Button } from '@/shared/ui/Button';
-import { useInterfaceText } from '@/app/context/User/UserContext';
 import './index.scss';
 
 export const ErrorPage404 = () => {
 	//const { pageInterfaceText } = useCommon();
-	const { text: pageInterfaceText } = useInterfaceText();
 
 	return (
 		<div className='Page-404'>

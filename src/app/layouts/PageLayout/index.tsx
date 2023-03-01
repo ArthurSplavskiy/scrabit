@@ -1,4 +1,3 @@
-import { CookieBanner } from '@/widgets/CookieBanner';
 import { Footer } from '@/widgets/Footer';
 import { Header } from '@/widgets/Header';
 import { FC } from 'react';
@@ -13,7 +12,7 @@ const PageLayout: FC = () => {
 			<div className='PageLayout-main page-offset'>
 				<Outlet />
 			</div>
-			<CookieBanner />
+			{/* <CookieBanner /> */}
 			<Footer />
 		</div>
 	);

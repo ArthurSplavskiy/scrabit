@@ -5,7 +5,7 @@ import { Spoller } from './Spoller';
 import './Spollers.scss';
 
 interface Props {
-	data?: IFaq[];
+	data?: any[];
 	isOneOpen?: boolean;
 }
 

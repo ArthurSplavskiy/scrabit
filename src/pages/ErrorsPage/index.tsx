@@ -1,4 +1,3 @@
-import { withErrorLayout } from '@/app/layouts/ErrorPageLayout';
 import { useRouteError } from 'react-router-dom';
 import { ErrorPage404 } from './404';
 
@@ -21,4 +20,4 @@ function ErrorPage() {
 	);
 }
 
-export default withErrorLayout(ErrorPage);
+export default ErrorPage;

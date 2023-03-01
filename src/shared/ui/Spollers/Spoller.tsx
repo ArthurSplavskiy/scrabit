@@ -33,7 +33,7 @@ export const Spoller: FC<Props> = ({ id, question, answer, open, expand }) => {
 		<div className={`Spoller ${isOpen && 'open'}`}>
 			<div className={`Spoller-head`} onClick={handleClick}>
 				<span>{question}</span>
-				<Icon icon='arrow-down' />
+				<Icon icon='shevron' />
 			</div>
 			<div ref={answerRef} className='Spoller-body' style={{ height: itemHeight + 'px' }}>
 				{answer}

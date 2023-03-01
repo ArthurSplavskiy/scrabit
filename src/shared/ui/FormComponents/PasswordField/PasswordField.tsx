@@ -40,7 +40,7 @@ export const PasswordField: React.FC<InterfacePasswordField> = ({
 					type='button'
 					className='PasswordField-button'
 					disabled={props.disabled}>
-					<Icon icon={isPasswordType ? 'eye-open' : 'eye-close'} size='20' />
+					<Icon icon={isPasswordType ? 'eye-hide' : 'eye-hide'} size='20' />
 				</button>
 			</div>
 			{errors.map((error, i) => (
