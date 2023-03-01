@@ -1,0 +1,80 @@
+@mixin disable-scrollbar() {
+	// webkit
+	&::-webkit-scrollbar {
+		width: 0;
+		height: 0;
+	}
+	&::-webkit-scrollbar-thumb {
+		background: transparent;
+	}
+	&::-webkit-scrollbar-track {
+		background: transparent;
+	}
+
+	// -moz-
+	&::-moz-scrollbar {
+		width: 0;
+		height: 0;
+	}
+	&::-moz-scrollbar-thumb {
+		background: transparent;
+	}
+	&::-moz-scrollbar-track {
+		background: transparent;
+	}
+
+	//-ms-
+	&::-ms-scrollbar {
+		width: 0;
+		height: 0;
+	}
+	&::-ms-scrollbar-thumb {
+		background: transparent;
+	}
+	&::-ms-scrollbar-track {
+		background: transparent;
+	}
+}
+
+@mixin placeholder($color: #727272, $opacity: 1) {
+	&::-webkit-input-placeholder {
+		color: $color;
+		opacity: $opacity;
+	}
+	&::-moz-placeholder {
+		color: $color;
+		opacity: $opacity;
+	}
+	&:-moz-placeholder {
+		color: $color;
+		opacity: $opacity;
+	}
+	&:-ms-input-placeholder {
+		color: $color;
+		opacity: $opacity;
+	}
+}
+
+@mixin placeholder-content {
+	&::-webkit-input-placeholder {
+		@content;
+	}
+	&::-moz-placeholder {
+		@content;
+	}
+	&:-moz-placeholder {
+		@content;
+	}
+	&:-ms-input-placeholder {
+		@content;
+	}
+}
+
+@mixin adaptiveSize($property, $maxSize, $minSize) {
+	#{$property}: calc(
+		#{$minSize}px + (#{$maxSize} - #{$minSize}) * ((100vw - calc(320 * 1px)) / (1920 - 320))
+	);
+	@media (min-width: 1920px) {
+		#{$property}: #{$maxSize}px;
+	}
+}

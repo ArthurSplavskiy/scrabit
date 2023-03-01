@@ -1,0 +1,39 @@
+@use 'src/app/assets/styles/mixins' as *;
+
+.section {
+	@include adaptiveSize('padding-top', 80, 24);
+	@include adaptiveSize('padding-bottom', 80, 24);
+}
+.sectionWrapper {
+	@include adaptiveSize('gap', 166, 24);
+	display: grid;
+	grid-template-columns: 620px 1fr;
+	@media (max-width: 1200px) {
+		grid-template-columns: 1fr;
+	}
+}
+.sectionHead {
+	@media (max-width: 1200px) {
+		order: -1;
+	}
+	h1 {
+		letter-spacing: -4%;
+		text-transform: uppercase;
+		@include adaptiveSize('margin-bottom', 24, 16);
+		@media (max-width: 1895px) {
+			max-width: 600px;
+		}
+		@media (max-width: 1200px) {
+			text-align: center;
+			max-width: 100%;
+		}
+	}
+	p {
+		font-style: italic;
+		text-transform: uppercase;
+		@include adaptiveSize('margin-bottom', 56, 40);
+		@media (max-width: 1200px) {
+			text-align: center;
+		}
+	}
+}

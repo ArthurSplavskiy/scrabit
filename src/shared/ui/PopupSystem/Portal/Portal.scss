@@ -1,0 +1,9 @@
+.Portal {
+	left: 0;
+	top: 0;
+	width: 100%;
+	min-height: 100%;
+	position: fixed;
+	z-index: 999;
+	padding: 0 var(--24px);
+}

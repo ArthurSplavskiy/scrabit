@@ -1,0 +1,90 @@
+@use '../../app/assets/styles/extends';
+
+.Header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 88px;
+	max-width: 100vw;
+	z-index: 4;
+	transition: all 0.2s ease-out;
+	border-bottom: 1px solid var(--black-text);
+	background: var(--white);
+	@media screen and (max-width: 1200px) {
+		height: 56px;
+		.Header-logo,
+		.Header-sign {
+			position: relative;
+			z-index: 4;
+		}
+	}
+	&-scroll {
+		z-index: 4;
+		background: var(--white);
+		box-shadow: 0 -6px 10px 5px rgba(0, 0, 0, 0.5);
+		will-change: transform;
+	}
+	&-hide {
+		transform: translateY(-100%);
+	}
+	&-preloader {
+		height: 88px;
+		@media screen and (max-width: 1200px) {
+			height: 56px;
+		}
+	}
+	&-fixed {
+		@media screen and (max-width: 768px) {
+			transform: translate(0) !important;
+		}
+	}
+	&-menu-icon {
+		grid-area: icon;
+		display: flex;
+		align-items: center;
+		@media screen and (min-width: 1200px) {
+			display: none;
+		}
+	}
+	&-wrapper {
+		display: grid;
+		height: 100%;
+		grid-template-columns: 227px 1fr auto;
+		grid-template-areas: 'logo . actions';
+		gap: 20px;
+		@media screen and (max-width: 1200px) {
+			grid-template-columns: repeat(3, 1fr);
+			grid-template-areas: 'icon logo actions';
+		}
+	}
+	&-logo {
+		grid-area: logo;
+		max-width: 227px;
+		display: flex;
+		align-items: center;
+		@media screen and (max-width: 1200px) {
+			justify-self: center;
+			max-width: 99px;
+		}
+		a {
+			display: flex;
+		}
+	}
+	&-actions {
+		grid-area: actions;
+		display: flex;
+		@media screen and (max-width: 1200px) {
+			justify-content: flex-end;
+		}
+	}
+	&-sign {
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+		margin-left: 40px;
+		@media screen and (max-width: 1200px) {
+			margin-left: 0px;
+		}
+	}
+}

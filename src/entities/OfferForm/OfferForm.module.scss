@@ -1,0 +1,39 @@
+.OfferForm {
+	border: 1px solid var(--black);
+	background: var(--white);
+	padding: 32px;
+	@media (max-width: 560px) {
+		padding: 16px 16px 52px 16px;
+	}
+}
+.OfferFormItem {
+	&:last-child {
+		@media (min-width: 560px) {
+			grid-column: -1 / 1;
+		}
+	}
+}
+.OfferFormInputs {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 24px;
+	@media (max-width: 560px) {
+		grid-template-columns: 1fr;
+		gap: 12px;
+	}
+}
+.OfferFormControls {
+	margin-top: 24px;
+	display: grid;
+	align-items: center;
+	grid-template-columns: auto 1fr;
+	gap: 32px;
+	@media (max-width: 560px) {
+		grid-template-columns: 1fr;
+		gap: 16px;
+		span {
+			text-align: center;
+			order: -1;
+		}
+	}
+}

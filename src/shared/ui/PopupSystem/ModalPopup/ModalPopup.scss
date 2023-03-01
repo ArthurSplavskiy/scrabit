@@ -1,0 +1,147 @@
+.noscroll {
+	overflow: hidden;
+}
+
+.ModalPopUp {
+	min-height: 194px;
+	&-message {
+		min-height: 248px;
+		.ModalPopUp.content {
+			min-height: 248px;
+		}
+	}
+	&-container {
+		position: relative;
+		width: 100%;
+
+		&.content {
+			max-width: 648px;
+			min-height: 194px;
+			background: var(--white);
+			box-shadow: 0px 4px 40px rgba(95, 97, 100, 0.25);
+			border-radius: 20px;
+		}
+		&.video {
+			display: flex;
+			justify-content: center;
+			max-width: 1096px;
+			.ModalPopUp-close {
+				color: var(--white);
+				top: -40px;
+				right: 0;
+			}
+			.ModalPopUp-content {
+				max-width: 1096px;
+				width: 100%;
+			}
+			.TemplateModal-video {
+				width: 100% !important;
+				max-width: 1096px;
+				padding-bottom: 56%;
+				& > div {
+					position: absolute;
+					inset: 0 0 0 0;
+					width: 100% !important;
+					height: 100% !important;
+					object-fit: cover;
+				}
+			}
+		}
+	}
+
+	&-backdrop {
+		position: absolute;
+		left: 0;
+		top: 0;
+		z-index: 0;
+		transition: opacity 0.4s ease;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0, 0, 0, 0.5);
+	}
+
+	&-portal {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		&-active {
+			animation: popupOpen 0.3s forwards;
+			.ModalPopUp-container {
+				animation: moveUp 0.3s forwards;
+			}
+		}
+		&-hide {
+			animation: popupClose 0.3s forwards;
+			.ModalPopUp-container {
+				animation: moveDown 0.3s forwards;
+			}
+		}
+	}
+
+	&-content {
+		transition: opacity 0.4s ease;
+		z-index: 2;
+		position: relative;
+
+		&.withoutPaddings {
+			padding: 0;
+		}
+	}
+
+	&-close {
+		position: absolute;
+		top: 42px;
+		right: 42px;
+		border: none;
+		background: none;
+		box-shadow: none;
+		z-index: 3;
+		color: var(--primary);
+		cursor: pointer;
+		@media (max-width: 768px) {
+			top: 16px;
+			right: var(--20px);
+		}
+
+		&:focus,
+		&:hover {
+			transform: scale(1.1);
+		}
+	}
+}
+
+@keyframes popupOpen {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes popupClose {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes moveUp {
+	0% {
+		transform: translate3d(0, 20px, 0);
+	}
+	100% {
+		transform: translate3d(0, 0, 0);
+	}
+}
+
+@keyframes moveDown {
+	0% {
+		transform: translate3d(0, 0, 0);
+	}
+	100% {
+		transform: translate3d(0, -20px, 0);
+	}
+}

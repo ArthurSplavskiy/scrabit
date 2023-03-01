@@ -1,0 +1,127 @@
+%label {
+	display: flex;
+	color: var(--black-60);
+	font-weight: 400;
+	margin-bottom: 0.57rem;
+	font-size: var(--fSize14);
+	text-align: left;
+	width: 100%;
+
+	&.error {
+		color: var(--system-red);
+	}
+}
+
+.Checkbox {
+	&.green {
+		.Checkbox-input:checked ~ .Checkbox-label:after {
+			border-color: var(--system-green);
+		}
+		.Checkbox-input:checked ~ .Checkbox-label:before {
+			border: 1px solid var(--system-green);
+		}
+		.Checkbox-label:before {
+			border: 1px solid var(--black-100);
+		}
+		.Checkbox-label:after {
+			//background: var(--system-green);
+		}
+	}
+	&.purple {
+		.Checkbox-input:checked ~ .Checkbox-label {
+			color: var(--primary);
+		}
+		.Checkbox-input:checked ~ .Checkbox-label:after {
+			border-color: var(--primary);
+		}
+		.Checkbox-input:checked ~ .Checkbox-label:before {
+			border: 1px solid var(--primary);
+		}
+		.Checkbox-label:before {
+			border: 1px solid var(--primary);
+			left: 0;
+		}
+		.Checkbox-label:after {
+			background: var(--system-purple);
+			left: 0.5rem;
+		}
+		.Checkbox-label {
+			padding-left: 22px;
+			padding-top: 0;
+			padding-bottom: 0;
+		}
+	}
+
+	&-input {
+		position: absolute;
+		left: -100%;
+		top: 0;
+		opacity: 0;
+	}
+
+	&-input:checked ~ &-label:after {
+		border-color: var(--system-green);
+	}
+
+	&-input:checked ~ &-label,
+	&-input:checked ~ &-label:before {
+		background-color: none;
+	}
+
+	&-input:checked ~ &-label:before {
+		//border: none;
+		border-color: var(--system-green);
+	}
+
+	&-input:disabled ~ &-label {
+		cursor: not-allowed;
+	}
+
+	&-label {
+		cursor: pointer;
+		position: relative;
+		display: flex;
+		align-items: center;
+		font-size: var(--fSize14);
+		line-height: 100%;
+		padding: 0.65rem 0.85em 0.65em 2.36rem;
+		width: fit-content;
+		border: 1px solid var(--gray-40);
+		border-radius: 0.142rem;
+		--checkboxSize: 12px;
+
+		&:before,
+		&:after {
+			content: '';
+			display: block;
+		}
+
+		&:before {
+			width: var(--checkboxSize);
+			height: var(--checkboxSize);
+			background: none;
+			position: absolute;
+			border: 1px solid var(--black-100);
+			top: 50%;
+			left: 0.86rem;
+			transform: translateY(-50%);
+			border-radius: 0.071rem;
+		}
+
+		&:after {
+			position: absolute;
+			left: 1.35rem;
+			top: 51%;
+			width: 8px;
+			height: 5px;
+			transform: rotateZ(-45deg) translateY(-100%) scale(0.7);
+			border-width: 0 0 2px 2px;
+			border-style: solid;
+			border-color: transparent;
+		}
+	}
+
+	&-title {
+		@extend %label;
+	}
+}

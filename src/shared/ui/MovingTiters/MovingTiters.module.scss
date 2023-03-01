@@ -1,0 +1,72 @@
+@use 'src/app/assets/styles/mixins' as *;
+
+.titers {
+	width: 100%;
+	display: inline-block;
+	overflow: visible;
+	position: relative;
+	overflow: hidden;
+}
+
+.titersSmall {
+	.titersList {
+		padding: 20px 0;
+	}
+	.titersItem {
+		font-size: 24px;
+		line-height: 100%;
+	}
+}
+
+.titersMain {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.titersList {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+	animation-name: titers;
+	will-change: transform;
+	border-top: 1px solid var(--black-text);
+	border-bottom: 1px solid var(--black-text);
+	background: var(--white);
+	@include adaptiveSize('padding-top', 40, 12);
+	@include adaptiveSize('padding-bottom', 40, 12);
+}
+
+.titersItem {
+	font-size: 96px;
+	font-weight: 700;
+	font-style: italic;
+	white-space: nowrap;
+	line-height: 1;
+	display: flex;
+	align-items: center;
+	text-transform: uppercase;
+	margin-right: 64px;
+	@media (max-width: 768px) {
+		margin-right: 48px;
+	}
+}
+
+@-webkit-keyframes titers {
+	0% {
+		-webkit-transform: translate(0, 0);
+	}
+	100% {
+		-webkit-transform: translate(-100%, 0);
+	}
+}
+@keyframes titers {
+	0% {
+		transform: translate(0, 0);
+	}
+	100% {
+		transform: translate(-100%, 0);
+	}
+}

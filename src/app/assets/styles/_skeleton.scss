@@ -1,0 +1,131 @@
+$color-accent-light: #e3e3e5;
+$color-accent: #651eee;
+
+@mixin skeleton {
+	background: $color-accent-light
+		linear-gradient(90deg, transparent, rgba($color-accent, 0.08), transparent) no-repeat;
+	background-size: 200px 100%;
+	animation: 2.5s infinite skeleton;
+	opacity: 1;
+}
+@keyframes skeleton {
+	0% {
+		background-position: -200px 100%;
+	}
+
+	100% {
+		background-position: calc(100% + 200px) 100%;
+	}
+}
+
+%skeleton-reset {
+	color: transparent !important;
+	border-color: transparent !important;
+	box-shadow: none !important;
+	text-shadow: none;
+	//fill: transparent;
+	pointer-events: none;
+
+	&:hover {
+		color: transparent;
+	}
+
+	// &:before,
+	// &:after {
+	// 	content: none !important;
+	// }
+
+	.Button {
+		background: $color-accent-light
+			linear-gradient(90deg, transparent, rgba($color-accent, 0.08), transparent) no-repeat;
+		//pointer-events: none;
+	}
+}
+
+.interface-text-loading {
+	* {
+		@extend %skeleton-reset;
+	}
+	.HeaderAuth-link {
+		width: 208px;
+		@include skeleton;
+		display: inline-block;
+		border-radius: 4px;
+		button {
+			background: none;
+		}
+		@media screen and (max-width: 1024px) {
+			width: 40px;
+		}
+		@media screen and (max-width: 480px) {
+			width: 20px;
+			height: 20px;
+		}
+	}
+}
+
+.content-loading {
+	* {
+		@extend %skeleton-reset;
+	}
+
+	.HomeHero-subtitle {
+		@include skeleton;
+		display: inline-block;
+		border-radius: 4px;
+	}
+
+	.HomeHero-image {
+		width: 100%;
+		height: 70vh;
+		margin: 20px 0;
+		&:before {
+			opacity: 1;
+		}
+	}
+	.HeaderMenu-item {
+		@include skeleton;
+		display: inline-block;
+		border-radius: 4px;
+	}
+	.Header-logo a {
+		@include skeleton;
+		display: inline-block;
+		border-radius: 4px;
+		* {
+			fill: transparent;
+		}
+	}
+	.MenuIcon {
+		&::after,
+		&::before,
+		span {
+			display: none;
+		}
+		@include skeleton;
+		border-radius: 4px;
+	}
+}
+
+.HomeHero-image {
+	position: relative;
+	height: auto;
+	&:before {
+		content: '';
+		@include skeleton;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		border-radius: 4px;
+		width: 100%;
+		height: 100%;
+		pointer-events: none;
+		transition: 0.2s;
+		opacity: 0;
+	}
+}
+.HomeHero-subtitle,
+.HeaderAuth-link {
+	transition: 0.2s;
+}

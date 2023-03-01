@@ -1,0 +1,32 @@
+%label {
+	display: flex;
+	color: var(--black-60);
+	font-weight: 400;
+	margin-bottom: 0.57rem;
+	font-size: var(--fSize14);
+	text-align: left;
+	width: 100%;
+
+	&.error {
+		color: var(--system-red);
+	}
+}
+
+.CheckBoxGroupe {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.4rem;
+
+	.label {
+		@extend %label;
+		width: 100%;
+	}
+
+	& > .error {
+		grid-column: 1 / -1;
+		color: var(--system-error);
+		padding-top: 0.25rem;
+		font-size: var(--fSize10);
+		text-align: left;
+	}
+}

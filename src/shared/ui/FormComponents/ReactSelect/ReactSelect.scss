@@ -1,0 +1,135 @@
+// need to pass props to the ReactSelect
+// classNamePrefix="ReactSelect-select"
+@use 'src/app/assets/styles/mixins' as *;
+@import 'src/app/assets/styles/input';
+@import 'src/app/assets/styles/label';
+
+.ReactSelect {
+	height: 48px;
+	&.focus {
+		.ReactSelect-select__control,
+		.ReactSelect-select__menu {
+			border-color: var(--main-blue);
+		}
+	}
+	&-group {
+		border: none;
+		&.has-error {
+			.ReactSelect-select__control {
+				border-color: var(--system-error);
+			}
+			.ReactSelect-label {
+				color: var(--system-error);
+			}
+		}
+	}
+	&-label {
+		@extend %label;
+	}
+	.ReactSelect-select__value-container {
+		padding-left: 18px;
+	}
+	.ReactSelect-select__single-value {
+		margin: 0;
+	}
+	.ReactSelect-select__dropdown-indicator {
+		display: flex;
+		height: 48px;
+	}
+	.ReactSelect-select__indicator-separator {
+		display: none;
+	}
+	.ReactSelect-select__indicator {
+		padding-right: 14px;
+		svg {
+			display: none;
+		}
+		&:after {
+			font-family: 'icomoon' !important;
+			content: '\e91c';
+			font-size: 24px;
+			transition: var(--transition);
+			color: var(--black-text);
+		}
+	}
+	.ReactSelect-select__placeholder {
+		font-weight: 500;
+		color: var(--black-60);
+		font-size: 16px;
+		line-height: 100%;
+	}
+	.ReactSelect-select__control {
+		@extend %input;
+		padding: 0;
+		box-shadow: none;
+		text-align: left;
+		transition: none;
+		cursor: pointer;
+		border-color: var(--black-20);
+		&--menu-is-open {
+			border-bottom: none;
+			border-radius: 25px 25px 0 0;
+			border-color: var(--main-blue) !important; //var(--black-text) !important;
+			.ReactSelect-select__indicator:after {
+				transform: rotate(-180deg);
+			}
+		}
+		&:hover {
+			border-color: var(--black-40);
+		}
+	}
+	.ReactSelect-select__menu {
+		margin: 0;
+		overflow: hidden;
+		background: var(--white);
+		border-radius: 0 0 24px 24px;
+		border: 1px solid var(--main-blue); //var(--black-text);
+		box-shadow: 6px 6px 10px rgba(205, 207, 210, 0.6);
+		&-list {
+			z-index: 4;
+			padding-top: 0;
+			padding-bottom: 0;
+			max-height: 250px;
+		}
+	}
+	.ReactSelect-select__option {
+		cursor: pointer;
+		text-align: left;
+		z-index: 12;
+		&--is-focused {
+			background: none;
+		}
+		&--is-selected {
+			background: var(--white);
+			color: var(--black-text);
+		}
+		border-top: 1px solid var(--white);
+		border-bottom: 1px solid var(--white);
+		padding: 2px 18px;
+		&:hover {
+			background: var(--blue-10);
+			border-color: var(--main-blue);
+			border-color: var(--main-blue);
+			// border-color: var(--black-text);
+			// border-color: var(--black-text);
+			&:first-child {
+				border-top-color: var(--white);
+			}
+			&:last-child {
+				border-bottom-color: var(--white);
+			}
+		}
+	}
+}
+
+@keyframes openMenuAnimation {
+	0% {
+		opacity: 0;
+	}
+	90% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}

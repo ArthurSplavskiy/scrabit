@@ -1,0 +1,122 @@
+@use '../../../app/assets/styles/extends';
+
+.HeaderMenu {
+	align-self: center;
+	justify-self: center;
+
+	@media screen and (max-width: 1200px) {
+		width: 100%;
+		height: calc(100vh - 58px);
+		display: flex;
+		flex-direction: column;
+		position: fixed;
+		top: 58px;
+		left: -100%;
+		bottom: 0;
+		z-index: 3;
+		padding: 40px 24px 24px 24px;
+		transform: translate3d(-100%, 0, 0);
+		transition: var(--transition);
+		background: var(--bg);
+		overflow-y: auto;
+		&-active {
+			transform: translate3d(0, 0, 0);
+			left: 0;
+		}
+	}
+	&-list {
+		display: flex;
+		flex-wrap: wrap;
+		position: relative;
+		z-index: 4;
+		@media screen and (max-width: 1200px) {
+			display: flex;
+			flex-direction: column;
+		}
+	}
+	&-sublist {
+		overflow: hidden;
+		transition: height 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+		height: 0;
+		&.open {
+			height: auto;
+		}
+		&-link {
+			&.open {
+				color: var(--main-blue);
+			}
+		}
+		li {
+			margin-top: 16px;
+		}
+		a {
+			font-style: italic;
+			text-transform: uppercase;
+		}
+	}
+	&-item {
+		@extend %underline-link;
+		transition: var(--transition);
+		cursor: pointer;
+		@media screen and (max-width: 1200px) {
+			line-height: 100% !important;
+			& > a {
+				display: inline-flex;
+				align-items: center;
+				font-size: 32px;
+				font-weight: 700;
+				line-height: 100%;
+				font-style: italic;
+				text-transform: uppercase;
+				gap: 16px;
+			}
+		}
+		&:before {
+			background: linear-gradient(89.93deg, #32b1c4 0.04%, #3dcb9f 48.43%, #5cd56e 99.92%);
+			bottom: 5px;
+			@media screen and (max-width: 1200px) {
+				display: none;
+			}
+		}
+		@media (any-hover: hover) {
+			&:hover {
+				background: linear-gradient(89.93deg, #32b1c4 0.04%, #3dcb9f 48.43%, #5cd56e 99.92%);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+				text-fill-color: transparent;
+			}
+		}
+		&:not(:last-child) {
+			margin-right: 48px;
+			@media screen and (max-width: 1200px) {
+				margin: 0 0 24px 0;
+			}
+		}
+	}
+	&-footer {
+		display: grid;
+		align-items: center;
+		grid-template-columns: 1fr 1fr;
+		margin-top: 44px;
+		gap: 24px;
+		& > a {
+			display: inline-flex;
+			justify-content: end;
+		}
+		@media screen and (min-width: 1200px) {
+			display: none;
+		}
+		@media screen and (max-width: 385px) {
+			grid-template-columns: 1fr;
+			button {
+				width: 100%;
+			}
+		}
+	}
+	&-contacts {
+		span {
+			color: var(--black-80);
+		}
+	}
+}

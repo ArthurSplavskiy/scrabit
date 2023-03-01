@@ -1,0 +1,310 @@
+{
+	"menu": [
+		{
+			"id": 1,
+			"name": "How it works",
+			"slug": "how-it-works"
+		},
+		{
+			"id": 2,
+			"name": "About Scrabit",
+			"slug": "about-scrabit"
+		},
+		{
+			"id": 3,
+			"name": "More info",
+			"slug": "more-info"
+		},
+		{
+			"id": 4,
+			"name": "Blog",
+			"slug": "blog"
+		},
+		{
+			"id": 5,
+			"name": "Help center",
+			"slug": "help-center"
+		},
+		{
+			"id": 6,
+			"name": "partner",
+			"slug": "partner",
+			"sublist": [
+				{
+					"id": 1,
+					"name": "Buyers",
+					"link": "bayers"
+				},
+				{
+					"id": 2,
+					"name": "Publishers",
+					"link": "publishers"
+				},
+				{
+					"id": 3,
+					"name": "Carriers",
+					"link": "carriers"
+				},
+				{
+					"id": 4,
+					"name": "Charities",
+					"link": "charities"
+				},
+				{
+					"id": 5,
+					"name": "Suppliers",
+					"link": "suppliers"
+				}
+			]
+		},
+		{
+			"id": 7,
+			"name": "popular",
+			"slug": "popular",
+			"sublist": [
+				{
+					"id": 1,
+					"name": "florida, fl",
+					"link": "florida"
+				},
+				{
+					"id": 2,
+					"name": "sell my car",
+					"link": "sell-my-car"
+				},
+				{
+					"id": 3,
+					"name": "cash for junk cars",
+					"link": "cash-for-junk-cars"
+				},
+				{
+					"id": 4,
+					"name": "car buyers",
+					"link": "car-buyers"
+				},
+				{
+					"id": 5,
+					"name": "car value",
+					"link": "car-value"
+				},
+				{
+					"id": 6,
+					"name": "junk car removal",
+					"link": "junk-car-removal"
+				}
+			]
+		}
+	],
+	"static_pages": [
+		{
+			"id": 1,
+			"name": "Terms & Conditions",
+			"slug": "terms-conditions"
+		},
+		{
+			"id": 2,
+			"name": "Privacy Policy",
+			"slug": "privacy-policy"
+		},
+		{
+			"id": 3,
+			"name": "Accessibility",
+			"slug": "accessibility"
+		},
+		{
+			"id": 4,
+			"name": "Status",
+			"slug": "status"
+		}
+	],
+	"promo_cars": [
+		{
+			"id": 1,
+			"name": "Nissan Altima",
+			"slug": "nissan-altima"
+		},
+		{
+			"id": 2,
+			"name": "Ford focus",
+			"slug": "ford-focus"
+		},
+		{
+			"id": 3,
+			"name": "Chevrolet blazer",
+			"slug": "chevrolet-blazer"
+		},
+		{
+			"id": 4,
+			"name": "Ford crown Victoria",
+			"slug": "ford-crown-victoria"
+		},
+		{
+			"id": 5,
+			"name": "Chevrolet impala",
+			"slug": "chevrolet-impala"
+		}
+	],
+	"contacts": {
+		"address": "100 W 2th St, Ste 100 Florida FL 02096",
+		"phone": "999-888-7766",
+		"contact_us_link": "mailto:some@12.com"
+	},
+	"home_page": {
+		"hero_title": "Sell your run & Drive",
+		"hero_subtitle": "ka-chow! you’ll get an offr today",
+		"hero_message": "The best years of your car longpassed? we will help send it to a better place.",
+		"offer_form_data": {
+			"car_make": [
+				{ "id": 1, "label": "Acura", "value": "Acura" },
+				{ "id": 2, "label": "Alfa Romeo", "value": "Alfa Romeo" },
+				{ "id": 2, "label": "Aston Martin", "value": "Aston Martin" }
+			],
+			"car_model": [
+				{ "id": 1, "label": "ILX", "value": "ILX" },
+				{ "id": 2, "label": "Integra", "value": "Integra" },
+				{ "id": 2, "label": "MDX", "value": "MDX" }
+			],
+			"car_submodel": [
+				{ "id": 1, "label": "A 3", "value": "A 3" },
+				{ "id": 2, "label": "A 4", "value": "A 4" },
+				{ "id": 2, "label": "A 6", "value": "A 6" }
+			]
+		},
+		"about_section": {
+			"title": "about scrabit",
+			"subtitle": "giving pre-owned vehicles another chance",
+			"image": "/about-placeholder.png",
+			"steps": [
+				{
+					"id": 1,
+					"title": "Describe your car",
+					"text": "Describe your car. Brand, year, model, mileage,and anything that points to its condition"
+				},
+				{
+					"id": 2,
+					"title": "Fast",
+					"text": "You’ll get an insatnt offer from Scrabit. We’d love to buy your car at a  reasonable price"
+				},
+				{
+					"id": 3,
+					"title": "Trusted",
+					"text": "Scrabit has helped over X drives sell their old cars  and found them a better propouse"
+				},
+				{
+					"id": 4,
+					"title": "Convenient",
+					"text": "All you need is to share your car info, takethe offer, and watch your salvage car go"
+				}
+			]
+		},
+		"how_it_work_section": {
+			"title": "How it works",
+			"subtitle": "ready to roll?",
+			"message": "The best years of your car longpassed? we will help send it to a better place.",
+			"steps": [
+				{
+					"id": 1,
+					"title": "Tell scrabit about your vehicle",
+					"text": "Whether a salvage car or barn find, we’re equally interested. share the info about your vehicle with Scrabit - no personal information is required before you take the offer"
+				},
+				{
+					"id": 2,
+					"title": "view your offer",
+					"text": "You’re a few questions away from getting paid for your barn find. Scrabit takes your info, evaluates the market, and comes up with an instant offer for you"
+				},
+				{
+					"id": 3,
+					"title": "Exchange your wheels for cash",
+					"text": "After the offer is accepted, we’ll arrange a pickup. Just a short examination of your car - and the money is yours to take!"
+				}
+			]
+		},
+		"review_section": [
+			{
+				"id": 1,
+				"rating": 5,
+				"author": "Alexander Winebaum",
+				"text": "The guy that came to pick up the car lied to me and said that the offer is being changed to 300 when the offer i accepted was 940 he proceded to tell that he actually works for a auction in san diego and that he could offer me more then the three hundred i reluctantly accepted then see that my offer was completed at the reduced amount on peddle by the original buyer so scammed"
+			},
+			{
+				"id": 2,
+				"rating": 5,
+				"author": "Julia Fox",
+				"text": "The guy that came to pick up the car lied to me and said that the offer is being changed to 300 when the offer i accepted was 940 he proceded to tell that he actually works for a auction in san diego and that he could offer me more then the three hundred"
+			},
+			{
+				"id": 3,
+				"rating": 5,
+				"author": "Nick Grey-Joy",
+				"text": "The guy that came to pick up the car lied to me and said that the offer is being changed to 300 when the offer i accepted was 940 he proceded to tell that he actually works for a auction in san diego and that he could offer me more then the three hundred The guy that came to pick up the car lied to me and said that the offer is being changed to 300"
+			},
+			{
+				"id": 4,
+				"rating": 4,
+				"author": "Julia Fox",
+				"text": "The guy that came to pick up the car lied to me and said that the offer is being changed to 300 when the offer i accepted was 940 he proceded to tell that he actually works for a auction in san diego and that he could offer me more then the three hundred"
+			},
+			{
+				"id": 5,
+				"rating": 3,
+				"author": "Julia Fox",
+				"text": "The guy that came to pick up the car lied to me and said that the offer is being changed to 300 when the offer i accepted was 940 he proceded to tell that he actually works for a auction in san diego and that he could offer me more then the three hundred"
+			},
+			{
+				"id": 6,
+				"rating": 1,
+				"author": "Julia Fox",
+				"text": "The guy that came to pick up the car lied to me and said that the offer is being changed to 300 when the offer i accepted was 940 he proceded to tell that he actually works for a auction in san diego and that he could offer me more then the three hundred"
+			}
+		]
+	},
+	"users": [
+		{
+			"email": "admin@admin.com",
+			"password": "$2a$10$eufvvtn.wT7LstM05YiuY./zNANOO9g88jISctedfyFJQDFVjTqjW",
+			"id": 1
+		}
+	],
+	"profile": {
+		"userId": 12345,
+		"email": "admin2@admin.com",
+		"telegram": "@telegram.account19552",
+		"balance": 450,
+		"proxy": [
+			{
+				"id": 1,
+				"country": "Ukraine",
+				"logo": "/images/vodafone.png",
+				"name": "Vodafone",
+				"validity": 5,
+				"socks": "178.151.69.50:7032:user32:Rd6SwYDG ",
+				"http": "178.151.69.50:7032:user32:Rd6SwYDG ",
+				"url_ip_replace": "http://178.151.69.50:80/32_recon nect +ID-836594654-vf.php",
+				"auto_continue": false
+			},
+			{
+				"id": 2,
+				"country": "Ukraine",
+				"logo": "/images/vodafone.png",
+				"name": "Vodafone",
+				"validity": 1,
+				"socks": "178.151.69.50:7032:user32:Rd6SwYDG ",
+				"http": "178.151.69.50:7032:user32:Rd6SwYDG ",
+				"url_ip_replace": "http://178.151.69.50:80/32_recon nect +ID-836594654-vf.php",
+				"auto_continue": true
+			},
+			{
+				"id": 3,
+				"country": "Ukraine",
+				"logo": "/images/vodafone.png",
+				"name": "Vodafone",
+				"validity": 2,
+				"socks": "178.151.69.50:7032:user32:Rd6SwYDG ",
+				"http": "178.151.69.50:7032:user32:Rd6SwYDG ",
+				"url_ip_replace": "http://178.151.69.50:80/32_recon nect +ID-836594654-vf.php",
+				"auto_continue": true
+			}
+		],
+		"password": "Admin1111"
+	}
+}

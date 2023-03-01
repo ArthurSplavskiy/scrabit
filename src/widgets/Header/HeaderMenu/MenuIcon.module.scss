@@ -1,0 +1,75 @@
+.menuIcon {
+	display: none;
+	position: relative;
+	z-index: 4;
+	width: 12px;
+	height: 12px;
+	cursor: pointer;
+
+	@media screen and (max-width: 1200px) {
+		display: block;
+	}
+
+	span,
+	&::before,
+	&::after {
+		content: '';
+		transition: var(--transition);
+		left: 0;
+		position: absolute;
+		width: 100%;
+		height: 2px;
+		background: var(--black);
+		border-radius: 8px;
+	}
+
+	&::before {
+		top: 0;
+	}
+
+	&::after {
+		bottom: 0;
+	}
+
+	span {
+		top: 40%;
+		width: 70%;
+	}
+
+	&.active {
+		span {
+			transform: scale(0);
+		}
+
+		&::before {
+			transform: rotate(-45deg);
+			top: 50%;
+		}
+
+		&::after {
+			transform: rotate(45deg);
+			bottom: calc(50% - 2px);
+		}
+	}
+}
+.menuIconCircle {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 32px;
+	height: 32px;
+	border-radius: 100%;
+	border: 1px solid var(--black-text);
+	background: var(--gradient-light);
+	margin-right: 4px;
+	z-index: 4;
+	&.active {
+		background: white;
+	}
+}
+.menuIconText {
+	display: flex;
+	align-items: center;
+	text-transform: uppercase;
+	font-style: italic;
+}

@@ -1,0 +1,41 @@
+@use 'src/app/assets/styles/mixins' as *;
+
+%input {
+	font-family: 'work-sans', sans-serif;
+	font-weight: 500;
+	height: 48px;
+	border: 1px solid var(--black-20);
+	border-radius: 50px;
+	outline: none;
+	position: relative;
+	width: 100%;
+	font-size: 16px;
+	padding: 12px 46px 12px 16px;
+	box-sizing: border-box;
+	resize: none;
+	transition: var(--hover);
+	color: var(--black-text);
+	background: var(--white);
+
+	@include placeholder-content {
+		font-weight: 500;
+		color: var(--black-60);
+	}
+
+	&:focus {
+		border-color: var(--main-blue) !important;
+	}
+
+	&:disabled {
+		border: 1px solid #fafafa;
+		background: #fafafa;
+		color: var(--black-20);
+		@include placeholder-content {
+			color: var(--black-20);
+		}
+	}
+
+	&:hover {
+		border-color: var(--black-40);
+	}
+}

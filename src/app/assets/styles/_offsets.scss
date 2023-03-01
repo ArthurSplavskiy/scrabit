@@ -1,0 +1,25 @@
+:root {
+	--offset: calc(4px + (8 - 4) * ((100vw - calc(320 * 1px)) / (1920 - 320)));
+}
+
+.container {
+	padding: 0 24px;
+	margin: 0 auto;
+	max-width: 1585px;
+	height: 100%;
+}
+
+.page-offset {
+	padding: 0 var(--32px);
+	@media screen and (max-width: 600px) {
+		padding: 0 var(--24px);
+	}
+}
+
+.mt-24 {
+	margin-top: 24px;
+}
+
+.mb-40 {
+	margin-bottom: 40px;
+}

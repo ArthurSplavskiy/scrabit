@@ -1,0 +1,38 @@
+:root,
+::after,
+::before {
+	--fs56: 4rem;
+	--fs48: 3.43rem;
+	--fs42: 3rem;
+	--fs32: 2.28rem;
+	--fs31: 2.214rem;
+	--fs30: 2.14rem;
+	--fs26: 1.85rem;
+	--fs28: 2rem;
+	--fs24: 1.71rem;
+	--fs20: 1.42rem;
+	--fs18: 1.28rem;
+	--fs17: 1.21rem;
+	--fs16: 1.14rem;
+	--fs15: 1.07rem;
+	--fs14: 1rem;
+	--fs13: 0.92rem;
+	--fs12: 0.85rem;
+	--fs11: 0.78rem;
+	--fs10: 0.71rem;
+	--fs8: 0.57rem;
+	--fs6: 0.43rem;
+
+	--mobile: 768px;
+
+	--defaultFont: 'work-sans';
+
+	--top-line: inset 0px 1px 0px #e6e6e6;
+	--bottom-line: inset 0px -1px 0px #e6e6e6;
+	--right-line: inset -1px 0 0px #ededf0;
+	--light-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 2px 8px rgba(0, 0, 0, 0.08);
+	--dark-shadow: 0 1px 6px rgba(0, 0, 0, 0.09), 0 2px 32px rgba(0, 0, 0, 0.15);
+
+	--transition: all 0.3s ease;
+	--hover: all 0.2s ease;
+}

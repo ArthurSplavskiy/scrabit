@@ -1,0 +1,60 @@
+@use 'src/app/assets/styles/mixins' as *;
+
+.section {
+	@include adaptiveSize('padding-bottom', 160, 80);
+}
+.sectionContent {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	@include adaptiveSize('gap', 35, 16);
+	@media (max-width: 1200px) {
+		grid-template-columns: 1fr;
+	}
+}
+.sectionSteps {
+	display: grid;
+	grid-template-columns: 1fr;
+	@include adaptiveSize('gap', 24, 16);
+	& > div:first-child {
+		@media (min-width: 1200px) {
+			grid-column: 1 / -1;
+			margin-bottom: 40px;
+		}
+	}
+}
+.sectionImg {
+	padding-top: 332px;
+	@media (max-width: 1200px) {
+		padding-top: 0;
+	}
+}
+.sectionStep {
+	display: flex;
+	flex-direction: column;
+	border: 1px solid var(--black-text);
+	background: var(--green-20);
+	@include adaptiveSize('padding', 32, 24);
+	& > div:first-child {
+		margin-bottom: 0;
+	}
+
+	h4 {
+		margin-top: 48px;
+		word-break: break-word;
+		max-width: 520px;
+		@include adaptiveSize('margin-bottom', 24, 16);
+	}
+	p {
+		max-width: 492px;
+	}
+}
+.sectionStepNumber {
+	margin-bottom: 48px;
+	text-transform: uppercase;
+	font-style: italic;
+	color: var(--black-60);
+}
+
+.blueBg {
+	background: var(--blue-10);
+}

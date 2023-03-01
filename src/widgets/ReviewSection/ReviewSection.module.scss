@@ -1,0 +1,57 @@
+@use 'src/app/assets/styles/mixins' as *;
+
+.sectionHead {
+	@include adaptiveSize('margin-bottom', 64, 40);
+	@media (max-width: 768px) {
+		display: flex;
+		justify-content: center;
+	}
+}
+.slide {
+	height: 100%;
+	padding: 24px;
+	border: 1px solid var(--black-text);
+}
+.sectionSlider {
+	@media (max-width: 768px) {
+		overflow: visible !important;
+	}
+}
+.slideHead {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 24px;
+}
+.slideBody {
+	span {
+		display: block;
+		@include adaptiveSize('margin-bottom', 16, 10);
+	}
+}
+.slideRating {
+	height: 24px;
+	background: #fff9e2;
+	border-radius: 40px;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	padding: 0 9px;
+}
+.slideVerify {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 100%;
+	width: 24px;
+	height: 24px;
+	background: var(--green-20);
+}
+.read {
+	display: flex;
+	justify-content: center;
+	margin-top: 48px;
+	@media (max-width: 768px) {
+		display: none;
+	}
+}

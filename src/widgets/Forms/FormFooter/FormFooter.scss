@@ -1,0 +1,49 @@
+.FormFooter {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	margin-top: 16px;
+	&-link {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		align-items: center;
+		font-weight: 400;
+		font-size: var(--fSize14);
+		margin-bottom: 36px;
+		div {
+			text-align: center;
+			border-right: 1px solid var(--primary-20);
+			padding-right: var(--24px);
+			@media (max-width: 768px) {
+				padding-right: var(--12px);
+			}
+		}
+		button {
+			color: var(--primary);
+			text-align: left;
+			margin-left: var(--24px);
+			text-decoration: underline;
+			@media (max-width: 768px) {
+				margin-left: var(--12px);
+			}
+		}
+		@media (max-width: 768px) {
+			display: inline-flex;
+			grid-template-columns: auto auto;
+			align-self: center;
+			margin-top: 1.43rem;
+			margin-bottom: 0;
+		}
+	}
+	&-policy {
+		font-size: var(--fSize12);
+		line-height: var(--22px);
+		font-weight: 400;
+		text-align: center;
+		color: var(--black-80);
+		a {
+			color: var(--primary);
+		}
+	}
+}

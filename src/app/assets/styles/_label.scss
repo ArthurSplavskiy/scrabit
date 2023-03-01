@@ -1,0 +1,21 @@
+%label {
+	display: flex;
+	font-size: 14px;
+	line-height: 24px;
+	font-weight: 500;
+	color: var(--black-40);
+	margin-bottom: 2px;
+	margin-left: 18px;
+	text-align: left;
+	width: 100%;
+
+	&.focus {
+		color: var(--black-60);
+	}
+	&.error {
+		color: var(--system-error);
+	}
+	&.disabled {
+		color: var(--black-10);
+	}
+}

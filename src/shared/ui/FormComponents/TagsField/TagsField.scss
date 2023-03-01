@@ -1,0 +1,120 @@
+%label {
+	display: flex;
+	color: var(--black-60);
+	font-weight: 400;
+	margin-bottom: 0.57rem;
+	font-size: var(--fSize14);
+	text-align: left;
+	width: 100%;
+
+	&.error {
+		color: var(--system-red);
+	}
+}
+
+%input {
+	font-weight: 400;
+	height: 50px;
+	border: 1px solid var(--black-20);
+	border-radius: 50px;
+	outline: none;
+	position: relative;
+	width: 100%;
+	font-size: 1rem;
+	padding: 1.21rem 1rem 1.21rem 1.14rem;
+	box-sizing: border-box;
+	resize: none;
+	transition: var(--transition);
+	color: var(--black-100);
+
+	&::placeholder {
+		color: var(--black-100);
+	}
+
+	&:focus {
+		border: 1px solid var(--primary-20);
+	}
+
+	&:disabled {
+		border: 1px solid var(--black-10);
+		background: var(--black-10);
+		color: var(--black-10);
+	}
+
+	// &:hover {
+	// 	border: 1px solid var(--black-10);
+	// }
+}
+
+.TagsField {
+	margin-bottom: 1.14rem;
+	width: 100%;
+
+	&.error {
+		.label {
+			color: var(--red-0);
+		}
+		.TagsField-select__control {
+			border-color: var(--red-0);
+			&:hover {
+				border-color: var(--red-0);
+			}
+		}
+	}
+	&-error-message {
+		color: var(--red-0);
+		padding-top: 0.25rem;
+		font-size: var(--fSize13);
+	}
+
+	&-label {
+		@extend %label;
+	}
+
+	.TagsField-select__indicators {
+		display: none;
+	}
+	.TagsField-select__control {
+		@extend %input;
+		padding: 0;
+		box-shadow: none;
+		text-align: left;
+		&:hover {
+			border: 1px solid var(--gray-20);
+		}
+	}
+
+	.TagsField-select__multi-value__label {
+		@extend .tag;
+		@extend .tag__md;
+		border-right: none;
+		padding-right: 0;
+	}
+	.TagsField-select__multi-value__remove {
+		@extend .tag;
+		border-left: none;
+		padding-left: 0;
+		&:hover {
+			background-color: var(--white-10);
+			color: inherit;
+		}
+	}
+	.TagsField-select__option {
+		cursor: pointer;
+		text-align: left;
+		z-index: 12;
+		&--is-focused {
+			background: var(--gray-40);
+		}
+		&:active {
+			background-color: var(--gray-40);
+		}
+	}
+
+	.TagsField-select__menu-list {
+		z-index: 4;
+		padding-top: 0;
+		padding-bottom: 0;
+		max-height: 250px;
+	}
+}

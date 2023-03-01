@@ -1,0 +1,129 @@
+:root {
+	--h1fs: calc(40px + (96 - 40) * ((100vw - calc(320 * 1px)) / (1920 - 320)));
+	--h2fs: calc(16px + (40 - 16) * ((100vw - calc(320 * 1px)) / (1920 - 320)));
+	--h3fs: calc(14px + (18 - 14) * ((100vw - calc(320 * 1px)) / (1920 - 320)));
+
+	--40-24fs: calc(24px + (40 - 24) * ((100vw - calc(320 * 1px)) / (1920 - 320)));
+	--32-24fs: calc(16px + (32 - 16) * ((100vw - calc(320 * 1px)) / (1920 - 320)));
+	--32-14fs: calc(14px + (32 - 14) * ((100vw - calc(320 * 1px)) / (1920 - 320)));
+	--18-14fs: calc(14px + (18 - 14) * ((100vw - calc(320 * 1px)) / (1920 - 320)));
+	--18-10fs: calc(10px + (18 - 10) * ((100vw - calc(320 * 1px)) / (1920 - 320)));
+	--16-14fs: calc(14px + (16 - 14) * ((100vw - calc(320 * 1px)) / (1920 - 320)));
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-style: italic;
+	text-transform: uppercase;
+	font-weight: 700;
+}
+
+h1,
+.text-96 {
+	font-size: var(--h1fs);
+	line-height: 100%;
+	@media screen and (min-width: 1920px) {
+		font-size: 96px;
+	}
+}
+h2 {
+	font-size: var(--h2fs);
+	line-height: 100%;
+	@media screen and (min-width: 1920px) {
+		font-size: 40px;
+	}
+}
+h3 {
+	font-size: var(--h3fs);
+	line-height: 24px;
+	//line-height: 1.33;
+	@media screen and (min-width: 1920px) {
+		font-size: 18px;
+	}
+}
+
+// absolute font
+.text-40 {
+	font-size: 40px;
+	line-height: 40px;
+	font-weight: 700;
+}
+.text-24 {
+	font-size: 24px;
+	line-height: 24px;
+	font-weight: 700;
+}
+.text-18 {
+	font-size: 18px;
+	line-height: 24px;
+	font-weight: 700;
+}
+.text-16 {
+	font-size: 16px;
+	line-height: 28px;
+	font-weight: 500;
+}
+.text-14 {
+	font-size: 14px;
+	line-height: 24px;
+	font-weight: 500;
+}
+.text-12 {
+	font-size: 12px;
+	line-height: 100%;
+	font-weight: 700;
+}
+
+// adaptive font
+.text-40-24 {
+	font-size: var(--40-24fs);
+	font-weight: 700;
+	line-height: 100%;
+	@media screen and (min-width: 1920px) {
+		font-size: 40px;
+	}
+}
+.text-32-24 {
+	font-size: var(--32-24fs);
+	font-weight: 700;
+	line-height: 120%;
+	@media screen and (min-width: 1920px) {
+		font-size: 32px;
+	}
+}
+.text-32-14 {
+	font-size: var(--32-14fs);
+	font-weight: 700;
+	line-height: 120%;
+	@media screen and (min-width: 1920px) {
+		font-size: 32px;
+	}
+}
+.text-18-14 {
+	font-size: var(--18-14fs);
+	font-weight: 700;
+	line-height: 24px;
+	@media screen and (min-width: 1920px) {
+		font-size: 18px;
+	}
+}
+.text-18-10 {
+	font-size: var(--18-10fs);
+	font-weight: 700;
+	line-height: 140%;
+	@media screen and (min-width: 1920px) {
+		font-size: 18px;
+	}
+}
+.text-16-14 {
+	font-size: var(--16-14fs);
+	font-weight: 500;
+	line-height: 1.75;
+	@media screen and (min-width: 1920px) {
+		font-size: 16px;
+	}
+}

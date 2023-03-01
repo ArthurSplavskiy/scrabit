@@ -1,0 +1,47 @@
+.AccountLayout {
+	&-main {
+		width: 100vw;
+		height: calc(100vh - 76px);
+		overflow: hidden;
+		position: relative;
+		display: flex;
+		@media screen and (max-width: 1024px) {
+			flex-direction: column;
+			gap: 0;
+		}
+		@media screen and (max-width: 810px) {
+			height: auto;
+		}
+	}
+}
+
+.AccountContent {
+	padding-top: 32px;
+	width: 100%;
+	height: 100%;
+	padding-right: 60px;
+	overflow: auto;
+	padding-left: 50px;
+	@media screen and (max-width: 1200px) {
+		padding-right: 32px;
+	}
+	@media screen and (max-width: 1024px) {
+		padding: 32px 32px 90px 32px;
+	}
+	@media screen and (max-width: 600px) {
+		padding: 32px 24px 90px 24px;
+	}
+	&-title {
+		font-weight: 700;
+		font-size: 24px;
+		margin-bottom: 32px;
+		@media screen and (max-width: 600px) {
+			font-size: 18px;
+			margin-bottom: 10px;
+		}
+	}
+	&-option {
+		display: inline-block;
+		position: relative;
+	}
+}
