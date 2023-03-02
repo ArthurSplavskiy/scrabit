@@ -4,8 +4,10 @@
 	--h3fs: calc(14px + (18 - 14) * ((100vw - calc(320 * 1px)) / (1920 - 320)));
 
 	--40-24fs: calc(24px + (40 - 24) * ((100vw - calc(320 * 1px)) / (1920 - 320)));
+	--40-16fs: calc(16px + (40 - 16) * ((100vw - calc(320 * 1px)) / (1920 - 320)));
 	--32-24fs: calc(16px + (32 - 16) * ((100vw - calc(320 * 1px)) / (1920 - 320)));
 	--32-14fs: calc(14px + (32 - 14) * ((100vw - calc(320 * 1px)) / (1920 - 320)));
+	--24-18fs: calc(18px + (24 - 18) * ((100vw - calc(320 * 1px)) / (1920 - 320)));
 	--18-14fs: calc(14px + (18 - 14) * ((100vw - calc(320 * 1px)) / (1920 - 320)));
 	--18-10fs: calc(10px + (18 - 10) * ((100vw - calc(320 * 1px)) / (1920 - 320)));
 	--16-14fs: calc(14px + (16 - 14) * ((100vw - calc(320 * 1px)) / (1920 - 320)));
@@ -87,6 +89,14 @@ h3 {
 		font-size: 40px;
 	}
 }
+.text-40-16 {
+	font-size: var(--40-16fs);
+	font-weight: 700;
+	line-height: 100%;
+	@media screen and (min-width: 1920px) {
+		font-size: 40px;
+	}
+}
 .text-32-24 {
 	font-size: var(--32-24fs);
 	font-weight: 700;
@@ -101,6 +111,14 @@ h3 {
 	line-height: 120%;
 	@media screen and (min-width: 1920px) {
 		font-size: 32px;
+	}
+}
+.text-24-18 {
+	font-size: var(--24-18fs);
+	font-weight: 700;
+	line-height: 120%;
+	@media screen and (min-width: 1920px) {
+		font-size: 24px;
 	}
 }
 .text-18-14 {

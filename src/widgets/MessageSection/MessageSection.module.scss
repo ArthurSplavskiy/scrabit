@@ -1,0 +1,35 @@
+@use 'src/app/assets/styles/mixins' as *;
+
+.block {
+	@include adaptiveSize('margin-top', 160, 80);
+	@include adaptiveSize('padding', 64, 24);
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	align-items: center;
+	gap: 20px;
+	background: var(--blue-10);
+	border: 1px solid var(--black-text);
+	@media (max-width: 992px) {
+		grid-template-columns: 1fr;
+	}
+}
+.content {
+	h2 {
+		@include adaptiveSize('margin-bottom', 24, 16);
+		@media (max-width: 992px) {
+			text-align: center;
+		}
+	}
+	h5 {
+		@media (max-width: 992px) {
+			text-align: center;
+			margin-bottom: 40px;
+		}
+	}
+	button {
+		@include adaptiveSize('margin-top', 64, 40);
+		@media (max-width: 992px) {
+			width: 100%;
+		}
+	}
+}

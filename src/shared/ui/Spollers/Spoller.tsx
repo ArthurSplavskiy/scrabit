@@ -1,5 +1,7 @@
+import { withZero } from '@/shared/helpers';
 import { eventBus } from '@/shared/helpers/EventBus/EventBus';
 import { FC, useEffect, useRef, useState } from 'react';
+import { Button } from '../Button';
 import { Icon } from '../Icon/Icon';
 
 interface Props {
@@ -7,14 +9,14 @@ interface Props {
 	question?: string;
 	answer?: string;
 	open?: boolean;
+	btnLink?: string;
 	expand?: (id: number) => void;
 }
 
-export const Spoller: FC<Props> = ({ id, question, answer, open, expand }) => {
+export const Spoller: FC<Props> = ({ id, question, answer, open, expand, btnLink }) => {
 	const [isOpen, setIsOpen] = useState(open);
 	const [itemHeight, setItemHeight] = useState(0);
 	const answerRef = useRef<HTMLDivElement>(null);
-
 	const handleClick = () => {
 		expand?.(id || 0);
 	};
@@ -32,11 +34,26 @@ export const Spoller: FC<Props> = ({ id, question, answer, open, expand }) => {
 	return (
 		<div className={`Spoller ${isOpen && 'open'}`}>
 			<div className={`Spoller-head`} onClick={handleClick}>
-				<span>{question}</span>
-				<Icon icon='shevron' />
+				<span className='text-40-16'>
+					<span className={`Spoller-id`}>{withZero((id || 0) + 1)}</span>
+					{question}
+				</span>
+				<Icon icon={`${isOpen ? 'minus' : 'plus'}`} size='24' />
 			</div>
-			<div ref={answerRef} className='Spoller-body' style={{ height: itemHeight + 'px' }}>
+			<div
+				ref={answerRef}
+				className='Spoller-body text-16-14'
+				style={
+					window.innerWidth < 412
+						? { height: itemHeight + (isOpen ? 30 : 0) + 'px' }
+						: { height: itemHeight + 'px' }
+				}>
 				{answer}
+				{btnLink ? (
+					<Button btnTo={btnLink} customType='outline'>
+						read more
+					</Button>
+				) : null}
 			</div>
 		</div>
 	);

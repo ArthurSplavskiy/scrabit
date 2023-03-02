@@ -256,7 +256,75 @@
 				"author": "Julia Fox",
 				"text": "The guy that came to pick up the car lied to me and said that the offer is being changed to 300 when the offer i accepted was 940 he proceded to tell that he actually works for a auction in san diego and that he could offer me more then the three hundred"
 			}
-		]
+		],
+		"faq_section": {
+			"title": "faq",
+			"subtitle": "Scrabit’s here to tell you more",
+			"questions": [
+				{
+					"id": 1,
+					"title": "why scrabit?",
+					"text": "There’s no need to deal with the paperwork to change car ownership – Scrabit will take care of it. You also don’t have to worry about the hassle that comes with dealership. No increased trade-in value and price concerns – we settle on it at the beginning.",
+					"slug": "help-center"
+				},
+				{
+					"id": 2,
+					"title": "are you in my city?",
+					"text": "There’s no need to deal with the paperwork to change car ownership – Scrabit will take care of it. You also don’t have to worry about the hassle that comes with dealership. No increased trade-in value and price concerns – we settle on it at the beginning.",
+					"slug": "help-center"
+				},
+				{
+					"id": 3,
+					"title": "what happens to my car?",
+					"text": "There’s no need to deal with the paperwork to change car ownership – Scrabit will take care of it. You also don’t have to worry about the hassle that comes with dealership. No increased trade-in value and price concerns – we settle on it at the beginning.",
+					"slug": "help-center"
+				},
+				{
+					"id": 4,
+					"title": "can i buy a car from you?",
+					"text": "There’s no need to deal with the paperwork to change car ownership – Scrabit will take care of it. You also don’t have to worry about the hassle that comes with dealership. No increased trade-in value and price concerns – we settle on it at the beginning.",
+					"slug": "help-center"
+				}
+			]
+		},
+		"home_blogposts_section": {
+			"title": "blog",
+			"subtitle": "the easiest way to get cash for your car",
+			"blogposts": [
+				{
+					"id": 1,
+					"slug": "article-about-car",
+					"image": "/img.png",
+					"title": "The new Peddle is here—making it easier than ever to sell that clunker",
+					"createdAt": "15 May, 2022",
+					"tag": "experience"
+				},
+				{
+					"id": 2,
+					"slug": "article-about-something",
+					"image": "/img.png",
+					"title": "Cars that don’t make it past 100K miles",
+					"createdAt": "15 May, 2022",
+					"tag": "junk"
+				},
+				{
+					"id": 3,
+					"slug": "article-about-something",
+					"image": "/img.png",
+					"title": "Where can I get the most for my old car?",
+					"createdAt": "15 May, 2022",
+					"tag": "experience"
+				},
+				{
+					"id": 4,
+					"slug": "article-about-something",
+					"image": "/img.png",
+					"title": "Cars that don’t make it past 100K miles",
+					"createdAt": "15 May, 2022",
+					"tag": "junk"
+				}
+			]
+		}
 	},
 	"users": [
 		{

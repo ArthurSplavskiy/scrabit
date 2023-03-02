@@ -1,5 +1,7 @@
 import { ISelectOption } from '@/shared/interfaces/shared';
 import { IAboutSection } from '@/widgets/AboutSection/interface';
+import { IBlogPostSlider } from '@/widgets/BlogPostSlider/interface';
+import { IFaqSection } from '@/widgets/FaqSection/interface';
 import { IHowItWorkSection } from '@/widgets/HowItWorkSection/interface';
 import { IReviewSection } from '@/widgets/ReviewSection/interface';
 
@@ -15,4 +17,6 @@ export interface IHomePageData {
 	about_section: IAboutSection;
 	how_it_work_section: IHowItWorkSection;
 	review_section: IReviewSection[];
+	faq_section: IFaqSection;
+	home_blogposts_section: IBlogPostSlider;
 }

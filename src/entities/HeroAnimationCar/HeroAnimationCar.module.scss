@@ -32,6 +32,11 @@
 			position: absolute;
 			bottom: -11px;
 			right: 100%;
+
+			@media (max-width: 480px) {
+				width: 39px;
+				height: 31px;
+			}
 		}
 	}
 }
@@ -46,8 +51,13 @@
 	letter-spacing: -2px;
 	position: relative;
 	@include adaptiveSize('padding', 24, 10);
+	background: #f5f5f5;
 	@media (max-width: 1200px) {
 		letter-spacing: 0;
+	}
+	@media (max-width: 480px) {
+		border-width: 2px;
+		min-height: 80px;
 	}
 	&:after {
 		content: '';
@@ -59,6 +69,11 @@
 		position: absolute;
 		bottom: -4px;
 		left: 100%;
+		@media (max-width: 480px) {
+			width: 33px;
+			height: 23px;
+			bottom: -2px;
+		}
 	}
 }
 // .TriangleOuter {

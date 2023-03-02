@@ -31,7 +31,7 @@ export type tIcon =
 	| 'twitter'
 	| 'upload';
 
-type tIconSize = '24' | '20' | '16' | '12' | '8';
+type tIconSize = '24' | '20' | '16' | '12' | '10' | '8';
 type tColor = 'blue' | 'black' | 'white';
 
 interface iProps {

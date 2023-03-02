@@ -1,0 +1,19 @@
+@use 'src/app/assets/styles/mixins' as *;
+
+.section {
+	@include adaptiveSize('margin-top', 160, 80);
+}
+.sectionHead {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	@media (max-width: 768px) {
+		justify-content: center;
+	}
+	img {
+		align-self: baseline;
+		@media (max-width: 768px) {
+			display: none;
+		}
+	}
+}

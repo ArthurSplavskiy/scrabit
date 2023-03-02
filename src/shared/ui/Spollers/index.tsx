@@ -7,6 +7,7 @@ import './Spollers.scss';
 interface Props {
 	data?: any[];
 	isOneOpen?: boolean;
+	size?: 'big' | 'small';
 }
 
 export const Spollers: FC<Props> = ({ data, isOneOpen }) => {
@@ -34,8 +35,9 @@ export const Spollers: FC<Props> = ({ data, isOneOpen }) => {
 						id={s.id}
 						key={s.id}
 						open={s.open}
-						answer={s.answer}
-						question={s.question}
+						answer={s.text}
+						question={s.title}
+						btnLink={s.slug}
 						expand={toggle}
 					/>
 				))}

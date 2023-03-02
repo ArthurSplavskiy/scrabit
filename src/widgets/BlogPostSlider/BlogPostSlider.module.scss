@@ -1,0 +1,14 @@
+@use 'src/app/assets/styles/mixins' as *;
+
+.section {
+	@include adaptiveSize('padding-top', 160, 80);
+}
+
+.read {
+	display: flex;
+	justify-content: center;
+	margin-top: 48px;
+	@media (max-width: 768px) {
+		display: none;
+	}
+}

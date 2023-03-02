@@ -71,11 +71,23 @@ function useHomeReview() {
 	return { data: homePageData?.review_section, isLoading };
 }
 
+function useHomeFaq() {
+	const { homePageData, isLoading } = useContext(HomePageContext);
+	return { data: homePageData?.faq_section, isLoading };
+}
+
+function useHomeBlogposts() {
+	const { homePageData, isLoading } = useContext(HomePageContext);
+	return { data: homePageData?.home_blogposts_section, isLoading };
+}
+
 export {
 	HomePageProvider,
 	useHomePageData,
 	useHomeOfferForm,
 	useHomeAbout,
 	useHowItWork,
-	useHomeReview
+	useHomeReview,
+	useHomeFaq,
+	useHomeBlogposts
 };
