@@ -15,15 +15,17 @@ import { ParallaxSection } from '@/widgets/ParallaxSection';
 import { FaqSection } from '@/widgets/FaqSection';
 import { MessageSection } from '@/widgets/MessageSection';
 import { BlogPostSlider } from '@/widgets/BlogPostSlider';
+import { Preloader } from '@/widgets/Preloader';
 
 function HomePage() {
-	const { data: homeAboutData } = useHomeAbout();
+	const { data: homeAboutData, isLoading } = useHomeAbout();
 	const { data: homeHowItWorkData } = useHowItWork();
 	const { data: homeReviewData } = useHomeReview();
 	const { data: homeFaqData } = useHomeFaq();
 	const { data: homeBlogPostData } = useHomeBlogposts();
 	return (
 		<>
+			<Preloader hide={!isLoading} />
 			<HomeHeroSection />
 			<MovingTiters size='small' text='read more' />
 			<AboutSection data={homeAboutData} />

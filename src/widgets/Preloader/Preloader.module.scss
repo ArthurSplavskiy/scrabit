@@ -1,0 +1,12 @@
+.preloader {
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	inset: 0 0 0 0;
+	z-index: 9999;
+	background: var(--main-blue);
+	transition: var(--transition);
+	&.hide {
+		opacity: 0;
+	}
+}
