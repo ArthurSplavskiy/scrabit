@@ -1,17 +1,20 @@
 @use 'src/app/assets/styles/mixins' as *;
+@use 'src/app/assets/styles/extends' as *;
 
 .card {
 	height: 100%;
-	border: 1px solid var(--black-text);
 	display: grid;
-	grid-auto-rows: 240px 1fr;
+	grid-template-columns: 3fr 4fr;
+	@media (max-width: 1200px) {
+		grid-template-columns: 224px 380px;
+	}
 	@media (max-width: 768px) {
-		grid-auto-rows: 160px 1fr;
+		grid-template-columns: 124px 200px;
 	}
 }
 .image {
 	overflow: hidden;
-	border-bottom: 1px solid var(--black-text);
+	border: 1px solid var(--black-text);
 	img {
 		transition: var(--transition);
 	}
@@ -23,26 +26,20 @@
 }
 .imageLink {
 	display: block;
-	height: 240px;
-	@media (max-width: 768px) {
-		height: 160px;
-	}
+	height: 100%;
 	img {
 		width: 100%;
-		height: 240px;
+		height: 100%;
 		object-fit: cover;
-		@media (max-width: 768px) {
-			height: 160px;
-		}
 	}
 }
 .head {
-	margin-bottom: 16px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	gap: 20px;
+	gap: 16px;
 	flex-wrap: wrap;
+	@include adaptiveSize('margin-bottom', 16, 8);
 }
 .tag {
 	font-style: italic;
@@ -51,17 +48,21 @@
 	cursor: pointer;
 }
 .title {
+	@include textLine(3);
 	cursor: pointer;
-	@include adaptiveSize('margin-bottom', 16, 32);
+	margin-bottom: 16px;
+	h4 {
+		line-height: 120%;
+	}
+	@media (max-width: 768px) {
+		margin-bottom: 8px;
+	}
 }
 .body {
 	height: 100%;
 	display: flex;
 	flex-direction: column;
-	@include adaptiveSize('padding-top', 16, 20);
-	@include adaptiveSize('padding-left', 32, 20);
-	@include adaptiveSize('padding-right', 32, 20);
-	@include adaptiveSize('padding-bottom', 32, 20);
+	@include adaptiveSize('padding-left', 16, 8);
 }
 .controls {
 	display: flex;

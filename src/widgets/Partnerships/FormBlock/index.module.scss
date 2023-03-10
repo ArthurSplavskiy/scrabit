@@ -1,0 +1,20 @@
+@use 'src/app/assets/styles/mixins' as *;
+
+.block {
+	border: 1px solid var(--black-text);
+	@include adaptiveSize('padding', 48, 16);
+}
+.head {
+	@include adaptiveSize('margin-bottom', 64, 24);
+
+	h2 {
+		text-align: center;
+	}
+}
+.category {
+	@include adaptiveSize('margin-bottom', 24, 12);
+	text-align: center;
+	color: var(--main-blue);
+	text-transform: uppercase;
+	font-style: italic;
+}

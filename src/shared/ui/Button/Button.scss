@@ -19,6 +19,8 @@
 	letter-spacing: 4%;
 	text-transform: uppercase;
 
+	white-space: unset;
+
 	i {
 		transition: var(--transition);
 	}
@@ -31,13 +33,18 @@
 	}
 }
 
+.fullWidth {
+	width: 100%;
+}
+
 //sizes Big, Middle, Small
 %btnBig {
-	min-height: 74px;
+	min-height: 70px;
 	font-size: var(--fs18);
 	line-height: var(--fs24);
 	padding: 24px 70px;
 	max-width: 424px;
+	border: none !important;
 }
 
 %btnMiddle {
@@ -125,6 +132,51 @@
 		i {
 			color: var(--blue-20);
 		}
+	}
+}
+
+%btnTextUnderline {
+	position: relative;
+	color: var(--black-text);
+	padding: 0;
+	min-height: 0;
+	i {
+		color: var(--black-text);
+	}
+
+	&:hover,
+	&:focus,
+	&:active {
+		color: #38a9b8;
+		i {
+			color: #38a9b8;
+		}
+	}
+	&:disabled {
+		color: var(--blue-20);
+		i {
+			color: var(--blue-20);
+		}
+	}
+
+	&:before {
+		content: '';
+		display: block;
+		width: 100%;
+		height: 2px;
+		position: absolute;
+		bottom: -4px;
+		left: 0;
+		background: #343a40;
+		transform-origin: 100% 0;
+		transform: scaleX(1);
+		transition: var(--transition);
+	}
+
+	&:hover:before {
+		transform-origin: 0 0;
+		transform: scaleX(1);
+		background: #38a9b8;
 	}
 }
 
@@ -257,6 +309,9 @@
 	&.text {
 		@extend %btnText;
 	}
+	&.text-underline {
+		@extend %btnTextUnderline;
+	}
 	&.black {
 		@extend %btnBlack;
 	}
@@ -302,6 +357,33 @@
 	&.google,
 	&.facebook {
 		border-color: var(--black-40);
+	}
+}
+
+.Button-upload {
+	position: relative;
+	& * {
+		cursor: default;
+	}
+	&:hover {
+		button {
+			color: #38a9b8;
+			i {
+				color: #38a9b8;
+			}
+			&:before {
+				background: #38a9b8;
+			}
+		}
+	}
+	input {
+		position: absolute;
+		opacity: 0;
+		z-index: 2;
+		inset: 0 0 0 0;
+	}
+	&-output {
+		
 	}
 }
 

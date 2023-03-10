@@ -178,3 +178,7 @@ img {
 fieldset {
 	border: none;
 }
+
+.fullColumn {
+	grid-column: 1 / -1;
+}

@@ -3,12 +3,17 @@
 	--h2fs: calc(16px + (40 - 16) * ((100vw - calc(320 * 1px)) / (1920 - 320)));
 	--h3fs: calc(14px + (18 - 14) * ((100vw - calc(320 * 1px)) / (1920 - 320)));
 
+	--64-40fs: calc(40px + (60 - 40) * ((100vw - calc(320 * 1px)) / (1920 - 320)));
+	--64-24fs: calc(24px + (60 - 24) * ((100vw - calc(320 * 1px)) / (1920 - 320)));
 	--40-24fs: calc(24px + (40 - 24) * ((100vw - calc(320 * 1px)) / (1920 - 320)));
 	--40-16fs: calc(16px + (40 - 16) * ((100vw - calc(320 * 1px)) / (1920 - 320)));
 	--32-24fs: calc(16px + (32 - 16) * ((100vw - calc(320 * 1px)) / (1920 - 320)));
+	--32-18fs: calc(18px + (32 - 18) * ((100vw - calc(320 * 1px)) / (1920 - 320)));
 	--32-14fs: calc(14px + (32 - 14) * ((100vw - calc(320 * 1px)) / (1920 - 320)));
 	--24-18fs: calc(18px + (24 - 18) * ((100vw - calc(320 * 1px)) / (1920 - 320)));
+	--24-14fs: calc(14px + (24 - 14) * ((100vw - calc(320 * 1px)) / (1920 - 320)));
 	--18-14fs: calc(14px + (18 - 14) * ((100vw - calc(320 * 1px)) / (1920 - 320)));
+	--18-14fs: calc(12px + (18 - 12) * ((100vw - calc(320 * 1px)) / (1920 - 320)));
 	--18-10fs: calc(10px + (18 - 10) * ((100vw - calc(320 * 1px)) / (1920 - 320)));
 	--16-14fs: calc(14px + (16 - 14) * ((100vw - calc(320 * 1px)) / (1920 - 320)));
 }
@@ -81,6 +86,22 @@ h3 {
 }
 
 // adaptive font
+.text-64-40 {
+	font-size: var(--64-40fs);
+	font-weight: 700;
+	line-height: 120%;
+	@media screen and (min-width: 1920px) {
+		font-size: 64px;
+	}
+}
+.text-64-24 {
+	font-size: var(--64-24fs);
+	font-weight: 700;
+	line-height: 120%;
+	@media screen and (min-width: 1920px) {
+		font-size: 64px;
+	}
+}
 .text-40-24 {
 	font-size: var(--40-24fs);
 	font-weight: 700;
@@ -105,6 +126,14 @@ h3 {
 		font-size: 32px;
 	}
 }
+.text-32-18 {
+	font-size: var(--32-18fs);
+	font-weight: 700;
+	line-height: 120%;
+	@media screen and (min-width: 1920px) {
+		font-size: 32px;
+	}
+}
 .text-32-14 {
 	font-size: var(--32-14fs);
 	font-weight: 700;
@@ -121,10 +150,26 @@ h3 {
 		font-size: 24px;
 	}
 }
+.text-24-14 {
+	font-size: var(--24-14fs);
+	font-weight: 700;
+	line-height: 120%;
+	@media screen and (min-width: 1920px) {
+		font-size: 24px;
+	}
+}
 .text-18-14 {
 	font-size: var(--18-14fs);
 	font-weight: 700;
 	line-height: 24px;
+	@media screen and (min-width: 1920px) {
+		font-size: 18px;
+	}
+}
+.text-18-12 {
+	font-size: var(--18-12fs);
+	font-weight: 700;
+	line-height: 100%;
 	@media screen and (min-width: 1920px) {
 		font-size: 18px;
 	}

@@ -6,6 +6,7 @@
 	z-index: 9999;
 	background: var(--main-blue);
 	transition: var(--transition);
+	pointer-events: none;
 	&.hide {
 		opacity: 0;
 	}

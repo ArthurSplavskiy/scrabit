@@ -1,6 +1,6 @@
 import { MovingTiters } from '@/shared/ui/MovingTiters/MovingTiters';
 import { AboutSection } from '@/widgets/AboutSection';
-import { HomeHeroSection } from './components/HomeHeroSection';
+import { HomeHeroSection } from './ui/HomeHeroSection';
 import { HowItWorkSection } from '@/widgets/HowItWorkSection';
 import {
 	useHomeAbout,

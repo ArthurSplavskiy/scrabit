@@ -77,7 +77,7 @@ export const HeaderMenu: FC<Props> = ({ data, active, menuHandler, ...props }) =
 								<li className='HeaderMenu-item text-16' key={item.slug}>
 									<Link
 										onClick={() => handleClick(item.slug)}
-										to={`/#${item.slug}`}
+										to={`/${item.slug}`}
 										reloadDocument={false}>
 										{item.name}
 									</Link>

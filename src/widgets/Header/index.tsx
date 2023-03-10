@@ -34,11 +34,11 @@ export const Header: FC = () => {
 
 	const HeaderSign = () =>
 		Cookies.get('auth-token') ? (
-			<Link to={AppRoutes.ACCOUNT_DASHBOARD}>User Name</Link>
+			<Link to={AppRoutes.ACCOUNT}>User Name</Link>
 		) : (
 			<Button
 				customType='outline'
-				iconName={!isMobile ? 'acc' : ''}
+				iconName={!isMobile ? 'acc' : undefined}
 				btnTo={AppRoutes.LOGIN}
 				size={isDesktop ? 'small' : 'middle'}>
 				login

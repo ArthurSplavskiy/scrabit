@@ -8,19 +8,21 @@ import { Navigation, Pagination } from 'swiper';
 import classNames from 'classnames';
 import { Icon } from '@/shared/ui/Icon/Icon';
 import { Button } from '@/shared/ui/Button';
-import { SliderCard } from '@/entities/Blogpost/ui/SliderCard';
+import { SliderRecordCard } from '@/entities/BlogRecord';
+import { AppRoutes } from '@/app/routes';
 
 interface Props {
 	data?: IBlogPostSlider;
+	withoutBtn?: boolean;
 }
 
-export const BlogPostSlider: FC<Props> = ({ data }) => {
+export const BlogPostSlider: FC<Props> = ({ data, withoutBtn }) => {
 	const prevBtn = useRef<HTMLButtonElement>(null);
 	const nextBtn = useRef<HTMLButtonElement>(null);
 	const paginationRef = useRef<HTMLDivElement>(null);
 	const { isMobile, isDesktop } = useDevice();
 	return (
-		<section className={styles.section}>
+		<section className={classNames(styles.section, 'blue-section')}>
 			<div className='container'>
 				<SectionHead title={data?.title} subtitle={data?.subtitle} />
 				<div className={styles.sectionContent}>
@@ -47,11 +49,11 @@ export const BlogPostSlider: FC<Props> = ({ data }) => {
 							style={{ overflow: 'visible' }}>
 							{data?.blogposts?.map((slide, index) => (
 								<SwiperSlide key={index} className={styles.sectionSlide}>
-									<SliderCard
+									<SliderRecordCard
 										image={slide?.image}
 										title={slide?.title}
 										createdAt={slide?.createdAt}
-										slug={slide?.slug}
+										route={`/${AppRoutes.BLOG}/${slide?.tag.slug}/${slide?.slug}`}
 										tag={slide?.tag}
 									/>
 								</SwiperSlide>
@@ -77,7 +79,11 @@ export const BlogPostSlider: FC<Props> = ({ data }) => {
 					) : null}
 				</div>
 				<div className={styles.read}>
-					<Button btnTo='/blog'>more news</Button>
+					{!withoutBtn && (
+						<Button btnTo={AppRoutes.BLOG} width={isMobile ? 'fullWidth' : undefined}>
+							more news
+						</Button>
+					)}
 				</div>
 			</div>
 		</section>

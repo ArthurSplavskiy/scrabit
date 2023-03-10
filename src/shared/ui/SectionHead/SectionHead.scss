@@ -7,6 +7,14 @@
 		margin-bottom: 40px;
 	}
 	text-transform: uppercase;
+	&.only-title {
+		@media (max-width: 768px) {
+			margin-bottom: 24px;
+		}
+		h2 {
+			margin-bottom: 0;
+		}
+	}
 	h2 {
 		margin-bottom: 24px;
 		@media (max-width: 768px) {

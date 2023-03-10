@@ -1,0 +1,34 @@
+@use 'src/app/assets/styles/mixins' as *;
+
+.section {
+	@include adaptiveSize('margin-top', 80, 40);
+}
+.block {
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+	grid-template-rows: auto auto;
+	grid-template-areas: 'person form' 'faqs form';
+	@include adaptiveSize('gap', 35, 24);
+	@media (max-width: 1200px) {
+		grid-template-columns: 1fr;
+		grid-template-areas: 'form' 'person' 'faqs';
+	}
+}
+.personBlock {
+	grid-area: person;
+	& > * {
+		height: 100%;
+	}
+}
+.faqsBlock {
+	grid-area: faqs;
+	& > * {
+		height: 100%;
+	}
+}
+.formBlock {
+	grid-area: form;
+	& > * {
+		height: 100%;
+	}
+}

@@ -1,0 +1,10 @@
+@use 'src/app/assets/styles/mixins' as *;
+
+.blue-section {
+	@include adaptiveSize('margin-top', 120, 40);
+	@include adaptiveSize('padding-top', 80, 24);
+	@include adaptiveSize('padding-bottom', 80, 24);
+	background: var(--blue-10);
+	border-top: 1px solid var(--black-text);
+	border-bottom: 1px solid var(--black-text);
+}

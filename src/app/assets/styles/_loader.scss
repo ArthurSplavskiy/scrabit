@@ -1,0 +1,49 @@
+.loader {
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 4;
+	&:before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		background: var(--primary);
+		border-radius: 5.7rem;
+		opacity: 0.8;
+	}
+
+	&:after {
+		content: '';
+		width: 1rem;
+		height: 1rem;
+		position: absolute;
+		border-radius: 50%;
+		border: 4px solid #aaa6a6;
+		border-color: #656565 #656565 #656565 transparent;
+
+		left: calc(50% - 1rem);
+		top: 60%;
+
+		animation-name: loading-spin;
+		animation-duration: 1500ms;
+		animation-iteration-count: infinite;
+		animation-timing-function: linear;
+	}
+}
+
+@keyframes loading-spin {
+	from {
+		transform: rotate(0deg);
+	}
+
+	to {
+		transform: rotate(360deg);
+	}
+}

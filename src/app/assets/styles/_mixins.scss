@@ -78,3 +78,37 @@
 		#{$property}: #{$maxSize}px;
 	}
 }
+
+@mixin textLine($lineCount) {
+	display: -webkit-box;
+	-webkit-line-clamp: $lineCount;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+@mixin scrollbars(
+	$size: 4px,
+	$foreground-color: #1e1e21,
+	$background-color: #f4f4f4,
+	$border-radius: 20px
+) {
+	// For Chrome & Safari
+	&::-webkit-scrollbar {
+		width: $size;
+		height: $size;
+		border-radius: $border-radius;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background: $foreground-color;
+		border-radius: $border-radius;
+	}
+
+	&::-webkit-scrollbar-track {
+		background: $background-color;
+		border-radius: $border-radius;
+	}
+
+	// Standard version (Firefox only for now)
+	scrollbar-color: $foreground-color $background-color;
+}

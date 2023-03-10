@@ -1,3 +1,5 @@
+@use 'src/app/assets/styles/mixins' as *;
+
 :root {
 	--offset: calc(4px + (8 - 4) * ((100vw - calc(320 * 1px)) / (1920 - 320)));
 }
@@ -22,4 +24,12 @@
 
 .mb-40 {
 	margin-bottom: 40px;
+}
+
+.mb-0 {
+	margin-bottom: 0 !important;
+}
+
+.section-offset {
+	@include adaptiveSize('margin-top', 80, 56);
 }

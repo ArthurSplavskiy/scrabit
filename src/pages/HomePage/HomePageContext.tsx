@@ -1,7 +1,7 @@
 import { queryKeys } from '@/app/queryClient/queryKeys';
 import React, { createContext, FunctionComponent, useContext, useMemo } from 'react';
 import { useQuery } from 'react-query';
-import { IHomePageData } from './interfaces';
+import { IHomePageData } from './interface';
 import api from './api';
 
 type State = {

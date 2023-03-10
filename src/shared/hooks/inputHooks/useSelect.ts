@@ -71,7 +71,20 @@ export const useSelect = <T extends tOptions>(props?: iUseSelectProps<T>) => {
 		setIsValid(!!v);
 	};
 
+	const [isReset, setIsReset] = useState(false);
+	const reset = () => {
+		document.querySelector('form')?.reset();
+		setValue({ value: 'value', label: 'label' } as any);
+		setSelected({ value: 'value', label: 'label' } as any);
+		setErrors([]);
+		setIsReset(true);
+		setTimeout(() => {
+			setIsReset(false);
+		}, 1500);
+	};
+
 	const checkValidity = (val?: string) => {
+		if (isReset) return;
 		const newVal = val === undefined ? value : val;
 		const customErrors = errors.filter((err) => err !== emptyErr);
 		const newErrors: string[] = [];
@@ -87,11 +100,6 @@ export const useSelect = <T extends tOptions>(props?: iUseSelectProps<T>) => {
 		setErrors(newErrors);
 		setIsValid(!newErrors?.length);
 		return !newErrors?.length;
-	};
-
-	const clearAll = () => {
-		setValue('');
-		setSelected(undefined);
 	};
 
 	return {
@@ -122,7 +130,7 @@ export const useSelect = <T extends tOptions>(props?: iUseSelectProps<T>) => {
 		setSelected,
 
 		onChange,
-		clearAll,
+		reset,
 
 		inputProps: {
 			value,

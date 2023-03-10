@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { FC, useEffect, useRef } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import styles from './Preloader.module.scss';
 
 interface Props {
@@ -7,12 +7,12 @@ interface Props {
 }
 
 export const Preloader: FC<Props> = ({ hide }) => {
-	const preloaderRef = useRef<HTMLDivElement | null>(null);
+	const [isHide, setIsHide] = useState(false);
 
 	useEffect(() => {
 		if (hide) {
 			setTimeout(() => {
-				preloaderRef.current?.remove();
+				setIsHide(true);
 			}, 300);
 		}
 	}, [hide]);
@@ -20,8 +20,7 @@ export const Preloader: FC<Props> = ({ hide }) => {
 	return (
 		<div
 			className={classNames(styles.preloader, {
-				[styles.hide]: hide
-			})}
-			ref={preloaderRef}></div>
+				[styles.hide]: isHide
+			})}></div>
 	);
 };

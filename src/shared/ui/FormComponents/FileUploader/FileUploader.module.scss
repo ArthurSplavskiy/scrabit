@@ -1,0 +1,35 @@
+.loadFiles {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 10px;
+}
+.loadFile {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 48px;
+	border-radius: 40px;
+	padding: 4px 16px;
+	border: 1px solid var(--black-60);
+	white-space: nowrap;
+	button {
+		margin-top: 0 !important;
+		&:hover {
+			transform: scale(1.1);
+		}
+	}
+}
+.loadFileName {
+	font-size: 12px;
+	font-weight: 500;
+	margin-right: 10px;
+	color: var(--main-blue);
+}
+.loadFileSize {
+	font-size: 14px;
+	color: var(--black-60);
+}
+.loadFilesMaxSize {
+	font-size: 14px;
+	color: var(--system-error);
+}

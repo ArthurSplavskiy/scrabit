@@ -33,27 +33,27 @@
 				{
 					"id": 1,
 					"name": "Buyers",
-					"link": "bayers"
+					"link": "/partnerships/buyer"
 				},
 				{
 					"id": 2,
 					"name": "Publishers",
-					"link": "publishers"
+					"link": "/partnerships/publisher"
 				},
 				{
 					"id": 3,
 					"name": "Carriers",
-					"link": "carriers"
+					"link": "/partnerships/carrier"
 				},
 				{
 					"id": 4,
 					"name": "Charities",
-					"link": "charities"
+					"link": "/partnerships/charity"
 				},
 				{
 					"id": 5,
 					"name": "Suppliers",
-					"link": "suppliers"
+					"link": "/partnerships/supplier"
 				}
 			]
 		},
@@ -293,39 +293,802 @@
 			"blogposts": [
 				{
 					"id": 1,
-					"slug": "article-about-car",
+					"slug": "record-name",
 					"image": "/img.png",
 					"title": "The new Peddle is here—making it easier than ever to sell that clunker",
 					"createdAt": "15 May, 2022",
-					"tag": "experience"
+					"tag": {
+						"slug": "experience",
+						"name": "experience"
+					}
 				},
 				{
 					"id": 2,
-					"slug": "article-about-something",
+					"slug": "record-name",
 					"image": "/img.png",
 					"title": "Cars that don’t make it past 100K miles",
 					"createdAt": "15 May, 2022",
-					"tag": "junk"
+					"tag": {
+						"slug": "junk",
+						"name": "junk"
+					}
 				},
 				{
 					"id": 3,
-					"slug": "article-about-something",
+					"slug": "record-name",
 					"image": "/img.png",
 					"title": "Where can I get the most for my old car?",
 					"createdAt": "15 May, 2022",
-					"tag": "experience"
+					"tag": {
+						"slug": "experience",
+						"name": "experience"
+					}
 				},
 				{
 					"id": 4,
-					"slug": "article-about-something",
+					"slug": "record-name",
 					"image": "/img.png",
 					"title": "Cars that don’t make it past 100K miles",
 					"createdAt": "15 May, 2022",
-					"tag": "junk"
+					"tag": {
+						"slug": "junk",
+						"name": "junk"
+					}
 				}
 			]
 		}
 	},
+	"blog_page": {
+		"hero_record": {
+			"id": 1,
+			"slug": "record_name",
+			"image": "/img.png",
+			"title": "Aging Well: Which Cars Gain Value As They Age",
+			"description": "Burning oil can be caused by a few mechanical breakdowns. If you suspect that there’s a problem, get it looked at ASAP",
+			"createdAt": "15 May, 2022",
+			"tag": {
+				"slug": "wreck",
+				"name": "Wreck"
+			}
+		},
+		"top_records": [
+			{
+				"id": 1,
+				"slug": "record-name",
+				"image": "/img.png",
+				"title": "The new Peddle is here—making it easier than ever to sell that clunker",
+				"createdAt": "15 May, 2022",
+				"tag": {
+					"slug": "experience",
+					"name": "experience"
+				}
+			},
+			{
+				"id": 2,
+				"slug": "record-name",
+				"image": "/img.png",
+				"title": "Cars that don’t make it past 100K miles",
+				"createdAt": "15 May, 2022",
+				"tag": {
+					"slug": "junk",
+					"name": "junk"
+				}
+			},
+			{
+				"id": 3,
+				"slug": "record-name",
+				"image": "/img.png",
+				"title": "Where can I get the most for my old car?",
+				"createdAt": "15 May, 2022",
+				"tag": {
+					"slug": "experience",
+					"name": "experience"
+				}
+			},
+			{
+				"id": 4,
+				"slug": "record-name",
+				"image": "/img.png",
+				"title": "Cars that don’t make it past 100K miles",
+				"createdAt": "15 May, 2022",
+				"tag": {
+					"slug": "junk",
+					"name": "junk"
+				}
+			}
+		],
+		"categories_section": [
+			{
+				"subtitle": "giving pre-owned vehicles another chance",
+				"tag": {
+					"slug": "scrabit-speaking",
+					"name": "Scrabit Speaking"
+				}
+			},
+			{
+				"subtitle": "giving pre-owned vehicles another chance",
+				"tag": {
+					"slug": "wreck",
+					"name": "Wreck"
+				}
+			},
+			{
+				"subtitle": "giving pre-owned vehicles another chance",
+				"tag": {
+					"slug": "sellers-unite",
+					"name": "Sellers, Unite"
+				}
+			},
+			{
+				"subtitle": "giving pre-owned vehicles another chance",
+				"tag": {
+					"slug": "all-things-finance",
+					"name": "All Things Finance"
+				}
+			}
+		]
+	},
+	"article_page": {
+		"related_records": [
+			{
+				"id": 1,
+				"slug": "record-name",
+				"image": "/img.png",
+				"title": "The new Peddle is here—making it easier than ever to sell that clunker",
+				"createdAt": "15 May, 2022",
+				"tag": {
+					"slug": "experience",
+					"name": "experience"
+				}
+			},
+			{
+				"id": 2,
+				"slug": "record-name",
+				"image": "/img.png",
+				"title": "Cars that don’t make it past 100K miles",
+				"createdAt": "15 May, 2022",
+				"tag": {
+					"slug": "junk",
+					"name": "junk"
+				}
+			},
+			{
+				"id": 3,
+				"slug": "record-name",
+				"image": "/img.png",
+				"title": "Where can I get the most for my old car?",
+				"createdAt": "15 May, 2022",
+				"tag": {
+					"slug": "experience",
+					"name": "experience"
+				}
+			},
+			{
+				"id": 4,
+				"slug": "record-name",
+				"image": "/img.png",
+				"title": "Cars that don’t make it past 100K miles",
+				"createdAt": "15 May, 2022",
+				"tag": {
+					"slug": "junk",
+					"name": "junk"
+				}
+			}
+		]
+	},
+	"buyer_page": {
+		"hero_section": {
+			"title": "Become a scrabit buyer",
+			"subtitle": "Calling all the old cars lovers! You’ll enjoy being one of our buyers.",
+			"message": "How to sell a car quickly"
+		},
+		"buyer": {
+			"img": "/img.png",
+			"name": "MaRina martinez",
+			"post": "VP",
+			"message": "Scrabit has helped hundreds of licensed car buyers find vehicles. Reach out to Scrabit’s team and we’ll help you!"
+		},
+		"faq": {
+			"title": "need more info?",
+			"subtitle": "Scrabit’s got all the answers ready for you",
+			"faqs": [
+				{
+					"id": 1,
+					"title": "How do i get started?",
+					"text": "Share a copy of your dealer, salvage, dismantler, scrap or other applicable liecnse to apply faster. If you don’t have a copy close by, no worries - you can always submit it later"
+				},
+				{
+					"id": 2,
+					"title": "what are the costs?",
+					"text": "Share a copy of your dealer, salvage, dismantler, scrap or other applicable liecnse to apply faster. If you don’t have a copy close by, no worries - you can always submit it later"
+				},
+				{
+					"id": 3,
+					"title": "which requirements are there to become a buyer?",
+					"text": "Share a copy of your dealer, salvage, dismantler, scrap or other applicable liecnse to apply faster. If you don’t have a copy close by, no worries - you can always submit it later"
+				},
+				{
+					"id": 4,
+					"title": "what is the buying proces like?",
+					"text": "Share a copy of your dealer, salvage, dismantler, scrap or other applicable liecnse to apply faster. If you don’t have a copy close by, no worries - you can always submit it later"
+				},
+				{
+					"id": 5,
+					"title": "HOW will i receive assignments?",
+					"text": "Share a copy of your dealer, salvage, dismantler, scrap or other applicable liecnse to apply faster. If you don’t have a copy close by, no worries - you can always submit it later"
+				},
+				{
+					"id": 6,
+					"title": "HOW do i manage my assignments?",
+					"text": "Share a copy of your dealer, salvage, dismantler, scrap or other applicable liecnse to apply faster. If you don’t have a copy close by, no worries - you can always submit it later"
+				}
+			]
+		},
+		"form": {
+			"category": "Apply today",
+			"title": "let’s find a car together",
+			"selects": {
+				"state": [
+					{ "id": 1, "label": "AK", "value": "AK" },
+					{ "id": 2, "label": "AL", "value": "AL" },
+					{ "id": 3, "label": "AR", "value": "AR" }
+				],
+				"industry": [
+					{ "id": 1, "label": "Auction", "value": "Auction" },
+					{ "id": 2, "label": "Broker", "value": "Broker" },
+					{ "id": 3, "label": "Dealership", "value": "Dealership" }
+				],
+				"goal": [
+					{ "id": 1, "label": "Recycle", "value": "Recycle" },
+					{ "id": 2, "label": "Resell", "value": "Resell" }
+				],
+				"license": [
+					{ "id": 1, "label": "Towing", "value": "Towing" },
+					{ "id": 2, "label": "Other", "value": "Other" }
+				],
+				"feedback": [
+					{ "id": 1, "label": "ARA", "value": "ARA" },
+					{ "id": 2, "label": "ARA Magazine", "value": "ARA Magazine" }
+				]
+			}
+		}
+	},
+	"carrier_page": {
+		"hero_section": {
+			"title": "Become a scrabit carrier",
+			"subtitle": "Boost your towing business with a consistent flow of Scrabit pickups.",
+			"message": "How to sell a car quickly"
+		},
+		"buyer": {
+			"img": "/img.png",
+			"name": "MaRina martinez",
+			"post": "VP",
+			"message": "Scrabit has helped hundreds of licensed car buyers find vehicles. Reach out to Scrabit’s team and we’ll help you!"
+		},
+		"faq": {
+			"title": "need more info?",
+			"subtitle": "Scrabit’s got all the answers ready for you",
+			"faqs": [
+				{
+					"id": 1,
+					"title": "How do i get started?",
+					"text": "Share a copy of your dealer, salvage, dismantler, scrap or other applicable liecnse to apply faster. If you don’t have a copy close by, no worries - you can always submit it later"
+				},
+				{
+					"id": 2,
+					"title": "what are the costs?",
+					"text": "Share a copy of your dealer, salvage, dismantler, scrap or other applicable liecnse to apply faster. If you don’t have a copy close by, no worries - you can always submit it later"
+				},
+				{
+					"id": 3,
+					"title": "which requirements are there to become a buyer?",
+					"text": "Share a copy of your dealer, salvage, dismantler, scrap or other applicable liecnse to apply faster. If you don’t have a copy close by, no worries - you can always submit it later"
+				},
+				{
+					"id": 4,
+					"title": "what is the buying proces like?",
+					"text": "Share a copy of your dealer, salvage, dismantler, scrap or other applicable liecnse to apply faster. If you don’t have a copy close by, no worries - you can always submit it later"
+				},
+				{
+					"id": 5,
+					"title": "HOW will i receive assignments?",
+					"text": "Share a copy of your dealer, salvage, dismantler, scrap or other applicable liecnse to apply faster. If you don’t have a copy close by, no worries - you can always submit it later"
+				},
+				{
+					"id": 6,
+					"title": "HOW do i manage my assignments?",
+					"text": "Share a copy of your dealer, salvage, dismantler, scrap or other applicable liecnse to apply faster. If you don’t have a copy close by, no worries - you can always submit it later"
+				}
+			]
+		},
+		"form": {
+			"category": "Apply today",
+			"title": "let’s find a car together",
+			"selects": {
+				"state": [
+					{ "id": 1, "label": "AK", "value": "AK" },
+					{ "id": 2, "label": "AL", "value": "AL" },
+					{ "id": 3, "label": "AR", "value": "AR" }
+				],
+				"industry": [
+					{ "id": 1, "label": "Auction", "value": "Auction" },
+					{ "id": 2, "label": "Broker", "value": "Broker" },
+					{ "id": 3, "label": "Dealership", "value": "Dealership" }
+				],
+				"goal": [
+					{ "id": 1, "label": "Recycle", "value": "Recycle" },
+					{ "id": 2, "label": "Resell", "value": "Resell" }
+				],
+				"license": [
+					{ "id": 1, "label": "Towing", "value": "Towing" },
+					{ "id": 2, "label": "Other", "value": "Other" }
+				],
+				"feedback": [
+					{ "id": 1, "label": "ARA", "value": "ARA" },
+					{ "id": 2, "label": "ARA Magazine", "value": "ARA Magazine" }
+				]
+			}
+		}
+	},
+	"publisher_page": {
+		"hero_section": {
+			"title": "Become a scrabit publisher",
+			"subtitle": "Apply to become part of the Scrabit community of classic car appreciators.",
+			"message": "How to sell a car quickly"
+		},
+		"buyer": {
+			"img": "/img.png",
+			"name": "MaRina martinez",
+			"post": "VP",
+			"message": "Scrabit has helped hundreds of licensed car buyers find vehicles. Reach out to Scrabit’s team and we’ll help you!"
+		},
+		"faq": {
+			"title": "need more info?",
+			"subtitle": "Scrabit’s got all the answers ready for you",
+			"faqs": [
+				{
+					"id": 1,
+					"title": "How do i get started?",
+					"text": "Share a copy of your dealer, salvage, dismantler, scrap or other applicable liecnse to apply faster. If you don’t have a copy close by, no worries - you can always submit it later"
+				},
+				{
+					"id": 2,
+					"title": "what are the costs?",
+					"text": "Share a copy of your dealer, salvage, dismantler, scrap or other applicable liecnse to apply faster. If you don’t have a copy close by, no worries - you can always submit it later"
+				},
+				{
+					"id": 3,
+					"title": "which requirements are there to become a buyer?",
+					"text": "Share a copy of your dealer, salvage, dismantler, scrap or other applicable liecnse to apply faster. If you don’t have a copy close by, no worries - you can always submit it later"
+				},
+				{
+					"id": 4,
+					"title": "what is the buying proces like?",
+					"text": "Share a copy of your dealer, salvage, dismantler, scrap or other applicable liecnse to apply faster. If you don’t have a copy close by, no worries - you can always submit it later"
+				},
+				{
+					"id": 5,
+					"title": "HOW will i receive assignments?",
+					"text": "Share a copy of your dealer, salvage, dismantler, scrap or other applicable liecnse to apply faster. If you don’t have a copy close by, no worries - you can always submit it later"
+				},
+				{
+					"id": 6,
+					"title": "HOW do i manage my assignments?",
+					"text": "Share a copy of your dealer, salvage, dismantler, scrap or other applicable liecnse to apply faster. If you don’t have a copy close by, no worries - you can always submit it later"
+				}
+			]
+		},
+		"form": {
+			"category": "Apply today",
+			"title": "let’s find a car together",
+			"selects": {
+				"state": [
+					{ "id": 1, "label": "AK", "value": "AK" },
+					{ "id": 2, "label": "AL", "value": "AL" },
+					{ "id": 3, "label": "AR", "value": "AR" }
+				],
+				"industry": [
+					{ "id": 1, "label": "Auction", "value": "Auction" },
+					{ "id": 2, "label": "Broker", "value": "Broker" },
+					{ "id": 3, "label": "Dealership", "value": "Dealership" }
+				],
+				"goal": [
+					{ "id": 1, "label": "Recycle", "value": "Recycle" },
+					{ "id": 2, "label": "Resell", "value": "Resell" }
+				],
+				"license": [
+					{ "id": 1, "label": "Towing", "value": "Towing" },
+					{ "id": 2, "label": "Other", "value": "Other" }
+				],
+				"feedback": [
+					{ "id": 1, "label": "ARA", "value": "ARA" },
+					{ "id": 2, "label": "ARA Magazine", "value": "ARA Magazine" }
+				]
+			}
+		}
+	},
+	"charity_page": {
+		"hero_section": {
+			"title": "Become a scrabit charity",
+			"subtitle": "Boost your towing business with a consistent flow of Scrabit pickups.",
+			"message": "How to sell a car quickly"
+		},
+		"buyer": {
+			"img": "/img.png",
+			"name": "MaRina martinez",
+			"post": "VP",
+			"message": "Scrabit has helped hundreds of licensed car buyers find vehicles. Reach out to Scrabit’s team and we’ll help you!"
+		},
+		"faq": {
+			"title": "need more info?",
+			"subtitle": "Scrabit’s got all the answers ready for you",
+			"faqs": [
+				{
+					"id": 1,
+					"title": "How do i get started?",
+					"text": "Share a copy of your dealer, salvage, dismantler, scrap or other applicable liecnse to apply faster. If you don’t have a copy close by, no worries - you can always submit it later"
+				},
+				{
+					"id": 2,
+					"title": "what are the costs?",
+					"text": "Share a copy of your dealer, salvage, dismantler, scrap or other applicable liecnse to apply faster. If you don’t have a copy close by, no worries - you can always submit it later"
+				},
+				{
+					"id": 3,
+					"title": "which requirements are there to become a buyer?",
+					"text": "Share a copy of your dealer, salvage, dismantler, scrap or other applicable liecnse to apply faster. If you don’t have a copy close by, no worries - you can always submit it later"
+				},
+				{
+					"id": 4,
+					"title": "what is the buying proces like?",
+					"text": "Share a copy of your dealer, salvage, dismantler, scrap or other applicable liecnse to apply faster. If you don’t have a copy close by, no worries - you can always submit it later"
+				},
+				{
+					"id": 5,
+					"title": "HOW will i receive assignments?",
+					"text": "Share a copy of your dealer, salvage, dismantler, scrap or other applicable liecnse to apply faster. If you don’t have a copy close by, no worries - you can always submit it later"
+				},
+				{
+					"id": 6,
+					"title": "HOW do i manage my assignments?",
+					"text": "Share a copy of your dealer, salvage, dismantler, scrap or other applicable liecnse to apply faster. If you don’t have a copy close by, no worries - you can always submit it later"
+				}
+			]
+		},
+		"form": {
+			"category": "Apply today",
+			"title": "let’s find a car together",
+			"selects": {
+				"state": [
+					{ "id": 1, "label": "AK", "value": "AK" },
+					{ "id": 2, "label": "AL", "value": "AL" },
+					{ "id": 3, "label": "AR", "value": "AR" }
+				],
+				"platform": [
+					{ "id": 1, "label": "ARA", "value": "ARA" },
+					{ "id": 2, "label": "ARA Magazine", "value": "ARA Magazine" }
+				]
+			}
+		}
+	},
+	"supplier_page": {
+		"hero_section": {
+			"title": "Become a scrabit supplier",
+			"subtitle": "Apply to become part of the Scrabit community of classic car appreciators.",
+			"message": "How to sell a car quickly"
+		},
+		"buyer": {
+			"img": "/img.png",
+			"name": "MaRina martinez",
+			"post": "VP",
+			"message": "Scrabit has helped hundreds of licensed car buyers find vehicles. Reach out to Scrabit’s team and we’ll help you!"
+		},
+		"faq": {
+			"title": "need more info?",
+			"subtitle": "Scrabit’s got all the answers ready for you",
+			"faqs": [
+				{
+					"id": 1,
+					"title": "How do i get started?",
+					"text": "Share a copy of your dealer, salvage, dismantler, scrap or other applicable liecnse to apply faster. If you don’t have a copy close by, no worries - you can always submit it later"
+				},
+				{
+					"id": 2,
+					"title": "what are the costs?",
+					"text": "Share a copy of your dealer, salvage, dismantler, scrap or other applicable liecnse to apply faster. If you don’t have a copy close by, no worries - you can always submit it later"
+				},
+				{
+					"id": 3,
+					"title": "which requirements are there to become a buyer?",
+					"text": "Share a copy of your dealer, salvage, dismantler, scrap or other applicable liecnse to apply faster. If you don’t have a copy close by, no worries - you can always submit it later"
+				},
+				{
+					"id": 4,
+					"title": "what is the buying proces like?",
+					"text": "Share a copy of your dealer, salvage, dismantler, scrap or other applicable liecnse to apply faster. If you don’t have a copy close by, no worries - you can always submit it later"
+				},
+				{
+					"id": 5,
+					"title": "HOW will i receive assignments?",
+					"text": "Share a copy of your dealer, salvage, dismantler, scrap or other applicable liecnse to apply faster. If you don’t have a copy close by, no worries - you can always submit it later"
+				},
+				{
+					"id": 6,
+					"title": "HOW do i manage my assignments?",
+					"text": "Share a copy of your dealer, salvage, dismantler, scrap or other applicable liecnse to apply faster. If you don’t have a copy close by, no worries - you can always submit it later"
+				}
+			]
+		},
+		"form": {
+			"category": "Apply today",
+			"title": "let’s find a car together",
+			"selects": {
+				"state": [
+					{ "id": 1, "label": "AK", "value": "AK" },
+					{ "id": 2, "label": "AL", "value": "AL" },
+					{ "id": 3, "label": "AR", "value": "AR" }
+				],
+				"platform": [
+					{ "id": 1, "label": "ARA", "value": "ARA" },
+					{ "id": 2, "label": "ARA Magazine", "value": "ARA Magazine" }
+				]
+			}
+		}
+	},
+	"blog_records": [
+		{
+			"id": 1,
+			"slug": "record-name",
+			"image": "/img.png",
+			"title": "Meet Scrabit – Here’s Everything You Need To Know",
+			"createdAt": "15 May, 2022",
+			"fullText": "<h2>1. Chevy Corvette C5</h2> <strong>Common knowledge says there are better ways to invest your hard-earned money than buying cars. It is, indeed, not the most popular investment option. But what about the vehicles that can actually be a good investment? It’s not easy to spot a future classic car, even if your taste in cars is splendid. Of course, anyone would look for a reliable, high-quality automobile from a well-known brand – especially if this brand is beloved among car enthusiasts. But there’s much more depth to those gems that will gain value as they age.</strong> <p>Our amazing team of designers, developers, writers, strategists, etc. have been working their tails off for us the last year or so to make sure we have THE BEST car selling experience out there. And guess what! Now we do. Wanna hear about it? I thought so.</p> <h2>2. BMW M3 E46</h2> <img src='/images/article.png' />",
+			"tag": {
+				"slug": "scrabit-speaking",
+				"name": "Scrabit Speaking"
+			}
+		},
+		{
+			"id": 2,
+			"slug": "record-name",
+			"image": "/img.png",
+			"title": "Meet Scrabit – Here’s Everything You Need To Know",
+			"createdAt": "15 May, 2022",
+			"fullText": "text",
+			"tag": {
+				"slug": "scrabit-speaking",
+				"name": "Scrabit Speaking"
+			}
+		},
+		{
+			"id": 3,
+			"slug": "record-name",
+			"image": "/img.png",
+			"title": "Meet Scrabit – Here’s Everything You Need To Know",
+			"createdAt": "15 May, 2022",
+			"fullText": "text",
+			"tag": {
+				"slug": "scrabit-speaking",
+				"name": "Scrabit Speaking"
+			}
+		},
+		{
+			"id": 4,
+			"slug": "record-name",
+			"image": "/img.png",
+			"title": "Meet Scrabit – Here’s Everything You Need To Know",
+			"createdAt": "15 May, 2022",
+			"fullText": "text",
+			"tag": {
+				"slug": "scrabit-speaking",
+				"name": "Scrabit Speaking"
+			}
+		},
+		{
+			"id": 5,
+			"slug": "record-name",
+			"image": "/img.png",
+			"title": "Meet Scrabit – Here’s Everything You Need To Know",
+			"createdAt": "15 May, 2022",
+			"fullText": "text",
+			"tag": {
+				"slug": "scrabit-speaking",
+				"name": "Scrabit Speaking"
+			}
+		},
+		{
+			"id": 6,
+			"slug": "record-name",
+			"image": "/img.png",
+			"title": "Out Of Power: Dealing With A Dead Battery",
+			"createdAt": "15 May, 2022",
+			"fullText": "text",
+			"tag": {
+				"slug": "wreck",
+				"name": "Wreck"
+			}
+		},
+		{
+			"id": 7,
+			"slug": "record-name",
+			"image": "/img.png",
+			"title": "Meet Scrabit – Here’s Everything You Need To Know",
+			"createdAt": "15 May, 2022",
+			"fullText": "text",
+			"tag": {
+				"slug": "wreck",
+				"name": "Wreck"
+			}
+		},
+		{
+			"id": 8,
+			"slug": "record-name",
+			"image": "/img.png",
+			"title": "Meet Scrabit – Here’s Everything You Need To Know",
+			"createdAt": "15 May, 2022",
+			"fullText": "text",
+			"tag": {
+				"slug": "wreck",
+				"name": "Wreck"
+			}
+		},
+		{
+			"id": 9,
+			"slug": "record-name",
+			"image": "/img.png",
+			"title": "Meet Scrabit – Here’s Everything You Need To Know",
+			"createdAt": "15 May, 2022",
+			"fullText": "text",
+			"tag": {
+				"slug": "wreck",
+				"name": "Wreck"
+			}
+		},
+		{
+			"id": 10,
+			"slug": "record-name",
+			"image": "/img.png",
+			"title": "Meet Scrabit – Here’s Everything You Need To Know",
+			"createdAt": "15 May, 2022",
+			"fullText": "text",
+			"tag": {
+				"slug": "wreck",
+				"name": "Wreck"
+			}
+		},
+		{
+			"id": 11,
+			"slug": "record-name",
+			"image": "/img.png",
+			"title": "Why Car Titles Are Crucial For Car Selling",
+			"createdAt": "15 May, 2022",
+			"fullText": "text",
+			"tag": {
+				"slug": "sellers-unite",
+				"name": "Sellers, Unite"
+			}
+		},
+		{
+			"id": 12,
+			"slug": "record-name",
+			"image": "/img.png",
+			"title": "Why Car Titles Are Crucial For Car Selling",
+			"createdAt": "15 May, 2022",
+			"fullText": "text",
+			"tag": {
+				"slug": "sellers-unite",
+				"name": "Sellers, Unite"
+			}
+		},
+		{
+			"id": 13,
+			"slug": "record-name",
+			"image": "/img.png",
+			"title": "Why Car Titles Are Crucial For Car Selling",
+			"createdAt": "15 May, 2022",
+			"fullText": "text",
+			"tag": {
+				"slug": "sellers-unite",
+				"name": "Sellers, Unite"
+			}
+		},
+		{
+			"id": 14,
+			"slug": "record-name",
+			"image": "/img.png",
+			"title": "Why Car Titles Are Crucial For Car Selling",
+			"createdAt": "15 May, 2022",
+			"fullText": "text",
+			"tag": {
+				"slug": "sellers-unite",
+				"name": "Sellers, Unite"
+			}
+		},
+		{
+			"id": 15,
+			"slug": "record-name",
+			"image": "/img.png",
+			"title": "Why Car Titles Are Crucial For Car Selling",
+			"createdAt": "15 May, 2022",
+			"fullText": "text",
+			"tag": {
+				"slug": "sellers-unite",
+				"name": "Sellers, Unite"
+			}
+		},
+		{
+			"id": 16,
+			"slug": "record-name",
+			"image": "/img.png",
+			"title": "Danger Ahead: Scams To Avoid When Buying A Used Car",
+			"createdAt": "15 May, 2022",
+			"fullText": "text",
+			"tag": {
+				"slug": "all-things-finance",
+				"name": "All Things Finance"
+			}
+		},
+		{
+			"id": 17,
+			"slug": "record-name",
+			"image": "/img.png",
+			"title": "Danger Ahead: Scams To Avoid When Buying A Used Car",
+			"createdAt": "15 May, 2022",
+			"fullText": "text",
+			"tag": {
+				"slug": "all-things-finance",
+				"name": "All Things Finance"
+			}
+		},
+		{
+			"id": 18,
+			"slug": "record-name",
+			"image": "/img.png",
+			"title": "Danger Ahead: Scams To Avoid When Buying A Used Car",
+			"createdAt": "15 May, 2022",
+			"fullText": "text",
+			"tag": {
+				"slug": "all-things-finance",
+				"name": "All Things Finance"
+			}
+		},
+		{
+			"id": 19,
+			"slug": "record-name",
+			"image": "/img.png",
+			"title": "Danger Ahead: Scams To Avoid When Buying A Used Car",
+			"createdAt": "15 May, 2022",
+			"fullText": "text",
+			"tag": {
+				"slug": "all-things-finance",
+				"name": "All Things Finance"
+			}
+		},
+		{
+			"id": 20,
+			"slug": "record-name",
+			"image": "/img.png",
+			"title": "Danger Ahead: Scams To Avoid When Buying A Used Car",
+			"createdAt": "15 May, 2022",
+			"fullText": "text",
+			"tag": {
+				"slug": "all-things-finance",
+				"name": "All Things Finance"
+			}
+		},
+		{
+			"id": 21,
+			"slug": "record-name",
+			"image": "/img.png",
+			"title": "Danger Ahead: Scams To Avoid When Buying A Used Car",
+			"createdAt": "15 May, 2022",
+			"fullText": "text",
+			"tag": {
+				"slug": "all-things-finance",
+				"name": "All Things Finance"
+			}
+		}
+	],
 	"users": [
 		{
 			"email": "admin@admin.com",

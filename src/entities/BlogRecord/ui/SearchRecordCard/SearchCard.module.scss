@@ -1,0 +1,71 @@
+@use 'src/app/assets/styles/mixins' as *;
+@use 'src/app/assets/styles/extends' as *;
+
+.card {
+	height: 100%;
+	border: 1px solid var(--black-40);
+	display: grid;
+	grid-template-columns: 2fr 4fr;
+}
+.image {
+	overflow: hidden;
+	img {
+		transition: var(--transition);
+	}
+	&:hover {
+		img {
+			transform: scale(1.1);
+		}
+	}
+}
+.imageLink {
+	display: block;
+	height: 100%;
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+}
+.head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+	flex-wrap: wrap;
+	@include adaptiveSize('margin-bottom', 16, 8);
+}
+.tag {
+	font-size: 14px;
+	font-style: italic;
+	text-transform: uppercase;
+	color: var(--main-blue);
+	cursor: pointer;
+}
+.title {
+	@extend %text-line;
+	cursor: pointer;
+	margin-bottom: 24px;
+	h4 {
+		line-height: 120%;
+	}
+	@media (max-width: 768px) {
+		margin-bottom: 8px;
+	}
+}
+.body {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	padding: 10px;
+}
+.controls {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: auto;
+}
+.date {
+	font-weight: 700 !important;
+	color: var(--black-80);
+}

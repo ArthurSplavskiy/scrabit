@@ -1,6 +1,7 @@
 @use 'src/app/assets/styles/mixins' as *;
 
 .section {
+	overflow: hidden;
 	@include adaptiveSize('padding-top', 160, 80);
 }
 
@@ -8,7 +9,4 @@
 	display: flex;
 	justify-content: center;
 	margin-top: 48px;
-	@media (max-width: 768px) {
-		display: none;
-	}
 }

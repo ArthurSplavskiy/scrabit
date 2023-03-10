@@ -1,0 +1,59 @@
+@use 'src/app/assets/styles/mixins' as *;
+
+.section {
+	background: var(--blue-10);
+	@include adaptiveSize('padding-top', 40, 16);
+	@include adaptiveSize('padding-bottom', 80, 56);
+	border-bottom: 1px solid var(--black-text);
+}
+.block {
+	@include adaptiveSize('margin-top', 64, 26);
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	align-items: center;
+	gap: 20px;
+	@media (max-width: 768px) {
+		grid-template-columns: 1fr;
+		gap: 0;
+	}
+}
+.content {
+	h2 {
+		@include adaptiveSize('margin-bottom', 24, 16);
+		@media (max-width: 768px) {
+			text-align: center;
+		}
+	}
+	p {
+		max-width: 476px;
+		@include adaptiveSize('margin-bottom', 64, 40);
+		@media (max-width: 768px) {
+			text-align: center;
+		}
+	}
+	button {
+		@media (max-width: 768px) {
+			margin-top: 24px;
+		}
+	}
+}
+.blue {
+	background: var(--blue-10);
+}
+.green {
+	background: var(--green-20);
+}
+.grey {
+	background: var(--black-5);
+}
+.white {
+	background: var(--white);
+}
+.gradient {
+	background: linear-gradient(
+		89.93deg,
+		rgba(222, 251, 255, 0.4) 0.04%,
+		rgba(219, 253, 242, 0.4) 48.43%,
+		rgba(227, 255, 231, 0.4) 99.92%
+	);
+}

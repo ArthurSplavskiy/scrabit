@@ -1,0 +1,16 @@
+@use 'src/app/assets/styles/mixins' as *;
+
+.BlogHeroSection {
+	@include adaptiveSize('padding-top', 24, 16);
+}
+.BlogHeroSectionTop {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 43px;
+	@media (max-width: 992px) {
+		grid-template-columns: 1fr;
+		gap: 26px;
+	}
+}

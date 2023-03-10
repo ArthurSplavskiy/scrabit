@@ -4,6 +4,31 @@
 	.Spoller {
 		position: relative;
 		border: 1px solid var(--black-text);
+		&.small {
+			.Spoller-head {
+				@include adaptiveSize('padding', 20, 16);
+			}
+			.Spoller-id {
+				margin-right: 5px;
+			}
+			&.open {
+				.Spoller-id {
+					color: var(--main-green);
+				}
+				.Spoller-head {
+					color: var(--black-text);
+					padding-bottom: 8px;
+					@media screen and (max-width: 768px) {
+						padding-bottom: 5px;
+					}
+				}
+				.Spoller-body {
+					@include adaptiveSize('padding-left', 20, 16);
+					@include adaptiveSize('padding-right', 20, 16);
+					@include adaptiveSize('margin-bottom', 20, 16);
+				}
+			}
+		}
 		&.open {
 			.Spoller-head {
 				color: var(--black-60);
@@ -52,11 +77,16 @@
 			font-style: italic;
 			text-transform: uppercase;
 			i {
+				align-self: baseline;
 				color: var(--black-text);
 				transition: var(--transition);
 				@media screen and (max-width: 768px) {
 					font-size: 16px;
 				}
+			}
+			& > span {
+				display: grid;
+				grid-template-columns: auto auto;
 			}
 		}
 		&-body {
@@ -73,5 +103,7 @@
 				margin-bottom: 1px;
 			}
 		}
+	}
+	&-small {
 	}
 }

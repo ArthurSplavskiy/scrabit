@@ -11,9 +11,10 @@ interface Props {
 	open?: boolean;
 	btnLink?: string;
 	expand?: (id: number) => void;
+	size?: 'big' | 'small';
 }
 
-export const Spoller: FC<Props> = ({ id, question, answer, open, expand, btnLink }) => {
+export const Spoller: FC<Props> = ({ id, question, answer, open, expand, btnLink, size }) => {
 	const [isOpen, setIsOpen] = useState(open);
 	const [itemHeight, setItemHeight] = useState(0);
 	const answerRef = useRef<HTMLDivElement>(null);
@@ -32,9 +33,9 @@ export const Spoller: FC<Props> = ({ id, question, answer, open, expand, btnLink
 	}, [open]);
 
 	return (
-		<div className={`Spoller ${isOpen && 'open'}`}>
+		<div className={`Spoller ${isOpen && 'open'} ${size ? size : ''}`}>
 			<div className={`Spoller-head`} onClick={handleClick}>
-				<span className='text-40-16'>
+				<span className={size === 'small' ? 'text-18-14' : 'text-40-16'}>
 					<span className={`Spoller-id`}>{withZero((id || 0) + 1)}</span>
 					{question}
 				</span>

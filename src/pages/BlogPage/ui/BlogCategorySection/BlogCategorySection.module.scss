@@ -1,0 +1,67 @@
+@use 'src/app/assets/styles/mixins' as *;
+
+.block {
+	&:not(:last-child) {
+		@include adaptiveSize('margin-bottom', 80, 56);
+	}
+}
+.section {
+	overflow: hidden;
+	@include adaptiveSize('padding-top', 56, 0);
+	@include adaptiveSize('padding-bottom', 56, 0);
+	@include adaptiveSize('padding-left', 56, 0);
+	@include adaptiveSize('padding-right', 30, 0);
+	border: 1px solid var(--black-text);
+	background: var(--white);
+	@media (max-width: 1200px) {
+		@include adaptiveSize('padding-right', 56, 0);
+	}
+	@media (max-width: 480px) {
+		border: 0;
+		padding: 0;
+		background: none;
+	}
+}
+.content {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 33px;
+	height: 546px;
+	@media (max-width: 1200px) {
+		display: grid;
+		grid-template-columns: 1fr;
+		height: auto;
+	}
+}
+.head {
+	@media (max-width: 480px) {
+		text-align: center;
+	}
+	h4 {
+		@include adaptiveSize('padding-bottom', 24, 8);
+	}
+	h5 {
+		@include adaptiveSize('padding-bottom', 64, 25);
+	}
+}
+.promoCard {
+	flex-grow: 0;
+	flex-shrink: 0;
+	@include adaptiveSize('flex-basis', 520, 328);
+}
+.otherCards {
+	@include scrollbars();
+	@include adaptiveSize('padding-right', 30, 0);
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 33px;
+	overflow-y: auto;
+	@media (max-width: 1200px) {
+		display: flex;
+		flex: 0 0 100%;
+		@media (max-width: 1200px) {
+			padding-right: 0;
+			padding-bottom: 24px;
+		}
+	}
+}

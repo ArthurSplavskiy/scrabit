@@ -58,3 +58,13 @@ export const formatter = new Intl.NumberFormat('uk', {
 });
 
 export const withZero = (id: number) => (id < 10 ? '0' + id : id);
+
+export function getFileSize(number: number) {
+	if (number < 1024) {
+		return `${number} bytes`;
+	} else if (number >= 1024 && number < 1048576) {
+		return `${(number / 1024).toFixed(1)} KB`;
+	} else if (number >= 1048576) {
+		return `${(number / 1048576).toFixed(1)} MB`;
+	}
+}
