@@ -26,16 +26,16 @@ export enum AppRoutes {
 
 const AppRouter = createBrowserRouter([
 	{
-		path: AppRoutes.HOME,
+		path: '/',
 		element: <PageLayout />,
 		errorElement: <ErrorPage />,
 		children: [
 			{
-				path: AppRoutes.HOME,
+				path: '/',
 				element: <HomePage />
 			},
 			{
-				path: AppRoutes.BLOG,
+				path: '/blog',
 				element: <BlogPage />
 			},
 			{
