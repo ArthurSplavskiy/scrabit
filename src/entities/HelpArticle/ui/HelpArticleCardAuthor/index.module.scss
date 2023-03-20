@@ -1,0 +1,46 @@
+@use 'src/app/assets/styles/mixins' as *;
+
+.card {
+	@include adaptiveSize('padding', 32, 16);
+	border: 1px solid var(--black);
+	border-top: none;
+	transition: var(--transition);
+	&:hover {
+		background: var(--black-10);
+	}
+}
+.withBorder {
+	border-top: 1px solid var(--black);
+}
+.withoutHover {
+	&:hover {
+		background: transparent !important;
+	}
+}
+.head {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 8px;
+	h3 {
+		line-height: 160%;
+	}
+}
+.authorAvatar {
+	width: 50px;
+	height: 50px;
+	overflow: hidden;
+	border-radius: 100%;
+}
+.info {
+	display: flex;
+	align-items: center;
+	margin-top: 24px;
+	gap: 16px;
+	flex-wrap: wrap;
+}
+.authorsText {
+	color: var(--black-40);
+	span {
+		color: var(--black-text);
+	}
+}

@@ -30,6 +30,10 @@
 	margin-bottom: 0 !important;
 }
 
+.mt-40-16 {
+	@include adaptiveSize('margin-top', 40, 16);
+}
+
 .section-offset {
 	@include adaptiveSize('margin-top', 80, 56);
 }

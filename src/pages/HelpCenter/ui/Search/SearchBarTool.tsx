@@ -1,17 +1,17 @@
-import { SearchRecordCard } from '@/entities/BlogRecord';
-import { useSearchRecords } from '@/pages/BlogPage/hooks/useSearchRecords';
+import { HelpArticleCardAuthor } from '@/entities/HelpArticle/ui/HelpArticleCardAuthor';
 import { useClickOutside } from '@/shared/hooks/useClickOutside';
 import { useDebounce } from '@/shared/hooks/useDebounce';
 import { Icon } from '@/shared/ui/Icon/Icon';
 import classNames from 'classnames';
 import { FC, useRef, useState } from 'react';
-import styles from './SearchBar.module.scss';
+import { useSearchArticles } from '../../hooks/useSearchArticles';
+import styles from './SearchBarTool.module.scss';
 
-export const SearchBar: FC = () => {
+export const SearchBarTool: FC = () => {
 	const searchbarRef = useRef<HTMLDivElement | null>(null);
 	const [value, setValue] = useState('');
 	const debounceSearch = useDebounce(value, 300);
-	const { data, isFetching } = useSearchRecords(debounceSearch);
+	const { data, isFetching } = useSearchArticles(debounceSearch);
 	useClickOutside(searchbarRef, () => setValue(''));
 
 	return (
@@ -49,12 +49,13 @@ export const SearchBar: FC = () => {
 					)}
 					{data?.map((item, idx) => (
 						<div key={idx} className={styles.searchBarBodyItem}>
-							<SearchRecordCard
-								image={item.image}
-								title={item.title}
-								createdAt={item.createdAt}
+							<HelpArticleCardAuthor
 								slug={item.slug}
-								tag={item.tag}
+								createdAt={item.createdAt}
+								title={item.title}
+								author={item.author}
+								subtitle={item.question}
+								withBorder={true}
 							/>
 						</div>
 					))}

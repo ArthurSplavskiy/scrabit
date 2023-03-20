@@ -1089,6 +1089,471 @@
 			}
 		}
 	],
+	"faq_articles_category": [
+		{
+			"slug": "general-faq",
+			"title": "General FAQ",
+			"subtitle": "Answers to general questions about the Scrabit service",
+			"icon": "./img.svg",
+			"authors": [
+				{
+					"name": "Shana Goodfellow",
+					"avatar": "./img.png"
+				}
+			],
+			"articles": [
+				{
+					"slug": "what-if-my-vehicle-has-new-or-aftermarket-parts",
+					"createdAt": "over a week ago",
+					"author": {
+						"name": "Shana Goodfellow",
+						"avatar": "./img.png"
+					},
+					"question": "What if my vehicle has new or aftermarket parts?",
+					"title": "Selling a vehicle with new or aftermarket parts",
+					"fullText": "At this time, new parts or aftermarket upgrades will not increase your offer."
+				}
+			]
+		},
+		{
+			"slug": "payments-faq",
+			"title": "Payments FAQ",
+			"subtitle": "Answers to questions about getting paid for your car",
+			"icon": "./img.svg",
+			"authors": [
+				{
+					"name": "Shana Goodfellow",
+					"avatar": "./img.png"
+				}
+			],
+			"articles": [
+				{
+					"slug": "answers-to-questions-about-getting-paid-for-your-car",
+					"createdAt": "over a week ago",
+					"author": {
+						"name": "Shana Goodfellow",
+						"avatar": "./img.png"
+					},
+					"question": "What if my vehicle has new or aftermarket parts?",
+					"title": "Selling a vehicle with new or aftermarket parts",
+					"fullText": "At this time, new parts or aftermarket upgrades will not increase your offer."
+				}
+			]
+		},
+		{
+			"slug": "documentation-faq",
+			"title": "Documentation FAQ",
+			"subtitle": "Answers to questions related to vehicle paperwork",
+			"icon": "./img.svg",
+			"authors": [
+				{
+					"name": "Shana Goodfellow",
+					"avatar": "./img.png"
+				}
+			],
+			"articles": [
+				{
+					"slug": "answers-to-questions-related-to-vehicle-paperwork",
+					"createdAt": "over a week ago",
+					"author": {
+						"name": "Shana Goodfellow",
+						"avatar": "./img.png"
+					},
+					"question": "What if my vehicle has new or aftermarket parts?",
+					"title": "Selling a vehicle with new or aftermarket parts",
+					"fullText": "At this time, new parts or aftermarket upgrades will not increase your offer."
+				}
+			]
+		}
+	],
+	"faq_articles": [
+		{
+			"slug": "what-if-my-vehicle-has-new-or-aftermarket-parts",
+			"createdAt": "over a week ago",
+			"author": {
+				"name": "Shana Goodfellow",
+				"avatar": "./img.png"
+			},
+			"question": "What if my vehicle has new or aftermarket parts?",
+			"title": "Selling a vehicle with new or aftermarket parts",
+			"fullText": "At this time, new parts or aftermarket upgrades will not increase your offer."
+		},
+		{
+			"slug": "answers-to-questions-related-to-vehicle-paperwork",
+			"createdAt": "over a week ago",
+			"author": {
+				"name": "Shana Goodfellow",
+				"avatar": "./img.png"
+			},
+			"question": "What if my vehicle has new or aftermarket parts?",
+			"title": "Selling a vehicle with new or aftermarket parts",
+			"fullText": "At this time, new parts or aftermarket upgrades will not increase your offer."
+		},
+		{
+			"slug": "answers-to-questions-about-getting-paid-for-your-car",
+			"createdAt": "over a week ago",
+			"author": {
+				"name": "Shana Goodfellow",
+				"avatar": "./img.png"
+			},
+			"question": "What if my vehicle has new or aftermarket parts?",
+			"title": "Selling a vehicle with new or aftermarket parts",
+			"fullText": "At this time, new parts or aftermarket upgrades will not increase your offer."
+		}
+	],
+	"sell_my_car_page": {
+		"hero_title": "ready to sell your car?",
+		"hero_subtitle": "It may be hard to say goodbye, but it couldn't be easier to sell. We're Peddle and we buy used cars the simple, modern, awesome way. Get an offer in minutes. No sign-ups, no monkey business. If you woke up thinking, today's the day I'm going to sell my car, we're the ones to help you do it",
+		"hero_image": "img.png",
+		"about_section": {
+			"title": "about scrabit",
+			"subtitle": "giving pre-owned vehicles another chance",
+			"image": "/about-placeholder.png",
+			"steps": [
+				{
+					"id": 1,
+					"title": "Tell us about your car",
+					"text": "A salvage car or barn find - we’re equally interested. Tell us about your car - no personal infois required before you take the offer"
+				},
+				{
+					"id": 2,
+					"title": "View your offer",
+					"text": "You’ll get an insatnt offer from Scrabit. We’d love to buy your car at a  reasonable price"
+				},
+				{
+					"id": 3,
+					"title": "see your offer",
+					"text": "Scrabit has helped over X drives sell their old cars  and found them a better propouse"
+				},
+				{
+					"id": 4,
+					"title": "Get paid by scrabit",
+					"text": "All you need is to share your car info, takethe offer, and watch your salvage car go"
+				}
+			]
+		},
+		"review_section": [
+			{
+				"id": 1,
+				"rating": 5,
+				"author": "Alexander Winebaum",
+				"text": "The guy that came to pick up the car lied to me and said that the offer is being changed to 300 when the offer i accepted was 940 he proceded to tell that he actually works for a auction in san diego and that he could offer me more then the three hundred i reluctantly accepted then see that my offer was completed at the reduced amount on peddle by the original buyer so scammed"
+			},
+			{
+				"id": 2,
+				"rating": 5,
+				"author": "Julia Fox",
+				"text": "The guy that came to pick up the car lied to me and said that the offer is being changed to 300 when the offer i accepted was 940 he proceded to tell that he actually works for a auction in san diego and that he could offer me more then the three hundred"
+			},
+			{
+				"id": 3,
+				"rating": 5,
+				"author": "Nick Grey-Joy",
+				"text": "The guy that came to pick up the car lied to me and said that the offer is being changed to 300 when the offer i accepted was 940 he proceded to tell that he actually works for a auction in san diego and that he could offer me more then the three hundred The guy that came to pick up the car lied to me and said that the offer is being changed to 300"
+			},
+			{
+				"id": 4,
+				"rating": 4,
+				"author": "Julia Fox",
+				"text": "The guy that came to pick up the car lied to me and said that the offer is being changed to 300 when the offer i accepted was 940 he proceded to tell that he actually works for a auction in san diego and that he could offer me more then the three hundred"
+			},
+			{
+				"id": 5,
+				"rating": 3,
+				"author": "Julia Fox",
+				"text": "The guy that came to pick up the car lied to me and said that the offer is being changed to 300 when the offer i accepted was 940 he proceded to tell that he actually works for a auction in san diego and that he could offer me more then the three hundred"
+			},
+			{
+				"id": 6,
+				"rating": 1,
+				"author": "Julia Fox",
+				"text": "The guy that came to pick up the car lied to me and said that the offer is being changed to 300 when the offer i accepted was 940 he proceded to tell that he actually works for a auction in san diego and that he could offer me more then the three hundred"
+			}
+		],
+		"how_it_work_section": {
+			"title": "How it works",
+			"subtitle": "ready to roll?",
+			"message": "The best years of your car longpassed? we will help send it to a better place.",
+			"steps": [
+				{
+					"id": 1,
+					"title": "Tell scrabit about your vehicle",
+					"text": "Whether a salvage car or barn find, we’re equally interested. share the info about your vehicle with Scrabit - no personal information is required before you take the offer"
+				},
+				{
+					"id": 2,
+					"title": "view your offer",
+					"text": "You’re a few questions away from getting paid for your barn find. Scrabit takes your info, evaluates the market, and comes up with an instant offer for you"
+				},
+				{
+					"id": 3,
+					"title": "Exchange your wheels for cash",
+					"text": "After the offer is accepted, we’ll arrange a pickup. Just a short examination of your car - and the money is yours to take!"
+				}
+			]
+		},
+		"sold_car_amount": 142
+	},
+	"cash_for_junk_car_page": {
+		"hero_title": "cash for your junk car? yup",
+		"hero_subtitle": "It may be hard to say goodbye, but it couldn't be easier to sell. We're Peddle and we buy used cars the simple, modern, awesome way. Get an offer in minutes. No sign-ups, no monkey business. If you woke up thinking, today's the day I'm going to sell my car, we're the ones to help you do it",
+		"hero_image": "img.png",
+		"about_section": {
+			"title": "about scrabit",
+			"subtitle": "giving pre-owned vehicles another chance",
+			"image": "/about-placeholder.png",
+			"steps": [
+				{
+					"id": 1,
+					"title": "Tell us about your car",
+					"text": "A salvage car or barn find - we’re equally interested. Tell us about your car - no personal infois required before you take the offer"
+				},
+				{
+					"id": 2,
+					"title": "View your offer",
+					"text": "You’ll get an insatnt offer from Scrabit. We’d love to buy your car at a  reasonable price"
+				},
+				{
+					"id": 3,
+					"title": "see your offer",
+					"text": "Scrabit has helped over X drives sell their old cars  and found them a better propouse"
+				},
+				{
+					"id": 4,
+					"title": "Get paid by scrabit",
+					"text": "All you need is to share your car info, takethe offer, and watch your salvage car go"
+				}
+			]
+		},
+		"review_section": [
+			{
+				"id": 1,
+				"rating": 5,
+				"author": "Alexander Winebaum",
+				"text": "The guy that came to pick up the car lied to me and said that the offer is being changed to 300 when the offer i accepted was 940 he proceded to tell that he actually works for a auction in san diego and that he could offer me more then the three hundred i reluctantly accepted then see that my offer was completed at the reduced amount on peddle by the original buyer so scammed"
+			},
+			{
+				"id": 2,
+				"rating": 5,
+				"author": "Julia Fox",
+				"text": "The guy that came to pick up the car lied to me and said that the offer is being changed to 300 when the offer i accepted was 940 he proceded to tell that he actually works for a auction in san diego and that he could offer me more then the three hundred"
+			},
+			{
+				"id": 3,
+				"rating": 5,
+				"author": "Nick Grey-Joy",
+				"text": "The guy that came to pick up the car lied to me and said that the offer is being changed to 300 when the offer i accepted was 940 he proceded to tell that he actually works for a auction in san diego and that he could offer me more then the three hundred The guy that came to pick up the car lied to me and said that the offer is being changed to 300"
+			},
+			{
+				"id": 4,
+				"rating": 4,
+				"author": "Julia Fox",
+				"text": "The guy that came to pick up the car lied to me and said that the offer is being changed to 300 when the offer i accepted was 940 he proceded to tell that he actually works for a auction in san diego and that he could offer me more then the three hundred"
+			},
+			{
+				"id": 5,
+				"rating": 3,
+				"author": "Julia Fox",
+				"text": "The guy that came to pick up the car lied to me and said that the offer is being changed to 300 when the offer i accepted was 940 he proceded to tell that he actually works for a auction in san diego and that he could offer me more then the three hundred"
+			},
+			{
+				"id": 6,
+				"rating": 1,
+				"author": "Julia Fox",
+				"text": "The guy that came to pick up the car lied to me and said that the offer is being changed to 300 when the offer i accepted was 940 he proceded to tell that he actually works for a auction in san diego and that he could offer me more then the three hundred"
+			}
+		],
+		"how_it_work_section": {
+			"title": "How it works",
+			"subtitle": "ready to roll?",
+			"message": "The best years of your car longpassed? we will help send it to a better place.",
+			"steps": [
+				{
+					"id": 1,
+					"title": "Tell scrabit about your vehicle",
+					"text": "Whether a salvage car or barn find, we’re equally interested. share the info about your vehicle with Scrabit - no personal information is required before you take the offer"
+				},
+				{
+					"id": 2,
+					"title": "view your offer",
+					"text": "You’re a few questions away from getting paid for your barn find. Scrabit takes your info, evaluates the market, and comes up with an instant offer for you"
+				},
+				{
+					"id": 3,
+					"title": "Exchange your wheels for cash",
+					"text": "After the offer is accepted, we’ll arrange a pickup. Just a short examination of your car - and the money is yours to take!"
+				}
+			]
+		},
+		"sold_car_amount": 142
+	},
+	"car_page": {
+		"hero_title": "Hey, florida! got any cars to sell?",
+		"hero_subtitle": "It may be hard to say goodbye, but it couldn't be easier to sell. We're Peddle and we buy used cars the simple, modern, awesome way. Get an offer in minutes. No sign-ups, no monkey business. If you woke up thinking, today's the day I'm going to sell my car, we're the ones to help you do it",
+		"hero_image": "img.png",
+		"about_section": {
+			"title": "about scrabit",
+			"subtitle": "giving pre-owned vehicles another chance",
+			"image": "/about-placeholder.png",
+			"steps": [
+				{
+					"id": 1,
+					"title": "Tell us about your car",
+					"text": "A salvage car or barn find - we’re equally interested. Tell us about your car - no personal infois required before you take the offer"
+				},
+				{
+					"id": 2,
+					"title": "View your offer",
+					"text": "You’ll get an insatnt offer from Scrabit. We’d love to buy your car at a  reasonable price"
+				},
+				{
+					"id": 3,
+					"title": "see your offer",
+					"text": "Scrabit has helped over X drives sell their old cars  and found them a better propouse"
+				},
+				{
+					"id": 4,
+					"title": "Get paid by scrabit",
+					"text": "All you need is to share your car info, takethe offer, and watch your salvage car go"
+				}
+			]
+		},
+		"review_section": [
+			{
+				"id": 1,
+				"rating": 5,
+				"author": "Alexander Winebaum",
+				"text": "The guy that came to pick up the car lied to me and said that the offer is being changed to 300 when the offer i accepted was 940 he proceded to tell that he actually works for a auction in san diego and that he could offer me more then the three hundred i reluctantly accepted then see that my offer was completed at the reduced amount on peddle by the original buyer so scammed"
+			},
+			{
+				"id": 2,
+				"rating": 5,
+				"author": "Julia Fox",
+				"text": "The guy that came to pick up the car lied to me and said that the offer is being changed to 300 when the offer i accepted was 940 he proceded to tell that he actually works for a auction in san diego and that he could offer me more then the three hundred"
+			},
+			{
+				"id": 3,
+				"rating": 5,
+				"author": "Nick Grey-Joy",
+				"text": "The guy that came to pick up the car lied to me and said that the offer is being changed to 300 when the offer i accepted was 940 he proceded to tell that he actually works for a auction in san diego and that he could offer me more then the three hundred The guy that came to pick up the car lied to me and said that the offer is being changed to 300"
+			},
+			{
+				"id": 4,
+				"rating": 4,
+				"author": "Julia Fox",
+				"text": "The guy that came to pick up the car lied to me and said that the offer is being changed to 300 when the offer i accepted was 940 he proceded to tell that he actually works for a auction in san diego and that he could offer me more then the three hundred"
+			},
+			{
+				"id": 5,
+				"rating": 3,
+				"author": "Julia Fox",
+				"text": "The guy that came to pick up the car lied to me and said that the offer is being changed to 300 when the offer i accepted was 940 he proceded to tell that he actually works for a auction in san diego and that he could offer me more then the three hundred"
+			},
+			{
+				"id": 6,
+				"rating": 1,
+				"author": "Julia Fox",
+				"text": "The guy that came to pick up the car lied to me and said that the offer is being changed to 300 when the offer i accepted was 940 he proceded to tell that he actually works for a auction in san diego and that he could offer me more then the three hundred"
+			}
+		],
+		"faq_section": {
+			"title": "faq",
+			"subtitle": "Scrabit’s here to tell you more",
+			"questions": [
+				{
+					"id": 1,
+					"title": "why scrabit?",
+					"text": "There’s no need to deal with the paperwork to change car ownership – Scrabit will take care of it. You also don’t have to worry about the hassle that comes with dealership. No increased trade-in value and price concerns – we settle on it at the beginning.",
+					"slug": "help-center"
+				},
+				{
+					"id": 2,
+					"title": "are you in my city?",
+					"text": "There’s no need to deal with the paperwork to change car ownership – Scrabit will take care of it. You also don’t have to worry about the hassle that comes with dealership. No increased trade-in value and price concerns – we settle on it at the beginning.",
+					"slug": "help-center"
+				},
+				{
+					"id": 3,
+					"title": "what happens to my car?",
+					"text": "There’s no need to deal with the paperwork to change car ownership – Scrabit will take care of it. You also don’t have to worry about the hassle that comes with dealership. No increased trade-in value and price concerns – we settle on it at the beginning.",
+					"slug": "help-center"
+				},
+				{
+					"id": 4,
+					"title": "can i buy a car from you?",
+					"text": "There’s no need to deal with the paperwork to change car ownership – Scrabit will take care of it. You also don’t have to worry about the hassle that comes with dealership. No increased trade-in value and price concerns – we settle on it at the beginning.",
+					"slug": "help-center"
+				}
+			]
+		},
+		"sold_car_amount": 142
+	},
+	"sold_cars": [
+		{
+			"param_brand": "ford",
+			"param_model": "expedition",
+			"car_year": "2020",
+			"location": "Florida, Daytona Beach",
+			"price": 15700,
+			"img": "img.png"
+		},
+		{
+			"car_year": "2018",
+			"param_brand": "lexus",
+			"param_model": "rx",
+			"location": "Florida, Jacksonville",
+			"price": 3800,
+			"img": "img.png"
+		},
+		{
+			"car_year": "2013",
+			"param_brand": "subaru",
+			"param_model": "impreza",
+			"location": "Florida, Tallahassee",
+			"price": 7200,
+			"img": "img.png"
+		},
+		{
+			"car_year": "2000",
+			"param_brand": "ford",
+			"param_model": "f150",
+			"location": "Florida, Tallahassee",
+			"price": 1600,
+			"img": "img.png"
+		},
+		{
+			"car_year": "2016",
+			"param_brand": "ford",
+			"param_model": "expedition",
+			"location": "Florida, Daytona Beach",
+			"price": 15700,
+			"img": "img.png"
+		},
+		{
+			"car_year": "2018",
+			"param_brand": "lexus",
+			"param_model": "rx",
+			"location": "Florida, Jacksonville",
+			"price": 3800,
+			"img": "img.png"
+		},
+		{
+			"car_year": "2013",
+			"param_brand": "subaru",
+			"param_model": "impreza",
+			"location": "Florida, Tallahassee",
+			"price": 7200,
+			"img": "img.png"
+		},
+		{
+			"car_year": "2000",
+			"param_brand": "ford",
+			"param_model": "f150",
+			"location": "Florida, Tallahassee",
+			"price": 1600,
+			"img": "img.png"
+		}
+	],
 	"users": [
 		{
 			"email": "admin@admin.com",

@@ -1,0 +1,125 @@
+@use 'src/app/assets/styles/mixins' as *;
+
+.block {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	@include adaptiveSize('margin-bottom', 160, 80);
+	h2 {
+		@include adaptiveSize('margin-bottom', 92, 40);
+		align-self: baseline;
+	}
+}
+.content {
+	width: 100%;
+	max-width: 984px;
+}
+.cards {
+	position: relative;
+}
+.indicator {
+	position: absolute;
+	top: 0;
+	left: -60px;
+	height: 100%;
+	width: 48px;
+	@media (max-width: 1200px) {
+		display: none;
+	}
+}
+.indicatorSolid {
+	width: 48px;
+	height: 300px;
+	border-left: 2px solid var(--black-text);
+	z-index: 2;
+
+	position: sticky;
+	top: 0px;
+
+	img {
+		width: 48px;
+		height: 48px;
+		position: absolute;
+		top: 99%;
+		left: calc(-50% - 1px);
+	}
+}
+.indicatorDashed {
+	position: absolute;
+	top: 0;
+	z-index: 1;
+	width: 48px;
+	height: 100%;
+	border-left: 2px dashed var(--black-40);
+}
+.btn {
+	margin-left: auto;
+	margin-right: auto;
+	@include adaptiveSize('margin-top', 48, 24);
+}
+.card {
+	display: grid;
+	grid-template-columns: 227px 1fr;
+	align-items: center;
+	gap: 24px;
+	@media (max-width: 580px) {
+		grid-template-columns: 1fr;
+		gap: 8px;
+		.cardImage {
+			order: -1;
+		}
+	}
+}
+.cardLink {
+	display: block;
+	&:not(:last-child) {
+		@include adaptiveSize('margin-bottom', 160, 40);
+	}
+}
+.cardImage {
+	overflow: hidden;
+	@include adaptiveSize('height', 400, 155);
+	img {
+		transition: transform 0.3s;
+	}
+	&:hover {
+		img {
+			transform: scale(1.05);
+		}
+	}
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+}
+.cardYear {
+	font-weight: 700;
+	color: var(--black-60);
+	@include adaptiveSize('margin-bottom', 8, 4);
+}
+.cardName {
+	margin-bottom: 6px;
+}
+.cardLocation {
+	display: grid;
+	align-items: center;
+	grid-template-columns: 14px auto;
+	gap: 7px;
+	color: var(--black-80);
+	@include adaptiveSize('margin-bottom', 28, 8);
+}
+.cardPrice {
+	font-style: italic;
+	background: var(--green-20);
+	border: 1px solid var(--black-text);
+	@include adaptiveSize('height', 108, 80);
+	@include adaptiveSize('padding', 16, 10);
+	div {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+		border: 1px dashed var(--black-text);
+	}
+}

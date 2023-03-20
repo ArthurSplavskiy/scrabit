@@ -11,11 +11,23 @@ export enum queryKeys {
 	pageArticle = 'page.article',
 	pageBuyer = 'page.buyer',
 	pageCharity = 'page.charity',
+	pageHelpCenter = 'page.helpCenter',
+	pageHelpCenterCategory = 'page.helpCenterCategory',
+	pageHelpCenterArticle = 'page.helpCenterArticle',
+	sellMyCarPage = 'page.sellMyCar',
+	cashForJunkCarPage = 'page.cashForJunkCarPage',
+	carPage = 'page.car',
 
 	// blog
 	blogSearch = 'blog.search',
 	blogCategories = 'blog.category',
 
+	// help-center
+	helpCenterSearch = 'helpCenter.search',
+
 	// article
-	article = 'article.record'
+	article = 'article.record',
+
+	// cars
+	cars = 'cars'
 }

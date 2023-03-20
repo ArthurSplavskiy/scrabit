@@ -9,6 +9,12 @@ import CarrierPage from '@/pages/Partnerships/CarrierPage';
 import PublisherPage from '@/pages/Partnerships/PublisherPage';
 import CharityPage from '@/pages/Partnerships/CharityPage';
 import SupplierPage from '@/pages/Partnerships/SupplierPage';
+import HelpCenterPage from '@/pages/HelpCenter';
+import HelpCenterCategoryPage from '@/pages/HelpCenter/CategoryPage';
+import HelpCenterArticlePage from '@/pages/HelpCenter/ArticlePage';
+import SellMyCar from '@/pages/SellMyCar';
+import CashForJunkPage from '@/pages/CashForJunkCar';
+import Car from '@/pages/Car';
 
 export enum AppRoutes {
 	HOME = '/',
@@ -55,6 +61,30 @@ const AppRouter = createBrowserRouter([
 			{
 				path: 'partnerships/supplier',
 				element: <SupplierPage />
+			},
+			{
+				path: 'help-center',
+				element: <HelpCenterPage />
+			},
+			{
+				path: 'help-center/:category',
+				element: <HelpCenterCategoryPage />
+			},
+			{
+				path: 'help-center/:category/:slug',
+				element: <HelpCenterArticlePage />
+			},
+			{
+				path: '/sell-my-car',
+				element: <SellMyCar />
+			},
+			{
+				path: '/cash-for-junk-cars',
+				element: <CashForJunkPage />
+			},
+			{
+				path: '/sell-my-car/:brand/:model',
+				element: <Car />
 			}
 		]
 	}

@@ -1,0 +1,15 @@
+@use 'src/app/assets/styles/mixins' as *;
+
+.block {
+	display: grid;
+	grid-template-columns: 1fr;
+	@include adaptiveSize('gap', 24, 16);
+	@include adaptiveSize('margin-top', 80, 40);
+	max-width: 1014px;
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+}
+.categoryBlock {
+	gap: 0;
+}

@@ -1,0 +1,17 @@
+@use 'src/app/assets/styles/mixins' as *;
+
+.inner {
+	@include adaptiveSize('padding-bottom', 80, 56);
+	padding-top: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 40px;
+	@media (max-width: 768px) {
+		flex-direction: column;
+		justify-content: center;
+	}
+	h2 {
+		word-break: break-all;
+	}
+}
