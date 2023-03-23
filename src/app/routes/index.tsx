@@ -14,7 +14,8 @@ import HelpCenterCategoryPage from '@/pages/HelpCenter/CategoryPage';
 import HelpCenterArticlePage from '@/pages/HelpCenter/ArticlePage';
 import SellMyCar from '@/pages/SellMyCar';
 import CashForJunkPage from '@/pages/CashForJunkCar';
-import Car from '@/pages/Car';
+import CarModelPage from '@/pages/SellMyCar/CarModelPage';
+import CarBrandPage from '@/pages/SellMyCar/CarBrandPage';
 
 export enum AppRoutes {
 	HOME = '/',
@@ -84,7 +85,11 @@ const AppRouter = createBrowserRouter([
 			},
 			{
 				path: '/sell-my-car/:brand/:model',
-				element: <Car />
+				element: <CarModelPage />
+			},
+			{
+				path: '/sell-my-car/:brand',
+				element: <CarBrandPage />
 			}
 		]
 	}

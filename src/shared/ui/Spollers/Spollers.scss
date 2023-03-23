@@ -4,6 +4,7 @@
 	.Spoller {
 		position: relative;
 		border: 1px solid var(--black-text);
+		background: var(--white);
 		&.small {
 			.Spoller-head {
 				@include adaptiveSize('padding', 20, 16);
@@ -30,6 +31,7 @@
 			}
 		}
 		&.open {
+			background: var(--green-20);
 			.Spoller-head {
 				color: var(--black-60);
 				padding-bottom: 24px;

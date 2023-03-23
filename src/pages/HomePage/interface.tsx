@@ -8,7 +8,6 @@ import { IReviewSection } from '@/widgets/ReviewSection/interface';
 export interface IHomePageData {
 	hero_title: string;
 	hero_subtitle: string;
-	hero_message: string;
 	offer_form_data: {
 		car_make: ISelectOption[];
 		car_model: ISelectOption[];

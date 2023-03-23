@@ -30,6 +30,7 @@ export const BlogCategorySection: FC<Props> = ({
 
 	return (
 		<div
+			id={slug}
 			className={classNames(styles.block, {
 				'blue-section': withBlueBg,
 				'section-offset': withTopOffset,

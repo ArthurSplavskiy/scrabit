@@ -22,27 +22,25 @@ export const HeroRecordCard: FC<Props> = ({ image, title, slug, tag, descr }) =>
 		<div className={styles.card}>
 			<div className={styles.body}>
 				<div className={styles.head}>
-					<Link key={tag.slug} to={`${AppRoutes.BLOG}/${tag.slug}`} className={styles.tag}>
+					<Link key={tag.slug} to={`/blog#${tag.slug}`} className={styles.tag}>
 						{tag.name}
 					</Link>
 				</div>
-				<Link to={`${AppRoutes.BLOG}/${tag.slug}/${slug}`} className={styles.title}>
+				<Link to={`/blog/${tag.slug}/${slug}`} className={styles.title}>
 					<h4 className='text-64-24'>{title}</h4>
 				</Link>
 				<p className={classNames(styles.descr, 'text-16-14')}>{descr}</p>
 				{isMobile && (
 					<div className={styles.image}>
 						<Link
-							to={`${AppRoutes.BLOG}/${tag.slug}/${slug}`}
+							to={`/blog/${tag.slug}/${slug}`}
 							className={classNames(styles.imageLink, '-img-ibg')}>
 							<img src={defaultImage} alt={title} />
 						</Link>
 					</div>
 				)}
 				<div className={styles.controls}>
-					<Button
-						btnTo={`${AppRoutes.BLOG}/${tag.slug}/${slug}`}
-						width={isMobile ? 'fullWidth' : undefined}>
+					<Button btnTo={`/blog/${tag.slug}/${slug}`} width={isMobile ? 'fullWidth' : undefined}>
 						Read AN ARTICLE
 					</Button>
 				</div>
@@ -50,7 +48,7 @@ export const HeroRecordCard: FC<Props> = ({ image, title, slug, tag, descr }) =>
 			{!isMobile && (
 				<div className={styles.image}>
 					<Link
-						to={`${AppRoutes.BLOG}/${tag.slug}/${slug}`}
+						to={`/blog/${tag.slug}/${slug}`}
 						className={classNames(styles.imageLink, '-img-ibg')}>
 						<img src={defaultImage} alt={title} />
 					</Link>

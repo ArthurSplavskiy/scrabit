@@ -1,14 +1,13 @@
-import { FC } from 'react';
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { FC, Fragment } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import styles from './Breadcrumbs.module.scss';
 
 interface Props {
-	links?: string[];
+	homepageIsFirst?: boolean;
 }
 
-export const Breadcrumbs: FC<Props> = ({ links }) => {
+export const Breadcrumbs: FC<Props> = ({ homepageIsFirst }) => {
 	let location = useLocation();
-	const params = useParams();
 
 	const slugNormalize = (slug: string) => {
 		const arr = slug.split('-');
@@ -26,19 +25,35 @@ export const Breadcrumbs: FC<Props> = ({ links }) => {
 		return normalizeArr.join(' ');
 	};
 
+	const getURLParam = (idx: number) => location.pathname.split('/').filter((str) => str)[idx];
+	const getParams = () => location.pathname.split('/').filter((str) => str);
+
 	return (
 		<nav className={styles.breadcrumbs}>
 			<ul>
-				<li>
-					<Link to='/'>Homepage</Link>
-				</li>
-				{links?.map((slug, idx) => (
-					<li key={idx}>
-						<Link to={slug}>
-							{slugNormalize('/' + slug.split('/')[slug.split('/').length - 1])}
-						</Link>
+				{getParams().length === 1 || homepageIsFirst ? (
+					<li>
+						<Link to='/'>Homepage</Link>
 					</li>
-				))}
+				) : (
+					getParams()
+						.slice(0, -1)
+						.map((_, idx) => (
+							<Fragment key={idx}>
+								{idx === 0 ? (
+									<li>
+										<Link to={`/${getURLParam(idx)}`}>{slugNormalize('/' + getURLParam(idx))}</Link>
+									</li>
+								) : (
+									<li>
+										<Link to={`/${getURLParam(idx - 1)}/${getURLParam(idx)}`}>
+											{slugNormalize('/' + getURLParam(idx))}
+										</Link>
+									</li>
+								)}
+							</Fragment>
+						))
+				)}
 				<li>
 					<span>
 						{slugNormalize(

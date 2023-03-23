@@ -1,11 +1,12 @@
 import { MovingTiters } from '@/shared/ui/MovingTiters/MovingTiters';
 import { AboutSection } from '@/widgets/AboutSection';
-import { HomeHeroSection } from './ui/HomeHeroSection';
+import { HomeHeroSection } from './HomeHeroSection';
 import { HowItWorkSection } from '@/widgets/HowItWorkSection';
 import {
 	useHomeAbout,
 	useHomeBlogposts,
 	useHomeFaq,
+	useHomePageData,
 	useHomeReview,
 	useHowItWork,
 	withHomeContext
@@ -15,17 +16,26 @@ import { ParallaxSection } from '@/widgets/ParallaxSection';
 import { FaqSection } from '@/widgets/FaqSection';
 import { MessageSection } from '@/widgets/MessageSection';
 import { BlogPostSlider } from '@/widgets/BlogPostSlider';
-import { Preloader } from '@/widgets/Preloader';
+import { useEffect } from 'react';
+import { useCommon } from '@/app/context/Common/CommonContext';
 
 function HomePage() {
-	const { data: homeAboutData, isLoading } = useHomeAbout();
+	const { data: homeAboutData } = useHomeAbout();
 	const { data: homeHowItWorkData } = useHowItWork();
 	const { data: homeReviewData } = useHomeReview();
 	const { data: homeFaqData } = useHomeFaq();
 	const { data: homeBlogPostData } = useHomeBlogposts();
+	const { isLoading } = useHomePageData();
+	const { setPageIsLoaded } = useCommon();
+
+	useEffect(() => {
+		if (!isLoading) {
+			setPageIsLoaded(true);
+		}
+	}, [isLoading]);
+
 	return (
 		<>
-			<Preloader hide={!isLoading} />
 			<HomeHeroSection />
 			<MovingTiters size='small' text='read more' />
 			<AboutSection data={homeAboutData} />

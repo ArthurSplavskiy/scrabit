@@ -182,3 +182,8 @@ fieldset {
 .fullColumn {
 	grid-column: 1 / -1;
 }
+
+[aria-label='animation'] {
+	width: auto !important;
+	height: auto !important;
+}

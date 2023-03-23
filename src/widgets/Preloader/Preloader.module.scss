@@ -1,13 +1,30 @@
+@use 'src/app/assets/styles/mixins' as *;
+
 .preloader {
 	position: fixed;
 	width: 100vw;
 	height: 100vh;
 	inset: 0 0 0 0;
 	z-index: 9999;
-	background: var(--main-blue);
+	background: var(--white);
 	transition: var(--transition);
-	pointer-events: none;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	&.hide {
 		opacity: 0;
+		pointer-events: none;
+		& > div {
+			opacity: 0;
+		}
+	}
+
+	& > div {
+		height: auto !important;
+		transform: translateY(-25%);
+		pointer-events: none;
+		transition: var(--transition);
+		@include adaptiveSize('width', 1400, 400);
 	}
 }

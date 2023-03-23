@@ -48,11 +48,11 @@ export const Footer: FC = () => {
 								<ul>
 									{menu
 										?.filter((el) => !el.sublist)
-										.map((item) => (
-											<li className='text-16-14' key={item.slug}>
+										.map((item, idx) => (
+											<li className='text-16-14' key={idx}>
 												<Link
 													onClick={() => scrollToBlock(item.slug)}
-													to={`/#${item.slug}`}
+													to={item.anchor ? `/#${item.slug}` : item.slug}
 													reloadDocument={false}>
 													{item.name}
 												</Link>
@@ -69,8 +69,8 @@ export const Footer: FC = () => {
 									<nav className='Footer-menu'>
 										<h3 className='Footer-menu-head text-18-14'>{item.name}</h3>
 										<ul>
-											{item.sublist?.map((item) => (
-												<li className='text-16-14' key={item.link}>
+											{item.sublist?.map((item, idx) => (
+												<li className='text-16-14' key={idx}>
 													<Link to={item.link} reloadDocument={false}>
 														{item.name}
 													</Link>

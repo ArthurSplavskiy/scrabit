@@ -23,7 +23,7 @@ export const SearchRecordCard: FC<Props> = ({ image, title, createdAt, slug, tag
 			</div>
 			<div className={styles.body}>
 				<div className={styles.head}>
-					<Link key={tag.slug} to={`${tag.slug}`} className={styles.tag}>
+					<Link key={tag.slug} to={`/blog#${tag.slug}`} className={styles.tag}>
 						{tag.name}
 					</Link>
 				</div>

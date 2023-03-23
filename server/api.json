@@ -3,17 +3,20 @@
 		{
 			"id": 1,
 			"name": "How it works",
-			"slug": "how-it-works"
+			"slug": "how-it-works",
+			"anchor": true
 		},
 		{
 			"id": 2,
 			"name": "About Scrabit",
-			"slug": "about-scrabit"
+			"slug": "about-scrabit",
+			"anchor": true
 		},
 		{
 			"id": 3,
 			"name": "More info",
-			"slug": "more-info"
+			"slug": "more-info",
+			"anchor": true
 		},
 		{
 			"id": 4,
@@ -65,7 +68,7 @@
 				{
 					"id": 1,
 					"name": "florida, fl",
-					"link": "florida"
+					"link": "/sell-my-car/ca/los-angeles"
 				},
 				{
 					"id": 2,
@@ -80,17 +83,17 @@
 				{
 					"id": 4,
 					"name": "car buyers",
-					"link": "car-buyers"
+					"link": "/sell-my-car/ca/los-angeles"
 				},
 				{
 					"id": 5,
 					"name": "car value",
-					"link": "car-value"
+					"link": "/sell-my-car/ca/los-angeles"
 				},
 				{
 					"id": 6,
 					"name": "junk car removal",
-					"link": "junk-car-removal"
+					"link": "/sell-my-car/ca/los-angeles"
 				}
 			]
 		}
@@ -121,27 +124,27 @@
 		{
 			"id": 1,
 			"name": "Nissan Altima",
-			"slug": "nissan-altima"
+			"slug": "/sell-my-car/nissan/altima"
 		},
 		{
 			"id": 2,
 			"name": "Ford focus",
-			"slug": "ford-focus"
+			"slug": "/sell-my-car/ford/focus"
 		},
 		{
 			"id": 3,
 			"name": "Chevrolet blazer",
-			"slug": "chevrolet-blazer"
+			"slug": "/sell-my-car/chevrolet/blazer"
 		},
 		{
 			"id": 4,
 			"name": "Ford crown Victoria",
-			"slug": "ford-crown-victoria"
+			"slug": "/sell-my-car/ford/crown-victoria"
 		},
 		{
 			"id": 5,
 			"name": "Chevrolet impala",
-			"slug": "chevrolet-impala"
+			"slug": "/sell-my-car/chevrolet/impala"
 		}
 	],
 	"contacts": {
@@ -152,7 +155,6 @@
 	"home_page": {
 		"hero_title": "Sell your run & Drive",
 		"hero_subtitle": "ka-chow! you’ll get an offr today",
-		"hero_message": "The best years of your car longpassed? we will help send it to a better place.",
 		"offer_form_data": {
 			"car_make": [
 				{ "id": 1, "label": "Acura", "value": "Acura" },
@@ -341,7 +343,7 @@
 	"blog_page": {
 		"hero_record": {
 			"id": 1,
-			"slug": "record_name",
+			"slug": "record-name",
 			"image": "/img.png",
 			"title": "Aging Well: Which Cars Gain Value As They Age",
 			"description": "Burning oil can be caused by a few mechanical breakdowns. If you suspect that there’s a problem, get it looked at ASAP",
@@ -1392,8 +1394,6 @@
 		"hero_subtitle": "It may be hard to say goodbye, but it couldn't be easier to sell. We're Peddle and we buy used cars the simple, modern, awesome way. Get an offer in minutes. No sign-ups, no monkey business. If you woke up thinking, today's the day I'm going to sell my car, we're the ones to help you do it",
 		"hero_image": "img.png",
 		"about_section": {
-			"title": "about scrabit",
-			"subtitle": "giving pre-owned vehicles another chance",
 			"image": "/about-placeholder.png",
 			"steps": [
 				{

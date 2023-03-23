@@ -6,7 +6,6 @@ import classNames from 'classnames';
 import { Button } from '@/shared/ui/Button';
 import { useDevice } from '@/app/context/Device/DeviceContext';
 import { ITag } from '../../interface';
-import { AppRoutes } from '@/app/routes';
 
 interface Props {
 	image: string;
@@ -27,7 +26,7 @@ export const SliderRecordCard: FC<Props> = ({ image, title, createdAt, tag, rout
 			</div>
 			<div className={styles.body}>
 				<div className={styles.head}>
-					<Link key={tag.slug} to={route} className={styles.tag}>
+					<Link key={tag.slug} to={`/blog#${tag.name.toLocaleLowerCase()}`} className={styles.tag}>
 						{tag.name}
 					</Link>
 					{isMobile && <span className={classNames('text-14', styles.date)}>{createdAt}</span>}

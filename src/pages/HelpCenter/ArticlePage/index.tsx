@@ -1,5 +1,4 @@
 import { MessageSection } from '@/widgets/MessageSection';
-import { Preloader } from '@/widgets/Preloader';
 import { useQuery } from 'react-query';
 import { queryKeys } from '@/app/queryClient/queryKeys';
 import { Breadcrumbs } from '@/widgets/Breadcrumbs';
@@ -7,17 +6,24 @@ import { Search } from '../ui/Search';
 import { useParams } from 'react-router-dom';
 import { HelpArticleCardSingle } from '@/entities/HelpArticle/ui/HelpArticleCardSingle';
 import api from '../api';
+import { useCommon } from '@/app/context/Common/CommonContext';
+import { useEffect } from 'react';
 
 function HelpCenterArticlePage() {
-	const { category, slug } = useParams();
+	const { slug } = useParams();
 	const { data, isLoading } = useQuery([queryKeys.pageHelpCenterArticle, slug], () =>
 		api.getArticle(slug || '')
 	);
+	const { setPageIsLoaded } = useCommon();
+	useEffect(() => {
+		if (!isLoading) {
+			setPageIsLoaded(true);
+		}
+	}, [isLoading]);
 	return (
 		<>
-			<Preloader hide={!isLoading} />
 			<div className='container mt-40-16'>
-				<Breadcrumbs links={[category || '']} />
+				<Breadcrumbs />
 			</div>
 			<Search />
 			{data?.[0] ? (

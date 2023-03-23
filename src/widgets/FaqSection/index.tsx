@@ -11,7 +11,7 @@ interface Props {
 
 export const FaqSection: FC<Props> = ({ data }) => {
 	return (
-		<div className={styles.section}>
+		<div id='more-info' className={styles.section}>
 			<div className='container'>
 				<div className={styles.sectionHead}>
 					<SectionHead title={data?.title} subtitle={data?.subtitle} />

@@ -5,6 +5,7 @@
 	border: 1px solid var(--black);
 	border-top: none;
 	transition: var(--transition);
+	background: var(--white);
 	&:hover {
 		background: var(--black-10);
 	}

@@ -1,7 +1,7 @@
 import { Button } from '@/shared/ui/Button';
 import { scrollToBlock } from '@/shared/helpers/scrollToBlock';
 import { DetailedHTMLProps, FC, HTMLAttributes, useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useDevice } from '@/app/context/Device/DeviceContext';
 import { useQuery } from 'react-query';
 import { queryKeys } from '@/app/queryClient/queryKeys';
@@ -18,7 +18,10 @@ interface Props extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDi
 	menuHandler: (s: boolean) => void;
 }
 
-const SublistItem: FC<Omit<IMenu, 'id'>> = ({ name, slug, sublist }) => {
+interface ISublistItemProps extends Omit<IMenu, 'id' | 'anchor'> {
+	menuHandler: (s: boolean) => void;
+}
+const SublistItem: FC<ISublistItemProps> = ({ name, slug, sublist, menuHandler }) => {
 	const [isSublistOpen, setIsSublistOpen] = useState(false);
 	const [itemHeight, setItemHeight] = useState(0);
 	const sublistRef = useRef<HTMLUListElement>(null);
@@ -46,7 +49,12 @@ const SublistItem: FC<Omit<IMenu, 'id'>> = ({ name, slug, sublist }) => {
 				style={{ height: itemHeight + 'px' }}>
 				{sublist?.map((item) => (
 					<li key={item.id}>
-						<Link className='text-18' to={item.link}>
+						<Link
+							className='text-18'
+							to={item.link}
+							onClick={() => {
+								menuHandler(false);
+							}}>
 							{item.name}
 						</Link>
 					</li>
@@ -58,6 +66,7 @@ const SublistItem: FC<Omit<IMenu, 'id'>> = ({ name, slug, sublist }) => {
 
 export const HeaderMenu: FC<Props> = ({ data, active, menuHandler, ...props }) => {
 	const { isDesktop } = useDevice();
+	const location = useLocation();
 	const { data: contacts } = useQuery<ICommonContacts>(
 		queryKeys.commonContacts,
 		api.common.getContacts
@@ -74,10 +83,14 @@ export const HeaderMenu: FC<Props> = ({ data, active, menuHandler, ...props }) =
 					? data
 							?.filter((item) => !item.sublist)
 							.map((item) => (
-								<li className='HeaderMenu-item text-16' key={item.slug}>
+								<li
+									className={classNames('HeaderMenu-item text-16', {
+										active: location.pathname === `/${item.slug}`
+									})}
+									key={item.slug}>
 									<Link
 										onClick={() => handleClick(item.slug)}
-										to={`/${item.slug}`}
+										to={item.anchor ? `/#${item.slug}` : `/${item.slug}`}
 										reloadDocument={false}>
 										{item.name}
 									</Link>
@@ -86,11 +99,16 @@ export const HeaderMenu: FC<Props> = ({ data, active, menuHandler, ...props }) =
 					: data?.map((item) => (
 							<li className='HeaderMenu-item text-16' key={item.slug}>
 								{item.sublist ? (
-									<SublistItem name={item.name} slug={item.slug} sublist={item.sublist} />
+									<SublistItem
+										name={item.name}
+										slug={item.slug}
+										sublist={item.sublist}
+										menuHandler={menuHandler}
+									/>
 								) : (
 									<Link
 										onClick={() => handleClick(item.slug)}
-										to={`/#${item.slug}`}
+										to={item.anchor ? `/#${item.slug}` : `/${item.slug}`}
 										reloadDocument={false}>
 										{item.name}
 									</Link>

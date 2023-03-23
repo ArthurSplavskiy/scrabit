@@ -3,7 +3,6 @@ import { useDevice } from '@/app/context/Device/DeviceContext';
 import { AppRoutes } from '@/app/routes';
 import { FC, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useProfile } from '@/app/context/User/UserContext';
 import { useScrollY } from '@/shared/hooks/useScrollY';
 import Cookies from 'js-cookie';
 import { MenuIcon } from './HeaderMenu/MenuIcon';

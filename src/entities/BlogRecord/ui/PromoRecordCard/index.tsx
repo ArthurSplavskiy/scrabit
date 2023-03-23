@@ -31,7 +31,7 @@ export const PromoRecordCard: FC<Props> = ({ image, title, createdAt, slug, tag,
 					[styles.bodyWhite]: bgColor
 				})}>
 				<div className={styles.head}>
-					<Link key={tag.slug} to={`${tag.slug}`} className={styles.tag}>
+					<Link key={tag.slug} to={`/blog#${tag.slug}`} className={styles.tag}>
 						{tag.name}
 					</Link>
 					{isMobile && <span className={classNames('text-14', styles.date)}>{createdAt}</span>}

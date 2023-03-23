@@ -3,10 +3,7 @@
 .Footer {
 	overflow: hidden;
 	background: var(--white);
-	margin-top: 60px;
-	@media screen and (max-width: 768px) {
-		margin-top: 32px;
-	}
+	@include adaptiveSize('margin-top', 160, 80);
 	&-top {
 		@include adaptiveSize('padding-top', 64, 40);
 		@include adaptiveSize('padding-bottom', 58, 32);
@@ -66,6 +63,12 @@
 						display: none;
 					}
 				}
+				a {
+					transition: var(--transition);
+					&:hover {
+						color: var(--main-blue);
+					}
+				}
 			}
 		}
 		&:nth-child(2) {
@@ -81,7 +84,10 @@
 			grid-area: promo;
 			padding-top: 45px;
 			@media screen and (max-width: 1275px) {
-				padding-top: 0;
+				padding-top: 0px;
+			}
+			@media screen and (max-width: 480px) {
+				padding-top: 35px;
 			}
 			ul {
 				@media screen and (max-width: 1275px) {
@@ -104,15 +110,15 @@
 		li {
 			a {
 				transition: var(--hover);
-				@media screen and (max-width: 1275px) {
-					text-transform: none;
-				}
 				&:hover {
 					color: var(--main-blue);
 				}
 			}
 			&:not(:last-child) {
 				@include adaptiveSize('margin-bottom', 16, 2);
+			}
+			&::first-letter {
+				text-transform: uppercase;
 			}
 		}
 	}

@@ -12,7 +12,7 @@ interface Props {
 
 export const AboutSection: FC<Props> = ({ data }) => {
 	return (
-		<section className={styles.section}>
+		<section id='about-scrabit' className={styles.section}>
 			<div className='container'>
 				<SectionHead title={data?.title} subtitle={data?.subtitle} />
 				<div className={styles.sectionContent}>

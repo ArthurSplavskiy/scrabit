@@ -11,6 +11,10 @@ type State = {
 	closeThank: () => void;
 	popupHide: () => void;
 	setNoScroll: (lock: boolean) => void;
+	pageIsLoaded: boolean;
+	setPageIsLoaded: (loading: boolean) => void;
+	preloaderIsHide: boolean;
+	setPreloaderIsHide: (h: boolean) => void;
 };
 type CommonProviderProps = { children: React.ReactNode };
 
@@ -23,7 +27,11 @@ const CommonContext = createContext<State>({
 	openThank: () => {},
 	closeThank: () => {},
 	popupHide: () => {},
-	setNoScroll: (lock: boolean) => {}
+	setNoScroll: (lock: boolean) => {},
+	pageIsLoaded: false,
+	setPageIsLoaded: (loading: boolean) => {},
+	preloaderIsHide: false,
+	setPreloaderIsHide: (h: boolean) => {}
 });
 
 function CommonProvider({ children }: CommonProviderProps) {
@@ -32,6 +40,10 @@ function CommonProvider({ children }: CommonProviderProps) {
 
 	const [isThankPopupOpen, setIsThankPopupOpen] = useState(false);
 	const [isPopupHide, setIsPopupHide] = useState(false);
+
+	const [pageIsLoadedState, setPageIsLoadedState] = useState(false);
+
+	const [preloaderIsHideState, setPreloaderIsHideState] = useState(false);
 
 	const openThank = () => {
 		setIsThankPopupOpen(true);
@@ -50,6 +62,12 @@ function CommonProvider({ children }: CommonProviderProps) {
 	};
 	const clearError = () => {
 		setPageError(null);
+	};
+	const setPageIsLoaded = (loading: boolean) => {
+		setPageIsLoadedState(loading);
+	};
+	const setPreloaderIsHide = (h: boolean) => {
+		setPreloaderIsHideState(h);
 	};
 
 	useEffect(() => {
@@ -70,7 +88,11 @@ function CommonProvider({ children }: CommonProviderProps) {
 			error: pageError,
 			setError,
 			clearError,
-			setNoScroll
+			setNoScroll,
+			pageIsLoaded: pageIsLoadedState,
+			setPageIsLoaded,
+			preloaderIsHide: preloaderIsHideState,
+			setPreloaderIsHide
 		}),
 		[
 			openThank,
@@ -81,7 +103,11 @@ function CommonProvider({ children }: CommonProviderProps) {
 			pageError,
 			setError,
 			clearError,
-			setNoScroll
+			setNoScroll,
+			pageIsLoadedState,
+			setPageIsLoaded,
+			preloaderIsHideState,
+			setPreloaderIsHide
 		]
 	);
 

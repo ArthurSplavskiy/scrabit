@@ -14,7 +14,7 @@ interface Props {
 export const HowItWorkSection: FC<Props> = ({ data }) => {
 	const { isDesktop } = useDevice();
 	return (
-		<section className={styles.section}>
+		<section id='how-it-works' className={styles.section}>
 			<div className='container'>
 				{isDesktop && <SectionHead title={data?.title} subtitle={data?.subtitle} />}
 				<div className={styles.sectionContent}>

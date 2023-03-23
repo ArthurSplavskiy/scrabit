@@ -6,11 +6,11 @@
 
 	@media screen and (max-width: 1200px) {
 		width: 100%;
-		height: calc(100vh - 58px);
+		height: calc(100vh - 56px);
 		display: flex;
 		flex-direction: column;
 		position: fixed;
-		top: 58px;
+		top: 56px;
 		left: -100%;
 		bottom: 0;
 		z-index: 3;
@@ -32,6 +32,9 @@
 		@media screen and (max-width: 1200px) {
 			display: flex;
 			flex-direction: column;
+			a {
+				color: var(--black-text) !important;
+			}
 		}
 	}
 	&-sublist {
@@ -78,6 +81,13 @@
 				display: none;
 			}
 		}
+		&.active {
+			background: linear-gradient(89.93deg, #32b1c4 0.04%, #3dcb9f 48.43%, #5cd56e 99.92%);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			background-clip: text;
+			text-fill-color: transparent;
+		}
 		@media (any-hover: hover) {
 			&:hover {
 				background: linear-gradient(89.93deg, #32b1c4 0.04%, #3dcb9f 48.43%, #5cd56e 99.92%);
@@ -99,6 +109,7 @@
 		align-items: center;
 		grid-template-columns: 1fr 1fr;
 		margin-top: 44px;
+		margin-bottom: 80px;
 		gap: 24px;
 		& > a {
 			display: inline-flex;
@@ -107,7 +118,7 @@
 		@media screen and (min-width: 1200px) {
 			display: none;
 		}
-		@media screen and (max-width: 385px) {
+		@media screen and (max-width: 480px) {
 			grid-template-columns: 1fr;
 			button {
 				width: 100%;

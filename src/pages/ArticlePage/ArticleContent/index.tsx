@@ -22,7 +22,7 @@ export const ArticleContent: FC<Props> = ({ category, record }) => {
 		<div className={styles.content}>
 			<div className='container'>
 				<div className={styles.breadcrumbs}>
-					<Breadcrumbs links={['/blog', `/blog/${category}`]} />
+					<Breadcrumbs />
 				</div>
 				<div className={styles.body}>
 					<div className={styles.table}>

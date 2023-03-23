@@ -26,7 +26,10 @@ export const CategoryRecordCard: FC<Props> = ({ image, title, createdAt, slug, t
 			</div>
 			<div className={styles.body}>
 				<div className={styles.head}>
-					<Link key={tag.slug} to={`${tag.slug}`} className={classNames(styles.tag, 'text-18-12')}>
+					<Link
+						key={tag.slug}
+						to={`/blog#${tag.slug}`}
+						className={classNames(styles.tag, 'text-18-12')}>
 						{tag.name}
 					</Link>
 				</div>

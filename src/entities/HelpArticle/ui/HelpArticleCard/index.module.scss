@@ -3,6 +3,7 @@
 .card {
 	@include adaptiveSize('padding', 32, 16);
 	border: 1px solid var(--black);
+	background: var(--white);
 	&.grey {
 		.icon,
 		.authorCount {

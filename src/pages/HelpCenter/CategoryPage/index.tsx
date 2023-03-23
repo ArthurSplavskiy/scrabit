@@ -1,6 +1,5 @@
 import { MovingTiters } from '@/shared/ui/MovingTiters/MovingTiters';
 import { MessageSection } from '@/widgets/MessageSection';
-import { Preloader } from '@/widgets/Preloader';
 import { useQuery } from 'react-query';
 import { queryKeys } from '@/app/queryClient/queryKeys';
 import { HeroSection } from '../ui/HeroSeciton';
@@ -9,15 +8,22 @@ import { Search } from '../ui/Search';
 import { CategoriesSection } from '../ui/CategoriesSection';
 import api from '../api';
 import { useParams } from 'react-router-dom';
+import { useCommon } from '@/app/context/Common/CommonContext';
+import { useEffect } from 'react';
 
 function HelpCenterCategoryPage() {
 	const { category } = useParams();
 	const { data, isLoading } = useQuery([queryKeys.pageHelpCenterCategory, category], () =>
 		api.findArticlesByCategory(category || '')
 	);
+	const { setPageIsLoaded } = useCommon();
+	useEffect(() => {
+		if (!isLoading) {
+			setPageIsLoaded(true);
+		}
+	}, [isLoading]);
 	return (
 		<>
-			<Preloader hide={!isLoading} />
 			<div className='container mt-40-16'>
 				<Breadcrumbs />
 			</div>

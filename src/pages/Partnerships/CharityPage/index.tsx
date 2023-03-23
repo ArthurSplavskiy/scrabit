@@ -5,17 +5,26 @@ import { FaqsBlock } from '@/widgets/Partnerships/FaqsBlock';
 import { FormBlock } from '@/widgets/Partnerships/FormBlock';
 import { PartnershipContent } from '@/widgets/Partnerships/PartnershipContent';
 import { PersonBlock } from '@/widgets/Partnerships/PersonBlock';
-import { Preloader } from '@/widgets/Preloader';
 import { useQuery } from 'react-query';
 import { ICharityPageData } from './interface';
 import { HeroSection } from '../ui/HeroSection';
 import api from './api';
+import { useCommon } from '@/app/context/Common/CommonContext';
+import { useEffect } from 'react';
 
 function CharityPage() {
-	const { data } = useQuery<ICharityPageData>(queryKeys.pageCharity, api.getCharityPageData);
+	const { data, isLoading } = useQuery<ICharityPageData>(
+		queryKeys.pageCharity,
+		api.getCharityPageData
+	);
+	const { setPageIsLoaded } = useCommon();
+	useEffect(() => {
+		if (!isLoading) {
+			setPageIsLoaded(true);
+		}
+	}, [isLoading]);
 	return (
 		<>
-			<Preloader hide={true} />
 			<HeroSection
 				title={data?.hero_section.title || ''}
 				subtitle={data?.hero_section.subtitle || ''}

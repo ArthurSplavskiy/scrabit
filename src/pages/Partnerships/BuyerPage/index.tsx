@@ -5,24 +5,31 @@ import { FaqsBlock } from '@/widgets/Partnerships/FaqsBlock';
 import { FormBlock } from '@/widgets/Partnerships/FormBlock';
 import { PartnershipContent } from '@/widgets/Partnerships/PartnershipContent';
 import { PersonBlock } from '@/widgets/Partnerships/PersonBlock';
-import { Preloader } from '@/widgets/Preloader';
 import { useQuery } from 'react-query';
 import { IBuyerPageData } from './interface';
 import { HeroSection } from '../ui/HeroSection';
 import api from './api';
+import { useCommon } from '@/app/context/Common/CommonContext';
+import { useEffect } from 'react';
 
 function BuyerPage() {
-	const { data } = useQuery<IBuyerPageData>(queryKeys.pageBuyer, api.getBuyerPageData);
+	const { data, isLoading } = useQuery<IBuyerPageData>(queryKeys.pageBuyer, api.getBuyerPageData);
+	const { setPageIsLoaded } = useCommon();
+
+	useEffect(() => {
+		if (!isLoading) {
+			setPageIsLoaded(true);
+		}
+	}, [isLoading]);
 	return (
 		<>
-			<Preloader hide={true} />
 			<HeroSection
 				title={data?.hero_section.title || ''}
 				subtitle={data?.hero_section.subtitle || ''}
 				message={data?.hero_section.message || ''}
-				btnText={'Check what your car worth'}
+				btnText={'Sign into buyer account'}
 				btnSlug={'/help-center'}
-				breadcrumbs={<Breadcrumbs />}
+				breadcrumbs={<Breadcrumbs homepageIsFirst={true} />}
 				bg={'blue'}
 			/>
 			{data && (

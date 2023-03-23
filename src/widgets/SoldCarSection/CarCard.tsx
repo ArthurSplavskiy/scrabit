@@ -9,21 +9,21 @@ import car_img from './post.png';
 const toBeautifyPrice = (price: number) => Number(price.toFixed(1)).toLocaleString();
 
 export const CarCard: FC<ICar> = ({ img, param_brand, param_model, car_year, location, price }) => {
+	const createLink = () =>
+		'/sell-my-car' +
+		'/' +
+		param_brand.toLowerCase().replace(' ', '-') +
+		'/' +
+		param_model.toLowerCase().replace(' ', '-');
 	return (
-		<Link
-			className={styles.cardLink}
-			to={
-				'/sell-my-car' +
-				'/' +
-				param_brand.toLowerCase().replace(' ', '-') +
-				'/' +
-				param_model.toLowerCase().replace(' ', '-')
-			}>
+		<div className={styles.cardLink}>
 			<div className={styles.card}>
 				<div className={styles.cardContent}>
 					<p className={classNames(styles.cardYear, 'text-18-14')}>{car_year}</p>
 					<h3 className={styles.cardName}>
-						{param_brand} {param_model}
+						<Link to={createLink()}>
+							{param_brand} {param_model}
+						</Link>
 					</h3>
 					<div className={classNames(styles.cardLocation, 'text-16-14')}>
 						<Icon icon='location' color='black' /> {location}
@@ -33,9 +33,11 @@ export const CarCard: FC<ICar> = ({ img, param_brand, param_model, car_year, loc
 					</div>
 				</div>
 				<div className={styles.cardImage}>
-					<img src={car_img} alt={param_brand} />
+					<Link to={createLink()}>
+						<img src={car_img} alt={param_brand} />
+					</Link>
 				</div>
 			</div>
-		</Link>
+		</div>
 	);
 };

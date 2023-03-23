@@ -2,6 +2,7 @@
 
 .block {
 	border: 1px solid var(--black-text);
+	background: var(--white);
 	@include adaptiveSize('padding', 48, 16);
 }
 .head {
