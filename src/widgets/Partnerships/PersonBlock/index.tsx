@@ -6,10 +6,9 @@ export interface IBuyer {
 	img: string;
 	name: string;
 	post: string;
-	message: string;
 }
 
-export const PersonBlock: FC<IBuyer> = ({ img, name, post, message }) => {
+export const PersonBlock: FC<IBuyer> = ({ img, name, post }) => {
 	return (
 		<div className={styles.block}>
 			<div className={styles.head}>
@@ -19,7 +18,7 @@ export const PersonBlock: FC<IBuyer> = ({ img, name, post, message }) => {
 					<p className='text-18-14'>{post}</p>
 				</div>
 			</div>
-			<p className='text-16-14'>{message}</p>
+			<p className='text-16-14'>How to sell a car quickly</p>
 		</div>
 	);
 };

@@ -8,9 +8,9 @@ import { PersonBlock } from '@/widgets/Partnerships/PersonBlock';
 import { useQuery } from 'react-query';
 import { ISupplierPageData } from './interface';
 import { HeroSection } from '../ui/HeroSection';
-import api from './api';
 import { useCommon } from '@/app/context/Common/CommonContext';
 import { useEffect } from 'react';
+import api from './api';
 
 function SupplierPage() {
 	const { data, isLoading } = useQuery<ISupplierPageData>(
@@ -28,7 +28,7 @@ function SupplierPage() {
 			<HeroSection
 				title={data?.hero_section.title || ''}
 				subtitle={data?.hero_section.subtitle || ''}
-				message={data?.hero_section.message || ''}
+				message={'How to sell a car quickly'}
 				btnText={'Check what your car worth'}
 				btnSlug={'/help-center'}
 				breadcrumbs={<Breadcrumbs />}
@@ -37,12 +37,7 @@ function SupplierPage() {
 			{data && (
 				<PartnershipContent
 					personBlock={
-						<PersonBlock
-							img={data.buyer.img}
-							name={data.buyer.name}
-							post={data.buyer.post}
-							message={data.buyer.message}
-						/>
+						<PersonBlock img={data.buyer.img} name={data.buyer.name} post={data.buyer.post} />
 					}
 					faqsBlock={
 						<FaqsBlock title={data.faq.title} subtitle={data.faq.subtitle} faqs={data.faq.faqs} />

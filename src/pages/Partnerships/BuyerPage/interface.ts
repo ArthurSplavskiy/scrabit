@@ -6,7 +6,6 @@ export interface IBuyerPageData {
 	hero_section: {
 		title: string;
 		subtitle: string;
-		message: string;
 	};
 	buyer: IBuyer;
 	faq: IBuyerFaqs;

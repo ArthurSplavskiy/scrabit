@@ -202,7 +202,6 @@
 		"how_it_work_section": {
 			"title": "How it works",
 			"subtitle": "ready to roll?",
-			"message": "The best years of your car longpassed? we will help send it to a better place.",
 			"steps": [
 				{
 					"id": 1,
@@ -481,14 +480,12 @@
 	"buyer_page": {
 		"hero_section": {
 			"title": "Become a scrabit buyer",
-			"subtitle": "Calling all the old cars lovers! You’ll enjoy being one of our buyers.",
-			"message": "How to sell a car quickly"
+			"subtitle": "Calling all the old cars lovers! You’ll enjoy being one of our buyers."
 		},
 		"buyer": {
 			"img": "/img.png",
 			"name": "MaRina martinez",
-			"post": "VP",
-			"message": "Scrabit has helped hundreds of licensed car buyers find vehicles. Reach out to Scrabit’s team and we’ll help you!"
+			"post": "VP"
 		},
 		"faq": {
 			"title": "need more info?",
@@ -558,14 +555,12 @@
 	"carrier_page": {
 		"hero_section": {
 			"title": "Become a scrabit carrier",
-			"subtitle": "Boost your towing business with a consistent flow of Scrabit pickups.",
-			"message": "How to sell a car quickly"
+			"subtitle": "Boost your towing business with a consistent flow of Scrabit pickups."
 		},
 		"buyer": {
 			"img": "/img.png",
 			"name": "MaRina martinez",
-			"post": "VP",
-			"message": "Scrabit has helped hundreds of licensed car buyers find vehicles. Reach out to Scrabit’s team and we’ll help you!"
+			"post": "VP"
 		},
 		"faq": {
 			"title": "need more info?",
@@ -635,14 +630,12 @@
 	"publisher_page": {
 		"hero_section": {
 			"title": "Become a scrabit publisher",
-			"subtitle": "Apply to become part of the Scrabit community of classic car appreciators.",
-			"message": "How to sell a car quickly"
+			"subtitle": "Apply to become part of the Scrabit community of classic car appreciators."
 		},
 		"buyer": {
 			"img": "/img.png",
 			"name": "MaRina martinez",
-			"post": "VP",
-			"message": "Scrabit has helped hundreds of licensed car buyers find vehicles. Reach out to Scrabit’s team and we’ll help you!"
+			"post": "VP"
 		},
 		"faq": {
 			"title": "need more info?",
@@ -712,14 +705,12 @@
 	"charity_page": {
 		"hero_section": {
 			"title": "Become a scrabit charity",
-			"subtitle": "Boost your towing business with a consistent flow of Scrabit pickups.",
-			"message": "How to sell a car quickly"
+			"subtitle": "Boost your towing business with a consistent flow of Scrabit pickups."
 		},
 		"buyer": {
 			"img": "/img.png",
 			"name": "MaRina martinez",
-			"post": "VP",
-			"message": "Scrabit has helped hundreds of licensed car buyers find vehicles. Reach out to Scrabit’s team and we’ll help you!"
+			"post": "VP"
 		},
 		"faq": {
 			"title": "need more info?",
@@ -776,14 +767,12 @@
 	"supplier_page": {
 		"hero_section": {
 			"title": "Become a scrabit supplier",
-			"subtitle": "Apply to become part of the Scrabit community of classic car appreciators.",
-			"message": "How to sell a car quickly"
+			"subtitle": "Apply to become part of the Scrabit community of classic car appreciators."
 		},
 		"buyer": {
 			"img": "/img.png",
 			"name": "MaRina martinez",
-			"post": "VP",
-			"message": "Scrabit has helped hundreds of licensed car buyers find vehicles. Reach out to Scrabit’s team and we’ll help you!"
+			"post": "VP"
 		},
 		"faq": {
 			"title": "need more info?",
@@ -1275,7 +1264,6 @@
 		"how_it_work_section": {
 			"title": "How it works",
 			"subtitle": "ready to roll?",
-			"message": "The best years of your car longpassed? we will help send it to a better place.",
 			"steps": [
 				{
 					"id": 1,
@@ -1368,7 +1356,6 @@
 		"how_it_work_section": {
 			"title": "How it works",
 			"subtitle": "ready to roll?",
-			"message": "The best years of your car longpassed? we will help send it to a better place.",
 			"steps": [
 				{
 					"id": 1,

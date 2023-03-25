@@ -19,7 +19,7 @@ export const HowItWorkSection: FC<Props> = ({ data }) => {
 				{isDesktop && <SectionHead title={data?.title} subtitle={data?.subtitle} />}
 				<div className={styles.sectionContent}>
 					<div className={styles.sectionImg}>
-						<HeroAnimationCar text={data?.message} direct='left' />
+						<HeroAnimationCar text={'How to sell a car quickly'} direct='left' />
 					</div>
 					<div className={styles.sectionSteps}>
 						{!isDesktop && <SectionHead title={data?.title} subtitle={data?.subtitle} />}

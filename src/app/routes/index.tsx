@@ -16,6 +16,8 @@ import SellMyCar from '@/pages/SellMyCar';
 import CashForJunkPage from '@/pages/CashForJunkCar';
 import CarModelPage from '@/pages/SellMyCar/CarModelPage';
 import CarBrandPage from '@/pages/SellMyCar/CarBrandPage';
+import ProfileLayout from '../layouts/ProfileLayout';
+import LoginPage from '@/pages/LoginPage';
 
 export enum AppRoutes {
 	HOME = '/',
@@ -90,6 +92,17 @@ const AppRouter = createBrowserRouter([
 			{
 				path: '/sell-my-car/:brand',
 				element: <CarBrandPage />
+			}
+		]
+	},
+	{
+		path: '/auth',
+		element: <ProfileLayout />,
+		errorElement: <ErrorPage />,
+		children: [
+			{
+				path: '/auth/login',
+				element: <LoginPage />
 			}
 		]
 	}
