@@ -6,10 +6,11 @@ import { HeroSection } from '../ui/HeroSeciton';
 import { Breadcrumbs } from '@/widgets/Breadcrumbs';
 import { Search } from '../ui/Search';
 import { CategoriesSection } from '../ui/CategoriesSection';
-import api from '../api';
 import { useParams } from 'react-router-dom';
 import { useCommon } from '@/app/context/Common/CommonContext';
 import { useEffect } from 'react';
+import lottie from '../speachbubble.json';
+import api from '../api';
 
 function HelpCenterCategoryPage() {
 	const { category } = useParams();
@@ -28,7 +29,7 @@ function HelpCenterCategoryPage() {
 				<Breadcrumbs />
 			</div>
 			<Search />
-			<HeroSection title={data?.[0].title} message='how to sell a car quickly' />
+			<HeroSection title={data?.[0].title} lottie={lottie} />
 			<MovingTiters size='small' text='read more' />
 			<CategoriesSection data={data} type='category-page' />
 			<MessageSection

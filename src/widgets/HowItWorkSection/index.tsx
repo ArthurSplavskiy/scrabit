@@ -9,9 +9,10 @@ import { FC } from 'react';
 
 interface Props {
 	data?: IHowItWorkSection;
+	page?: 'home';
 }
 
-export const HowItWorkSection: FC<Props> = ({ data }) => {
+export const HowItWorkSection: FC<Props> = ({ data, page }) => {
 	const { isDesktop } = useDevice();
 	return (
 		<section id='how-it-works' className={styles.section}>
@@ -19,7 +20,14 @@ export const HowItWorkSection: FC<Props> = ({ data }) => {
 				{isDesktop && <SectionHead title={data?.title} subtitle={data?.subtitle} />}
 				<div className={styles.sectionContent}>
 					<div className={styles.sectionImg}>
-						<HeroAnimationCar text={'How to sell a car quickly'} direct='left' />
+						<HeroAnimationCar
+							text={
+								page === 'home'
+									? 'Don’t think your car deserves a second chance? We’ll prove you wrong'
+									: 'The best years of your car longpassed? we will help send it to a better place.'
+							}
+							direct='left'
+						/>
 					</div>
 					<div className={styles.sectionSteps}>
 						{!isDesktop && <SectionHead title={data?.title} subtitle={data?.subtitle} />}

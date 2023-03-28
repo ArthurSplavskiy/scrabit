@@ -1,8 +1,8 @@
-import axios from '@/app/common/api/axios';
+import axios, { API_URL } from '@/app/common/api/axios';
 
 const api = {
 	getOfferFormData: async () => {
-		const res = await axios.get(import.meta.env.VITE_API_URL + '/offer_form_data');
+		const res = await axios.get(API_URL + '/offer_form_data');
 		return res.data;
 	}
 };

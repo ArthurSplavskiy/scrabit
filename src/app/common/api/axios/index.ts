@@ -1,8 +1,12 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
+export const API_URL = import.meta.env.PROD
+	? import.meta.env.VITE_API_URL
+	: import.meta.env.VITE_API_URL_DEV;
+
 const axiosInstance = axios.create({
-	baseURL: import.meta.env.VITE_API_URL // https://nestjs-boilerplate-test.fly.dev/api
+	baseURL: API_URL // https://nestjs-boilerplate-test.fly.dev/api
 });
 
 axiosInstance.interceptors.request.use(

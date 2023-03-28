@@ -10,7 +10,7 @@ export const HomeHeroSection = () => {
 	const { pageIsLoaded, preloaderIsHide } = useCommon();
 	const options = {
 		loop: false,
-		autoplay: false,
+		autoplay: true,
 		animationData: speechbubble,
 		rendererSettings: {
 			preserveAspectRatio: 'xMidYMid slice'

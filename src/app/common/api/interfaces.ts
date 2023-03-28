@@ -25,10 +25,12 @@ export interface IUser {
 }
 
 export interface IUserProfile {
-	userId: number;
 	email: string;
-	telegram: string;
 	password: string;
-	balance: number;
-	//proxy: IProxy[];
+	active_since: string;
+	car_status: string;
+	first_name: string;
+	last_name: string;
+	phone_number: string;
+	notifications_enable: boolean;
 }

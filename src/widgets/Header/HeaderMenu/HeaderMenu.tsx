@@ -11,6 +11,7 @@ import api from '@/app/common/api';
 import { Icon } from '@/shared/ui/Icon/Icon';
 import classNames from 'classnames';
 import './HeaderMenu.scss';
+import useIsFirstRender from '@/shared/hooks/useIsFirstRender';
 
 interface Props extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
 	data?: IMenu[];
@@ -25,9 +26,12 @@ const SublistItem: FC<ISublistItemProps> = ({ name, slug, sublist, menuHandler }
 	const [isSublistOpen, setIsSublistOpen] = useState(false);
 	const [itemHeight, setItemHeight] = useState(0);
 	const sublistRef = useRef<HTMLUListElement>(null);
+	const isFirstRender = useIsFirstRender();
 
 	useEffect(() => {
-		setItemHeight((prev) => (prev > 0 ? 0 : sublistRef.current?.scrollHeight || 0));
+		if (!isFirstRender) {
+			setItemHeight((prev) => (prev > 0 ? 0 : sublistRef.current?.scrollHeight || 0));
+		}
 	}, [isSublistOpen]);
 
 	return (

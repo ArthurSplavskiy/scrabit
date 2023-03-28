@@ -1,5 +1,6 @@
 import { SyntheticEvent, useState } from 'react';
-import { Icon } from '../../Icon/Icon';
+import eye from './eye.svg';
+import eyeHide from './eye-hide.svg';
 import './PasswordField.scss';
 
 export interface InterfacePasswordField extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -27,24 +28,24 @@ export const PasswordField: React.FC<InterfacePasswordField> = ({
 	// TODO mouseout to make type=password
 
 	return (
-		<div className={`PasswordField ${className} ${errors.length ? 'error' : ''}`}>
-			{label && <label className='PasswordField-label label'>{label}</label>}
+		<div className={`InputField ${className} ${errors.length ? 'error' : ''}`}>
+			{label && <label className='InputField-label label'>{label}</label>}
 			<div className='PasswordField-control'>
 				<input
 					{...props}
 					type={isPasswordType ? 'password' : 'text'}
-					className='PasswordField-input input'
+					className='InputField-input input'
 				/>
 				<button
 					onClick={showPasswordClickHandler}
 					type='button'
 					className='PasswordField-button'
 					disabled={props.disabled}>
-					<Icon icon={isPasswordType ? 'eye-hide' : 'eye-hide'} size='20' />
+					{isPasswordType ? <img className='PasswordField-eye' src={eyeHide} /> : <img src={eye} />}
 				</button>
 			</div>
 			{errors.map((error, i) => (
-				<p key={i} className={'PasswordField-error-message error'}>
+				<p key={i} className={'InputField-error-message error'}>
 					{error}
 				</p>
 			))}

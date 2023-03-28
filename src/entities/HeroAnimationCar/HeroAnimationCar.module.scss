@@ -51,7 +51,7 @@
 	letter-spacing: -2px;
 	position: relative;
 	@include adaptiveSize('padding', 24, 10);
-	background: #f5f5f5;
+	background: var(--white);
 	@media (max-width: 1200px) {
 		letter-spacing: 0;
 	}
@@ -74,6 +74,22 @@
 			height: 23px;
 			bottom: -2px;
 		}
+	}
+}
+.TypicalLeft {
+	@media (max-width: 1200px) {
+		margin-left: 40px;
+		margin-top: 40px;
+	}
+	@media (max-width: 480px) {
+		margin-left: 16px;
+		margin-top: 16px;
+	}
+}
+.BlinkCar {
+	max-width: 220px;
+	@media (max-width: 1200px) {
+		max-width: 150px;
 	}
 }
 // .TriangleOuter {

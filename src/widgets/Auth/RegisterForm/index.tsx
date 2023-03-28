@@ -1,78 +1,119 @@
-// import { Button } from '@/components/shared/Button';
-// import { InputField } from '@/components/shared/FormComponents/InputField/InputField';
-// import { PasswordField } from '@/components/shared/FormComponents/PasswordField/PasswordField';
-// import { useCommon } from '@/context/CommonContext';
-// import { useDevice } from '@/context/DeviceContext';
-// import { useRegistration } from '@/components/Forms/RegisterForm/useRegistration';
-// import { Link } from 'react-router-dom';
-// import { FormFooter } from '../FormFooter';
-// import '../AuthForms.scss';
-// import { useInterfaceText } from '@/context/UserContext';
+import { usePhone } from './usePhone';
+import { InputField } from '@/shared/ui/FormComponents/InputField/InputField';
+import { useDevice } from '@/app/context/Device/DeviceContext';
+import { PasswordField } from '@/shared/ui/FormComponents/PasswordField/PasswordField';
+import { Button } from '@/shared/ui/Button';
+import styles from '../Auth.module.scss';
+import classNames from 'classnames';
+import { useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
+import { useCode } from './useCode';
+import { usePassword } from './usePassword';
 
-// export const RegisterForm = () => {
-// 	const { openLogin } = useCommon();
-// 	const { text: pageInterfaceText } = useInterfaceText();
-// 	const { isMobile } = useDevice();
-// 	const { onSubmit, formData, isLoading } = useRegistration();
+const STATUS_TEXT = {
+	enterPhone: 'Enter your phone number we will send your an activation code',
+	enterCode: 'Enter an activation code',
+	enterPassword: 'Create password for scrabit.com',
+	haveAccount: 'Looks like you already have an account. Enter your password, and you’re good to go!'
+};
 
-// 	return (
-// 		<div className='AuthPopup'>
-// 			<h3 className='AuthPopup-title'>{pageInterfaceText?.registration_title}</h3>
-// 			<form className='AuthPopup-form' onSubmit={onSubmit}>
-// 				<InputField
-// 					{...formData.email.inputProps}
-// 					value={formData.email.value}
-// 					label={pageInterfaceText?.form_email}
-// 					errors={formData.email.errors}
-// 				/>
+type TStep = 'phone' | 'code' | 'password';
 
-// 				<PasswordField
-// 					{...formData.password.inputProps}
-// 					label={pageInterfaceText?.form_password}
-// 					errors={formData.password.errors}
-// 					autoComplete='new-password'
-// 				/>
+export const RegisterForm = () => {
+	const { isMobile } = useDevice();
+	const { onSubmitPhone, formDataPhone, isLoadingPhone, nextPhone } = usePhone();
+	const { onSubmitCode, formDataCode, isLoadingCode, nextCode } = useCode();
+	const { onSubmitPassword, formDataPassword, isLoadingPassword } = usePassword();
+	const [status, setStatus] = useState(STATUS_TEXT.enterPhone);
+	const [step, setStep] = useState<TStep>('phone');
 
-// 				<PasswordField
-// 					{...formData.confirm_password.inputProps}
-// 					label={pageInterfaceText?.form_repeat_password}
-// 					errors={formData.confirm_password.errors}
-// 					autoComplete='new-password'
-// 				/>
+	useEffect(() => {
+		if (!Cookies.get('register_step')) Cookies.set('register_step', 'phone');
+		if (Cookies.get('register_step') === 'phone') setStep('phone');
+		if (Cookies.get('register_step') === 'code') setStep('code');
+		if (Cookies.get('register_step') === 'password') setStep('password');
+	}, [nextPhone, nextCode]);
 
-// 				{isMobile && (
-// 					<div className='FormFooter-policy'>
-// 						Натиснавши на кнопку, ви даєте згоду на обробку персональних даних та погоджуєтеся з
-// 						<Link to='/'>політикою конфіденційності</Link> та{' '}
-// 						<Link to='/'>угодою публічної оферти</Link>
-// 					</div>
-// 				)}
+	const setSubmitCallback = (step: TStep) => {
+		if (step === 'phone') return onSubmitPhone;
+		if (step === 'code') return onSubmitCode;
+		if (step === 'password') return onSubmitPassword;
+	};
+	const setIsLoading = (step: TStep) => {
+		if (step === 'phone') return isLoadingPhone;
+		if (step === 'code') return isLoadingCode;
+		if (step === 'password') return isLoadingPassword;
+	};
 
-// 				<Button
-// 					type='submit'
-// 					color='primary'
-// 					width={isMobile ? 'fullWidth' : undefined}
-// 					loading={isLoading}>
-// 					{pageInterfaceText?.register_btn}
-// 				</Button>
+	return (
+		<div className={styles.AuthBlock}>
+			<div className={styles.AuthContent}>
+				<h3 className={classNames(styles.AuthTitle, 'text-40-24')}>Create an account</h3>
+				<p className={classNames(styles.AuthStatus, 'text-16-14')}>{status}</p>
 
-// 				{isMobile && (
-// 					<div className='FormFooter-link'>
-// 						<div>{pageInterfaceText?.register_text1}</div>
-// 						<button onClick={openLogin}>{pageInterfaceText?.register_text2}</button>
-// 					</div>
-// 				)}
-// 			</form>
+				<form className={styles.AuthForm} onSubmit={setSubmitCallback(step)}>
+					{step === 'phone' && (
+						<InputField
+							{...formDataPhone.phone_number.inputProps}
+							value={formDataPhone.phone_number.value}
+							errors={formDataPhone.phone_number.errors}
+							label='Phone number'
+							placeholder='(____) ____-______'
+						/>
+					)}
+					{step === 'code' && (
+						<PasswordField
+							{...formDataCode.code.inputProps}
+							errors={formDataCode.code.errors}
+							label={'Activation code'}
+							placeholder={'Enter a code'}
+							className='above-forgot-pass'
+						/>
+					)}
+					{step === 'password' && (
+						<PasswordField
+							{...formDataPassword.password.inputProps}
+							errors={formDataPassword.password.errors}
+							label={'Password'}
+							placeholder={'Enter password'}
+							autoComplete='new-password'
+							className='above-forgot-pass'
+						/>
+					)}
+					<Button
+						className={styles.AuthFormBtn}
+						type='submit'
+						color='primary'
+						loading={setIsLoading(step)}>
+						continue
+					</Button>
+				</form>
 
-// 			{!isMobile && (
-// 				<FormFooter
-// 					leftText={pageInterfaceText?.register_text1}
-// 					rightText={pageInterfaceText?.register_text2}
-// 					linkCallback={openLogin}
-// 				/>
-// 			)}
-// 		</div>
-// 	);
-// };
+				<div className={styles.AuthFormFooter}>
+					<div className={styles.AuthFormOr}>
+						<div>
+							<span>Or</span>
+						</div>
+						<span>Sign Up with</span>
+					</div>
 
-export {};
+					<div className={styles.AuthFormGoogleFacebook}>
+						<Button customType='outline' iconName='google' iconPosition='left'>
+							{!isMobile && 'with google'}
+						</Button>
+						<Button customType='outline' iconName='facebook' iconPosition='left'>
+							{!isMobile && 'with facebook'}
+						</Button>
+					</div>
+
+					<div className={styles.AuthFormHaveAcc}>
+						<span>Have an sccount?</span>
+						<Button customType='text-underline' btnTo='/auth/login'>
+							Sign in
+						</Button>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
+};

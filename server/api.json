@@ -113,11 +113,6 @@
 			"id": 3,
 			"name": "Accessibility",
 			"slug": "accessibility"
-		},
-		{
-			"id": 4,
-			"name": "Status",
-			"slug": "status"
 		}
 	],
 	"promo_cars": [

@@ -1,15 +1,20 @@
 import { useDevice } from '@/app/context/Device/DeviceContext';
-import { HeroAnimationCar } from '@/entities/HeroAnimationCar';
 import { Button } from '@/shared/ui/Button';
 import classNames from 'classnames';
 import { FC, ReactNode } from 'react';
+import Lottie from 'react-lottie';
 import styles from './HeroSection.module.scss';
+import buyerLottie from './buyer.json';
+import carrierLottie from './carrier.json';
+import charityLottie from './charity.json';
+import supplierLottie from './supplier.json';
+import publisherLottie from './publisher.json';
 
 interface Props {
 	breadcrumbs: ReactNode;
 	title: string;
 	subtitle: string;
-	message: string;
+	messageType: 'buyer' | 'carrier' | 'publisher' | 'charity' | 'supplier';
 	btnText: string;
 	btnSlug: string;
 	bg?: 'blue' | 'green' | 'grey' | 'white' | 'gradient';
@@ -18,13 +23,38 @@ interface Props {
 export const HeroSection: FC<Props> = ({
 	title,
 	subtitle,
-	message,
+	messageType,
 	btnText,
 	btnSlug,
 	breadcrumbs,
 	bg = 'blue'
 }) => {
 	const { isMobile } = useDevice();
+
+	const setLottieFile = (messageType: string) => {
+		switch (messageType) {
+			case 'buyer':
+				return buyerLottie;
+			case 'carrier':
+				return carrierLottie;
+			case 'publisher':
+				return publisherLottie;
+			case 'charity':
+				return charityLottie;
+			case 'supplier':
+				return supplierLottie;
+			default:
+				return buyerLottie;
+		}
+	};
+	const options = {
+		loop: false,
+		autoplay: true,
+		animationData: setLottieFile(messageType),
+		rendererSettings: {
+			preserveAspectRatio: 'xMidYMid slice'
+		}
+	};
 	return (
 		<section
 			className={classNames(styles.section, {
@@ -40,10 +70,16 @@ export const HeroSection: FC<Props> = ({
 					<div className={classNames(styles.content)}>
 						<h2 className='text-64-40'>{title}</h2>
 						<p className='text-16-14'>{subtitle}</p>
-						{isMobile && <HeroAnimationCar text={message} />}
-						<Button btnTo={btnSlug}>{btnText}</Button>
+						{isMobile && (
+							<div>
+								<Lottie options={options} isClickToPauseDisabled={true} />
+							</div>
+						)}
+						<Button btnTo={btnSlug} width={isMobile ? 'fullWidth' : undefined}>
+							{btnText}
+						</Button>
 					</div>
-					<div>{!isMobile && <HeroAnimationCar text={message} />}</div>
+					<div>{!isMobile && <Lottie options={options} isClickToPauseDisabled={true} />}</div>
 				</div>
 			</div>
 		</section>

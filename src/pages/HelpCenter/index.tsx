@@ -6,9 +6,10 @@ import { HeroSection } from './ui/HeroSeciton';
 import { Breadcrumbs } from '@/widgets/Breadcrumbs';
 import { Search } from './ui/Search';
 import { CategoriesSection } from './ui/CategoriesSection';
-import api from './api';
 import { useCommon } from '@/app/context/Common/CommonContext';
 import { useEffect } from 'react';
+import lottie from './speachbubble.json';
+import api from './api';
 
 function HelpCenterPage() {
 	const { data: helpCenterData, isLoading } = useQuery(
@@ -27,7 +28,7 @@ function HelpCenterPage() {
 				<Breadcrumbs />
 			</div>
 			<Search />
-			<HeroSection title='Help center' message='how to sell a car quickly' />
+			<HeroSection title='Help center' lottie={lottie} />
 			<MovingTiters size='small' text='read more' />
 			<CategoriesSection data={helpCenterData} />
 			<MessageSection

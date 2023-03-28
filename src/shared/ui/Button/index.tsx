@@ -3,6 +3,8 @@ import React, { DetailedHTMLProps, FC, RefAttributes, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import './Button.scss';
+import googleIco from '../Icon/google.svg';
+import facebookIco from '../Icon/facebook.svg';
 
 interface IButtonProps
 	extends DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
@@ -47,14 +49,18 @@ export const Button: FC<IButtonProps & RefAttributes<HTMLButtonElement>> = ({
 			})}>
 			{iconPosition === 'left' && iconName === 'acc' && <Icon icon='acc' />}
 			{iconPosition === 'left' && iconName === 'arrow' && <Icon icon='slider-arrow' />}
-			{iconPosition === 'left' && iconName === 'google' && <Icon icon='google' />}
-			{iconPosition === 'left' && iconName === 'facebook' && <Icon icon='facebook' />}
+			{iconPosition === 'left' && iconName === 'google' && <img src={googleIco} alt={'google'} />}
+			{iconPosition === 'left' && iconName === 'facebook' && (
+				<img src={facebookIco} alt={'facebook'} />
+			)}
 			{iconPosition === 'left' && iconName === 'upload' && <Icon icon='upload' />}
 			{children}
 			{iconPosition === 'right' && iconName === 'acc' && <Icon icon='acc' />}
 			{iconPosition === 'right' && iconName === 'arrow' && <Icon icon='slider-arrow' />}
-			{iconPosition === 'right' && iconName === 'google' && <Icon icon='google' />}
-			{iconPosition === 'right' && iconName === 'facebook' && <Icon icon='facebook' />}
+			{iconPosition === 'right' && iconName === 'google' && <img src={googleIco} alt={'google'} />}
+			{iconPosition === 'right' && iconName === 'facebook' && (
+				<img src={facebookIco} alt={'facebook'} />
+			)}
 			{iconPosition === 'right' && iconName === 'upload' && <Icon icon='upload' />}
 		</button>
 	);

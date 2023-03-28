@@ -8,6 +8,7 @@ import Cookies from 'js-cookie';
 
 export const Preloader: FC = () => {
 	const { pageIsLoaded, setPreloaderIsHide } = useCommon();
+	const [isFirstRender, setIsFirstRender] = useState(true);
 	const [isHide, setIsHide] = useState(false);
 
 	useEffect(() => {
@@ -16,6 +17,7 @@ export const Preloader: FC = () => {
 		}
 		if (Cookies.get('isFirstRender') === 'no') {
 			setPreloaderIsHide(true);
+			setIsFirstRender(false);
 		}
 		setTimeout(() => {
 			if (!Cookies.get('isFirstRender')) {
@@ -29,13 +31,13 @@ export const Preloader: FC = () => {
 			setTimeout(() => {
 				setIsHide(true);
 				setPreloaderIsHide(true);
-			}, 9000);
+			}, 5500);
 		}
 	}, [pageIsLoaded]);
 
 	const options = {
 		loop: false,
-		autoplay: false,
+		autoplay: true,
 		animationData: preloaderLottie,
 		rendererSettings: {
 			preserveAspectRatio: 'xMidYMid slice'
@@ -44,17 +46,32 @@ export const Preloader: FC = () => {
 
 	return (
 		<>
-			{Cookies.get('isFirstRender') === 'no' ? (
+			{!isFirstRender ? (
 				<div
 					className={classNames(styles.preloader, {
 						[styles.hide]: pageIsLoaded
-					})}></div>
+					})}>
+					<div className={styles.spinner}>
+						<div className={styles.spinnerCircle}>
+							<span className={styles.ball1}></span>
+							<span className={styles.ball2}></span>
+							<span className={styles.ball3}></span>
+							<span className={styles.ball4}></span>
+							<span className={styles.ball5}></span>
+							<span className={styles.ball6}></span>
+							<span className={styles.ball7}></span>
+							<span className={styles.ball8}></span>
+						</div>
+					</div>
+				</div>
 			) : (
 				<div
 					className={classNames(styles.preloader, {
 						[styles.hide]: pageIsLoaded && isHide
 					})}>
-					<Lottie options={options} isClickToPauseDisabled={true} />
+					<div className={styles.lottie}>
+						<Lottie options={options} isClickToPauseDisabled={true} />
+					</div>
 				</div>
 			)}
 		</>

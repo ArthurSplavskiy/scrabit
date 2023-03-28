@@ -28,7 +28,7 @@ function CarrierPage() {
 			<HeroSection
 				title={data?.hero_section.title || ''}
 				subtitle={data?.hero_section.subtitle || ''}
-				message={'How to sell a car quickly'}
+				messageType={'carrier'}
 				btnText={'Check what your car worth'}
 				btnSlug={'/help-center'}
 				breadcrumbs={<Breadcrumbs />}

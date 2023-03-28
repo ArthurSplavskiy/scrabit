@@ -1,12 +1,7 @@
-import { useCommon } from '@/app/context/Common/CommonContext';
-import { useEffect } from 'react';
+import { LoginForm } from '@/widgets/Auth/LoginForm';
 
 function LoginPage() {
-	const { setPageIsLoaded } = useCommon();
-	useEffect(() => {
-		setPageIsLoaded(true);
-	}, []);
-	return <>Login</>;
+	return <LoginForm />;
 }
 
 export default LoginPage;

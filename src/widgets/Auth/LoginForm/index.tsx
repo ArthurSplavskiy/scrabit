@@ -1,68 +1,68 @@
-// import { Button } from '@/components/shared/Button';
-// import { InputField } from '@/components/shared/FormComponents/InputField/InputField';
-// import { PasswordField } from '@/components/shared/FormComponents/PasswordField/PasswordField';
-// import { useCommon } from '@/context/CommonContext';
-// import { useDevice } from '@/context/DeviceContext';
-// import { useLogin } from '@/components/Forms/LoginForm/useLogin';
-// import { Link } from 'react-router-dom';
-// import { FormFooter } from '../FormFooter';
-// import { useInterfaceText } from '@/context/UserContext';
+import { useLogin } from './useLogin';
+import { InputField } from '@/shared/ui/FormComponents/InputField/InputField';
+import { useDevice } from '@/app/context/Device/DeviceContext';
+import { PasswordField } from '@/shared/ui/FormComponents/PasswordField/PasswordField';
+import { Button } from '@/shared/ui/Button';
+import styles from '../Auth.module.scss';
+import classNames from 'classnames';
 
-// export const LoginForm = () => {
-// 	const { openRegistration, openForgotPass } = useCommon();
-// 	const { text: pageInterfaceText } = useInterfaceText();
-// 	const { isMobile } = useDevice();
-// 	const { onSubmit, formData, isLoading } = useLogin();
-// 	return (
-// 		<div className='AuthPopup'>
-// 			<h3 className='AuthPopup-title'>{pageInterfaceText?.login_title}</h3>
-// 			<form className='AuthPopup-form' onSubmit={onSubmit}>
-// 				<InputField
-// 					{...formData.email.inputProps}
-// 					value={formData.email.value}
-// 					label={pageInterfaceText?.form_email}
-// 					errors={formData.email.errors}
-// 				/>
-// 				<PasswordField
-// 					{...formData.password.inputProps}
-// 					label={pageInterfaceText?.form_password}
-// 					errors={formData.password.errors}
-// 					autoComplete='new-password'
-// 					className='above-forgot-pass'
-// 				/>
-// 				<div className='AuthPopup-forgot-pass' onClick={openForgotPass}>
-// 					{pageInterfaceText?.forgot_password}
-// 				</div>
+export const LoginForm = () => {
+	const { isMobile } = useDevice();
+	const { onSubmit, formData, isLoading } = useLogin();
+	return (
+		<div className={styles.AuthBlock}>
+			<div className={styles.AuthContent}>
+				<h3 className={classNames(styles.AuthTitle, 'text-40-24')}>SIGN IN</h3>
+				<form className={styles.AuthForm} onSubmit={onSubmit}>
+					<InputField
+						{...formData.phone_number.inputProps}
+						value={formData.phone_number.value}
+						errors={formData.phone_number.errors}
+						label='Phone number'
+						placeholder='(____) ____-______'
+					/>
+					<PasswordField
+						{...formData.password.inputProps}
+						errors={formData.password.errors}
+						label={'Password'}
+						placeholder={'Enter password'}
+						autoComplete='new-password'
+						className='above-forgot-pass'
+					/>
+					<Button className={styles.AuthFormBtn} type='submit' color='primary' loading={isLoading}>
+						Sign in
+					</Button>
+				</form>
 
-// 				{isMobile && (
-// 					<div className='FormFooter-policy'>
-// 						Натиснавши на кнопку, ви даєте згоду на обробку персональних даних та погоджуєтеся з
-// 						<Link to='/'>політикою конфіденційності</Link> та{' '}
-// 						<Link to='/'>угодою публічної оферти</Link>
-// 					</div>
-// 				)}
+				<div className={styles.AuthFormFooter}>
+					<div className={styles.AuthFormReset}>
+						<Button customType='text-underline'>Reset password?</Button>
+					</div>
 
-// 				<Button type='submit' color='primary' loading={isLoading}>
-// 					{pageInterfaceText?.login_btn}
-// 				</Button>
+					<div className={styles.AuthFormOr}>
+						<div>
+							<span>Or</span>
+						</div>
+						<span>Sign Up with</span>
+					</div>
 
-// 				{isMobile && (
-// 					<div className='FormFooter-link'>
-// 						<div>{pageInterfaceText?.no_have_acc}</div>
-// 						<button onClick={openRegistration}>{pageInterfaceText?.registration_link}</button>
-// 					</div>
-// 				)}
-// 			</form>
+					<div className={styles.AuthFormGoogleFacebook}>
+						<Button customType='outline' iconName='google' iconPosition='left'>
+							{!isMobile && 'with google'}
+						</Button>
+						<Button customType='outline' iconName='facebook' iconPosition='left'>
+							{!isMobile && 'with facebook'}
+						</Button>
+					</div>
 
-// 			{!isMobile && (
-// 				<FormFooter
-// 					leftText={pageInterfaceText?.no_have_acc}
-// 					rightText={pageInterfaceText?.registration_link}
-// 					linkCallback={openRegistration}
-// 				/>
-// 			)}
-// 		</div>
-// 	);
-// };
-
-export {};
+					<div className={styles.AuthFormHaveAcc}>
+						<span>Don’t have an sccount?</span>
+						<Button customType='text-underline' btnTo='/auth/registration'>
+							Get started
+						</Button>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
+};

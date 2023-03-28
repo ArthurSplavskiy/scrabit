@@ -39,7 +39,7 @@ function HomePage() {
 			<HomeHeroSection />
 			<MovingTiters size='small' text='read more' />
 			<AboutSection data={homeAboutData} />
-			<HowItWorkSection data={homeHowItWorkData} />
+			<HowItWorkSection data={homeHowItWorkData} page='home' />
 			<ReviewSection data={homeReviewData} />
 			<ParallaxSection />
 			<MessageSection

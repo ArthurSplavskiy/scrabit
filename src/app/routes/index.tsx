@@ -18,6 +18,8 @@ import CarModelPage from '@/pages/SellMyCar/CarModelPage';
 import CarBrandPage from '@/pages/SellMyCar/CarBrandPage';
 import ProfileLayout from '../layouts/ProfileLayout';
 import LoginPage from '@/pages/LoginPage';
+import RegistrationPage from '@/pages/RegistrationPage';
+import ComingSoon from '@/pages/ComingSoon';
 
 export enum AppRoutes {
 	HOME = '/',
@@ -102,7 +104,11 @@ const AppRouter = createBrowserRouter([
 		children: [
 			{
 				path: '/auth/login',
-				element: <LoginPage />
+				element: import.meta.env.PROD ? <ComingSoon /> : <LoginPage />
+			},
+			{
+				path: '/auth/registration',
+				element: import.meta.env.PROD ? <ComingSoon /> : <RegistrationPage />
 			}
 		]
 	}

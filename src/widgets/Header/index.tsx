@@ -13,7 +13,11 @@ import api from '@/app/common/api';
 import { Button } from '@/shared/ui/Button';
 import './Header.scss';
 
-export const Header: FC = () => {
+interface Props {
+	onlyLogo?: boolean;
+}
+
+export const Header: FC<Props> = ({ onlyLogo }) => {
 	const { scrollY, direction } = useScrollY();
 	const [menuOpen, setMenuOpen] = useState(false);
 	const { isMobile, isDesktop } = useDevice();
@@ -38,11 +42,30 @@ export const Header: FC = () => {
 			<Button
 				customType='outline'
 				iconName={!isMobile ? 'acc' : undefined}
-				btnTo={AppRoutes.LOGIN}
+				btnTo={'/auth/login'}
 				size={isDesktop ? 'small' : 'middle'}>
 				login
 			</Button>
 		);
+
+	if (onlyLogo) {
+		return (
+			<>
+				<div className='Header-preloader'></div>
+				<header className={`Header Header-absolute`}>
+					<div className='container'>
+						<div className='Header-wrapper logo-center'>
+							<div className='Header-logo'>
+								<Link to={AppRoutes.HOME}>
+									<Logo type={isDesktop ? 'mobile' : 'desktop'} />
+								</Link>
+							</div>
+						</div>
+					</div>
+				</header>
+			</>
+		);
+	}
 
 	return (
 		<>

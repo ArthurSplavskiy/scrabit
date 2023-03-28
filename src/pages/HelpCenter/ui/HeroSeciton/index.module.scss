@@ -15,3 +15,7 @@
 		word-break: break-all;
 	}
 }
+.speechBubble {
+	// max-width: 751px;
+	@include adaptiveSize('max-width', 751, 328);
+}

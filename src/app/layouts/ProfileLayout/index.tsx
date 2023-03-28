@@ -8,9 +8,8 @@ import './index.module.scss';
 const ProfileLayout: FC = () => {
 	return (
 		<div className='ProfileLayout'>
-			<Preloader />
 			<ScrollRestoration />
-			<Header />
+			<Header onlyLogo={true} />
 			<div className='ProfileLayout-main'>
 				<Outlet />
 			</div>

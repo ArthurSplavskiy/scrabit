@@ -1,17 +1,15 @@
-import api from '@/app/common/api';
+import api from './api';
 import Cookies from 'js-cookie';
 import jwt_decode from 'jwt-decode';
 import { AppRoutes } from '@/app/routes';
-//import { IHomePageData, IUserProfile } from '@/app/common/api';
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import { IUserProfile } from '@/app/common/api/interfaces';
 
 type State = {
 	isLoaded: boolean;
-	homepageIsLoading: boolean;
-	// homePageData: IHomePageData | undefined;
-	// user: IUserProfile | null;
+	user: IUserProfile | null;
 	token: string | null;
-	//setUser: (user: IUserProfile | null) => void;
+	setUser: (user: IUserProfile | null) => void;
 	setToken: (token: string) => void;
 	logOut: () => void;
 	getProfileData: () => void;
@@ -20,11 +18,9 @@ type UserProviderProps = { children: React.ReactNode };
 
 const UserContext = createContext<State>({
 	isLoaded: false,
-	homepageIsLoading: false,
-	//user: null,
+	user: null,
 	token: null,
-	//homePageData: undefined,
-	//setUser: () => {},
+	setUser: () => {},
 	setToken: () => {},
 	logOut: () => {},
 	getProfileData: () => {}
@@ -32,12 +28,8 @@ const UserContext = createContext<State>({
 
 function UserProvider({ children }: UserProviderProps) {
 	const [isLoaded, setIsLoaded] = useState(false);
-	//const [user, setUser] = useState<IUserProfile | null>(null);
+	const [user, setUser] = useState<IUserProfile | null>(null);
 	const [token, setTokenData] = useState<string | null>(null);
-
-	const [homePageData, setHomePageData] = useState<any | null>();
-	const homepageIsLoading = false;
-	const homepageData = null;
 
 	const setToken = useCallback((tokenData: string | null) => {
 		setTokenData(tokenData);
@@ -50,7 +42,7 @@ function UserProvider({ children }: UserProviderProps) {
 
 	const logOut = useCallback(() => {
 		setToken(null);
-		//setUser(null);
+		setUser(null);
 		window.location.href = AppRoutes.HOME;
 	}, []);
 
@@ -60,14 +52,14 @@ function UserProvider({ children }: UserProviderProps) {
 
 		try {
 			if (tokenData) {
-				//const { data } = await api.auth.getProfile();
+				const { data } = await api.getProfile();
 				const { email } = jwt_decode(tokenData) as any;
 				//console.log('tokenData', jwt_decode(tokenData));
-				// setUser({
-				// 	...data,
-				// 	email: email,
-				// 	password: Cookies.get('user_password_test')
-				// });
+				setUser({
+					...data,
+					email: email,
+					password: Cookies.get('user_password_test')
+				});
 			}
 		} catch {
 			setToken(null);
@@ -80,32 +72,17 @@ function UserProvider({ children }: UserProviderProps) {
 		getProfileData();
 	}, [setToken]);
 
-	useEffect(() => {
-		setHomePageData(homepageData);
-	}, [homepageData]);
-
 	const contextValue = useMemo(
 		() => ({
 			isLoaded,
-			//user,
+			user,
 			token,
-			//setUser,
+			setUser,
 			setToken,
 			logOut,
-			getProfileData,
-			homePageData,
-			homepageIsLoading
+			getProfileData
 		}),
-		[
-			isLoaded,
-			//user,
-			token,
-			setToken,
-			logOut,
-			getProfileData,
-			homePageData,
-			homepageIsLoading
-		]
+		[isLoaded, user, token, setToken, logOut, getProfileData]
 	);
 
 	return <UserContext.Provider value={contextValue}>{children}</UserContext.Provider>;
