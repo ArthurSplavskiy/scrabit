@@ -109,11 +109,11 @@ const AppRouter = createBrowserRouter([
 		children: [
 			{
 				path: '/auth/login',
-				element: import.meta.env.PROD ? <ComingSoon /> : <LoginPage />
+				element: <LoginPage /> // import.meta.env.PROD ? <ComingSoon /> : <LoginPage />
 			},
 			{
 				path: '/auth/registration',
-				element: import.meta.env.PROD ? <ComingSoon /> : <RegistrationPage />
+				element: <RegistrationPage /> // import.meta.env.PROD ? <ComingSoon /> : <RegistrationPage />
 			}
 		]
 	},
