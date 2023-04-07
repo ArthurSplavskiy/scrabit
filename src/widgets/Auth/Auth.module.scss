@@ -3,10 +3,14 @@
 .AuthBlock {
 	display: flex;
 	justify-content: center;
-	@include adaptiveSize('padding-top', 64, 40);
+	position: relative;
 	@include adaptiveSize('padding-bottom', 55, 24);
 	padding-left: 24px;
 	padding-right: 24px;
+	padding-top: 64px;
+	@media (max-width: 768px) {
+		padding-top: 40px;
+	}
 }
 .AuthContent {
 	width: 100%;
@@ -76,6 +80,9 @@
 		width: 124px;
 		margin-left: auto;
 		margin-right: auto;
+		button {
+			padding: 0 !important;
+		}
 	}
 }
 .AuthFormHaveAcc {
@@ -106,4 +113,54 @@
 	max-width: 490px;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+.SendCodeForm {
+	.AuthFormHaveAcc {
+		margin-top: 8px;
+		@media (max-width: 480px) {
+			margin-top: 16px;
+		}
+		span {
+			text-align: center;
+			margin: 0;
+		}
+	}
+}
+
+.AuthFormPassCheck {
+	padding-left: 16px;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 24px;
+	& > span {
+		color: var(--black-60);
+	}
+}
+
+.AuthFormPassCheckLine {
+	display: grid;
+	grid-template-columns: 17px auto;
+	gap: 14px;
+	opacity: 0.4;
+	transition: var(--transition);
+}
+
+.AuthFormPassCheckEquals {
+	opacity: 1;
+}
+
+.AuthBlockBackBtn {
+	position: absolute;
+	left: 192px;
+	top: 54px;
+	@media (max-width: 1440px) {
+		left: 24px;
+	}
+	@media (max-width: 768px) {
+		top: 40px;
+	}
+	@media screen and (max-width: 370px) {
+		top: 10px;
+	}
 }

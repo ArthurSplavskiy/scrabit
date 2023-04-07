@@ -105,7 +105,7 @@ export const Footer: FC = () => {
 								<ul className='Footer-static-pages'>
 									{staticPages?.map((s) => (
 										<li className='text-16-14' key={s.id}>
-											<Link to={s.slug}>{s.name}</Link>
+											<Link to={`/${s.slug}`}>{s.name}</Link>
 										</li>
 									))}
 								</ul>
@@ -120,7 +120,7 @@ export const Footer: FC = () => {
 								<ul className='Footer-static-pages'>
 									{staticPages?.map((s) => (
 										<li className='text-16-14' key={s.id}>
-											<Link to={s.slug}>{s.name}</Link>
+											<Link to={`/${s.slug}`}>{s.name}</Link>
 										</li>
 									))}
 								</ul>

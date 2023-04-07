@@ -4,10 +4,17 @@
  */
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
-type State = { isMobile: boolean; isTablet: boolean; isDesktop: boolean; is810: boolean };
+type State = {
+	isSmallMobile: boolean;
+	isMobile: boolean;
+	isTablet: boolean;
+	isDesktop: boolean;
+	is810: boolean;
+};
 type DeviceProviderProps = { children: React.ReactNode };
 
 const DeviceStateContext = createContext<State>({
+	isSmallMobile: false,
 	isMobile: false,
 	isTablet: false,
 	isDesktop: false,
@@ -16,6 +23,7 @@ const DeviceStateContext = createContext<State>({
 
 function DeviceProvider({ children }: DeviceProviderProps) {
 	const [state, setState] = useState({
+		isSmallMobile: !window.matchMedia('(min-width: 480px)').matches,
 		isMobile: !window.matchMedia('(min-width: 768px)').matches,
 		isTablet: !window.matchMedia('(min-width: 1024px)').matches,
 		isDesktop: !window.matchMedia('(min-width: 1200px)').matches,
@@ -23,6 +31,10 @@ function DeviceProvider({ children }: DeviceProviderProps) {
 	});
 
 	useEffect(() => {
+		window.matchMedia('(min-width: 480px)').onchange = ({ matches }) => {
+			return setState((prevState) => ({ ...prevState, isMobile: !matches }));
+		};
+
 		window.matchMedia('(min-width: 768px)').onchange = ({ matches }) => {
 			return setState((prevState) => ({ ...prevState, isMobile: !matches }));
 		};

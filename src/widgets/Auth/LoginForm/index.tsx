@@ -5,6 +5,7 @@ import { PasswordField } from '@/shared/ui/FormComponents/PasswordField/Password
 import { Button } from '@/shared/ui/Button';
 import styles from '../Auth.module.scss';
 import classNames from 'classnames';
+import Cookies from 'js-cookie';
 
 export const LoginForm = () => {
 	const { isMobile } = useDevice();
@@ -13,6 +14,11 @@ export const LoginForm = () => {
 		<div className={styles.AuthBlock}>
 			<div className={styles.AuthContent}>
 				<h3 className={classNames(styles.AuthTitle, 'text-40-24')}>SIGN IN</h3>
+				{Cookies.get('register_step') === 'finish' && (
+					<p className={classNames(styles.AuthStatus, 'text-16-14')}>
+						Looks like you already have an account. Enter your password, and you’re good to go!
+					</p>
+				)}
 				<form className={styles.AuthForm} onSubmit={onSubmit}>
 					<InputField
 						{...formData.phone_number.inputProps}
@@ -29,7 +35,7 @@ export const LoginForm = () => {
 						autoComplete='new-password'
 						className='above-forgot-pass'
 					/>
-					<Button className={styles.AuthFormBtn} type='submit' color='primary' loading={isLoading}>
+					<Button className={styles.AuthFormBtn} type='submit' loading={isLoading}>
 						Sign in
 					</Button>
 				</form>

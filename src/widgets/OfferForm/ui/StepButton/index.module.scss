@@ -1,0 +1,38 @@
+.btn {
+	display: flex;
+	&.active {
+	}
+	&.disable {
+		pointer-events: none;
+		.checker {
+			background: var(--black-5);
+			border: 1px solid var(--black-40);
+		}
+		span {
+			color: var(--black-40);
+		}
+	}
+	span {
+		font-style: italic;
+		text-transform: uppercase;
+		font-weight: 700;
+		font-size: 18px;
+		line-height: 24px;
+		transition: var(--transition);
+	}
+}
+.checker {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	width: 23px;
+	height: 23px;
+	border-radius: 100%;
+	border: 1px solid var(--black-text);
+	transition: var(--transition);
+	margin-right: 37px;
+	@media (max-width: 480px) {
+		margin-right: 16px;
+	}
+}

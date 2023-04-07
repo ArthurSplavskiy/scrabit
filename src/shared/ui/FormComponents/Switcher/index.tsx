@@ -4,9 +4,10 @@ import './index.scss';
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
 	label: string;
 	className?: string;
+	text?: string;
 }
 
-export const Switcher: FC<Props> = ({ className, onChange, id, label, ...inputProps }) => {
+export const Switcher: FC<Props> = ({ className, onChange, id, label, text, ...inputProps }) => {
 	const [checked, setChecked] = useState(false);
 	const identification = id || label;
 
@@ -29,6 +30,7 @@ export const Switcher: FC<Props> = ({ className, onChange, id, label, ...inputPr
 				{...inputProps}
 			/>
 			<div className='Switcher-slider'></div>
+			<h3 className='Switcher-text'>{text}</h3>
 		</label>
 	);
 };

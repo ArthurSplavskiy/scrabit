@@ -25,7 +25,7 @@ export const usePassword = () => {
 			const data = {
 				password: formData.password.value || ''
 			};
-			Cookies.set('register_step', 'finish');
+			Cookies.set('change_password_step', 'finish');
 			navigate('/auth/login');
 			//await api.auth.registration(data);
 			setTimeout(() => {

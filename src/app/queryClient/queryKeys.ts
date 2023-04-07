@@ -29,5 +29,8 @@ export enum queryKeys {
 	article = 'article.record',
 
 	// cars
-	cars = 'cars'
+	cars = 'cars',
+
+	// static
+	static = 'static'
 }

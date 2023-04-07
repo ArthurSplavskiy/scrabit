@@ -82,7 +82,7 @@ export const urlValidation = <T>(value: T) => {
 export const numberRangeValidation = <T>(value: T) => {
 	if (value === '') return true;
 	if (typeof value !== 'string') return false;
-	if (Number(value) < 1 || Number(value) > 5000) return false;
+	if (Number(value) < 1 || Number(value) > 999_999) return false;
 	const str = new RegExp(/^[0-9]*$/gm);
 	return str.test(value);
 };
@@ -96,7 +96,7 @@ export const errorsMessages = {
 	PHONE: 'Please enter a valid phone number',
 	WEBSITE: 'Please enter a valid website address',
 	URL: 'Please enter a valid url',
-	NUMBER_RANGE: 'Будь ласка, введіть число (0 - 5000)', //'Please enter a valid number (0 - 5000)'
+	NUMBER_RANGE: 'Please enter a valid number (0 - 999 999)',
 	EMAIL_EXIST: 'This email is associated with an existing account.',
 	EMAIL_NOT_FOUND: 'Email not found.',
 	ZIPCODE: 'Enter a valid zipcode',

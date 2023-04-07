@@ -30,7 +30,7 @@ export const usePhone = () => {
 			const data = {
 				phone_number: formData.phone_number.value || ''
 			};
-			Cookies.set('register_step', 'code');
+			Cookies.set('change_password_step', 'code');
 			setNext(true);
 			//await api.auth.registration(data);
 			setTimeout(() => {

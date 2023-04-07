@@ -37,7 +37,9 @@ export const Header: FC<Props> = ({ onlyLogo }) => {
 
 	const HeaderSign = () =>
 		Cookies.get('auth-token') ? (
-			<Link to={AppRoutes.ACCOUNT}>User Name</Link>
+			<Button customType='outline' btnTo={'/profile'} size={isDesktop ? 'small' : 'middle'}>
+				Konstantine konstantinov
+			</Button>
 		) : (
 			<Button
 				customType='outline'

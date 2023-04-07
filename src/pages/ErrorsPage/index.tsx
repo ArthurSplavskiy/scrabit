@@ -1,12 +1,12 @@
 import { useRouteError } from 'react-router-dom';
-import { ErrorPage404 } from './404';
+import { Page404 } from './404';
 
 function ErrorPage() {
 	// @ts-ignore
 	const error: { statusText: string; message: string; status: number } = useRouteError();
 
 	if (error.status === 404) {
-		return <ErrorPage404 />;
+		return <Page404 />;
 	}
 
 	return (

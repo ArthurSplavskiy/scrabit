@@ -10,6 +10,7 @@ interface IButtonProps
 	extends DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
 	customType?: 'primary' | 'stroke' | 'text' | 'text-underline' | 'black' | 'outline' | 'circle';
 	size?: 'big' | 'middle' | 'small';
+	color?: 'blue' | 'black-color' | 'green-20';
 	adaptive?: boolean;
 	className?: string;
 	width?: 'fullWidth';
@@ -17,7 +18,8 @@ interface IButtonProps
 	btnLink?: string;
 	btnTo?: string;
 	iconPosition?: 'left' | 'right';
-	iconName?: 'arrow' | 'acc' | 'google' | 'facebook' | 'upload';
+	iconName?: 'arrow' | 'acc' | 'google' | 'facebook' | 'upload' | 'exit';
+	withOutPadding?: boolean;
 }
 
 export const Button: FC<IButtonProps & RefAttributes<HTMLButtonElement>> = ({
@@ -31,6 +33,8 @@ export const Button: FC<IButtonProps & RefAttributes<HTMLButtonElement>> = ({
 	btnTo = '',
 	iconPosition = 'left',
 	iconName = '',
+	color = '',
+	withOutPadding = false,
 	children,
 	...props
 }) => {
@@ -45,6 +49,8 @@ export const Button: FC<IButtonProps & RefAttributes<HTMLButtonElement>> = ({
 				[width]: width,
 				[iconName]: iconName,
 				[customType]: customType,
+				[color]: color,
+				withOutPadding: withOutPadding,
 				adaptive: adaptive
 			})}>
 			{iconPosition === 'left' && iconName === 'acc' && <Icon icon='acc' />}
@@ -54,7 +60,9 @@ export const Button: FC<IButtonProps & RefAttributes<HTMLButtonElement>> = ({
 				<img src={facebookIco} alt={'facebook'} />
 			)}
 			{iconPosition === 'left' && iconName === 'upload' && <Icon icon='upload' />}
+			{iconPosition === 'left' && iconName === 'exit' && <Icon icon='exit' />}
 			{children}
+			{iconPosition === 'right' && iconName === 'exit' && <Icon icon='exit' />}
 			{iconPosition === 'right' && iconName === 'acc' && <Icon icon='acc' />}
 			{iconPosition === 'right' && iconName === 'arrow' && <Icon icon='slider-arrow' />}
 			{iconPosition === 'right' && iconName === 'google' && <img src={googleIco} alt={'google'} />}
@@ -81,5 +89,37 @@ export const Button: FC<IButtonProps & RefAttributes<HTMLButtonElement>> = ({
 		);
 	}
 
-	return <Btn />;
+	return (
+		<button
+			{...props}
+			className={classNames(className, 'Button', {
+				[size]: size,
+				[customType]: customType,
+				[loadingClassName]: loadingClassName,
+				[width]: width,
+				[iconName]: iconName,
+				[customType]: customType,
+				[color]: color,
+				withOutPadding: withOutPadding,
+				adaptive: adaptive
+			})}>
+			{iconPosition === 'left' && iconName === 'acc' && <Icon icon='acc' />}
+			{iconPosition === 'left' && iconName === 'arrow' && <Icon icon='slider-arrow' />}
+			{iconPosition === 'left' && iconName === 'google' && <img src={googleIco} alt={'google'} />}
+			{iconPosition === 'left' && iconName === 'facebook' && (
+				<img src={facebookIco} alt={'facebook'} />
+			)}
+			{iconPosition === 'left' && iconName === 'upload' && <Icon icon='upload' />}
+			{iconPosition === 'left' && iconName === 'exit' && <Icon icon='exit' />}
+			{children}
+			{iconPosition === 'right' && iconName === 'exit' && <Icon icon='exit' />}
+			{iconPosition === 'right' && iconName === 'acc' && <Icon icon='acc' />}
+			{iconPosition === 'right' && iconName === 'arrow' && <Icon icon='slider-arrow' />}
+			{iconPosition === 'right' && iconName === 'google' && <img src={googleIco} alt={'google'} />}
+			{iconPosition === 'right' && iconName === 'facebook' && (
+				<img src={facebookIco} alt={'facebook'} />
+			)}
+			{iconPosition === 'right' && iconName === 'upload' && <Icon icon='upload' />}
+		</button>
+	);
 };

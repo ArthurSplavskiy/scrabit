@@ -178,6 +178,19 @@
 		transform: scaleX(1);
 		background: #38a9b8;
 	}
+
+	&.blue {
+		color: #6ad9e8;
+		&:before {
+			background: #6ad9e8;
+		}
+		&:hover {
+			color: var(--black-text);
+			&:before {
+				background: var(--black-text);
+			}
+		}
+	}
 }
 
 %btnBlack {
@@ -272,6 +285,10 @@
 .Button {
 	@extend %btn;
 
+	&.withOutPadding {
+		padding: 0;
+		min-height: auto;
+	}
 	&.adaptive.big {
 		@media screen and (max-width: 768px) {
 			padding: 16px 21px;
@@ -286,6 +303,38 @@
 		}
 	}
 	&.adaptive.small {
+	}
+
+	&.black-color {
+		color: var(--black-text);
+		i:before {
+			color: var(--black-text) !important;
+		}
+	}
+
+	&.black {
+		i {
+			color: var(--white);
+			font-size: 12px;
+		}
+	}
+
+	&.green-20 {
+		background: var(--green-20);
+	}
+
+	&.outline.arrow {
+		padding: 16px;
+		i {
+			transform: rotate(180deg);
+			font-size: 12px;
+		}
+		@media screen and (max-width: 768px) {
+			width: 24px;
+			height: 24px;
+			min-height: auto;
+			padding: 0;
+		}
 	}
 
 	&.big {

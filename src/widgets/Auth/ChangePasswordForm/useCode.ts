@@ -1,32 +1,32 @@
 import { useTextInput } from '@/shared/hooks/useTextInput/useTextInput';
+import { errorsMessages } from '@/shared/hooks/useTextInput/validators';
 import { FormEvent, useState } from 'react';
+import { getApiError, notValidForm } from '@/shared/helpers';
+import { TRegistrationPostData } from '../interface';
 import Cookies from 'js-cookie';
-import { useNavigate } from 'react-router-dom';
 
-export const usePassword = () => {
+export const useCode = () => {
 	const [isLoading, setIsLoading] = useState(false);
-	const navigate = useNavigate();
+	const [next, setNext] = useState(false);
 
 	const formData = {
-		password: useTextInput({
-			validators: ['password'],
+		code: useTextInput({
+			validators: ['zipcode'],
 			isRequired: true
 		})
 	};
 
-	const notValidPassword = (pass: string) => (pass.length >= 6 || pass.length <= 25 ? false : true);
-
 	const onSubmit = async (event: FormEvent) => {
 		event.preventDefault();
-		if (notValidPassword(formData.password.inputProps.value)) return;
+		if (notValidForm(formData)) return;
 
 		try {
 			setIsLoading(true);
 			const data = {
-				password: formData.password.value || ''
+				code: formData.code.value
 			};
-			Cookies.set('register_step', 'finish');
-			navigate('/auth/login');
+			Cookies.set('change_password_step', 'password');
+			setNext(true);
 			//await api.auth.registration(data);
 			setTimeout(() => {
 				setIsLoading(false);
@@ -42,8 +42,9 @@ export const usePassword = () => {
 	};
 
 	return {
-		formDataPassword: formData,
-		onSubmitPassword: onSubmit,
-		isLoadingPassword: isLoading
+		formDataCode: formData,
+		onSubmitCode: onSubmit,
+		isLoadingCode: isLoading,
+		nextCode: next
 	};
 };

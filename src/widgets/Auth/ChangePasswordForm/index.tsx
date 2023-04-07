@@ -13,13 +13,13 @@ import { Icon } from '@/shared/ui/Icon/Icon';
 
 const STATUS_TEXT = {
 	enterPhone: 'Enter your phone number we will send your an activation code',
-	enterCode: 'Enter an activation code',
-	enterPassword: 'Create password for scrabit.com'
+	enterCode: 'Enter a code',
+	enterPassword: 'Enter a new password for scrabit.com'
 };
 
 type TStep = 'phone' | 'code' | 'password';
 
-export const RegisterForm = () => {
+export const ChangePasswordForm = () => {
 	const { isMobile } = useDevice();
 	const { onSubmitPhone, formDataPhone, isLoadingPhone, nextPhone } = usePhone();
 	const { onSubmitCode, formDataCode, isLoadingCode, nextCode } = useCode();
@@ -30,13 +30,13 @@ export const RegisterForm = () => {
 	const [isLess25CharPassword, setIsLess25Password] = useState(false);
 
 	useEffect(() => {
-		if (!Cookies.get('register_step')) Cookies.set('register_step', 'phone');
-		if (Cookies.get('register_step') === 'phone') setStep('phone');
-		if (Cookies.get('register_step') === 'code') {
+		if (!Cookies.get('change_password_step')) Cookies.set('change_password_step', 'phone');
+		if (Cookies.get('change_password_step') === 'phone') setStep('phone');
+		if (Cookies.get('change_password_step') === 'code') {
 			setStatus(STATUS_TEXT.enterCode);
 			setStep('code');
 		}
-		if (Cookies.get('register_step') === 'password') {
+		if (Cookies.get('change_password_step') === 'password') {
 			setStatus(STATUS_TEXT.enterPassword);
 			setStep('password');
 		}
@@ -58,10 +58,38 @@ export const RegisterForm = () => {
 		if (step === 'code') return isLoadingCode;
 		if (step === 'password') return isLoadingPassword;
 	};
+
+	// useEffect(() => {
+	// 	if (step === 'phone') Cookies.set('change_password_step', 'phone');
+	// 	if (step === 'code') Cookies.set('change_password_step', 'code');
+	// 	if (step === 'password') Cookies.set('change_password_step', 'password');
+	// }, [step]);
+
 	return (
 		<div className={styles.AuthBlock}>
+			<Button
+				className={styles.AuthBlockBackBtn}
+				iconName='arrow'
+				type='button'
+				iconPosition='left'
+				customType='outline'
+				btnTo={step === 'phone' ? '/profile' : ''}
+				onClick={() => {
+					if (step === 'code') {
+						Cookies.set('change_password_step', 'phone');
+						setStep('phone');
+						setStatus(STATUS_TEXT.enterPhone);
+					}
+					if (step === 'password') {
+						Cookies.set('change_password_step', 'code');
+						setStep('code');
+						setStatus(STATUS_TEXT.enterCode);
+					}
+				}}>
+				{isMobile ? '' : 'Back'}
+			</Button>
 			<div className={styles.AuthContent}>
-				<h3 className={classNames(styles.AuthTitle, 'text-40-24')}>Create an account</h3>
+				<h3 className={classNames(styles.AuthTitle, 'text-40-24')}>Change password</h3>
 				<p className={classNames(styles.AuthStatus, 'text-16-14')}>{status}</p>
 
 				<form className={styles.AuthForm} onSubmit={setSubmitCallback(step)}>
@@ -79,7 +107,7 @@ export const RegisterForm = () => {
 							{...formDataCode.code.inputProps}
 							errors={formDataCode.code.errors}
 							label={'Activation code'}
-							placeholder={'Enter a code'}
+							placeholder={'**********'}
 							className='above-forgot-pass'
 						/>
 					)}
@@ -112,7 +140,7 @@ export const RegisterForm = () => {
 						</>
 					)}
 					<Button className={styles.AuthFormBtn} type='submit' loading={setIsLoading(step)}>
-						continue
+						{step === 'phone' ? 'send' : 'Change password'}
 					</Button>
 				</form>
 
@@ -126,31 +154,6 @@ export const RegisterForm = () => {
 						</div>
 					</form>
 				)}
-
-				<div className={styles.AuthFormFooter}>
-					<div className={styles.AuthFormOr}>
-						<div>
-							<span>Or</span>
-						</div>
-						<span>Sign Up with</span>
-					</div>
-
-					<div className={styles.AuthFormGoogleFacebook}>
-						<Button customType='outline' iconName='google' iconPosition='left'>
-							{!isMobile && 'with google'}
-						</Button>
-						<Button customType='outline' iconName='facebook' iconPosition='left'>
-							{!isMobile && 'with facebook'}
-						</Button>
-					</div>
-
-					<div className={styles.AuthFormHaveAcc}>
-						<span>Have an sccount?</span>
-						<Button customType='text-underline' btnTo='/auth/login'>
-							Sign in
-						</Button>
-					</div>
-				</div>
 			</div>
 		</div>
 	);

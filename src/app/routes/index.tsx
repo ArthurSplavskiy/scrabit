@@ -16,10 +16,15 @@ import SellMyCar from '@/pages/SellMyCar';
 import CashForJunkPage from '@/pages/CashForJunkCar';
 import CarModelPage from '@/pages/SellMyCar/CarModelPage';
 import CarBrandPage from '@/pages/SellMyCar/CarBrandPage';
-import ProfileLayout from '../layouts/ProfileLayout';
+import ProfileLayout, { accountLayoutLoader } from '../layouts/ProfileLayout';
 import LoginPage from '@/pages/LoginPage';
 import RegistrationPage from '@/pages/RegistrationPage';
 import ComingSoon from '@/pages/ComingSoon';
+import ProfilePage from '@/pages/Profile';
+import ChangePasswordPage from '@/pages/ChangePasswordPage';
+import StaticPage from '@/pages/StaticPages';
+import { Page404 } from '@/pages/ErrorsPage/404';
+import OfferPage from '@/pages/OfferPage';
 
 export enum AppRoutes {
 	HOME = '/',
@@ -109,6 +114,63 @@ const AppRouter = createBrowserRouter([
 			{
 				path: '/auth/registration',
 				element: import.meta.env.PROD ? <ComingSoon /> : <RegistrationPage />
+			}
+		]
+	},
+	{
+		path: '/profile',
+		element: <ProfileLayout />,
+		errorElement: <ErrorPage />,
+		loader: accountLayoutLoader,
+		children: [
+			{
+				path: '/profile',
+				element: <ProfilePage />
+			}
+		]
+	},
+	{
+		path: '/settings',
+		element: <ProfileLayout />,
+		errorElement: <ErrorPage />,
+		loader: accountLayoutLoader,
+		children: [
+			{
+				path: '/settings/change-password',
+				element: <ChangePasswordPage />
+			}
+		]
+	},
+	{
+		path: '/instant-offer',
+		element: <ProfileLayout />,
+		errorElement: <ErrorPage />,
+		children: [
+			{
+				path: '/instant-offer',
+				element: <OfferPage />
+			}
+		]
+	},
+	{
+		path: '/:slug',
+		element: <PageLayout />,
+		errorElement: <ErrorPage />,
+		children: [
+			{
+				path: '/:slug',
+				element: <StaticPage />
+			}
+		]
+	},
+	{
+		path: '/404',
+		element: <PageLayout />,
+		errorElement: <ErrorPage />,
+		children: [
+			{
+				path: '/404',
+				element: <Page404 />
 			}
 		]
 	}

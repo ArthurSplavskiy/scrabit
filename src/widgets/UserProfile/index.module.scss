@@ -1,0 +1,140 @@
+@use 'src/app/assets/styles/mixins' as *;
+.wrapper {
+	display: flex;
+	justify-content: center;
+	padding-top: 56px;
+	padding-bottom: 56px;
+	padding-left: 24px;
+	padding-right: 24px;
+	@media (max-width: 768px) {
+		padding-top: 24px;
+		padding-bottom: 24px;
+	}
+}
+.block {
+	max-width: 1014px;
+	width: 100%;
+	background: var(--white);
+	@media (max-width: 768px) {
+		background: none;
+	}
+}
+.head {
+	border: 1px solid var(--black-text);
+	border-bottom: none;
+	@include adaptiveSize('padding-top', 32, 24);
+	@include adaptiveSize('padding-bottom', 32, 24);
+	@include adaptiveSize('padding-left', 48, 16);
+	@include adaptiveSize('padding-right', 48, 16);
+	@media (max-width: 768px) {
+		border: none;
+		padding: 0;
+		padding-bottom: 24px;
+	}
+}
+.body {
+	display: grid;
+	grid-template-columns: 1fr;
+	background: var(--white);
+	border: 1px solid var(--black-text);
+	@include adaptiveSize('padding-top', 32, 24);
+	@include adaptiveSize('padding-bottom', 32, 24);
+	@include adaptiveSize('padding-left', 48, 16);
+	@include adaptiveSize('padding-right', 48, 16);
+	@include adaptiveSize('gap', 56, 40);
+}
+.headTop {
+	display: flex;
+	justify-content: space-between;
+	font-style: italic;
+	text-transform: uppercase;
+	font-weight: 700;
+	color: var(--black-60);
+	margin-bottom: 24px;
+}
+.profileName {
+	font-style: italic;
+	text-transform: uppercase;
+	font-weight: 700;
+	display: block;
+	@include adaptiveSize('margin-bottom', 6, 12);
+}
+.headBottom {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+}
+.headBottomInfo {
+	align-self: center;
+}
+.headBottomStatus {
+	display: flex;
+	flex-direction: column;
+	color: var(--black-40);
+	& > span {
+		display: block;
+		&:not(:last-child) {
+			@include adaptiveSize('margin-bottom', 12, 8);
+		}
+	}
+}
+.headBottomStatusItem {
+	@include adaptiveSize('margin-left', 10, 4);
+	color: var(--black-text);
+}
+
+.formWidgetEdit {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 16px;
+}
+.formWidgetEditTitle {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 20px;
+	height: 50px;
+	@media (max-width: 768px) {
+		height: auto;
+	}
+	h3 {
+		color: var(--black-60);
+	}
+}
+.formWidgetEditControls {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 16px;
+	@media (max-width: 768px) {
+		flex-direction: column;
+		margin-top: 24px;
+	}
+}
+.formWidgetBody {
+	display: grid;
+	align-items: center;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 35px;
+	@media (max-width: 768px) {
+		grid-template-columns: 1fr;
+		gap: 16px;
+	}
+}
+.formWidgetNote {
+	max-width: 700px;
+	p {
+		color: var(--black-60);
+		padding-left: 64px;
+		padding-top: 8px;
+		a {
+			font-weight: 700;
+			color: var(--black-text);
+			text-decoration: underline;
+			&:hover {
+				text-decoration: none;
+			}
+		}
+	}
+}
