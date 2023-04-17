@@ -8,7 +8,7 @@ interface iCheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
 	showTitle?: boolean;
 	colorType?: 'green' | 'purple';
 	onChangeFn?: (arg: boolean) => void;
-	checkStatus: boolean;
+	checkStatus?: boolean;
 }
 
 export const Checkbox: FC<iCheckboxProps> = ({
