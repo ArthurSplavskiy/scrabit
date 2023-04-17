@@ -7,6 +7,8 @@ interface iCheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
 	title?: string;
 	showTitle?: boolean;
 	colorType?: 'green' | 'purple';
+	onChangeFn?: (arg: boolean) => void;
+	checkStatus: boolean;
 }
 
 export const Checkbox: FC<iCheckboxProps> = ({
@@ -17,9 +19,11 @@ export const Checkbox: FC<iCheckboxProps> = ({
 	id = '',
 	showTitle = true,
 	colorType,
+	onChangeFn,
+	checkStatus,
 	...inputProps
 }) => {
-	const [checked, setChecked] = useState(false);
+	const [checked, setChecked] = useState(checkStatus);
 	const identification = id || label;
 
 	useEffect(() => {
@@ -28,8 +32,13 @@ export const Checkbox: FC<iCheckboxProps> = ({
 
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setChecked(e.target.checked);
+		onChangeFn?.(e.target.checked);
 		onChange?.(e);
 	};
+
+	useEffect(() => {
+		setChecked(checkStatus);
+	}, [checkStatus]);
 
 	return (
 		<div className={`Checkbox ${className} ${colorType ? colorType : ''}`}>

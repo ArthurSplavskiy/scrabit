@@ -29,7 +29,8 @@
 	&:disabled {
 		border: 1px solid #fafafa;
 		background: #fafafa;
-		color: var(--black-20);
+		color: var(--black-80);
+		pointer-events: none;
 		@include placeholder-content {
 			color: var(--black-20);
 		}

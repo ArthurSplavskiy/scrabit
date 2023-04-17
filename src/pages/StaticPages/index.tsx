@@ -1,4 +1,3 @@
-import ReactHtmlParser from 'react-html-parser';
 import { useQuery } from 'react-query';
 import { queryKeys } from '@/app/queryClient/queryKeys';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -44,7 +43,10 @@ export default function StaticPage() {
 							Last updated: <span>{data?.last_updated}</span>
 						</div>
 						<h1>{data?.page_title}</h1>
-						<div className={styles.text}>{data?.text && ReactHtmlParser(data.text)}</div>
+						{/* <div className={styles.text} >{data?.text && ReactHtmlParser(data.text)}</div> */}
+						{data?.text && (
+							<div className={styles.text} dangerouslySetInnerHTML={{ __html: data.text }} />
+						)}
 					</main>
 				</div>
 			</div>

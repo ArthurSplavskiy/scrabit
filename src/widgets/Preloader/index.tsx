@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { FC, useEffect, useState } from 'react';
 import styles from './Preloader.module.scss';
 import preloaderLottie from './preloader.json';
-import Lottie from 'react-lottie';
+import Lottie from 'react-lottie-player';
 import { useCommon } from '@/app/context/Common/CommonContext';
 import Cookies from 'js-cookie';
 
@@ -35,15 +35,6 @@ export const Preloader: FC = () => {
 		}
 	}, [pageIsLoaded]);
 
-	const options = {
-		loop: false,
-		autoplay: true,
-		animationData: preloaderLottie,
-		rendererSettings: {
-			preserveAspectRatio: 'xMidYMid slice'
-		}
-	};
-
 	return (
 		<>
 			{!isFirstRender ? (
@@ -70,7 +61,7 @@ export const Preloader: FC = () => {
 						[styles.hide]: pageIsLoaded && isHide
 					})}>
 					<div className={styles.lottie}>
-						<Lottie options={options} isClickToPauseDisabled={true} />
+						<Lottie animationData={preloaderLottie} play loop={false} />
 					</div>
 				</div>
 			)}

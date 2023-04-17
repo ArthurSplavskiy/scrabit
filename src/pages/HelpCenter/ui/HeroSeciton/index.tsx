@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import Lottie from 'react-lottie';
+import Lottie from 'react-lottie-player';
 import styles from './index.module.scss';
 
 interface Props {
@@ -8,21 +8,13 @@ interface Props {
 }
 
 export const HeroSection: FC<Props> = ({ title, lottie }) => {
-	const options = {
-		loop: false,
-		autoplay: true,
-		animationData: lottie,
-		rendererSettings: {
-			preserveAspectRatio: 'xMidYMid slice'
-		}
-	};
 	return (
 		<div className={styles.hero}>
 			<div className='container'>
 				<div className={styles.inner}>
 					<h2 className='text-64-40'>{title}</h2>
 					<div className={styles.speechBubble}>
-						<Lottie options={options} isClickToPauseDisabled={true} />
+						<Lottie animationData={lottie} loop={false} play />
 					</div>
 				</div>
 			</div>

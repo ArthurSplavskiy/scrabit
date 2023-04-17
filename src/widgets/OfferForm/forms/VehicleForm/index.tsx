@@ -8,10 +8,15 @@ import { notValidForm } from '@/shared/helpers/index';
 import styles from './index.module.scss';
 import useSessionStorage from '@/shared/hooks/useSessionStorage';
 import { IOfferData, initialOfferData } from '../../initialOfferData';
-import { useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { setSelectedOrNull } from '../../utils';
+import { IStep } from '../../initialStep';
 
-export const VehicleForm = () => {
+interface Props {
+	setStep: (...args: any[]) => void;
+}
+
+export const VehicleForm: FC<Props> = ({ setStep }) => {
 	const [offerData, setOfferData] = useSessionStorage<IOfferData>('offerData', initialOfferData);
 
 	const formData = {
@@ -23,15 +28,15 @@ export const VehicleForm = () => {
 		drive: useSelect<ISelectOption>({
 			isRequired: true,
 			options: [
-				{ label: 'yes', value: 'yes' },
-				{ label: 'no', value: 'no' }
+				{ label: 'Yes', value: 'Yes' },
+				{ label: 'No', value: 'No' }
 			]
 		}),
 		wheels: useSelect<ISelectOption>({
 			isRequired: true,
 			options: [
-				{ label: 'yes', value: 'yes' },
-				{ label: 'no', value: 'no' }
+				{ label: 'Yes', value: 'Yes' },
+				{ label: 'No', value: 'No' }
 			]
 		}),
 		title: useTextInput({ isRequired: true })
@@ -43,12 +48,18 @@ export const VehicleForm = () => {
 
 		setOfferData((prev) => ({
 			...prev,
+			stepIndex: 1,
 			vehicleForm: {
 				mileage: formData.mileage.value,
 				drive: formData.drive.value,
 				wheels: formData.wheels.value,
 				title: formData.title.value
 			}
+		}));
+
+		setStep((prev: IStep) => ({
+			...prev,
+			count: 1
 		}));
 	};
 

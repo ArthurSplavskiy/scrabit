@@ -32,7 +32,7 @@ function DeviceProvider({ children }: DeviceProviderProps) {
 
 	useEffect(() => {
 		window.matchMedia('(min-width: 480px)').onchange = ({ matches }) => {
-			return setState((prevState) => ({ ...prevState, isMobile: !matches }));
+			return setState((prevState) => ({ ...prevState, isSmallMobile: !matches }));
 		};
 
 		window.matchMedia('(min-width: 768px)').onchange = ({ matches }) => {

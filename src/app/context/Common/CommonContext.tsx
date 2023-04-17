@@ -5,10 +5,22 @@ type State = {
 	error: IEventError | null;
 	setError: (error: IEventError | null) => void;
 	clearError: () => void;
-	isThankPopupOpen: boolean;
+	// popup damage
+	isOfferDamagePopupOpen: boolean;
+	openOfferDamagePopup: () => void;
+	closeOfferDamagePopup: () => void;
+	// ===
+	// popup calc
+	isCalcPopupOpen: boolean;
+	openCalcPopup: () => void;
+	closeCalcPopup: () => void;
+	// ===
+	// popup vin
+	isVinPopupOpen: boolean;
+	openVinPopup: () => void;
+	closeVinPopup: () => void;
+	// ===
 	isPopupHide: boolean;
-	openThank: () => void;
-	closeThank: () => void;
 	popupHide: () => void;
 	setNoScroll: (lock: boolean) => void;
 	pageIsLoaded: boolean;
@@ -22,10 +34,22 @@ const CommonContext = createContext<State>({
 	error: null,
 	setError: () => {},
 	clearError: () => {},
-	isThankPopupOpen: false,
+	// popup damage
+	isOfferDamagePopupOpen: false,
+	openOfferDamagePopup: () => {},
+	closeOfferDamagePopup: () => {},
+	// ===
+	// popup damage
+	isCalcPopupOpen: false,
+	openCalcPopup: () => {},
+	closeCalcPopup: () => {},
+	// ===
+	// popup vin
+	isVinPopupOpen: false,
+	openVinPopup: () => {},
+	closeVinPopup: () => {},
+	// ===
 	isPopupHide: false,
-	openThank: () => {},
-	closeThank: () => {},
 	popupHide: () => {},
 	setNoScroll: (lock: boolean) => {},
 	pageIsLoaded: false,
@@ -37,26 +61,61 @@ const CommonContext = createContext<State>({
 function CommonProvider({ children }: CommonProviderProps) {
 	const [pageError, setPageError] = useState<IEventError | null>(null);
 	const [noScroll, setNoScroll] = useState(false);
-
-	const [isThankPopupOpen, setIsThankPopupOpen] = useState(false);
 	const [isPopupHide, setIsPopupHide] = useState(false);
-
 	const [pageIsLoadedState, setPageIsLoadedState] = useState(false);
-
 	const [preloaderIsHideState, setPreloaderIsHideState] = useState(false);
 
-	const openThank = () => {
-		setIsThankPopupOpen(true);
+	// popup damage
+	const [isOfferDamagePopupOpen, setIsOfferDamagePopupOpen] = useState(false);
+	// ===
+	// popup calc
+	const [isCalcPopupOpen, setIsCalcPopupOpen] = useState(false);
+	// ===
+	// popup vin
+	const [isVinPopupOpen, setIsVinPopupOpen] = useState(false);
+	// ===
+
+	// popup damage
+	const openOfferDamagePopup = () => {
+		closeAllPopups();
+		setIsOfferDamagePopupOpen(true);
 	};
-	const closeThank = () => {
-		setIsThankPopupOpen(false);
+	const closeOfferDamagePopup = () => {
+		setIsOfferDamagePopupOpen(false);
 	};
+	// ===
+
+	// popup calc
+	const openCalcPopup = () => {
+		setIsCalcPopupOpen(true);
+	};
+	const closeCalcPopup = () => {
+		setIsCalcPopupOpen(false);
+	};
+	// ===
+
+	// popup vin
+	const openVinPopup = () => {
+		setIsVinPopupOpen(true);
+	};
+	const closeVinPopup = () => {
+		setIsVinPopupOpen(false);
+	};
+	// ===
+
+	// tech popup actions
 	const popupHide = () => {
 		setIsPopupHide(true);
+		setTimeout(() => {
+			setIsPopupHide(false);
+		}, 300);
 	};
 	function closeAllPopups() {
-		closeThank();
+		closeOfferDamagePopup();
+		closeCalcPopup();
+		closeVinPopup();
 	}
+	// ===
 	const setError = (error: IEventError | null) => {
 		setPageError(error);
 	};
@@ -80,10 +139,22 @@ function CommonProvider({ children }: CommonProviderProps) {
 
 	const contextValue = useMemo(
 		() => ({
-			openThank,
-			closeThank,
+			// popup damage
+			openOfferDamagePopup, // CommonProvider function
+			closeOfferDamagePopup, // CommonProvider function
+			isOfferDamagePopupOpen, // useState getter
+			// ===
+			// popup calc
+			openCalcPopup,
+			closeCalcPopup,
+			isCalcPopupOpen,
+			// ===
+			// popup vin
+			openVinPopup,
+			closeVinPopup,
+			isVinPopupOpen,
+			// ===
 			popupHide,
-			isThankPopupOpen,
 			isPopupHide,
 			error: pageError,
 			setError,
@@ -95,9 +166,21 @@ function CommonProvider({ children }: CommonProviderProps) {
 			setPreloaderIsHide
 		}),
 		[
-			openThank,
-			closeThank,
-			isThankPopupOpen,
+			// popup damage
+			openOfferDamagePopup,
+			closeOfferDamagePopup,
+			isOfferDamagePopupOpen,
+			// ===
+			// popup damage
+			openCalcPopup,
+			closeCalcPopup,
+			isCalcPopupOpen,
+			// ===
+			// popup vin
+			openVinPopup,
+			closeVinPopup,
+			isVinPopupOpen,
+			// ===
 			isPopupHide,
 			popupHide,
 			pageError,

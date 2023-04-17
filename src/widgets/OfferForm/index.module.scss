@@ -19,6 +19,7 @@
 .offerFormSidebar {
 	display: grid;
 	grid-template-rows: auto 1fr;
+	align-self: baseline;
 }
 .sidebarStep {
 	&:not(:last-child) {
@@ -51,6 +52,12 @@
 	.offerFormSidebarSteps {
 		max-width: 227px;
 		width: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		ul {
+			margin-bottom: auto;
+		}
 	}
 	@media (max-width: 480px) {
 		background: var(--blue-10);
@@ -77,6 +84,12 @@
 	border-bottom: 1px solid var(--black-text);
 	border-top: 1px solid var(--black-text);
 	background: var(--white);
+	overflow: hidden;
+	@media (max-width: 480px) {
+		background: none;
+		border: none;
+		padding: 0;
+	}
 }
 .offerFormHead {
 	background: var(--blue-10);
@@ -124,6 +137,22 @@
 .offerFormHeadText {
 	text-align: center;
 }
+.offerFormContentNav {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 24px;
+	@include adaptiveSize('margin-top', 40, 24);
+	@media (max-width: 768px) {
+		flex-direction: column;
+		margin-top: 50px;
+		gap: 10px;
+		button {
+			width: 100%;
+		}
+	}
+}
 
 // mobile
 .offerFormSidebarStepsMobile,
@@ -136,7 +165,10 @@
 	bottom: 64px;
 	left: 0;
 	right: 0;
-	z-index: 2;
+	z-index: 12;
+	&.stayBottom {
+		bottom: 0;
+	}
 }
 .offerFormSidebarStepsMobileShow,
 .offerFormSidebarMobileActiveStepShow {
@@ -147,7 +179,16 @@
 	bottom: 0;
 	left: 0;
 	right: 0;
-	z-index: 2;
+	z-index: 12;
 	background: var(--blue-10);
 	border-top: 1px solid var(--black-text);
+}
+.cancelOffer {
+	text-align: center;
+	a {
+		text-decoration: underline;
+		&:hover {
+			text-decoration: none;
+		}
+	}
 }

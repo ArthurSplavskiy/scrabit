@@ -1,3 +1,5 @@
+@use 'src/app/assets/styles/mixins' as *;
+
 .TemplateModal {
 	width: 100%;
 	position: relative;
@@ -45,42 +47,44 @@
 		display: flex;
 		align-items: center;
 		flex-direction: column;
-		min-height: 194px;
-		padding: 40px 10px 10px 10px;
-		&.without-icon {
-			justify-content: center;
-			padding: 10px;
-			.TemplateModal-title {
-				margin: 0;
-			}
+		margin-bottom: 40px;
+		@media (max-width: 768px) {
+			align-items: flex-start;
+		}
+		@media (max-width: 480px) {
+			max-width: 220px;
 		}
 	}
 	&-title {
-		margin-top: 20px;
 		font-weight: 700;
-		font-size: var(--fSize32);
+		@include adaptiveSize('font-size', 24, 18);
+		padding-top: 4px;
+		max-width: 550px;
+		width: 100%;
+		text-align: center;
+		@media (max-width: 768px) {
+			text-align: left;
+			max-width: 248px;
+		}
+		@media (max-width: 480px) {
+			max-width: 220px;
+		}
 	}
 	&-text {
-		margin-top: 16px;
-		font-size: var(--fSize14);
-		font-weight: 400;
-		color: var(--black-100);
+		@include adaptiveSize('margin-top', 24, 11);
+		text-align: center;
+		font-size: 16px;
+		font-weight: 500;
+		max-width: 550px;
+		@media (max-width: 768px) {
+			font-size: 14px;
+			text-align: left;
+			max-width: 248px;
+		}
 	}
 	&-subTitle {
-		margin-top: 16px;
-		text-transform: uppercase;
-		font-size: var(--fSize14);
-		font-weight: 400;
-		color: var(--black-100);
 	}
 
 	&-main {
-		padding: var(--40px);
-		@media (max-width: 768px) {
-			padding: 16px 23px 32px 23px;
-		}
-		@media (max-width: 360px) {
-			padding: 16px 12px 32px 12px;
-		}
 	}
 }

@@ -142,12 +142,12 @@ const AppRouter = createBrowserRouter([
 		]
 	},
 	{
-		path: '/instant-offer',
+		path: '/offer',
 		element: <ProfileLayout />,
 		errorElement: <ErrorPage />,
 		children: [
 			{
-				path: '/instant-offer',
+				path: '/offer',
 				element: <OfferPage />
 			}
 		]

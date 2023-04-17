@@ -1,3 +1,5 @@
+@use 'src/app/assets/styles/mixins' as *;
+
 .noscroll {
 	overflow: hidden;
 }
@@ -6,20 +8,25 @@
 	min-height: 194px;
 	&-message {
 		min-height: 248px;
-		.ModalPopUp.content {
+		.ModalPopUp.popup-content {
 			min-height: 248px;
 		}
 	}
 	&-container {
 		position: relative;
 		width: 100%;
+		@include adaptiveSize('padding-top', 40, 16);
+		@include adaptiveSize('padding-left', 40, 16);
+		@include adaptiveSize('padding-right', 40, 16);
+		@include adaptiveSize('padding-bottom', 40, 24);
 
-		&.content {
-			max-width: 648px;
-			min-height: 194px;
+		&.popup-content {
+			max-width: 750px;
+			min-height: 200px;
 			background: var(--white);
 			box-shadow: 0px 4px 40px rgba(95, 97, 100, 0.25);
-			border-radius: 20px;
+			border-radius: 0;
+			border: 1px solid var(--black-text);
 		}
 		&.video {
 			display: flex;
@@ -64,13 +71,14 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		padding: 24px;
 		&-active {
 			animation: popupOpen 0.3s forwards;
 			.ModalPopUp-container {
 				animation: moveUp 0.3s forwards;
 			}
 		}
-		&-hide {
+		&-hide { // :not(.ModalPopUp-portal-hide)
 			animation: popupClose 0.3s forwards;
 			.ModalPopUp-container {
 				animation: moveDown 0.3s forwards;
@@ -90,17 +98,19 @@
 
 	&-close {
 		position: absolute;
-		top: 42px;
-		right: 42px;
-		border: none;
-		background: none;
-		box-shadow: none;
+		width: 32px;
+		height: 32px;
+		@include adaptiveSize('top', 40, 16);
+		@include adaptiveSize('right', 40, 16);
+		background: #f0fbfd;
+		border: 1px solid #1e1e21;
+		border-radius: 100%;
 		z-index: 3;
-		color: var(--primary);
 		cursor: pointer;
+		transition: var(--transition);
 		@media (max-width: 768px) {
-			top: 16px;
-			right: var(--20px);
+			width: 24px;
+			height: 24px;
 		}
 
 		&:focus,

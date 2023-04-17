@@ -25,6 +25,25 @@
 	}
 	&-label {
 		@extend %label;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		gap: 5px;
+		&-link {
+			color: #1e1e21;
+			text-decoration: underline;
+			cursor: pointer;
+			&:hover {
+				text-decoration: none;
+			}
+
+			@media (max-width: 768px) {
+				width: 100%;
+				justify-content: flex-end;
+				display: flex;
+			}
+		}
 	}
 	.ReactSelect-select__value-container {
 		padding-left: 18px;

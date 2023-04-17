@@ -1,5 +1,11 @@
 .btn {
 	display: flex;
+	&:hover {
+		color: var(--main-blue);
+		.checker {
+			border-color: var(--main-blue);
+		}
+	}
 	&.active {
 	}
 	&.disable {

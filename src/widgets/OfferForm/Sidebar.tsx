@@ -4,24 +4,31 @@ import { FC, useState } from 'react';
 import { Button } from '@/shared/ui/Button';
 import { useDevice } from '@/app/context/Device/DeviceContext';
 import { Icon } from '@/shared/ui/Icon/Icon';
+import { ISidebarStep } from './interfaces';
+import useSessionStorage from '@/shared/hooks/useSessionStorage';
+import { IOfferData, initialOfferData } from './initialOfferData';
+import { initialStep } from './initialStep';
 
 interface Props {
-	sidebarSteps: any;
+	sidebarSteps: ISidebarStep[];
 	stepCount: number;
+	setStep: (...args: any[]) => void;
 }
 
-export const OfferStepSidebar: FC<Props> = ({ sidebarSteps, stepCount }) => {
+export const OfferStepSidebar: FC<Props> = ({ sidebarSteps, stepCount, setStep }) => {
 	const { isSmallMobile } = useDevice();
 	const [showSteps, setShowSteps] = useState(false);
+	const [, setOfferData] = useSessionStorage<IOfferData>('offerData', initialOfferData);
 
 	if (isSmallMobile) {
 		return (
 			<>
 				<ul
 					className={classNames(styles.offerFormSidebarStepsMobile, {
-						[styles.offerFormSidebarStepsMobileShow]: showSteps
+						[styles.offerFormSidebarStepsMobileShow]: showSteps,
+						[styles.stayBottom]: sidebarSteps.length > 3
 					})}>
-					{sidebarSteps.map((step: any, idx: number) => (
+					{sidebarSteps.map((step: ISidebarStep, idx: number) => (
 						<li key={step.id} className={styles.sidebarStep}>
 							{step.btn}
 							{isSmallMobile && idx === 0 ? (
@@ -34,20 +41,29 @@ export const OfferStepSidebar: FC<Props> = ({ sidebarSteps, stepCount }) => {
 				</ul>
 				<ul
 					className={classNames(styles.offerFormSidebarMobileActiveStep, {
-						[styles.offerFormSidebarMobileActiveStepShow]: !showSteps
+						[styles.offerFormSidebarMobileActiveStepShow]: !showSteps,
+						[styles.stayBottom]: sidebarSteps.length > 3
 					})}>
 					<li className={styles.sidebarStep}>
-						{sidebarSteps[stepCount].btn}
+						{sidebarSteps[stepCount]?.btn}
 						<button onClick={() => setShowSteps(true)}>
 							<Icon icon='setting-list' />
 						</button>
 					</li>
 				</ul>
-				<div className={styles.offerFormSidebarMobileStartOver}>
-					<Button className={styles.sidebarStartOver} customType={'text-underline'}>
-						start over
-					</Button>
-				</div>
+				{sidebarSteps.length < 3 && (
+					<div className={styles.offerFormSidebarMobileStartOver}>
+						<Button
+							className={styles.sidebarStartOver}
+							customType={'text-underline'}
+							onClick={() => {
+								setOfferData(initialOfferData);
+								setStep(initialStep);
+							}}>
+							start over
+						</Button>
+					</div>
+				)}
 			</>
 		);
 	}
@@ -64,15 +80,24 @@ export const OfferStepSidebar: FC<Props> = ({ sidebarSteps, stepCount }) => {
 			<div className={styles.offerFormSidebarBody}>
 				<div className={styles.offerFormSidebarSteps}>
 					<ul>
-						{sidebarSteps.map((step: any) => (
+						{sidebarSteps.map((step: ISidebarStep) => (
 							<li key={step.id} className={styles.sidebarStep}>
 								{step.btn}
 							</li>
 						))}
 					</ul>
-					<Button className={styles.sidebarStartOver} width={'fullWidth'} color={'green-20'}>
-						start over
-					</Button>
+					{stepCount < 3 && (
+						<Button
+							className={styles.sidebarStartOver}
+							width={'fullWidth'}
+							color={'green-20'}
+							onClick={() => {
+								setOfferData(initialOfferData);
+								setStep(initialStep);
+							}}>
+							start over
+						</Button>
+					)}
 				</div>
 			</div>
 		</div>

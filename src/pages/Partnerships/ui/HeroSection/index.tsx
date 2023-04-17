@@ -2,7 +2,7 @@ import { useDevice } from '@/app/context/Device/DeviceContext';
 import { Button } from '@/shared/ui/Button';
 import classNames from 'classnames';
 import { FC, ReactNode } from 'react';
-import Lottie from 'react-lottie';
+import Lottie from 'react-lottie-player';
 import styles from './HeroSection.module.scss';
 import buyerLottie from './buyer.json';
 import carrierLottie from './carrier.json';
@@ -47,14 +47,6 @@ export const HeroSection: FC<Props> = ({
 				return buyerLottie;
 		}
 	};
-	const options = {
-		loop: false,
-		autoplay: true,
-		animationData: setLottieFile(messageType),
-		rendererSettings: {
-			preserveAspectRatio: 'xMidYMid slice'
-		}
-	};
 	return (
 		<section
 			className={classNames(styles.section, {
@@ -72,14 +64,16 @@ export const HeroSection: FC<Props> = ({
 						<p className='text-16-14'>{subtitle}</p>
 						{isMobile && (
 							<div>
-								<Lottie options={options} isClickToPauseDisabled={true} />
+								<Lottie animationData={setLottieFile(messageType)} loop={false} play />
 							</div>
 						)}
 						<Button btnTo={btnSlug} width={isMobile ? 'fullWidth' : undefined}>
 							{btnText}
 						</Button>
 					</div>
-					<div>{!isMobile && <Lottie options={options} isClickToPauseDisabled={true} />}</div>
+					<div>
+						{!isMobile && <Lottie animationData={setLottieFile(messageType)} loop={false} play />}
+					</div>
 				</div>
 			</div>
 		</section>

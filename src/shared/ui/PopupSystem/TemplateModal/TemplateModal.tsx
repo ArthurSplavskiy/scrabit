@@ -40,12 +40,13 @@ export const TemplateModal: FC<iTemplateModalProps> = ({
 			{title && (
 				<div className={`TemplateModal-header ${!icon && 'without-icon'}`}>
 					{icon}
-					<h3 className='TemplateModal-title'>{title}</h3>
+					<div>
+						<h3 className='TemplateModal-title'>{title}</h3>
+					</div>
 					<p className='TemplateModal-text'>{subTitle}</p>
 				</div>
 			)}
 			{children && <div className='TemplateModal-main'>{children}</div>}
-			<div className='TemplateModal-bg'>{background}</div>
 		</div>
 	);
 };

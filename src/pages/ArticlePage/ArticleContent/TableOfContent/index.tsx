@@ -1,11 +1,11 @@
 import { FC, useEffect } from 'react';
-import { DomElement } from 'htmlparser2';
 import { createStickyNav } from './utils';
-import './TableOfContent.scss';
 import { scrollToBlock } from '@/shared/helpers/scrollToBlock';
+import styles from './TableOfContent.module.scss';
+import classNames from 'classnames';
 
 interface Props {
-	content: DomElement[];
+	content: string[];
 }
 
 export const TableOfContent: FC<Props> = ({ content }) => {
@@ -16,18 +16,18 @@ export const TableOfContent: FC<Props> = ({ content }) => {
 	}, []);
 
 	return (
-		<div className={'content'}>
-			<div className={'head'}>
+		<div className={styles.content}>
+			<div className={styles.head}>
 				<h3>Content</h3>
 			</div>
 			{content.map((c, idx) => (
 				<div
 					key={idx}
-					className={'item anchor'}
+					className={classNames(styles.item, 'anchor')}
 					onClick={() => {
 						scrollToBlock(`article-title-${idx}`);
 					}}>
-					{c.data}
+					{c}
 				</div>
 			))}
 		</div>

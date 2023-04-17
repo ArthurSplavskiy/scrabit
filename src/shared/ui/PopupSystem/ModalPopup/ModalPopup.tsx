@@ -2,8 +2,8 @@ import { useEffect, FC, ReactElement, useState } from 'react';
 import { Portal } from '../Portal/Portal';
 import { useModal } from './useModal';
 import { iModalPopUpProps } from './ModalPopup.interface';
-import './ModalPopup.scss';
 import { Icon } from '@/shared/ui/Icon/Icon';
+import './ModalPopup.scss';
 
 /**
  * Modal pop up component for most of content
@@ -21,7 +21,7 @@ export const ModalPopup: FC<iModalPopUpProps> = ({
 	showCloseButton = true,
 	size,
 	withoutPaddings,
-	type = 'content',
+	type = 'popup-content',
 	onAnimationHideStart,
 	withBackdrop
 }): ReactElement | null => {
@@ -69,20 +69,20 @@ export const ModalPopup: FC<iModalPopUpProps> = ({
 					/>
 				)}
 
-				<div className={`ModalPopUp-container container ${size} ${type} ${containerClass}`}>
+				<div className={`ModalPopUp-container ${size} ${type} ${containerClass}`}>
 					{showCloseButton && (
 						<button
 							aria-label='Close modal pop up'
 							className='ModalPopUp-close'
 							onClick={handleClose}
 							data-testid='modal-close-btn'>
-							<Icon icon='close' />
+							<Icon icon='close' size='10' />
 						</button>
 					)}
 					<div
 						tabIndex={0}
 						ref={modalContent}
-						className={`ModalPopUp-content content  ${withoutPaddings ? 'withoutPaddings' : ''}`}>
+						className={`ModalPopUp-content ${withoutPaddings ? 'withoutPaddings' : ''}`}>
 						{children}
 					</div>
 				</div>

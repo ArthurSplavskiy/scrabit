@@ -1,6 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 import Select, { GroupBase, Props } from 'react-select';
 import './ReactSelect.scss';
+import { useDevice } from '@/app/context/Device/DeviceContext';
 
 export type tReactSelectProps<
 	Option,
@@ -15,6 +16,7 @@ interface iReactSelectProps extends tReactSelectProps<any, any> {
 	hideIcon?: boolean;
 	className?: string;
 	errors?: string[];
+	labelLink?: React.ReactNode;
 }
 
 export const ReactSelect: FC<iReactSelectProps> = ({
@@ -24,14 +26,19 @@ export const ReactSelect: FC<iReactSelectProps> = ({
 	label,
 	className = '',
 	errors,
+	labelLink,
 	...props
 }) => {
 	const isHiddenIcon = hideIcon ? 'hidden-icon' : '';
 	const [isFocus, setIsFocus] = useState(false);
+	const { isMobile } = useDevice();
 
 	return (
 		<fieldset className={`ReactSelect-group ${errors?.length ? 'has-error' : ''}`}>
-			<label className={`ReactSelect-label ${isFocus ? 'focus' : ''}`}>{label}</label>
+			<label className={`ReactSelect-label ${isFocus ? 'focus' : ''}`}>
+				<span>{label}</span>
+				{!isMobile && <span className='ReactSelect-label-link'>{labelLink}</span>}
+			</label>
 			<Select
 				className={`ReactSelect ${isHiddenIcon} ${type} ${icon} ${className}  ${
 					isFocus ? 'focus' : ''
@@ -47,6 +54,7 @@ export const ReactSelect: FC<iReactSelectProps> = ({
 					{error}
 				</span>
 			))}
+			{isMobile && <span className='ReactSelect-label-link'>{labelLink}</span>}
 		</fieldset>
 	);
 };

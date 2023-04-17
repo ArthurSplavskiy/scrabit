@@ -1,12 +1,9 @@
 import { Breadcrumbs } from '@/widgets/Breadcrumbs';
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styles from './ArticleContent.module.scss';
-import ReactHtmlParser from 'react-html-parser';
 import { IBlogRecord } from '@/entities/BlogRecord/interface';
-import { DomElement } from 'htmlparser2';
 import { TableOfContent } from './TableOfContent';
 import img from './post.png';
-import { useLocation } from 'react-router-dom';
 import { Icon } from '@/shared/ui/Icon/Icon';
 import classNames from 'classnames';
 
@@ -16,7 +13,16 @@ interface Props {
 }
 
 export const ArticleContent: FC<Props> = ({ category, record }) => {
-	const titles: DomElement[] = [];
+	const [titles, setTitles] = useState<string[]>(['']);
+
+	useEffect(() => {
+		if (record?.fullText) {
+			const regex = /<h2>(.*?)<\/h2>/g;
+			const matches = record.fullText.match(regex) || [''];
+			const h2Texts = matches.map((match) => match.replace(/<\/?h2>/g, ''));
+			setTitles(h2Texts);
+		}
+	}, [record]);
 
 	return (
 		<div className={styles.content}>
@@ -58,15 +64,19 @@ export const ArticleContent: FC<Props> = ({ category, record }) => {
 								</nav>
 							</div>
 						</div>
-						<div className={classNames(styles.fullText, 'article-content')}>
-							{ReactHtmlParser(record?.fullText || '', {
+						{record?.fullText && (
+							<div
+								className={classNames(styles.fullText, 'article-content')}
+								dangerouslySetInnerHTML={{ __html: record?.fullText }}>
+								{/* {ReactHtmlParser(record?.fullText || '', {
 								transform: function transform(node: DomElement) {
 									if (node.type === 'tag' && node.name === 'h2') {
 										titles.push(node.children[0]);
 									}
 								}
-							})}
-						</div>
+							})} */}
+							</div>
+						)}
 					</div>
 				</div>
 			</div>

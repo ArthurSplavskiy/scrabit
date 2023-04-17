@@ -12,6 +12,7 @@ export interface InterfaceInputField extends React.InputHTMLAttributes<HTMLInput
 	prefix?: string;
 	rightPrefix?: string;
 	buttonsVariantGroup?: ReactNode;
+	underElem?: ReactNode;
 }
 
 export const InputField: React.FC<InterfaceInputField> = ({
@@ -25,6 +26,7 @@ export const InputField: React.FC<InterfaceInputField> = ({
 	prefix = '',
 	rightPrefix = '',
 	buttonsVariantGroup,
+	underElem,
 	...props
 }) => {
 	const [isFocus, setIsFocus] = useState(false);
@@ -92,6 +94,8 @@ export const InputField: React.FC<InterfaceInputField> = ({
 				</span>
 			))}
 			{note && <p className='InputField-note note'>{note}</p>}
+
+			{underElem && underElem}
 		</div>
 	);
 };

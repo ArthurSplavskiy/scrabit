@@ -1,10 +1,9 @@
-import { TypedText } from '@/shared/ui/TypedText/TypedText';
 import { FC } from 'react';
 import styles from './HeroAnimationCar.module.scss';
 import car from './car.png';
 import carLottie from './car.json';
 import classNames from 'classnames';
-import Lottie from 'react-lottie';
+import Lottie from 'react-lottie-player';
 
 interface Props {
 	text?: string;
@@ -12,14 +11,6 @@ interface Props {
 }
 
 export const HeroAnimationCar: FC<Props> = ({ text, direct }) => {
-	const options = {
-		loop: true,
-		autoplay: true,
-		animationData: carLottie,
-		rendererSettings: {
-			preserveAspectRatio: 'xMidYMid slice'
-		}
-	};
 	return (
 		<div
 			className={classNames(styles.HeroAnimationCar, {
@@ -27,7 +18,7 @@ export const HeroAnimationCar: FC<Props> = ({ text, direct }) => {
 			})}>
 			{direct === 'left' && (
 				<div className={styles.BlinkCar}>
-					<Lottie options={options} isClickToPauseDisabled={true} />
+					<Lottie animationData={carLottie} loop={false} play />
 				</div>
 			)}
 			<div

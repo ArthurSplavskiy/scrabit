@@ -1,0 +1,87 @@
+@use 'src/app/assets/styles/mixins' as *;
+
+.form {
+	@include adaptiveSize('row-gap', 24, 16);
+}
+.uploader {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	gap: 20px;
+	@media (max-width: 768px) {
+		grid-template-columns: 1fr;
+		gap: 96px;
+		background: var(--white);
+		padding: 16px;
+		border: 1px solid var(--black-text);
+	}
+}
+.uploaderZone {
+	h3 {
+		margin-bottom: 8px;
+	}
+}
+.uploaderBtn {
+	align-self: flex-end;
+}
+.uploaderImageList {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	margin-bottom: 16px;
+}
+.uploaderImage {
+	position: relative;
+	width: 120px;
+	height: 120px;
+	border: 1px solid var(--black-text);
+	img {
+		position: absolute;
+		inset: 0 0 0 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+}
+.uploaderImageBackdrop {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	inset: 0 0 0 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+	z-index: 2;
+
+	animation-name: fadeOut;
+	animation-duration: 0.5s;
+	animation-delay: 2s;
+	animation-fill-mode: forwards;
+
+	button {
+		& > i {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+	}
+	&:hover {
+		animation-direction: reverse;
+	}
+}
+
+.uploaderErrors {
+	span {
+		color: var(--system-error);
+	}
+}
+
+@keyframes fadeOut {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}

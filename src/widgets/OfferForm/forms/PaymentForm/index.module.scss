@@ -1,0 +1,72 @@
+@use 'src/app/assets/styles/mixins' as *;
+
+.form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	form {
+		height: 100%;
+	}
+	& > fieldset {
+		width: 100%;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		@include adaptiveSize('row-gap', 24, 16);
+		@include adaptiveSize('column-gap', 35, 24);
+		@media (max-width: 768px) {
+			grid-template-columns: 1fr;
+			gap: 16px;
+		}
+	}
+	button {
+		@include adaptiveSize('margin-top', 67, 40);
+	}
+}
+
+.expirePriceNav {
+	@include adaptiveSize('margin-top', 48, 24);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 20px;
+	width: 100%;
+	button {
+		margin: 0;
+	}
+	@media (max-width: 768px) {
+		flex-direction: column;
+	}
+}
+.expirePrice {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 24px;
+	@media (max-width: 768px) {
+		gap: 12px;
+	}
+	span {
+		align-self: flex-end;
+	}
+}
+.fieldsetDouble {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 32px;
+	@include adaptiveSize('margin-top', 24, 16);
+	@media (max-width: 480px) {
+		grid-template-columns: 1fr;
+		gap: 16px;
+	}
+}
+.formInner {
+	display: flex;
+	flex-direction: column;
+	max-width: 490px;
+	width: 100%;
+	margin-bottom: 100px;
+	@media (max-width: 480px) {
+		margin-bottom: 0px;
+	}
+}

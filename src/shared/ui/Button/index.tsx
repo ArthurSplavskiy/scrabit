@@ -18,7 +18,7 @@ interface IButtonProps
 	btnLink?: string;
 	btnTo?: string;
 	iconPosition?: 'left' | 'right';
-	iconName?: 'arrow' | 'acc' | 'google' | 'facebook' | 'upload' | 'exit';
+	iconName?: 'arrow' | 'acc' | 'google' | 'facebook' | 'upload' | 'exit' | 'cross';
 	withOutPadding?: boolean;
 }
 
@@ -70,6 +70,7 @@ export const Button: FC<IButtonProps & RefAttributes<HTMLButtonElement>> = ({
 				<img src={facebookIco} alt={'facebook'} />
 			)}
 			{iconPosition === 'right' && iconName === 'upload' && <Icon icon='upload' />}
+			{iconPosition === 'right' && iconName === 'cross' && <Icon icon='close' size='10' />}
 		</button>
 	);
 
@@ -120,6 +121,7 @@ export const Button: FC<IButtonProps & RefAttributes<HTMLButtonElement>> = ({
 				<img src={facebookIco} alt={'facebook'} />
 			)}
 			{iconPosition === 'right' && iconName === 'upload' && <Icon icon='upload' />}
+			{iconPosition === 'right' && iconName === 'cross' && <Icon icon='close' size='10' />}
 		</button>
 	);
 };

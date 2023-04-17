@@ -154,11 +154,22 @@
 	position: absolute;
 	left: 192px;
 	top: 54px;
+	padding: 16px;
+
+	i {
+		transform: rotate(180deg);
+		font-size: 12px;
+	}
+
 	@media (max-width: 1440px) {
 		left: 24px;
 	}
 	@media (max-width: 768px) {
 		top: 40px;
+		width: 24px;
+		height: 24px;
+		min-height: auto;
+		padding: 0;
 	}
 	@media screen and (max-width: 370px) {
 		top: 10px;

@@ -13,18 +13,19 @@
 }
 
 .Checkbox {
+	position: relative;
 	&.green {
 		.Checkbox-input:checked ~ .Checkbox-label:after {
-			border-color: var(--system-green);
+			border-color: var(--black-text);
 		}
 		.Checkbox-input:checked ~ .Checkbox-label:before {
-			border: 1px solid var(--system-green);
+			border: 1px solid var(--black-text);
 		}
 		.Checkbox-label:before {
 			border: 1px solid var(--black-100);
 		}
 		.Checkbox-label:after {
-			//background: var(--system-green);
+			// background: var(--black-text);
 		}
 	}
 	&.purple {
@@ -60,7 +61,10 @@
 	}
 
 	&-input:checked ~ &-label:after {
-		border-color: var(--system-green);
+		border-color: var(--black-text);
+	}
+	&-input:checked ~ &-label:before {
+		background: #f4f4f4;
 	}
 
 	&-input:checked ~ &-label,
@@ -70,7 +74,7 @@
 
 	&-input:checked ~ &-label:before {
 		//border: none;
-		border-color: var(--system-green);
+		border-color: var(--black-text);
 	}
 
 	&-input:disabled ~ &-label {
@@ -82,13 +86,12 @@
 		position: relative;
 		display: flex;
 		align-items: center;
-		font-size: var(--fSize14);
-		line-height: 100%;
-		padding: 0.65rem 0.85em 0.65em 2.36rem;
+		font-size: 14px;
+		line-height: 24px;
+		padding-left: 32px;
 		width: fit-content;
-		border: 1px solid var(--gray-40);
-		border-radius: 0.142rem;
-		--checkboxSize: 12px;
+		color: #1e1e21;
+		--checkboxSize: 16px;
 
 		&:before,
 		&:after {
@@ -101,16 +104,16 @@
 			height: var(--checkboxSize);
 			background: none;
 			position: absolute;
-			border: 1px solid var(--black-100);
+			border: 1px solid #1e1e21;
 			top: 50%;
-			left: 0.86rem;
+			left: 0px;
 			transform: translateY(-50%);
-			border-radius: 0.071rem;
+			border-radius: 4px;
 		}
 
 		&:after {
 			position: absolute;
-			left: 1.35rem;
+			left: 9px;
 			top: 51%;
 			width: 8px;
 			height: 5px;
