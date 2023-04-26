@@ -20,6 +20,16 @@ type State = {
 	openVinPopup: () => void;
 	closeVinPopup: () => void;
 	// ===
+	// popup callback
+	isCallbackPopupOpen: boolean;
+	openCallbackPopup: () => void;
+	closeCallbackPopup: () => void;
+	// ===
+	// popup decline offer
+	isDeclineOfferPopupOpen: boolean;
+	openDeclineOfferPopup: () => void;
+	closeDeclineOfferPopup: () => void;
+	// ===
 	isPopupHide: boolean;
 	popupHide: () => void;
 	setNoScroll: (lock: boolean) => void;
@@ -27,6 +37,8 @@ type State = {
 	setPageIsLoaded: (loading: boolean) => void;
 	preloaderIsHide: boolean;
 	setPreloaderIsHide: (h: boolean) => void;
+	focusFirstOfferFormField: boolean;
+	setFocusFirstOfferFormField: (a: boolean) => void;
 };
 type CommonProviderProps = { children: React.ReactNode };
 
@@ -49,13 +61,25 @@ const CommonContext = createContext<State>({
 	openVinPopup: () => {},
 	closeVinPopup: () => {},
 	// ===
+	// popup callback
+	isCallbackPopupOpen: false,
+	openCallbackPopup: () => {},
+	closeCallbackPopup: () => {},
+	// ===
+	// popup decline offer
+	isDeclineOfferPopupOpen: false,
+	openDeclineOfferPopup: () => {},
+	closeDeclineOfferPopup: () => {},
+	// ===
 	isPopupHide: false,
 	popupHide: () => {},
 	setNoScroll: (lock: boolean) => {},
 	pageIsLoaded: false,
 	setPageIsLoaded: (loading: boolean) => {},
 	preloaderIsHide: false,
-	setPreloaderIsHide: (h: boolean) => {}
+	setPreloaderIsHide: (h: boolean) => {},
+	focusFirstOfferFormField: false,
+	setFocusFirstOfferFormField: (a: boolean) => {}
 });
 
 function CommonProvider({ children }: CommonProviderProps) {
@@ -64,6 +88,7 @@ function CommonProvider({ children }: CommonProviderProps) {
 	const [isPopupHide, setIsPopupHide] = useState(false);
 	const [pageIsLoadedState, setPageIsLoadedState] = useState(false);
 	const [preloaderIsHideState, setPreloaderIsHideState] = useState(false);
+	const [focusFirstOfferFormFieldState, setFocusFirstOfferFormFieldState] = useState(false);
 
 	// popup damage
 	const [isOfferDamagePopupOpen, setIsOfferDamagePopupOpen] = useState(false);
@@ -73,6 +98,12 @@ function CommonProvider({ children }: CommonProviderProps) {
 	// ===
 	// popup vin
 	const [isVinPopupOpen, setIsVinPopupOpen] = useState(false);
+	// ===
+	// popup callback
+	const [isCallbackPopupOpen, setIsCallbackPopupOpen] = useState(false);
+	// ===
+	// popup decline offer
+	const [isDeclineOfferPopupOpen, setIsDeclineOfferPopupOpen] = useState(false);
 	// ===
 
 	// popup damage
@@ -103,6 +134,24 @@ function CommonProvider({ children }: CommonProviderProps) {
 	};
 	// ===
 
+	// popup callback
+	const openCallbackPopup = () => {
+		setIsCallbackPopupOpen(true);
+	};
+	const closeCallbackPopup = () => {
+		setIsCallbackPopupOpen(false);
+	};
+	// ===
+
+	// popup decline offer
+	const openDeclineOfferPopup = () => {
+		setIsDeclineOfferPopupOpen(true);
+	};
+	const closeDeclineOfferPopup = () => {
+		setIsDeclineOfferPopupOpen(false);
+	};
+	// ===
+
 	// tech popup actions
 	const popupHide = () => {
 		setIsPopupHide(true);
@@ -127,6 +176,9 @@ function CommonProvider({ children }: CommonProviderProps) {
 	};
 	const setPreloaderIsHide = (h: boolean) => {
 		setPreloaderIsHideState(h);
+	};
+	const setFocusFirstOfferFormField = (a: boolean) => {
+		setFocusFirstOfferFormFieldState(a);
 	};
 
 	useEffect(() => {
@@ -154,6 +206,16 @@ function CommonProvider({ children }: CommonProviderProps) {
 			closeVinPopup,
 			isVinPopupOpen,
 			// ===
+			// popup callback
+			openCallbackPopup,
+			closeCallbackPopup,
+			isCallbackPopupOpen,
+			// ===
+			// popup decline offer
+			openDeclineOfferPopup,
+			closeDeclineOfferPopup,
+			isDeclineOfferPopupOpen,
+			// ===
 			popupHide,
 			isPopupHide,
 			error: pageError,
@@ -163,7 +225,9 @@ function CommonProvider({ children }: CommonProviderProps) {
 			pageIsLoaded: pageIsLoadedState,
 			setPageIsLoaded,
 			preloaderIsHide: preloaderIsHideState,
-			setPreloaderIsHide
+			setPreloaderIsHide,
+			focusFirstOfferFormField: focusFirstOfferFormFieldState,
+			setFocusFirstOfferFormField
 		}),
 		[
 			// popup damage
@@ -181,6 +245,16 @@ function CommonProvider({ children }: CommonProviderProps) {
 			closeVinPopup,
 			isVinPopupOpen,
 			// ===
+			// popup callback
+			openCallbackPopup,
+			closeCallbackPopup,
+			isCallbackPopupOpen,
+			// ===
+			// popup decline offer
+			openDeclineOfferPopup,
+			closeDeclineOfferPopup,
+			isDeclineOfferPopupOpen,
+			// ===
 			isPopupHide,
 			popupHide,
 			pageError,
@@ -190,7 +264,9 @@ function CommonProvider({ children }: CommonProviderProps) {
 			pageIsLoadedState,
 			setPageIsLoaded,
 			preloaderIsHideState,
-			setPreloaderIsHide
+			setPreloaderIsHide,
+			focusFirstOfferFormFieldState,
+			setFocusFirstOfferFormField
 		]
 	);
 

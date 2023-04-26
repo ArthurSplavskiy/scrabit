@@ -82,7 +82,8 @@ export const LocationForm: FC<Props> = ({ setStep }) => {
 				phone: formData.phone.value,
 				business_name: formData.business_name.value,
 				business_phone: formData.business_phone.value,
-				text_me_check: textMe
+				text_me_check: textMe,
+				isFilled: true
 			}
 		}));
 
@@ -102,9 +103,7 @@ export const LocationForm: FC<Props> = ({ setStep }) => {
 		if (offerData.locationForm.business_phone)
 			formData.business_phone.setValue(offerData.locationForm.business_phone);
 		if (offerData.locationForm.text_me_check) setTextMe(offerData.locationForm.text_me_check);
-
-		formData.city.setValue('Boston');
-		formData.state.setValue('MA');
+		if (offerData.titleForm.issue) formData.state.setValue(offerData.titleForm.issue);
 	}, []);
 
 	return (
@@ -149,7 +148,7 @@ export const LocationForm: FC<Props> = ({ setStep }) => {
 					{...formData.city.inputProps}
 					errors={formData.city.errors}
 					label='City'
-					disabled
+					placeholder='Enter city name'
 				/>
 				<InputField
 					{...formData.state.inputProps}

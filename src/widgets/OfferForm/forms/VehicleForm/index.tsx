@@ -35,11 +35,28 @@ export const VehicleForm: FC<Props> = ({ setStep }) => {
 		wheels: useSelect<ISelectOption>({
 			isRequired: true,
 			options: [
-				{ label: 'Yes', value: 'Yes' },
-				{ label: 'No', value: 'No' }
+				{
+					label: 'Yes, all of the wheels are attached and the tires are inflated.',
+					value: 'Yes, all of the wheels are attached and the tires are inflated.'
+				},
+				{ label: 'No, one or more tires are flat.', value: 'No, one or more tires are flat.' },
+				{
+					label: 'No, at least one wheel is missing or unattached',
+					value: 'No, at least one wheel is missing or unattached'
+				}
 			]
 		}),
-		title: useTextInput({ isRequired: true })
+		title: useSelect<ISelectOption>({
+			isRequired: true,
+			options: [
+				{ label: 'Yes, i have title', value: 'Yes, i have title' },
+				{
+					label: 'No, i have a salvage or rebuilt title',
+					value: 'No, i have a salvage or rebuilt title'
+				},
+				{ label: 'No sure, i can’t find my title', value: 'No sure, i can’t find my title' }
+			]
+		})
 	};
 
 	const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -53,7 +70,8 @@ export const VehicleForm: FC<Props> = ({ setStep }) => {
 				mileage: formData.mileage.value,
 				drive: formData.drive.value,
 				wheels: formData.wheels.value,
-				title: formData.title.value
+				title: formData.title.value,
+				isFilled: true
 			}
 		}));
 
@@ -77,7 +95,7 @@ export const VehicleForm: FC<Props> = ({ setStep }) => {
 					{...formData.mileage.inputProps}
 					errors={formData.mileage.errors}
 					maxLength={7}
-					label='Car mileage'
+					label='Car mileage (only number)'
 					placeholder='Car mileage'
 				/>
 				<ReactSelect
@@ -96,9 +114,11 @@ export const VehicleForm: FC<Props> = ({ setStep }) => {
 					label={'Are the wheels mounted and tires inflated?'}
 					placeholder='Choose option'
 				/>
-				<InputField
-					{...formData.title.inputProps}
+				<ReactSelect
 					errors={formData.title.errors}
+					defaultValue={setSelectedOrNull(offerData.vehicleForm.title)}
+					onChange={formData.title.inputProps.onChange}
+					options={formData.title.options}
 					label='Do you have a title?'
 					placeholder='Enter title'
 				/>

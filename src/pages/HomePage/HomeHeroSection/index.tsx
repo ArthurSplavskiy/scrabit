@@ -1,5 +1,5 @@
 import { useCommon } from '@/app/context/Common/CommonContext';
-import { OfferForm } from '@/entities/OfferForm';
+import { OfferForm } from '@/entities/HomeOfferForm';
 import Lottie from 'react-lottie-player';
 import { useHomePageData } from '../HomePageContext';
 import styles from './HomeHeroSection.module.scss';

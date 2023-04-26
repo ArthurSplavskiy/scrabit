@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, redirect } from 'react-router-dom';
 import PageLayout from '@/app/layouts/PageLayout';
 import ErrorPage from '@/pages/ErrorsPage';
 import HomePage from '@/pages/HomePage';
@@ -19,12 +19,12 @@ import CarBrandPage from '@/pages/SellMyCar/CarBrandPage';
 import ProfileLayout, { accountLayoutLoader } from '../layouts/ProfileLayout';
 import LoginPage from '@/pages/LoginPage';
 import RegistrationPage from '@/pages/RegistrationPage';
-import ComingSoon from '@/pages/ComingSoon';
 import ProfilePage from '@/pages/Profile';
 import ChangePasswordPage from '@/pages/ChangePasswordPage';
 import StaticPage from '@/pages/StaticPages';
 import { Page404 } from '@/pages/ErrorsPage/404';
 import OfferPage from '@/pages/OfferPage';
+import Cookies from 'js-cookie';
 
 export enum AppRoutes {
 	HOME = '/',
@@ -144,6 +144,12 @@ const AppRouter = createBrowserRouter([
 	{
 		path: '/offer',
 		element: <ProfileLayout />,
+		loader: async () => {
+			if (Cookies.get('first-offer-form-is-filled') === 'false') {
+				return redirect('/');
+			}
+			return null;
+		},
 		errorElement: <ErrorPage />,
 		children: [
 			{

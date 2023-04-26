@@ -98,7 +98,7 @@ export const BuyerForm: FC<Props> = ({ form }) => {
 							errors={formData.feedback.errors}
 							onChange={formData.feedback.inputProps.onChange}
 							options={form.feedback}
-							label={'Feedback'}
+							label={'Where did you hear about us?'}
 							placeholder='Choose feedback'
 						/>
 					</fieldset>

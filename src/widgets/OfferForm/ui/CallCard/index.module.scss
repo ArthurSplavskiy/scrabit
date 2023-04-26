@@ -1,0 +1,14 @@
+@use 'src/app/assets/styles/mixins' as *;
+
+.block {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border: 1px solid var(--black-text);
+	background: var(--white);
+	@include adaptiveSize('padding', 20, 16);
+	@include adaptiveSize('margin-top', 35, 16);
+	h5 {
+		margin: 16px 0 8px 0;
+	}
+}

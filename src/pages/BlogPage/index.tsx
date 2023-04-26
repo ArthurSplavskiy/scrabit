@@ -33,6 +33,7 @@ function BlogPage() {
 			))}
 			<ParallaxSection />
 			<MessageSection
+				goToOfferForm
 				title={'Let those grumpy old wheels go'}
 				subtitle={'you’ll get your offer  faster than it takes to buckle up'}
 				message={'how to sell a car quickly'}

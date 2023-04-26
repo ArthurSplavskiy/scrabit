@@ -72,9 +72,15 @@
 	flex-direction: column;
 	color: var(--black-40);
 	& > span {
-		display: block;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: baseline;
+		gap: 10px;
 		&:not(:last-child) {
 			@include adaptiveSize('margin-bottom', 12, 8);
+		}
+		button {
+			height: 18px;
 		}
 	}
 }

@@ -29,9 +29,9 @@ function CharityPage() {
 				title={data?.hero_section.title || ''}
 				subtitle={data?.hero_section.subtitle || ''}
 				messageType={'charity'}
-				btnText={'Check what your car worth'}
+				btnText={'Sign into buyer account'}
 				btnSlug={'/help-center'}
-				breadcrumbs={<Breadcrumbs />}
+				breadcrumbs={<Breadcrumbs homepageIsFirst={true} />}
 				bg={'white'}
 			/>
 			{data && (
@@ -55,10 +55,11 @@ function CharityPage() {
 			<MessageSection
 				title={'Scrabit’s buying'}
 				subtitle={'we’ll give your used car another chance'}
-				message={'if you have any questions you can always contact us'}
+				message={'If you have any questions you can always contact us'}
 				btnText={'Check what your car worth'}
-				btnSlug={'/help-center'}
-				bg={'green'}
+				btnSlug={'/'}
+				goToOfferForm
+				bg='green'
 			/>
 		</>
 	);

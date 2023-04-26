@@ -2,6 +2,7 @@ import { FC, useEffect, useState } from 'react';
 import Select, { GroupBase, Props } from 'react-select';
 import './ReactSelect.scss';
 import { useDevice } from '@/app/context/Device/DeviceContext';
+import { useCommon } from '@/app/context/Common/CommonContext';
 
 export type tReactSelectProps<
 	Option,
@@ -17,6 +18,7 @@ interface iReactSelectProps extends tReactSelectProps<any, any> {
 	className?: string;
 	errors?: string[];
 	labelLink?: React.ReactNode;
+	refOnInput?: any;
 }
 
 export const ReactSelect: FC<iReactSelectProps> = ({
@@ -27,11 +29,13 @@ export const ReactSelect: FC<iReactSelectProps> = ({
 	className = '',
 	errors,
 	labelLink,
+	refOnInput,
 	...props
 }) => {
 	const isHiddenIcon = hideIcon ? 'hidden-icon' : '';
 	const [isFocus, setIsFocus] = useState(false);
 	const { isMobile } = useDevice();
+	const { setFocusFirstOfferFormField } = useCommon();
 
 	return (
 		<fieldset className={`ReactSelect-group ${errors?.length ? 'has-error' : ''}`}>
@@ -40,13 +44,20 @@ export const ReactSelect: FC<iReactSelectProps> = ({
 				{!isMobile && <span className='ReactSelect-label-link'>{labelLink}</span>}
 			</label>
 			<Select
+				ref={refOnInput}
 				className={`ReactSelect ${isHiddenIcon} ${type} ${icon} ${className}  ${
 					isFocus ? 'focus' : ''
 				}`}
 				classNamePrefix='ReactSelect-select'
 				isSearchable={false}
-				onFocus={() => setIsFocus(true)}
-				onBlur={() => setIsFocus(false)}
+				onFocus={() => {
+					setIsFocus(true);
+					setFocusFirstOfferFormField(false);
+				}}
+				onBlur={() => {
+					setIsFocus(false);
+					setFocusFirstOfferFormField(false);
+				}}
 				{...props}
 			/>
 			{errors?.map((error, i) => (

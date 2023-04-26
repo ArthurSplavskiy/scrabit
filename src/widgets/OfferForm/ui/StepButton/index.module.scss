@@ -6,6 +6,16 @@
 			border-color: var(--main-blue);
 		}
 	}
+	&:disabled {
+		cursor: not-allowed;
+		background: none;
+		&:hover {
+			color: var(--black-text);
+			.checker {
+				border-color: var(--black-text);
+			}
+		}
+	}
 	&.active {
 	}
 	&.disable {

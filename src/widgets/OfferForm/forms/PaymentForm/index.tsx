@@ -32,21 +32,54 @@ export const PaymentForm: FC<Props> = ({ setStep }) => {
 		false
 	);
 
+	let currentDate = new Date();
+	let months = [
+		'January',
+		'February',
+		'March',
+		'April',
+		'May',
+		'June',
+		'July',
+		'August',
+		'September',
+		'October',
+		'November',
+		'December'
+	];
+	const firstSevenDays: ISelectOption[] = [];
+	for (let i = 0; i < 7; i++) {
+		currentDate.setDate(currentDate.getDate() + 1);
+		firstSevenDays.push({
+			label: `${months[currentDate.getMonth()]}, ${currentDate.getDate()}`,
+			value: `${months[currentDate.getMonth()]}, ${currentDate.getDate()}`
+		});
+	}
+
 	const formData = {
 		name: useTextInput({ isRequired: true }),
 		time: useSelect<ISelectOption>({
 			isRequired: true,
 			options: [
+				{ label: '7:00', value: '7:00' },
 				{ label: '8:00', value: '8:00' },
-				{ label: '10:00', value: '10:00' }
+				{ label: '9:00', value: '9:00' },
+				{ label: '10:00', value: '10:00' },
+				{ label: '11:00', value: '11:00' },
+				{ label: '12:00', value: '12:00' },
+				{ label: '13:00', value: '13:00' },
+				{ label: '14:00', value: '14:00' },
+				{ label: '15:00', value: '15:00' },
+				{ label: '16:00', value: '16:00' },
+				{ label: '17:00', value: '17:00' },
+				{ label: '18:00', value: '18:00' },
+				{ label: '19:00', value: '19:00' },
+				{ label: '20:00', value: '20:00' }
 			]
 		}),
 		date: useSelect<ISelectOption>({
 			isRequired: true,
-			options: [
-				{ label: '01', value: '01' },
-				{ label: '02', value: '02' }
-			]
+			options: firstSevenDays
 		})
 	};
 
@@ -56,10 +89,12 @@ export const PaymentForm: FC<Props> = ({ setStep }) => {
 
 		setOfferData((prev) => ({
 			...prev,
+			stepIndex: 6,
 			paymentForm: {
 				name: formData.name.value,
 				time: formData.time.value,
-				date: formData.date.value
+				date: formData.date.value,
+				isFilled: true
 			}
 		}));
 
@@ -73,6 +108,8 @@ export const PaymentForm: FC<Props> = ({ setStep }) => {
 
 	useEffect(() => {
 		if (offerData.paymentForm.name) formData.name.setValue(offerData.paymentForm.name);
+		if (offerData.paymentForm.time) formData.time.setValue(offerData.paymentForm.time);
+		if (offerData.paymentForm.date) formData.date.setValue(offerData.paymentForm.date);
 	}, []);
 
 	return (
@@ -92,14 +129,16 @@ export const PaymentForm: FC<Props> = ({ setStep }) => {
 								defaultValue={setSelectedOrNull(offerData.paymentForm.time)}
 								onChange={formData.time.inputProps.onChange}
 								options={formData.time.options}
-								label={'Choose a Time'}
+								label={'Choose a time'}
+								placeholder='Time'
 							/>
 							<ReactSelect
 								errors={formData.date.errors}
 								defaultValue={setSelectedOrNull(offerData.paymentForm.date)}
 								onChange={formData.date.inputProps.onChange}
 								options={formData.date.options}
-								label={'Choose a Time'}
+								label={'Choose a date'}
+								placeholder='Date'
 							/>
 						</div>
 					</div>

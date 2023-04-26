@@ -77,8 +77,12 @@ export const DetailsForm: FC<Props> = ({ setStep }) => {
 				{ label: 'No', value: 'No' }
 			]
 		}),
-		flood: useTextInput({
-			isRequired: true
+		flood: useSelect<ISelectOption>({
+			isRequired: true,
+			options: [
+				{ label: 'Yes', value: 'Yes' },
+				{ label: 'No', value: 'No' }
+			]
 		}),
 		converters: useSelect<ISelectOption>({
 			isRequired: true,
@@ -101,13 +105,15 @@ export const DetailsForm: FC<Props> = ({ setStep }) => {
 		setOfferData((prev) => ({
 			...prev,
 			stepIndex: 2,
+			detailsStepCheck: true,
 			detailsForm: {
 				car_condition: radioState,
 				wheels: formData.wheels.value,
 				damage: formData.damage.value,
 				flood: formData.flood.value,
 				converters: formData.converters.value,
-				damageZone: damageZone
+				damageZone: damageZone,
+				isFilled: true
 			}
 		}));
 
@@ -145,6 +151,13 @@ export const DetailsForm: FC<Props> = ({ setStep }) => {
 		}
 		setDamageZone((prev) => [...prev, zone]);
 	};
+
+	useEffect(() => {
+		if (formData.damage.value === 'Yes') {
+			setDamageZone([]);
+			openOfferDamagePopup();
+		}
+	}, [formData.damage.value]);
 
 	useEffect(() => {
 		if (offerData.detailsForm.wheels) formData.wheels.setValue(offerData.detailsForm.wheels);
@@ -192,12 +205,14 @@ export const DetailsForm: FC<Props> = ({ setStep }) => {
 							}
 							onChange={formData.damage.inputProps.onChange}
 							options={formData.damage.options}
-							label={'Does your car have any damadge'}
+							label={'Does your car have any damage'}
 							placeholder='Choose option'
 						/>
-						<InputField
-							{...formData.flood.inputProps}
+						<ReactSelect
 							errors={formData.flood.errors}
+							defaultValue={setSelectedOrNull(offerData.detailsForm.flood)}
+							onChange={formData.flood.inputProps.onChange}
+							options={formData.flood.options}
 							label='Any flood or fire damage?'
 							placeholder='Enter any information about damage'
 						/>

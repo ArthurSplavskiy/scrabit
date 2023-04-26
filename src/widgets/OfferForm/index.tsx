@@ -15,10 +15,14 @@ import { LocationForm } from './forms/LocationForm';
 import { PaymentForm } from './forms/PaymentForm';
 import { FinalInfo } from './ui/FinalInfo';
 import classNames from 'classnames';
+import Cookies from 'js-cookie';
+import { useCommon } from '@/app/context/Common/CommonContext';
+import { Link } from 'react-router-dom';
 
 export const OfferStepForm = () => {
 	const [step, setStep] = useState<IStep>(initialStep);
 	const [offerData, setOfferData] = useSessionStorage<IOfferData>('offerData', initialOfferData);
+	const { openDeclineOfferPopup } = useCommon();
 
 	useEffect(() => {
 		setStep({
@@ -77,7 +81,8 @@ export const OfferStepForm = () => {
 		});
 	}, [offerData]);
 
-	const currentStep: IStepObj = step.steps[step.count];
+	const maxStep = step.count > step.steps.length - 1 ? step.steps.length - 1 : step.count;
+	const currentStep: IStepObj = step.steps[maxStep];
 
 	const end = step.count > 2 ? 100 : 3;
 
@@ -100,6 +105,10 @@ export const OfferStepForm = () => {
 			...initialOfferData,
 			...prev
 		}));
+
+		if (!offerData.carForm.isFilled) {
+			Cookies.set('first-offer-form-is-filled', 'false');
+		}
 	}, []);
 
 	// transitions
@@ -109,7 +118,7 @@ export const OfferStepForm = () => {
 		<div className={styles.offerForm}>
 			<div className='container'>
 				<div className={styles.offerFormWrapper}>
-					<OfferStepSidebar sidebarSteps={sidebarSteps} stepCount={step.count} setStep={setStep} />
+					<OfferStepSidebar sidebarSteps={sidebarSteps} stepCount={maxStep} setStep={setStep} />
 					{!offerData.isDone ? <OfferStepContent currentStep={currentStep} /> : null}
 					{offerData.isDone ? (
 						<OfferStepContent
@@ -128,8 +137,19 @@ export const OfferStepForm = () => {
 							<div />
 							<div>
 								<p className={classNames(styles.cancelOffer, 'text-16-14')}>
-									Changed your mind about this deal? You can <a href='#'>cancel this offer</a> at
-									any time.
+									Changed your mind about this deal? You can{' '}
+									<a
+										href='#'
+										onClick={(e) => {
+											e.preventDefault();
+											openDeclineOfferPopup();
+										}}>
+										cancel this offer
+									</a>{' '}
+									at any time.
+								</p>
+								<p className={classNames(styles.cancelOffer, 'text-16-14')}>
+									Or return to the <Link to='/'>Homepage</Link>
 								</p>
 							</div>
 						</>

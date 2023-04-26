@@ -19,9 +19,12 @@ export const StepButton: FC<Props> = ({ name, itemIndex, activeIndex, setStep })
 		<button
 			type='button'
 			className={classNames(styles.btn, {
-				[styles.active]: itemIndex <= activeIndex && itemIndex <= offerData.stepIndex,
+				[styles.active]:
+					(itemIndex < activeIndex && itemIndex < offerData.stepIndex) ||
+					offerData.detailsStepCheck,
 				[styles.disable]: itemIndex > activeIndex && itemIndex > offerData.stepIndex
 			})}
+			disabled={offerData.stepIndex > 2}
 			onClick={() => {
 				setStep((prev: IStep) => ({
 					...prev,
@@ -29,9 +32,10 @@ export const StepButton: FC<Props> = ({ name, itemIndex, activeIndex, setStep })
 				}));
 			}}>
 			<div className={styles.checker}>
-				{itemIndex <= activeIndex && itemIndex <= offerData.stepIndex && (
+				{(itemIndex < activeIndex && itemIndex < offerData.stepIndex) ||
+				offerData.detailsStepCheck ? (
 					<Icon icon='check' size={'12'} />
-				)}
+				) : null}
 			</div>
 			<span>{name}</span>
 		</button>

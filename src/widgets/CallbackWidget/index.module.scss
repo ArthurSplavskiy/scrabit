@@ -1,0 +1,50 @@
+@use 'src/app/assets/styles/mixins' as *;
+
+.phone {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 72px;
+	height: 72px;
+	border-radius: 100%;
+	border: 1px solid var(--black-text);
+	background: var(--main-green);
+	position: fixed;
+	right: 24px;
+	bottom: 24px;
+	z-index: 5;
+	@media (max-width: 768px) {
+		width: 56px;
+		height: 56px;
+	}
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin: 0 auto;
+	max-width: 390px;
+	.phoneInput {
+		@include adaptiveSize('margin-top', 24, 16);
+	}
+	button {
+		@include adaptiveSize('margin-top', 40, 24);
+	}
+	&.thanks {
+		&:after {
+			content: 'Thanks';
+			text-transform: uppercase;
+			font-style: italic;
+			font-size: 32px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: absolute;
+			inset: 0 0 0 0;
+			z-index: 2;
+			background: var(--white);
+		}
+	}
+}

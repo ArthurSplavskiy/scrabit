@@ -65,7 +65,7 @@ export const PhotosForm: FC<Props> = ({ setStep }) => {
 										<img src={image.dataURL} alt='upload photo' />
 										<div className={styles.uploaderImageBackdrop}>
 											{/* <button onClick={() => onImageUpdate(index)}>Update</button> */}
-											<button onClick={() => onImageRemove(index)}>
+											<button type='button' onClick={() => onImageRemove(index)}>
 												<Icon icon='close' size='10' color='white' />
 												<ProgressRing progress={100} />
 											</button>
@@ -95,6 +95,7 @@ export const PhotosForm: FC<Props> = ({ setStep }) => {
 							)}
 						</div>
 						<Button
+							type='button'
 							style={isDragging ? { color: 'red' } : undefined}
 							onClick={onImageUpload}
 							iconName='upload'

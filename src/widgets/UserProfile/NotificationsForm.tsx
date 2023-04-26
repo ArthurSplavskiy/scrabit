@@ -103,7 +103,7 @@ export const NotificationsForm: FC<Props> = ({ setFieldIsEdit, isActive }) => {
 				<Switcher label='sddsds' text={'Send updates to my phone number'} disabled={!isEdit} />
 				<p className='text-14'>
 					I agree to receiving SMS messages about my offer, scheduling, and the sale of my vehicle.
-					SMS data rates may apply. <a href='#'>What's in these updates?</a>
+					SMS data rates may apply.
 				</p>
 			</div>
 			{isMobile && (

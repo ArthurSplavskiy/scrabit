@@ -44,12 +44,60 @@ export const TitleForm: FC<Props> = ({ setStep }) => {
 
 	const formData = {
 		title: useTextInput({ isRequired: true }),
-		vim: useTextInput({ isRequired: true }),
+		vim: useTextInput({ isRequired: true, validators: ['vim'] }),
 		issue: useSelect<ISelectOption>({
 			isRequired: true,
 			options: [
-				{ label: 'Yes', value: 'Yes' },
-				{ label: 'No', value: 'No' }
+				{ label: 'Alabama', value: 'Alabama' },
+				{ label: 'Alaska', value: 'Alaska' },
+				{ label: 'Arizona', value: 'Arizona' },
+				{ label: 'Arkansas', value: 'Arkansas' },
+				{ label: 'California', value: 'California' },
+				{ label: 'Colorado', value: 'Colorado' },
+				{ label: 'Connecticut', value: 'Connecticut' },
+				{ label: 'Delaware', value: 'Delaware' },
+				{ label: 'Florida', value: 'Florida' },
+				{ label: 'Georgia', value: 'Georgia' },
+				{ label: 'Hawaii', value: 'Hawaii' },
+				{ label: 'Idaho', value: 'Idaho' },
+				{ label: 'Illinois', value: 'Illinois' },
+				{ label: 'Indiana', value: 'Indiana' },
+				{ label: 'Iowa', value: 'Iowa' },
+				{ label: 'Kansas', value: 'Kansas' },
+				{ label: 'Kentucky', value: 'Kentucky' },
+				{ label: 'Louisiana', value: 'Louisiana' },
+				{ label: 'Maine', value: 'Connecticut' },
+				{ label: 'Maryland', value: 'Maryland' },
+				{ label: 'Massachusetts', value: 'Massachusetts' },
+				{ label: 'Michigan', value: 'Michigan' },
+				{ label: 'Minnesota', value: 'Minnesota' },
+				{ label: 'Mississippi', value: 'Mississippi' },
+				{ label: 'Missouri', value: 'Missouri' },
+				{ label: 'Montana', value: 'Montana' },
+				{ label: 'Nebraska', value: 'Nebraska' },
+				{ label: 'Nevada', value: 'Nevada' },
+				{ label: 'New Hampshire', value: 'New Hampshire' },
+				{ label: 'New Jersey', value: 'New Jersey' },
+				{ label: 'New Mexico', value: 'New Mexico' },
+				{ label: 'New York', value: 'New York' },
+				{ label: 'North Carolina', value: 'North Carolina' },
+				{ label: 'North Dakota', value: 'North Dakota' },
+				{ label: 'Ohio', value: 'Ohio' },
+				{ label: 'Oklahoma', value: 'Oklahoma' },
+				{ label: 'Oregon', value: 'Oregon' },
+				{ label: 'Pennsylvania', value: 'Pennsylvania' },
+				{ label: 'Rhode Island', value: 'Rhode Island' },
+				{ label: 'South Carolina', value: 'South Carolina' },
+				{ label: 'South Dakota', value: 'South Dakota' },
+				{ label: 'Tennessee', value: 'Tennessee' },
+				{ label: 'Texas', value: 'Texas' },
+				{ label: 'Utah', value: 'Utah' },
+				{ label: 'Vermont', value: 'Vermont' },
+				{ label: 'Virginia', value: 'Virginia' },
+				{ label: 'Washington', value: 'Washington' },
+				{ label: 'West Virginia', value: 'West Virginia' },
+				{ label: 'Wisconsin', value: 'Wisconsin' },
+				{ label: 'Wyoming', value: 'Wyoming' }
 			]
 		}),
 		color: useSelect<ISelectOption>({
@@ -72,7 +120,8 @@ export const TitleForm: FC<Props> = ({ setStep }) => {
 				title: formData.title.value,
 				vim: formData.vim.value,
 				issue: formData.issue.value,
-				color: formData.color.value
+				color: formData.color.value,
+				isFilled: true
 			}
 		}));
 
@@ -104,6 +153,7 @@ export const TitleForm: FC<Props> = ({ setStep }) => {
 						errors={formData.vim.errors}
 						label='VIN'
 						placeholder='Enter VIN'
+						maxLength={17}
 						underElem={
 							<button
 								type='button'
@@ -135,7 +185,7 @@ export const TitleForm: FC<Props> = ({ setStep }) => {
 				</fieldset>
 				<div className={styles.expirePriceNav}>
 					<div className={styles.expirePrice}>
-						<h2>{offerDataResponseInfo.price}</h2>
+						<h2 className='text-40-24'>{offerDataResponseInfo.price}</h2>
 						<span className='text-16-14'>Offer expires in 7 days</span>
 					</div>
 					<Button customType='black' iconName='arrow' iconPosition='right'>
@@ -149,14 +199,11 @@ export const TitleForm: FC<Props> = ({ setStep }) => {
 				withBackdrop={false}
 				onClose={closeVinPopup}
 				onAnimationHideStart={popupHide}>
-				<TemplateModal
-					title='How can I find my VIN?'
-					subTitle='Let’s head back real quick so you can accept or decline the 
-previous offer before we move on . Let’s head back real quick so you can accept or decline the previous offer before we move onLet’s head back real quick so you can accept or decline the '>
+				<TemplateModal title='How can I find my VIN?'>
 					<div className={styles.vimPopup}>
 						<p className='text-16-14'>
-							Let’s head back real quick so you can accept or decline the previous offer before we
-							move on .{' '}
+							Let’s head back real quick so you can accept or deсline the previous offer before we
+							move on
 						</p>
 						<img src='/images/car.png' alt='car' />
 					</div>

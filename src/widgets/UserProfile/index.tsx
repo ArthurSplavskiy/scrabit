@@ -6,8 +6,15 @@ import { AccountForm } from './AccountForm';
 import { PasswordForm } from './PasswordForm';
 import { NotificationsForm } from './NotificationsForm';
 import { useState } from 'react';
+import useSessionStorage from '@/shared/hooks/useSessionStorage';
+import { IOfferData, initialOfferData } from '../OfferForm/initialOfferData';
+import { useCommon } from '@/app/context/Common/CommonContext';
+import { useNavigate } from 'react-router-dom';
 
 export const UserProfile = () => {
+	const [offerData] = useSessionStorage<IOfferData>('offerData', initialOfferData);
+	const { setFocusFirstOfferFormField } = useCommon();
+	const navigate = useNavigate();
 	const { isMobile } = useDevice();
 	const [fieldIsEdit, setFieldIsEdit] = useState(false);
 	const profile = {
@@ -45,6 +52,23 @@ export const UserProfile = () => {
 								<span className='text-16-14'>
 									Car status:
 									<span className={styles.headBottomStatusItem}>{profile.car_status}</span>
+								</span>
+								<span className='text-16-14'>
+									Offer details:
+									{offerData.isDone ? (
+										<Button customType='text-underline' btnTo='/offer'>
+											OFFER
+										</Button>
+									) : (
+										<Button
+											customType='text-underline'
+											btnTo='/'
+											onClick={() => {
+												setFocusFirstOfferFormField(true);
+											}}>
+											GET THE OFFER
+										</Button>
+									)}
 								</span>
 							</div>
 						</div>

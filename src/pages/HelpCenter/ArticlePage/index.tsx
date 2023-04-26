@@ -38,10 +38,11 @@ function HelpCenterArticlePage() {
 			<MessageSection
 				title={'Scrabit’s buying'}
 				subtitle={'we’ll give your used car another chance'}
-				message={'if you have any questions you can always contacts us'}
+				message={'If you have any questions you can always contact us'}
 				btnText={'Check what your car worth'}
-				btnSlug={'/help-center'}
-				bg={'green'}
+				btnSlug={'/'}
+				goToOfferForm
+				bg='green'
 			/>
 		</>
 	);

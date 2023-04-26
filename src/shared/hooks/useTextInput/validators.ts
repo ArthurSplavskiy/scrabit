@@ -71,6 +71,12 @@ export const zipcodeValidation = <T>(value: T): boolean => {
 	return re.test(value);
 };
 
+export const vimValidation = <T>(value: T): boolean => {
+	if (typeof value !== 'string') return false;
+	const re = new RegExp(/^[A-HJ-NPR-Z\d]{17}$/i);
+	return re.test(value);
+};
+
 export const urlValidation = <T>(value: T) => {
 	if (typeof value !== 'string') return false;
 	const str = new RegExp(
@@ -102,7 +108,8 @@ export const errorsMessages = {
 	ZIPCODE: 'Enter a valid zipcode',
 	FIRST_NAME: 'Please enter a first name',
 	LAST_NAME: 'Please enter a last name',
-	FIELD_REQUIRED: 'This field is required'
+	FIELD_REQUIRED: 'This field is required',
+	VIM: 'Invalid VIN Number'
 };
 
 export const inputValidators = {
@@ -113,5 +120,6 @@ export const inputValidators = {
 	website: { checkFn: urlValidation, error: errorsMessages.WEBSITE },
 	url: { checkFn: urlValidation, error: errorsMessages.URL },
 	numberRange: { checkFn: numberRangeValidation, error: errorsMessages.NUMBER_RANGE },
-	zipcode: { checkFn: zipcodeValidation, error: errorsMessages.ZIPCODE }
+	zipcode: { checkFn: zipcodeValidation, error: errorsMessages.ZIPCODE },
+	vim: { checkFn: vimValidation, error: errorsMessages.VIM }
 };

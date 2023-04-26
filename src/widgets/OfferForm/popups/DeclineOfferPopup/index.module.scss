@@ -1,0 +1,24 @@
+.popup {
+	padding: 30px;
+	p {
+		margin: 16px auto 0 auto;
+		max-width: 500px;
+		text-align: center;
+	}
+	@media (max-width: 768px) {
+		padding: 0;
+	}
+}
+.btns {
+	display: flex;
+	align-items: center;
+	max-width: 490px;
+	margin: 40px auto 0 auto;
+	gap: 14px;
+	@media (max-width: 768px) {
+		flex-direction: column;
+		button {
+			width: 100%;
+		}
+	}
+}

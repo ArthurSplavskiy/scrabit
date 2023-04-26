@@ -2,8 +2,9 @@ import { useDevice } from '@/app/context/Device/DeviceContext';
 import { HeroAnimationCar } from '@/entities/HeroAnimationCar';
 import { Button } from '@/shared/ui/Button';
 import classNames from 'classnames';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import styles from './MessageSection.module.scss';
+import { useCommon } from '@/app/context/Common/CommonContext';
 
 interface Props {
 	title: string;
@@ -12,10 +13,25 @@ interface Props {
 	btnText: string;
 	btnSlug: string;
 	bg?: 'green';
+	goToOfferForm?: boolean;
 }
 
-export const MessageSection: FC<Props> = ({ title, subtitle, message, btnText, btnSlug, bg }) => {
+export const MessageSection: FC<Props> = ({
+	title,
+	subtitle,
+	message,
+	btnText,
+	btnSlug,
+	bg,
+	goToOfferForm
+}) => {
 	const { isMobile } = useDevice();
+	const { setFocusFirstOfferFormField } = useCommon();
+
+	useEffect(() => {
+		if (goToOfferForm) setFocusFirstOfferFormField(true);
+	}, [goToOfferForm]);
+
 	return (
 		<section>
 			<div className='container'>

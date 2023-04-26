@@ -52,7 +52,7 @@ export const Footer: FC = () => {
 											<li className='text-16-14' key={idx}>
 												<Link
 													onClick={() => scrollToBlock(item.slug)}
-													to={item.anchor ? `/#${item.slug}` : item.slug}
+													to={item.anchor ? `/#${item.slug}` : `/${item.slug}`}
 													reloadDocument={false}>
 													{item.name}
 												</Link>
@@ -86,7 +86,7 @@ export const Footer: FC = () => {
 								<ul>
 									{promoCars?.map((item) => (
 										<li className='text-16-14' key={item.slug}>
-											<Link to={item.slug} reloadDocument={false}>
+											<Link to={`${item.slug}`} reloadDocument={false}>
 												{item.name}
 											</Link>
 										</li>

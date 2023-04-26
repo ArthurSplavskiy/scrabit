@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { useDevice } from '@/app/context/Device/DeviceContext';
 import useSessionStorage from '@/shared/hooks/useSessionStorage';
 import { IOfferData, initialOfferData } from '../../initialOfferData';
+import { Link } from 'react-router-dom';
 
 interface Props {}
 
@@ -37,21 +38,17 @@ export const FinalInfo: FC<Props> = () => {
 						<li className={styles.bottomOfferListItem}>
 							<h4>Location</h4>
 							<div>
-								<a href='#' className='text-16-14'>
-									99 Kneeland St., Boston, MA 02196
-								</a>
+								<p className='text-16-14'>99 Kneeland St., Boston, MA 02196</p>
 							</div>
 						</li>
 					</ul>
-					<h3 className={styles.offsetTitle}>buyer and partner info</h3>
+					{/* <h3 className={styles.offsetTitle}>buyer and partner info</h3>
 					<ul className={styles.bottomOfferList}>
 						<li>
 							<h4>Buyer</h4>
 							<div>
 								<p className='text-16-14'>Chuckran Auto Parts</p>
-								<a href='#' className='text-16-14'>
-									Inc. 508-697-6319
-								</a>
+								<p className='text-16-14'>Inc. 508-697-6319</p>
 								<p className={classNames(styles.bottomOfferListSchedule, 'text-16-14')}>
 									M - F:7:00 - 16:00 GMT-5 Sa - Su:Closed
 								</p>
@@ -65,7 +62,7 @@ export const FinalInfo: FC<Props> = () => {
 								<p className='text-16-14'>Same as buyer</p>
 							</div>
 						</li>
-					</ul>
+					</ul> */}
 				</div>
 				<div className={styles.bottomList}>
 					<div className={styles.bottomListHead}>
@@ -85,9 +82,9 @@ export const FinalInfo: FC<Props> = () => {
 								Be prepared to remove the license plate before you wave goodbye
 							</li>
 						</ul>
-						<a href='#' className={styles.bottomListLink}>
+						<Link to={'/help-center'} className={styles.bottomListLink}>
 							How do I sign my California title?
-						</a>
+						</Link>
 					</div>
 				</div>
 			</div>

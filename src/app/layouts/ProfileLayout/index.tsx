@@ -1,9 +1,7 @@
-import { Footer } from '@/widgets/Footer';
 import { Header } from '@/widgets/Header';
-import { Preloader } from '@/widgets/Preloader';
 import Cookies from 'js-cookie';
 import { FC } from 'react';
-import { Outlet, redirect, ScrollRestoration, useLocation, useNavigate } from 'react-router-dom';
+import { Outlet, ScrollRestoration, useLocation } from 'react-router-dom';
 import './index.module.scss';
 
 export async function accountLayoutLoader() {

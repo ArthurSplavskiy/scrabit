@@ -7,6 +7,7 @@ import { useDevice } from '@/app/context/Device/DeviceContext';
 import { Button } from '@/shared/ui/Button';
 import useSessionStorage from '@/shared/hooks/useSessionStorage';
 import { IOfferData, initialOfferData } from '../../initialOfferData';
+import { useCommon } from '@/app/context/Common/CommonContext';
 
 interface Props {
 	title: string;
@@ -30,6 +31,7 @@ export const CalcInfo: FC<Props> = ({
 	const { isSmallMobile } = useDevice();
 	const [, setOfferPriceScreen] = useSessionStorage<boolean>('offerPriceScreen', true);
 	const [, setOfferData] = useSessionStorage<IOfferData>('offerData', initialOfferData);
+	const { openDeclineOfferPopup } = useCommon();
 	return (
 		<>
 			<div className={styles.block}>
@@ -37,7 +39,7 @@ export const CalcInfo: FC<Props> = ({
 					<div className={styles.head}>
 						<p className={classNames(styles.title, 'text-24-14')}>{title}</p>
 						{!isSmallMobile && (
-							<button className={styles.decline}>
+							<button className={styles.decline} onClick={openDeclineOfferPopup}>
 								<span>DECLINE OFFER</span>
 								<div>
 									<Icon icon='close' size='8' />
@@ -54,11 +56,11 @@ export const CalcInfo: FC<Props> = ({
 								onClickFn={() => {
 									setOfferPriceScreen(false);
 									isDone && setOfferData((prev) => ({ ...prev, isDone: true }));
-									console.log('isDone', isDone);
 									nextStep &&
 										setOfferData((prev) => ({
 											...prev,
-											stepIndex: nextStep
+											stepIndex: nextStep,
+											detailsStepCheck: false
 										}));
 								}}
 							/>
@@ -76,7 +78,11 @@ export const CalcInfo: FC<Props> = ({
 			</div>
 			{isSmallMobile && (
 				<div className={styles.mobileBtns}>
-					<Button customType='outline' iconName='cross' iconPosition='right'>
+					<Button
+						customType='outline'
+						iconName='cross'
+						iconPosition='right'
+						onClick={openDeclineOfferPopup}>
 						DECLINE OFFER
 					</Button>
 					<NextButton
@@ -87,7 +93,8 @@ export const CalcInfo: FC<Props> = ({
 							nextStep &&
 								setOfferData((prev) => ({
 									...prev,
-									stepIndex: nextStep
+									stepIndex: nextStep,
+									detailsStepCheck: false
 								}));
 						}}
 					/>

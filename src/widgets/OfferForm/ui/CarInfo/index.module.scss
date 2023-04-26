@@ -1,0 +1,38 @@
+@use 'src/app/assets/styles/mixins' as *;
+
+.block {
+	background: var(--blue-10);
+	padding: 32px 48px;
+	border-top: 1px solid var(--black-text);
+	border-left: 1px solid var(--black-text);
+	border-right: 1px solid var(--black-text);
+	@media (max-width: 480px) {
+		border-bottom: 1px solid var(--black-text);
+		padding: 16px;
+	}
+}
+.year {
+	color: var(--black-60);
+	margin-bottom: 4px;
+}
+.car {
+	font-style: italic;
+	text-transform: uppercase;
+	color: var(--black-text);
+	margin-bottom: 4px;
+}
+.place {
+	display: flex;
+	align-items: center;
+	gap: 7px;
+	color: var(--black-60);
+	margin-bottom: 2px;
+}
+.offerId {
+	color: var(--black-60);
+	padding-left: 24px;
+	span {
+		color: var(--black-text);
+		text-decoration: underline;
+	}
+}

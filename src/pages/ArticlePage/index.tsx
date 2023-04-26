@@ -36,9 +36,10 @@ function ArticlePage() {
 			<MessageSection
 				title={'Scrabit’s buying'}
 				subtitle={'we’ll give your used car another chance'}
-				message={'how to sell a car quickly'}
+				message={'If you have any questions you can always contact us'}
 				btnText={'Check what your car worth'}
 				btnSlug={'/'}
+				goToOfferForm
 				bg='green'
 			/>
 		</>
