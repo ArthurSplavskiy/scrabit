@@ -1,8 +1,9 @@
 import { Header } from '@/widgets/Header';
 import Cookies from 'js-cookie';
-import { FC } from 'react';
+import { FC, Suspense } from 'react';
 import { Outlet, ScrollRestoration, useLocation } from 'react-router-dom';
 import './index.module.scss';
+import { Preloader } from '@/widgets/Preloader';
 
 export async function accountLayoutLoader() {
 	const token = Cookies.get('auth-token');
@@ -31,7 +32,9 @@ const ProfileLayout: FC = () => {
 				)}
 			/>
 			<div className='ProfileLayout-main'>
-				<Outlet />
+				<Suspense fallback={<Preloader />}>
+					<Outlet />
+				</Suspense>
 			</div>
 		</div>
 	);

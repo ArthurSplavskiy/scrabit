@@ -75,7 +75,8 @@
 			}
 		}
 		&:before {
-			background: linear-gradient(89.93deg, #32b1c4 0.04%, #3dcb9f 48.43%, #5cd56e 99.92%);
+			//background: linear-gradient(89.93deg, #32b1c4 0.04%, #3dcb9f 48.43%, #5cd56e 99.92%);
+			background: #3dcb9f;
 			bottom: 5px;
 			@media screen and (max-width: 1200px) {
 				display: none;
@@ -88,13 +89,19 @@
 			background-clip: text;
 			text-fill-color: transparent;
 		}
+		a {
+			transition: var(--transition);
+		}
 		@media (any-hover: hover) {
 			&:hover {
-				background: linear-gradient(89.93deg, #32b1c4 0.04%, #3dcb9f 48.43%, #5cd56e 99.92%);
-				-webkit-background-clip: text;
-				-webkit-text-fill-color: transparent;
-				background-clip: text;
-				text-fill-color: transparent;
+				a {
+					color: #3dcb9f;
+				}
+				// background: linear-gradient(89.93deg, #32b1c4 0.04%, #3dcb9f 48.43%, #5cd56e 99.92%);
+				// -webkit-background-clip: text;
+				// -webkit-text-fill-color: transparent;
+				// background-clip: text;
+				// text-fill-color: transparent;
 			}
 		}
 		&:not(:last-child) {

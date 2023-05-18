@@ -1,0 +1,41 @@
+%init-scroll {
+	opacity: 0;
+	transition: all 0.3s ease-out 0.1s;
+}
+
+%done-scroll {
+	opacity: 1;
+	transition: all 0.3s ease-out 0.1s;
+}
+
+[data-scroll-up],
+[data-scroll-left],
+[data-scroll-right] {
+	@extend %init-scroll;
+}
+
+[data-scroll-up='show'],
+[data-scroll-left='show'],
+[data-scroll-right='show'] {
+	@extend %done-scroll;
+}
+
+// up
+[data-scroll-up='hide'] {
+	transform: translate3d(0, 20px, 0);
+}
+
+// left
+[data-scroll-left='hide'] {
+	transform: translate3d(-20px, 0, 0);
+}
+
+// left
+[data-scroll-right='hide'] {
+	transform: translate3d(20px, 0, 0);
+}
+
+// delay
+[data-scroll-delay='0.3'] {
+	transition-delay: 0.3s;
+}

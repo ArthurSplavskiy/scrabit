@@ -7,11 +7,11 @@ import { useQuery } from 'react-query';
 import { queryKeys } from '@/app/queryClient/queryKeys';
 import { ICommonContacts } from '@/app/common/api/interfaces';
 import { IMenu } from '../interfaces';
-import api from '@/app/common/api';
 import { Icon } from '@/shared/ui/Icon/Icon';
+import api from '@/app/common/api';
 import classNames from 'classnames';
-import './HeaderMenu.scss';
 import useIsFirstRender from '@/shared/hooks/useIsFirstRender';
+import './HeaderMenu.scss';
 
 interface Props extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
 	data?: IMenu[];
@@ -51,8 +51,8 @@ const SublistItem: FC<ISublistItemProps> = ({ name, slug, sublist, menuHandler }
 					open: isSublistOpen
 				})}
 				style={{ height: itemHeight + 'px' }}>
-				{sublist?.map((item) => (
-					<li key={item.id}>
+				{sublist?.map((item, idx) => (
+					<li key={idx}>
 						<Link
 							className='text-18'
 							to={item.link}
@@ -86,12 +86,12 @@ export const HeaderMenu: FC<Props> = ({ data, active, menuHandler, ...props }) =
 				{!isDesktop
 					? data
 							?.filter((item) => !item.sublist)
-							.map((item) => (
+							.map((item, idx) => (
 								<li
 									className={classNames('HeaderMenu-item text-16', {
 										active: location.pathname === `/${item.slug}`
 									})}
-									key={item.slug}>
+									key={idx}>
 									<Link
 										onClick={() => handleClick(item.slug)}
 										to={item.anchor ? `/#${item.slug}` : `/${item.slug}`}
@@ -100,8 +100,8 @@ export const HeaderMenu: FC<Props> = ({ data, active, menuHandler, ...props }) =
 									</Link>
 								</li>
 							))
-					: data?.map((item) => (
-							<li className='HeaderMenu-item text-16' key={item.slug}>
+					: data?.map((item, idx) => (
+							<li className='HeaderMenu-item text-16' key={idx}>
 								{item.sublist ? (
 									<SublistItem
 										name={item.name}

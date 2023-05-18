@@ -10,9 +10,11 @@ interface Props {
 
 export const OfferStepContent: FC<Props> = ({ currentStep }) => {
 	const [offerPriceScreen] = useSessionStorage<boolean>('offerPriceScreen', false);
+	const [calculateOfferCostStatus] = useSessionStorage<boolean>('calculateOfferCostStatus', false);
+
 	return (
 		<div className={styles.offerFormContent}>
-			{!offerPriceScreen && (
+			{!offerPriceScreen && !calculateOfferCostStatus && (
 				<div className={styles.offerFormHead}>
 					{currentStep.name !== currentStep.title && (
 						<h3 className={styles.offerFormHeadStep}>{currentStep.name}</h3>
@@ -26,7 +28,11 @@ export const OfferStepContent: FC<Props> = ({ currentStep }) => {
 					)}
 				</div>
 			)}
-			<div className={styles.offerFormContentBody}>{currentStep.form}</div>
+			<div
+				className={styles.offerFormContentBody}
+				style={{ background: calculateOfferCostStatus ? '#EDFEEF' : '#FFFFFF' }}>
+				{currentStep.form}
+			</div>
 		</div>
 	);
 };

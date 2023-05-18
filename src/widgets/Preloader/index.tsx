@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useLayoutEffect, useState } from 'react';
 import styles from './Preloader.module.scss';
 import preloaderLottie from './preloader.json';
 import Lottie from 'react-lottie-player';
@@ -11,18 +11,21 @@ export const Preloader: FC = () => {
 	const [isFirstRender, setIsFirstRender] = useState(true);
 	const [isHide, setIsHide] = useState(false);
 
+	const [showLottie, setShowLottie] = useState(false);
+
 	useEffect(() => {
-		if (Cookies.get('isFirstRender') === 'yes') {
-			Cookies.set('isFirstRender', 'no');
-		}
 		if (Cookies.get('isFirstRender') === 'no') {
 			setPreloaderIsHide(true);
 			setIsFirstRender(false);
+		}
+		if (Cookies.get('isFirstRender') === 'yes') {
+			Cookies.set('isFirstRender', 'no');
 		}
 		setTimeout(() => {
 			if (!Cookies.get('isFirstRender')) {
 				Cookies.set('isFirstRender', 'yes');
 			}
+			setShowLottie(true);
 		}, 500);
 	}, []);
 
@@ -37,7 +40,16 @@ export const Preloader: FC = () => {
 
 	return (
 		<>
-			{!isFirstRender ? (
+			{isFirstRender ? (
+				<div
+					className={classNames(styles.preloader, {
+						[styles.hide]: pageIsLoaded && isHide
+					})}>
+					<div className={styles.lottie}>
+						{showLottie && <Lottie animationData={preloaderLottie} play loop={false} />}
+					</div>
+				</div>
+			) : (
 				<div
 					className={classNames(styles.preloader, {
 						[styles.hide]: pageIsLoaded
@@ -53,15 +65,6 @@ export const Preloader: FC = () => {
 							<span className={styles.ball7}></span>
 							<span className={styles.ball8}></span>
 						</div>
-					</div>
-				</div>
-			) : (
-				<div
-					className={classNames(styles.preloader, {
-						[styles.hide]: pageIsLoaded && isHide
-					})}>
-					<div className={styles.lottie}>
-						<Lottie animationData={preloaderLottie} play loop={false} />
 					</div>
 				</div>
 			)}

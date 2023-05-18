@@ -2,6 +2,7 @@
 
 .section {
 	overflow: hidden;
+	position: relative;
 	@include adaptiveSize('padding-top', 160, 80);
 }
 

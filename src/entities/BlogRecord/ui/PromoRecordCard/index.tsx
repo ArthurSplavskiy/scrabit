@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { Button } from '@/shared/ui/Button';
 import { useDevice } from '@/app/context/Device/DeviceContext';
 import { ITag } from '../../interface';
-import { AppRoutes } from '@/app/routes';
+import Image from '@/shared/ui/Image';
 
 interface Props {
 	image: string;
@@ -22,8 +22,8 @@ export const PromoRecordCard: FC<Props> = ({ image, title, createdAt, slug, tag,
 	return (
 		<div className={styles.card}>
 			<div className={styles.image}>
-				<Link to={`${tag.slug}/${slug}`} className={classNames(styles.imageLink, '-img-ibg')}>
-					<img src={defaultImage} alt={title} />
+				<Link to={`${tag.slug}/${slug}`} className={classNames(styles.imageLink)}>
+					<Image lazy scaleInScroll src={defaultImage} alt={title} />
 				</Link>
 			</div>
 			<div

@@ -11,7 +11,7 @@ import { Validation } from '@/shared/helpers/validation';
 export const useBuyerForm = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [success, setIsSuccess] = useState(false);
-	const { setError } = useCommon();
+	const { setError, openPartnershipPopup } = useCommon();
 
 	const { phoneMask } = new Mask();
 	const { isValidPhoneNumber } = new Validation();
@@ -78,7 +78,8 @@ export const useBuyerForm = () => {
 			setTimeout(() => {
 				setIsLoading(false);
 				setIsSuccess(true);
-			}, 2000);
+				openPartnershipPopup();
+			}, 500);
 		} catch (error) {
 			const { msg } = getApiError(error, formData);
 			setError({ type: 'error', text: msg || 'Error !' });

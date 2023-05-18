@@ -54,6 +54,7 @@ export interface IOfferData {
 	};
 	isDone: boolean;
 	detailsStepCheck: boolean;
+	calculateOfferCost: boolean;
 }
 
 export const initialOfferData: IOfferData = {
@@ -111,7 +112,8 @@ export const initialOfferData: IOfferData = {
 		isFilled: false
 	},
 	isDone: false,
-	detailsStepCheck: false
+	detailsStepCheck: false,
+	calculateOfferCost: false
 };
 
 export interface IOfferDataResponseInfo {

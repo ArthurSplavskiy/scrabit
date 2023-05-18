@@ -1,0 +1,37 @@
+%init {
+	opacity: 0;
+	transition: var(--transition);
+}
+
+body.is-loaded {
+	[data-fade-in-down],
+	[data-fade-in-up],
+	[data-fade-in-right] {
+		opacity: 1;
+		transform: translate3d(0, 0, 0);
+	}
+	[data-scale-in] {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+[data-fade-in-down] {
+	@extend %init;
+	transform: translate3d(0, -20px, 0);
+}
+
+[data-fade-in-up] {
+	@extend %init;
+	transform: translate3d(0, 20px, 0);
+}
+
+[data-fade-in-right] {
+	@extend %init;
+	transform: translate3d(20px, 0, 0);
+}
+
+[data-scale-in] {
+	@extend %init;
+	transform: scale(0);
+}

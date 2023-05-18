@@ -1,0 +1,10 @@
+.initial {
+	transform: translate(0px, 1vw) scaleY(1.1);
+	transform-origin: top;
+	opacity: 0;
+	transition: 0.3s ease-out;
+}
+.show {
+	transform: translate(0, 0) scaleY(1);
+	opacity: 1;
+}

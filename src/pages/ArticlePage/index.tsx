@@ -8,7 +8,8 @@ import { ArticleContent } from './ArticleContent';
 import { useRecord } from './hooks/useRecord';
 import api from './api';
 import { useCommon } from '@/app/context/Common/CommonContext';
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
+import { Preloader } from '@/widgets/Preloader';
 
 function ArticlePage() {
 	const params = useParams();
@@ -20,14 +21,18 @@ function ArticlePage() {
 
 	const { setPageIsLoaded } = useCommon();
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 		if (!isLoading) {
 			setPageIsLoaded(true);
 		}
+		return () => {
+			setPageIsLoaded(false);
+		};
 	}, [isLoading]);
 
 	return (
 		<>
+			<Preloader />
 			<ArticleContent category={params.category || ''} record={record} />
 			<BlogPostSlider
 				data={{ title: 'related articles', blogposts: pageData?.related_records }}

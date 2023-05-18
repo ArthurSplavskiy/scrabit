@@ -32,5 +32,8 @@ export enum queryKeys {
 	cars = 'cars',
 
 	// static
-	static = 'static'
+	static = 'static',
+
+	// settings
+	calculateOfferCost = 'settings.calculateOfferCost'
 }

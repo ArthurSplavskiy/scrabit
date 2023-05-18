@@ -1,8 +1,8 @@
-import { eventBus } from '@/shared/helpers/EventBus/EventBus';
 import { useOneOpen } from '@/shared/hooks/useOneOpen';
-import classNames from 'classnames';
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC, useEffect, useRef } from 'react';
 import { Spoller } from './Spoller';
+import AnimateInView from '../AnimateInView';
+import classNames from 'classnames';
 import './Spollers.scss';
 
 interface Props {
@@ -36,16 +36,17 @@ export const Spollers: FC<Props> = ({ data, size, isOneOpen }) => {
 			})}>
 			{newData?.length &&
 				newData?.map((s) => (
-					<Spoller
-						id={s.id}
-						key={s.id}
-						open={s.open}
-						answer={s.text}
-						question={s.title}
-						btnLink={s?.slug}
-						expand={toggle}
-						size={size}
-					/>
+					<AnimateInView key={s.id}>
+						<Spoller
+							id={s.id}
+							open={s.open}
+							answer={s.text}
+							question={s.title}
+							btnLink={s?.slug}
+							expand={toggle}
+							size={size}
+						/>
+					</AnimateInView>
 				))}
 		</div>
 	);

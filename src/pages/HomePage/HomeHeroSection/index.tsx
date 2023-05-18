@@ -13,7 +13,7 @@ export const HomeHeroSection = () => {
 			<div className='container'>
 				<div className={styles.sectionWrapper}>
 					<OfferForm />
-					<div className={styles.sectionHead}>
+					<div className={styles.sectionHead} data-fade-in-right>
 						<h1>{data?.hero_title}</h1>
 						<p className='text-18-14'>{data?.hero_subtitle}</p>
 						{/* <HeroAnimationCar text={data?.hero_message} /> */}

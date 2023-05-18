@@ -13,7 +13,8 @@ import { MessageSection } from '@/widgets/MessageSection';
 import { HowItWorkSection } from '@/widgets/HowItWorkSection';
 import { SoldCarSection } from '@/widgets/SoldCarSection';
 import { useCommon } from '@/app/context/Common/CommonContext';
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
+import { Preloader } from '@/widgets/Preloader';
 
 function SellMyCarPage() {
 	const { data, isLoading } = usePageData();
@@ -21,13 +22,19 @@ function SellMyCarPage() {
 	const { data: reviewData } = usePageReview();
 	const { data: howItWorkData } = usePageHowItWork();
 	const { setPageIsLoaded } = useCommon();
-	useEffect(() => {
+
+	useLayoutEffect(() => {
 		if (!isLoading) {
 			setPageIsLoaded(true);
 		}
+		return () => {
+			setPageIsLoaded(false);
+		};
 	}, [isLoading]);
+
 	return (
 		<>
+			<Preloader />
 			{data && (
 				<HeroSectionSellCar
 					title={data?.hero_title}

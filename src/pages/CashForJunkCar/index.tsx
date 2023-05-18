@@ -9,18 +9,25 @@ import { useQuery } from 'react-query';
 import { queryKeys } from '@/app/queryClient/queryKeys';
 import api from '../SellMyCar/api';
 import { useCommon } from '@/app/context/Common/CommonContext';
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
+import { Preloader } from '@/widgets/Preloader';
 
 function CashForJunkPage() {
 	const { data, isLoading } = useQuery(queryKeys.cashForJunkCarPage, api.getCashForJunkCarPageData);
 	const { setPageIsLoaded } = useCommon();
-	useEffect(() => {
+
+	useLayoutEffect(() => {
 		if (!isLoading) {
 			setPageIsLoaded(true);
 		}
+		return () => {
+			setPageIsLoaded(false);
+		};
 	}, [isLoading]);
+
 	return (
 		<>
+			<Preloader />
 			{data && (
 				<HeroSectionSellCar
 					title={data?.hero_title}

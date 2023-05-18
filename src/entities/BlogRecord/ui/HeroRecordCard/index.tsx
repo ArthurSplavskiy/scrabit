@@ -19,7 +19,7 @@ interface Props {
 export const HeroRecordCard: FC<Props> = ({ image, title, slug, tag, descr }) => {
 	const { isMobile } = useDevice();
 	return (
-		<div className={styles.card}>
+		<div className={styles.card} data-fade-in-up>
 			<div className={styles.body}>
 				<div className={styles.head}>
 					<Link key={tag.slug} to={`/blog#${tag.slug}`} className={styles.tag}>

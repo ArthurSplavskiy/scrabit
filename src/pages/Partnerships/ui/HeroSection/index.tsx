@@ -49,6 +49,7 @@ export const HeroSection: FC<Props> = ({
 	};
 	return (
 		<section
+			data-fade-in-up
 			className={classNames(styles.section, {
 				[styles.blue]: bg === 'blue',
 				[styles.green]: bg === 'green',

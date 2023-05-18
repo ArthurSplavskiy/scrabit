@@ -20,16 +20,22 @@ export const DeclineOfferPopup = () => {
 		'offerDataResponseInfo',
 		initialOfferDataResponseInfo
 	);
+	const [, setCalculateOfferCostStatus] = useSessionStorage<boolean>(
+		'calculateOfferCostStatus',
+		false
+	);
 	const [, setOfferPriceScreen] = useSessionStorage<boolean>('offerPriceScreen', false);
 	const navigate = useNavigate();
 
 	const declineOffer = () => {
+		// RESET
 		navigate('/');
 		Cookies.set('first-offer-form-is-filled', 'false');
 		setFocusFirstOfferFormField(true);
 		setOfferData(initialOfferData);
 		closeDeclineOfferPopup();
 		setOfferPriceScreen(false);
+		setCalculateOfferCostStatus(false);
 	};
 
 	return (

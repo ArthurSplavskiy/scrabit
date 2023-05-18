@@ -64,8 +64,8 @@ export const Footer: FC = () => {
 						{/* col */}
 						{menu
 							?.filter((el) => el.sublist)
-							.map((item) => (
-								<div key={item.id} className='Footer-col'>
+							.map((item, idx) => (
+								<div key={idx} className='Footer-col'>
 									<nav className='Footer-menu'>
 										<h3 className='Footer-menu-head text-18-14'>{item.name}</h3>
 										<ul>
@@ -84,8 +84,8 @@ export const Footer: FC = () => {
 						<div className='Footer-col Footer-col-promo-cars'>
 							<nav className='Footer-menu'>
 								<ul>
-									{promoCars?.map((item) => (
-										<li className='text-16-14' key={item.slug}>
+									{promoCars?.map((item, idx) => (
+										<li className='text-16-14' key={idx}>
 											<Link to={`${item.slug}`} reloadDocument={false}>
 												{item.name}
 											</Link>
@@ -103,8 +103,8 @@ export const Footer: FC = () => {
 						<div className='Footer-copyright-top-content'>
 							{isMobile && (
 								<ul className='Footer-static-pages'>
-									{staticPages?.map((s) => (
-										<li className='text-16-14' key={s.id}>
+									{staticPages?.map((s, idx) => (
+										<li className='text-16-14' key={idx}>
 											<Link to={`/${s.slug}`}>{s.name}</Link>
 										</li>
 									))}
@@ -118,8 +118,8 @@ export const Footer: FC = () => {
 						<div className='Footer-copyright-bottom-content'>
 							{!isMobile && (
 								<ul className='Footer-static-pages'>
-									{staticPages?.map((s) => (
-										<li className='text-16-14' key={s.id}>
+									{staticPages?.map((s, idx) => (
+										<li className='text-16-14' key={idx}>
 											<Link to={`/${s.slug}`}>{s.name}</Link>
 										</li>
 									))}

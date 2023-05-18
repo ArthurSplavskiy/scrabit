@@ -75,7 +75,8 @@ export const Header: FC<Props> = ({ onlyLogo }) => {
 			<header
 				className={`Header page-offset ${scrollY > 50 ? 'Header-scroll' : ''} ${
 					direction > 0 && scrollY > 768 ? 'Header-hide' : ''
-				} ${isLoading ? 'Header-hide' : ''} ${menuOpen ? 'Header-fixed' : ''}`}>
+				} ${isLoading ? 'Header-hide' : ''} ${menuOpen ? 'Header-fixed' : ''}`}
+				data-fade-in-down>
 				<div className='container'>
 					<div className='Header-wrapper'>
 						<div className='Header-menu-icon'>

@@ -10,12 +10,13 @@ interface Props {
 	direct?: 'left';
 }
 
-export const HeroAnimationCar: FC<Props> = ({ text, direct }) => {
+export const HeroAnimationCar: FC<Props> = ({ text, direct, ...props }) => {
 	return (
 		<div
 			className={classNames(styles.HeroAnimationCar, {
 				[styles.HeroAnimationCarLeft]: direct === 'left'
-			})}>
+			})}
+			{...props}>
 			{direct === 'left' && (
 				<div className={styles.BlinkCar}>
 					<Lottie animationData={carLottie} loop={false} play />

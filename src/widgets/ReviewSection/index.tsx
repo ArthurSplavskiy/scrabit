@@ -9,7 +9,6 @@ import classNames from 'classnames';
 import { useDevice } from '@/app/context/Device/DeviceContext';
 import { Button } from '@/shared/ui/Button';
 import logo from './logo.svg';
-import 'swiper/css';
 
 interface Props {
 	data?: IReviewSection[];

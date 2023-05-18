@@ -5,13 +5,13 @@ import { useSelect } from '@/shared/hooks/inputHooks/useSelect';
 import { useTextInput } from '@/shared/hooks/useTextInput/useTextInput';
 import { ICharityFormData } from './interface';
 import { errorsMessages } from '@/shared/hooks/useTextInput/validators';
-import Mask from '@/shared/helpers/mask';
 import { Validation } from '@/shared/helpers/validation';
+import Mask from '@/shared/helpers/mask';
 
 export const useCharityForm = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [success, setIsSuccess] = useState(false);
-	const { setError } = useCommon();
+	const { setError, openPartnershipPopup } = useCommon();
 
 	const { phoneMask } = new Mask();
 	const { isValidPhoneNumber } = new Validation();
@@ -90,7 +90,8 @@ export const useCharityForm = () => {
 			setTimeout(() => {
 				setIsLoading(false);
 				setIsSuccess(true);
-			}, 2000);
+				openPartnershipPopup();
+			}, 500);
 		} catch (error) {
 			const { msg } = getApiError(error, formData);
 			setError({ type: 'error', text: msg || 'Error !' });

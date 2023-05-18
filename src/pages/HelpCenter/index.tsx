@@ -7,9 +7,10 @@ import { Breadcrumbs } from '@/widgets/Breadcrumbs';
 import { Search } from './ui/Search';
 import { CategoriesSection } from './ui/CategoriesSection';
 import { useCommon } from '@/app/context/Common/CommonContext';
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 import lottie from './speachbubble.json';
 import api from './api';
+import { Preloader } from '@/widgets/Preloader';
 
 function HelpCenterPage() {
 	const { data: helpCenterData, isLoading } = useQuery(
@@ -17,13 +18,19 @@ function HelpCenterPage() {
 		api.getFaqArticlesCategory
 	);
 	const { setPageIsLoaded } = useCommon();
-	useEffect(() => {
+
+	useLayoutEffect(() => {
 		if (!isLoading) {
 			setPageIsLoaded(true);
 		}
+		return () => {
+			setPageIsLoaded(false);
+		};
 	}, [isLoading]);
+
 	return (
 		<>
+			<Preloader />
 			<div className='container mt-40-16'>
 				<Breadcrumbs />
 			</div>

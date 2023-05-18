@@ -11,6 +11,7 @@ export const CallbackWidget: FC<Props> = ({ clickFn }) => {
 	const { isMobile } = useDevice();
 	return (
 		<button
+			data-scale-in
 			className={styles.phone}
 			onClick={() => {
 				clickFn();

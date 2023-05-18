@@ -37,6 +37,7 @@ export const MovingTiters = ({ size, text, speed }: Props) => {
 
 	return (
 		<div
+			data-fade-in-up
 			className={classNames(styles.titers, {
 				[styles.titersSmall]: size === 'small'
 			})}>

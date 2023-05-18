@@ -1561,5 +1561,8 @@
 		"page_title": "Website Accessibility Notice",
 		"last_updated": "July, 14, 2021",
 		"text": "<p>These Terms and Conditions (\"Terms\") are entered into between you and Scrabit, LLC (referred to as \"Scrabit\", \"us\", \"our\" or \"we\") and represent a legal agreement between you and Peddle. By accessing the website <a href=\"https://www.scrabit.com\">www.scrabit.com</a> (\"Website\"), you are agreeing to abide by the following Terms, which govern all use of this Website and the services available through Website (\"Services\"). Please take a few minutes to read this agreement before accessing or using the Website. These Terms, together with any documents they expressly incorporate by reference, including the Privacy Policy, govern your access to and use of the Website and Services. If you do not agree with any of these Terms or do not wish to be bound by these Terms, your only option is to not use or access this Website. </p> <strong>By accepting an offer you agree to become legally bound by these Terms without any modification or reservation whatsoever. If you do not agree to all the terms and conditions of these Terms, then please do not access the Website or use any Services.</strong> <h2>Age and Jurisdiction</h2>"
+	},
+	"calculate_offer_cost": {
+		"value": true
 	}
 }

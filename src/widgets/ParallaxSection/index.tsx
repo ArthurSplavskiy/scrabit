@@ -4,16 +4,14 @@ import { MovingTiters } from '@/shared/ui/MovingTiters/MovingTiters';
 import { FC } from 'react';
 import styles from './ParallaxSection.module.scss';
 import bg from './bg.png';
-import classNames from 'classnames';
+import Image from '@/shared/ui/Image';
 gsap.registerPlugin(ScrollTrigger);
 
 export const ParallaxSection: FC = () => {
 	return (
 		<div className={styles.section}>
 			<MovingTiters text='scrabit' />
-			<div className={classNames('s-full-image-ibg', styles.img)}>
-				<img src={bg} alt='bg' />
-			</div>
+			<Image lazy scaleInScroll src={bg} className={styles.img} />
 		</div>
 	);
 };

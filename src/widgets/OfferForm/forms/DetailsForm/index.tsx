@@ -1,6 +1,4 @@
 import { ReactSelect } from '@/shared/ui/FormComponents/ReactSelect/ReactSelect';
-import { InputField } from '@/shared/ui/FormComponents/InputField/InputField';
-import { useTextInput } from '@/shared/hooks/useTextInput/useTextInput';
 import { useSelect } from '@/shared/hooks/inputHooks/useSelect';
 import { ISelectOption } from '@/shared/interfaces/shared';
 import { Button } from '@/shared/ui/Button';
@@ -26,6 +24,7 @@ import classNames from 'classnames';
 import { useDevice } from '@/app/context/Device/DeviceContext';
 import { HeroAnimationCar } from '@/entities/HeroAnimationCar';
 import { CalcInfo } from '../../ui/CalcInfo/CalcInfo';
+import { CannotCalc } from '../../ui/CannotCalc';
 
 interface Props {
 	setStep: (...args: any[]) => void;
@@ -35,6 +34,10 @@ export const DetailsForm: FC<Props> = ({ setStep }) => {
 	const [offerData, setOfferData] = useSessionStorage<IOfferData>('offerData', initialOfferData);
 	const [offerPriceScreen, setOfferPriceScreen] = useSessionStorage<boolean>(
 		'offerPriceScreen',
+		false
+	);
+	const [calculateOfferCostStatus, setCalculateOfferCostStatus] = useSessionStorage<boolean>(
+		'calculateOfferCostStatus',
 		false
 	);
 	const [offerDataResponseInfo, setOfferDataResponseInfo] =
@@ -122,7 +125,9 @@ export const DetailsForm: FC<Props> = ({ setStep }) => {
 			count: 2
 		}));
 
-		openCalcPopup();
+		if (!offerData.calculateOfferCost) {
+			openCalcPopup();
+		}
 
 		const sendObj = {
 			vehicleForm: offerData.photos,
@@ -137,10 +142,18 @@ export const DetailsForm: FC<Props> = ({ setStep }) => {
 			}
 		};
 		// send sendObj
+
+		if (offerData.calculateOfferCost) {
+			setCalculateOfferCostStatus(true);
+		}
+
 		setTimeout(() => {
-			closeCalcPopup();
-			setOfferPriceScreen(true);
-			setOfferDataResponseInfo({ price: '$ 10,000-16,110' });
+			// remove
+			if (!offerData.calculateOfferCost) {
+				closeCalcPopup();
+				setOfferPriceScreen(true);
+				setOfferDataResponseInfo({ price: '$ 10,000-16,110' });
+			}
 		}, 1000);
 	};
 
@@ -171,7 +184,7 @@ export const DetailsForm: FC<Props> = ({ setStep }) => {
 
 	return (
 		<>
-			{!offerPriceScreen && (
+			{!offerPriceScreen && !calculateOfferCostStatus && (
 				<form className={styles.form} onSubmit={onSubmit}>
 					<RadioButtonsGroup
 						handleRadioChange={handleRadioChange}
@@ -325,6 +338,16 @@ export const DetailsForm: FC<Props> = ({ setStep }) => {
 							title: 'what’s next?',
 							text: 'Create an account if you haven’t and accept our offer if that’s what you want to do. Then, tell us who to pay and when to pick your car up. No sweat.'
 						}
+					]}
+				/>
+			)}
+			{calculateOfferCostStatus && (
+				<CannotCalc
+					setStep={setStep}
+					nextStep={3}
+					text={[
+						'Sorry, We cannot calculate  the cost at this time.',
+						'Continue all the steps with answers and our operator will call you back.'
 					]}
 				/>
 			)}

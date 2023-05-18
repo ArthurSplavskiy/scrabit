@@ -8,6 +8,7 @@ import { CommonProvider } from './context/Common/CommonContext';
 import { UserProvider } from './context/User/UserContext';
 import { DeviceProvider } from './context/Device/DeviceContext';
 import './assets/styles/index.scss';
+import 'swiper/css';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 	<React.StrictMode>

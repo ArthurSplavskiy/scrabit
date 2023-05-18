@@ -7,7 +7,8 @@ import { useParams } from 'react-router-dom';
 import { HelpArticleCardSingle } from '@/entities/HelpArticle/ui/HelpArticleCardSingle';
 import api from '../api';
 import { useCommon } from '@/app/context/Common/CommonContext';
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
+import { Preloader } from '@/widgets/Preloader';
 
 function HelpCenterArticlePage() {
 	const { slug } = useParams();
@@ -15,13 +16,19 @@ function HelpCenterArticlePage() {
 		api.getArticle(slug || '')
 	);
 	const { setPageIsLoaded } = useCommon();
-	useEffect(() => {
+
+	useLayoutEffect(() => {
 		if (!isLoading) {
 			setPageIsLoaded(true);
 		}
+		return () => {
+			setPageIsLoaded(false);
+		};
 	}, [isLoading]);
+
 	return (
 		<>
+			<Preloader />
 			<div className='container mt-40-16'>
 				<Breadcrumbs />
 			</div>

@@ -1,12 +1,12 @@
 import { MessageSection } from '@/widgets/MessageSection';
-import styles from './index.module.scss';
 import { Button } from '@/shared/ui/Button';
 import { HeroAnimationCar } from '@/entities/HeroAnimationCar';
 import { useEffect } from 'react';
 import { useCommon } from '@/app/context/Common/CommonContext';
 import { useDevice } from '@/app/context/Device/DeviceContext';
+import styles from './index.module.scss';
 
-export const Page404 = () => {
+const Page404 = () => {
 	const { setPageIsLoaded } = useCommon();
 	const { isMobile } = useDevice();
 	useEffect(() => {
@@ -41,3 +41,5 @@ export const Page404 = () => {
 		</>
 	);
 };
+
+export default Page404;

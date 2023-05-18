@@ -1,0 +1,60 @@
+@use 'src/app/assets/styles/mixins' as *;
+
+.block {
+	display: grid;
+	grid-template-columns: 490px 1fr;
+	gap: 20px;
+	@media (max-width: 768px) {
+		grid-template-columns: 1fr;
+	}
+	@media (max-width: 480px) {
+		border: 1px solid var(--black-text);
+		padding: 16px;
+	}
+}
+.text {
+	p {
+		text-transform: uppercase;
+		&:not(:last-child) {
+			margin-bottom: 32px;
+		}
+	}
+}
+.actions {
+	display: grid;
+	grid-template-columns: 1fr;
+	justify-content: flex-end;
+	gap: 112px;
+	justify-self: end;
+	@media (max-width: 768px) {
+		width: 100%;
+	}
+}
+.decline {
+	display: grid;
+	align-items: center;
+	grid-template-columns: auto 24px;
+	gap: 8px;
+	span {
+		white-space: nowrap;
+		text-transform: uppercase;
+		font-style: italic;
+		font-size: 14px;
+		font-weight: 700;
+	}
+	div {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 24px;
+		height: 24px;
+		border-radius: 100%;
+		border: 1px solid var(--black-text);
+		background: var(--blue-10);
+	}
+}
+.mobileBtns {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 16px;
+}

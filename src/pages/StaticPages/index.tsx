@@ -2,11 +2,12 @@ import { useQuery } from 'react-query';
 import { queryKeys } from '@/app/queryClient/queryKeys';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useCommon } from '@/app/context/Common/CommonContext';
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 import api from './api';
 import styles from './index.module.scss';
 import { MessageSection } from '@/widgets/MessageSection';
 import { Breadcrumbs } from '@/widgets/Breadcrumbs';
+import { Preloader } from '@/widgets/Preloader';
 
 interface IStaticData {
 	page_title: string;
@@ -27,14 +28,18 @@ export default function StaticPage() {
 		navigate('/404');
 	}
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 		if (!isLoading) {
 			setPageIsLoaded(true);
 		}
+		return () => {
+			setPageIsLoaded(false);
+		};
 	}, [isLoading]);
 
 	return (
 		<>
+			<Preloader />
 			<div className={'container'}>
 				<div className={styles.page}>
 					<Breadcrumbs />

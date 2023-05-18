@@ -8,9 +8,10 @@ import { Search } from '../ui/Search';
 import { CategoriesSection } from '../ui/CategoriesSection';
 import { useParams } from 'react-router-dom';
 import { useCommon } from '@/app/context/Common/CommonContext';
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 import lottie from '../speachbubble.json';
 import api from '../api';
+import { Preloader } from '@/widgets/Preloader';
 
 function HelpCenterCategoryPage() {
 	const { category } = useParams();
@@ -18,13 +19,19 @@ function HelpCenterCategoryPage() {
 		api.findArticlesByCategory(category || '')
 	);
 	const { setPageIsLoaded } = useCommon();
-	useEffect(() => {
+
+	useLayoutEffect(() => {
 		if (!isLoading) {
 			setPageIsLoaded(true);
 		}
+		return () => {
+			setPageIsLoaded(false);
+		};
 	}, [isLoading]);
+
 	return (
 		<>
+			<Preloader />
 			<div className='container mt-40-16'>
 				<Breadcrumbs />
 			</div>

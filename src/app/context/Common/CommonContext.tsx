@@ -30,6 +30,11 @@ type State = {
 	openDeclineOfferPopup: () => void;
 	closeDeclineOfferPopup: () => void;
 	// ===
+	// popup partnership
+	isPartnershipPopupOpen: boolean;
+	openPartnershipPopup: () => void;
+	closePartnershipPopup: () => void;
+	// ===
 	isPopupHide: boolean;
 	popupHide: () => void;
 	setNoScroll: (lock: boolean) => void;
@@ -71,6 +76,11 @@ const CommonContext = createContext<State>({
 	openDeclineOfferPopup: () => {},
 	closeDeclineOfferPopup: () => {},
 	// ===
+	// popup partnership
+	isPartnershipPopupOpen: false,
+	openPartnershipPopup: () => {},
+	closePartnershipPopup: () => {},
+	// ===
 	isPopupHide: false,
 	popupHide: () => {},
 	setNoScroll: (lock: boolean) => {},
@@ -104,6 +114,9 @@ function CommonProvider({ children }: CommonProviderProps) {
 	// ===
 	// popup decline offer
 	const [isDeclineOfferPopupOpen, setIsDeclineOfferPopupOpen] = useState(false);
+	// ===
+	// popup partnership
+	const [isPartnershipPopupOpen, setIsPartnershipPopupOpen] = useState(false);
 	// ===
 
 	// popup damage
@@ -152,6 +165,15 @@ function CommonProvider({ children }: CommonProviderProps) {
 	};
 	// ===
 
+	// popup partnership
+	const openPartnershipPopup = () => {
+		setIsPartnershipPopupOpen(true);
+	};
+	const closePartnershipPopup = () => {
+		setIsPartnershipPopupOpen(false);
+	};
+	// ===
+
 	// tech popup actions
 	const popupHide = () => {
 		setIsPopupHide(true);
@@ -189,6 +211,12 @@ function CommonProvider({ children }: CommonProviderProps) {
 		}
 	}, [noScroll]);
 
+	useEffect(() => {
+		if (pageIsLoadedState) {
+			document.body.classList.add('is-loaded');
+		}
+	}, [pageIsLoadedState]);
+
 	const contextValue = useMemo(
 		() => ({
 			// popup damage
@@ -215,6 +243,11 @@ function CommonProvider({ children }: CommonProviderProps) {
 			openDeclineOfferPopup,
 			closeDeclineOfferPopup,
 			isDeclineOfferPopupOpen,
+			// ===
+			// popup partnership
+			openPartnershipPopup,
+			closePartnershipPopup,
+			isPartnershipPopupOpen,
 			// ===
 			popupHide,
 			isPopupHide,
@@ -254,6 +287,11 @@ function CommonProvider({ children }: CommonProviderProps) {
 			openDeclineOfferPopup,
 			closeDeclineOfferPopup,
 			isDeclineOfferPopupOpen,
+			// ===
+			// popup partnership
+			openPartnershipPopup,
+			closePartnershipPopup,
+			isPartnershipPopupOpen,
 			// ===
 			isPopupHide,
 			popupHide,

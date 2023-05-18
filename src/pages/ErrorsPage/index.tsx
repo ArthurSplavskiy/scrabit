@@ -1,5 +1,5 @@
 import { useRouteError } from 'react-router-dom';
-import { Page404 } from './404';
+import Page404 from './404';
 
 function ErrorPage() {
 	// @ts-ignore

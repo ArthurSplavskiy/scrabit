@@ -9,19 +9,26 @@ import { queryKeys } from '@/app/queryClient/queryKeys';
 import { FaqSection } from '@/widgets/FaqSection';
 import { ParallaxSection } from '@/widgets/ParallaxSection';
 import { useCommon } from '@/app/context/Common/CommonContext';
-import { useEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 import api from '../api';
+import { Preloader } from '@/widgets/Preloader';
 
 function CarBrandPage() {
 	const { data, isLoading } = useQuery(queryKeys.carPage, api.getCarPageData);
 	const { setPageIsLoaded } = useCommon();
-	useEffect(() => {
+
+	useLayoutEffect(() => {
 		if (!isLoading) {
 			setPageIsLoaded(true);
 		}
+		return () => {
+			setPageIsLoaded(false);
+		};
 	}, [isLoading]);
+
 	return (
 		<>
+			<Preloader />
 			{data && (
 				<HeroSectionSellCar
 					title={data?.hero_title}

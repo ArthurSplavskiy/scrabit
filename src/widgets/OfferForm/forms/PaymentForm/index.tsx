@@ -2,8 +2,6 @@ import { InputField } from '@/shared/ui/FormComponents/InputField/InputField';
 import { useTextInput } from '@/shared/hooks/useTextInput/useTextInput';
 import { Button } from '@/shared/ui/Button';
 import { notValidForm } from '@/shared/helpers/index';
-import styles from './index.module.scss';
-import useSessionStorage from '@/shared/hooks/useSessionStorage';
 import {
 	IOfferData,
 	IOfferDataResponseInfo,
@@ -16,6 +14,9 @@ import { useSelect } from '@/shared/hooks/inputHooks/useSelect';
 import { ISelectOption } from '@/shared/interfaces/shared';
 import { setSelectedOrNull } from '../../utils';
 import { CalcInfo } from '../../ui/CalcInfo/CalcInfo';
+import useSessionStorage from '@/shared/hooks/useSessionStorage';
+import styles from './index.module.scss';
+import { CannotCalc } from '../../ui/CannotCalc';
 
 interface Props {
 	setStep: (...args: any[]) => void;
@@ -26,6 +27,10 @@ export const PaymentForm: FC<Props> = ({ setStep }) => {
 	const [offerDataResponseInfo] = useSessionStorage<IOfferDataResponseInfo>(
 		'offerDataResponseInfo',
 		initialOfferDataResponseInfo
+	);
+	const [calculateOfferCostStatus, setCalculateOfferCostStatus] = useSessionStorage<boolean>(
+		'calculateOfferCostStatus',
+		false
 	);
 	const [offerPriceScreen, setOfferPriceScreen] = useSessionStorage<boolean>(
 		'offerPriceScreen',
@@ -98,7 +103,13 @@ export const PaymentForm: FC<Props> = ({ setStep }) => {
 			}
 		}));
 
-		setOfferPriceScreen(true);
+		if (offerData.calculateOfferCost) {
+			setCalculateOfferCostStatus(true);
+		}
+
+		if (!offerData.calculateOfferCost) {
+			setOfferPriceScreen(true);
+		}
 
 		// setStep((prev: IStep) => ({
 		// 	...prev,
@@ -114,7 +125,7 @@ export const PaymentForm: FC<Props> = ({ setStep }) => {
 
 	return (
 		<>
-			{!offerPriceScreen && (
+			{!offerPriceScreen && !calculateOfferCostStatus && (
 				<form className={styles.form} onSubmit={onSubmit}>
 					<div className={styles.formInner}>
 						<InputField
@@ -170,6 +181,7 @@ export const PaymentForm: FC<Props> = ({ setStep }) => {
 					]}
 				/>
 			)}
+			{calculateOfferCostStatus && <CannotCalc text={'Thank you, our operator will contact you'} />}
 		</>
 	);
 };

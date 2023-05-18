@@ -5,19 +5,26 @@ import { BlogHeroSection } from './ui/BlogHeroSection';
 import { BlogPostSlider } from '@/widgets/BlogPostSlider';
 import { BlogCategorySection } from './ui/BlogCategorySection';
 import { useCommon } from '@/app/context/Common/CommonContext';
-import { useEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
+import { Preloader } from '@/widgets/Preloader';
 
 function BlogPage() {
 	const { data: topRecords, isLoading } = useBlogTopRecords();
 	const { data: categories } = useBlogCategories();
 	const { setPageIsLoaded } = useCommon();
-	useEffect(() => {
+
+	useLayoutEffect(() => {
 		if (!isLoading) {
 			setPageIsLoaded(true);
 		}
+		return () => {
+			setPageIsLoaded(false);
+		};
 	}, [isLoading]);
+
 	return (
 		<>
+			<Preloader />
 			<BlogHeroSection />
 			<BlogPostSlider data={{ title: 'Top picks', blogposts: topRecords }} withoutBtn={true} />
 			{categories?.map((c, idx) => (

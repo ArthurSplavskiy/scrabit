@@ -9,8 +9,9 @@ import { useQuery } from 'react-query';
 import { ISupplierPageData } from './interface';
 import { HeroSection } from '../ui/HeroSection';
 import { useCommon } from '@/app/context/Common/CommonContext';
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 import api from './api';
+import { Preloader } from '@/widgets/Preloader';
 
 function SupplierPage() {
 	const { data, isLoading } = useQuery<ISupplierPageData>(
@@ -18,13 +19,19 @@ function SupplierPage() {
 		api.getSupplierPageData
 	);
 	const { setPageIsLoaded } = useCommon();
-	useEffect(() => {
+
+	useLayoutEffect(() => {
 		if (!isLoading) {
 			setPageIsLoaded(true);
 		}
+		return () => {
+			setPageIsLoaded(false);
+		};
 	}, [isLoading]);
+
 	return (
 		<>
+			<Preloader />
 			<HeroSection
 				title={data?.hero_section.title || ''}
 				subtitle={data?.hero_section.subtitle || ''}

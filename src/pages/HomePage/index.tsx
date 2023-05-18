@@ -16,8 +16,9 @@ import { ParallaxSection } from '@/widgets/ParallaxSection';
 import { FaqSection } from '@/widgets/FaqSection';
 import { MessageSection } from '@/widgets/MessageSection';
 import { BlogPostSlider } from '@/widgets/BlogPostSlider';
-import { useEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 import { useCommon } from '@/app/context/Common/CommonContext';
+import { Preloader } from '@/widgets/Preloader';
 
 function HomePage() {
 	const { data: homeAboutData } = useHomeAbout();
@@ -26,16 +27,24 @@ function HomePage() {
 	const { data: homeFaqData } = useHomeFaq();
 	const { data: homeBlogPostData } = useHomeBlogposts();
 	const { isLoading } = useHomePageData();
-	const { setPageIsLoaded } = useCommon();
+	const { setPageIsLoaded, closePartnershipPopup } = useCommon();
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 		if (!isLoading) {
 			setPageIsLoaded(true);
 		}
+		return () => {
+			setPageIsLoaded(false);
+		}
 	}, [isLoading]);
 
+	useEffect(() => {
+		closePartnershipPopup();
+	}, []);
+
 	return (
-		<>
+		<div style={{ overflowX: 'hidden' }}>
+			<Preloader />
 			<HomeHeroSection />
 			<MovingTiters size='small' text='read more' />
 			<AboutSection data={homeAboutData} />
@@ -58,7 +67,7 @@ function HomePage() {
 				btnText={'more info'}
 				btnSlug={'/help-center'}
 			/>
-		</>
+		</div>
 	);
 }
 

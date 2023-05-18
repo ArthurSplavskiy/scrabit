@@ -38,7 +38,7 @@ export const OfferForm = () => {
 	}, []);
 
 	return (
-		<form className={styles.OfferForm} onSubmit={onSubmit}>
+		<form className={styles.OfferForm} onSubmit={onSubmit} data-fade-in-up>
 			<fieldset className={styles.OfferFormInputs}>
 				<ReactSelect
 					refOnInput={firstFieldRef}

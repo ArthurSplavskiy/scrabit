@@ -25,6 +25,10 @@ export const OfferStepSidebar: FC<Props> = ({ sidebarSteps, stepCount, setStep }
 	const { setFocusFirstOfferFormField } = useCommon();
 	const [showSteps, setShowSteps] = useState(false);
 	const [offerData, setOfferData] = useSessionStorage<IOfferData>('offerData', initialOfferData);
+	const [, setCalculateOfferCostStatus] = useSessionStorage<boolean>(
+		'calculateOfferCostStatus',
+		false
+	);
 	const navigate = useNavigate();
 
 	const redirectToFirstForm = () => {
@@ -77,11 +81,12 @@ export const OfferStepSidebar: FC<Props> = ({ sidebarSteps, stepCount, setStep }
 						<Button
 							className={classNames(styles.sidebarStartOver)}
 							customType={'text-underline'}
-							disabled={stepCount === 0}
 							onClick={() => {
+								// RESET
 								setOfferData(initialOfferData);
 								setStep(initialStep);
 								redirectToFirstForm();
+								setCalculateOfferCostStatus(false);
 							}}>
 							start over
 						</Button>
@@ -125,11 +130,12 @@ export const OfferStepSidebar: FC<Props> = ({ sidebarSteps, stepCount, setStep }
 								className={styles.sidebarStartOver}
 								width={'fullWidth'}
 								color={'green-20'}
-								disabled={stepCount === 0}
 								onClick={() => {
+									// RESET
 									setOfferData(initialOfferData);
 									setStep(initialStep);
 									redirectToFirstForm();
+									setCalculateOfferCostStatus(false);
 								}}>
 								start over
 							</Button>

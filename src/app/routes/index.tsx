@@ -1,30 +1,33 @@
 import { createBrowserRouter, redirect } from 'react-router-dom';
-import PageLayout from '@/app/layouts/PageLayout';
-import ErrorPage from '@/pages/ErrorsPage';
-import HomePage from '@/pages/HomePage';
-import BlogPage from '@/pages/BlogPage';
-import ArticlePage from '@/pages/ArticlePage';
-import BuyerPage from '@/pages/Partnerships/BuyerPage';
-import CarrierPage from '@/pages/Partnerships/CarrierPage';
-import PublisherPage from '@/pages/Partnerships/PublisherPage';
-import CharityPage from '@/pages/Partnerships/CharityPage';
-import SupplierPage from '@/pages/Partnerships/SupplierPage';
-import HelpCenterPage from '@/pages/HelpCenter';
-import HelpCenterCategoryPage from '@/pages/HelpCenter/CategoryPage';
-import HelpCenterArticlePage from '@/pages/HelpCenter/ArticlePage';
-import SellMyCar from '@/pages/SellMyCar';
-import CashForJunkPage from '@/pages/CashForJunkCar';
-import CarModelPage from '@/pages/SellMyCar/CarModelPage';
-import CarBrandPage from '@/pages/SellMyCar/CarBrandPage';
-import ProfileLayout, { accountLayoutLoader } from '../layouts/ProfileLayout';
-import LoginPage from '@/pages/LoginPage';
-import RegistrationPage from '@/pages/RegistrationPage';
-import ProfilePage from '@/pages/Profile';
-import ChangePasswordPage from '@/pages/ChangePasswordPage';
-import StaticPage from '@/pages/StaticPages';
-import { Page404 } from '@/pages/ErrorsPage/404';
-import OfferPage from '@/pages/OfferPage';
+import { lazy } from 'react';
 import Cookies from 'js-cookie';
+
+import PageLayout from '@/app/layouts/PageLayout';
+import ProfileLayout, { accountLayoutLoader } from '../layouts/ProfileLayout';
+
+const ErrorPage = lazy(() => import('@/pages/ErrorsPage'));
+const HomePage = lazy(() => import('@/pages/HomePage'));
+const BlogPage = lazy(() => import('@/pages/BlogPage'));
+const ArticlePage = lazy(() => import('@/pages/ArticlePage'));
+const BuyerPage = lazy(() => import('@/pages/Partnerships/BuyerPage'));
+const CarrierPage = lazy(() => import('@/pages/Partnerships/CarrierPage'));
+const PublisherPage = lazy(() => import('@/pages/Partnerships/PublisherPage'));
+const CharityPage = lazy(() => import('@/pages/Partnerships/CharityPage'));
+const SupplierPage = lazy(() => import('@/pages/Partnerships/SupplierPage'));
+const HelpCenterPage = lazy(() => import('@/pages/HelpCenter'));
+const HelpCenterCategoryPage = lazy(() => import('@/pages/HelpCenter/CategoryPage'));
+const HelpCenterArticlePage = lazy(() => import('@/pages/HelpCenter/ArticlePage'));
+const SellMyCar = lazy(() => import('@/pages/SellMyCar'));
+const CashForJunkPage = lazy(() => import('@/pages/CashForJunkCar'));
+const CarModelPage = lazy(() => import('@/pages/SellMyCar/CarModelPage'));
+const CarBrandPage = lazy(() => import('@/pages/SellMyCar/CarBrandPage'));
+const LoginPage = lazy(() => import('@/pages/LoginPage'));
+const RegistrationPage = lazy(() => import('@/pages/RegistrationPage'));
+const ProfilePage = lazy(() => import('@/pages/Profile'));
+const ChangePasswordPage = lazy(() => import('@/pages/ChangePasswordPage'));
+const StaticPage = lazy(() => import('@/pages/StaticPages'));
+const OfferPage = lazy(() => import('@/pages/OfferPage'));
+const Page404 = lazy(() => import('@/pages/ErrorsPage/404'));
 
 export enum AppRoutes {
 	HOME = '/',

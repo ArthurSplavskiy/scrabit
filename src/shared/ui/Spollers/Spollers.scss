@@ -1,6 +1,11 @@
 @use 'src/app/assets/styles/mixins' as *;
 
 .Spollers {
+	& > * {
+		&:not(:last-child) {
+			margin-bottom: 16px;
+		}
+	}
 	.Spoller {
 		position: relative;
 		border: 1px solid var(--black-text);
@@ -62,9 +67,6 @@
 			.Spoller-head {
 				color: var(--black-60);
 			}
-		}
-		&:not(:last-child) {
-			margin-bottom: 16px;
 		}
 		&-head {
 			display: flex;

@@ -3,9 +3,10 @@ import { IBlogRecord } from '@/entities/BlogRecord/interface';
 import { CategoryRecordCard } from '@/entities/BlogRecord/ui/CategoryRecordCard';
 import { PromoRecordCard } from '@/entities/BlogRecord/ui/PromoRecordCard';
 import classNames from 'classnames';
-import { FC } from 'react';
+import { FC, useRef } from 'react';
 import { useRecordsByCategory } from '../../hooks/useRecordsByCategory';
 import styles from './BlogCategorySection.module.scss';
+import { useIsView } from '@/shared/hooks/useIsView';
 
 interface Props {
 	withBlueBg?: boolean;
@@ -28,8 +29,15 @@ export const BlogCategorySection: FC<Props> = ({
 	const { isMobile } = useDevice();
 	const { data } = useRecordsByCategory(slug);
 
+	const ref = useRef<HTMLDivElement | null>(null);
+	const isView = useIsView(ref, {
+		threshold: 0.2,
+		once: true
+	});
+
 	return (
 		<div
+			ref={ref}
 			id={slug}
 			className={classNames(styles.block, {
 				'blue-section': withBlueBg,
@@ -39,8 +47,12 @@ export const BlogCategorySection: FC<Props> = ({
 			<div className='container'>
 				<div className={styles.section}>
 					<div className={styles.head}>
-						<h4 className='text-40-24'>{categoryTitle}</h4>
-						<h5>{subtitle}</h5>
+						<h4 className='text-40-24' data-scroll-up={isView ? 'show' : 'hide'}>
+							{categoryTitle}
+						</h4>
+						<h5 data-scroll-up={isView ? 'show' : 'hide'} data-scroll-delay='0.3'>
+							{subtitle}
+						</h5>
 					</div>
 					<div className={styles.content}>
 						<div className={styles.promoCard}>
