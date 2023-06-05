@@ -22,7 +22,7 @@ export const SliderRecordCard: FC<Props> = ({ image, title, createdAt, tag, rout
 		<div className={styles.card}>
 			<div className={styles.image}>
 				<Link to={route} className={classNames(styles.imageLink)}>
-					<Image lazy scaleInScroll src={defaultImage} alt={title} />
+					<Image lazy scaleInScroll src={image || defaultImage} alt={title} />
 				</Link>
 			</div>
 			<div className={styles.body}>

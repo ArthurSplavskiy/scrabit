@@ -6,10 +6,10 @@ import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 import { ArticleContent } from './ArticleContent';
 import { useRecord } from './hooks/useRecord';
-import api from './api';
 import { useCommon } from '@/app/context/Common/CommonContext';
 import { useLayoutEffect } from 'react';
 import { Preloader } from '@/widgets/Preloader';
+import api from './api';
 
 function ArticlePage() {
 	const params = useParams();

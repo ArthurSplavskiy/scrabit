@@ -6,12 +6,12 @@ import { MessageSection } from '@/widgets/MessageSection';
 import { SoldCarSection } from '@/widgets/SoldCarSection';
 import { useQuery } from 'react-query';
 import { queryKeys } from '@/app/queryClient/queryKeys';
-import api from '../api';
 import { FaqSection } from '@/widgets/FaqSection';
 import { ParallaxSection } from '@/widgets/ParallaxSection';
 import { useCommon } from '@/app/context/Common/CommonContext';
-import { useEffect, useLayoutEffect } from 'react';
+import { useLayoutEffect } from 'react';
 import { Preloader } from '@/widgets/Preloader';
+import api from '../api';
 
 function CarModelPage() {
 	const { data, isLoading } = useQuery(queryKeys.carPage, api.getCarPageData);

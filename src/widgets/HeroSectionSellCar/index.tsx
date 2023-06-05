@@ -24,7 +24,7 @@ export const HeroSectionSellCar: FC<Props> = ({ image, title, subtitle }) => {
 						<p className={classNames(styles.subtitle, 'text-16-14')}>{subtitle}</p>
 						{isMobile && (
 							<div className={classNames(styles.image, '-img-ibg')}>
-								<img src={defaultImage} alt={title} />
+								<img src={image || defaultImage} alt={title} />
 							</div>
 						)}
 						<div className={styles.controls}>
@@ -35,7 +35,7 @@ export const HeroSectionSellCar: FC<Props> = ({ image, title, subtitle }) => {
 					</div>
 					{!isMobile && (
 						<div className={classNames(styles.image, '-img-ibg')}>
-							<img src={defaultImage} alt={title} />
+							<img src={image || defaultImage} alt={title} />
 						</div>
 					)}
 				</div>

@@ -3,29 +3,75 @@ import { IOfferData, initialOfferData } from '../../initialOfferData';
 import { FC, useEffect, useState } from 'react';
 import { Icon } from '@/shared/ui/Icon/Icon';
 import { ProgressRing } from '@/shared/ui/ProgressRing';
+import { BackButton } from '../../ui/BackButton';
+import { NextButton } from '../../ui/NextButton';
+import { IOfferCurrentStep, initialOfferCurrentStep } from '../../initialOfferCurrentStep';
+import { useCommon } from '@/app/context/Common/CommonContext';
 import ImageUploading, { ImageListType } from 'react-images-uploading';
 import useSessionStorage from '@/shared/hooks/useSessionStorage';
 import styles from './index.module.scss';
 import mainStyles from '../../index.module.scss';
-import { BackButton } from '../../ui/BackButton';
-import { NextButton } from '../../ui/NextButton';
+import api from '../api';
+import { IStep } from '../../initialStep';
 
 interface Props {
 	setStep: (...args: any[]) => void;
 }
 
+export interface IImagesFormData {
+	images: any;
+}
+
+// setStep?.((prev: IStep) => ({
+// 	...prev,
+// 	count: prev.count + 1
+// }));
+// setOfferData((prev) => ({
+// 	...prev,
+// 	stepIndex: setStep ? prev.stepIndex + 1 : prev.stepIndex
+// }));
+
 export const PhotosForm: FC<Props> = ({ setStep }) => {
+	const [isLoading, setIsLoading] = useState(false);
 	const [offerData, setOfferData] = useSessionStorage<IOfferData>('offerData', initialOfferData);
+	const [currentOfferData, setCurrentOffer] = useSessionStorage<IOfferCurrentStep[]>(
+		'offerCurrentStep',
+		initialOfferCurrentStep
+	);
 	const [images, setImages] = useState([]);
 	const maxNumber = 10;
 	const maxFileSize = 1 * 1024 * 1024; // 5 Мб
+	const { setError } = useCommon();
 
-	const onChange = (imageList: ImageListType, addUpdateIndex: number[] | undefined) => {
+	const onChange = async (imageList: ImageListType, addUpdateIndex: number[] | undefined) => {
 		setImages(imageList as never[]);
-		setOfferData((prev) => ({
-			...prev,
-			photos: imageList as never[]
-		}));
+	};
+
+	const sendImages = async () => {
+		//if (currentOfferData[3] || !images.length) return;
+		try {
+			setIsLoading(true);
+			const data: IImagesFormData = {
+				images
+			};
+			const res = await api.postImagesForm(data);
+			setCurrentOffer((prev) => [...prev, res]);
+			setStep((prev: IStep) => ({
+				...prev,
+				count: prev.count + 1
+			}));
+			setOfferData((prev) => ({
+				...prev,
+				photos: images as never[],
+				stepIndex: prev.stepIndex + 1
+			}));
+			setIsLoading(false);
+		} catch (error) {
+			//const { msg } = getApiError(error, formData);
+			setError({ type: 'error', text: 'msg' || 'Image load Error !' });
+		} finally {
+			setIsLoading(false);
+		}
 	};
 
 	useEffect(() => {
@@ -73,7 +119,7 @@ export const PhotosForm: FC<Props> = ({ setStep }) => {
 									</div>
 								))}
 							</div>
-							<h3>upload your photos</h3>
+							<h3>{currentOfferData[2].form_fields[0].placeholder}</h3>
 							<p className='text-16'>Suitable car photo formats .jpg .jpeg .png</p>
 							{errors && (
 								<div className={styles.uploaderErrors}>
@@ -109,7 +155,7 @@ export const PhotosForm: FC<Props> = ({ setStep }) => {
 			</ImageUploading>
 			<div className={mainStyles.offerFormContentNav}>
 				<BackButton setStep={setStep} />
-				<NextButton setStep={setStep} />
+				<NextButton loading={isLoading} onClickFn={sendImages} />
 			</div>
 		</div>
 	);

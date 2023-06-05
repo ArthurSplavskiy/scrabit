@@ -35,6 +35,8 @@ export const BlogCategorySection: FC<Props> = ({
 		once: true
 	});
 
+	if (!data?.length) return <div ref={ref}></div>;
+
 	return (
 		<div
 			ref={ref}
@@ -61,7 +63,7 @@ export const BlogCategorySection: FC<Props> = ({
 									bgColor={withBlueBg && isMobile ? 'white' : undefined}
 									image={data[0].image}
 									title={data[0].title}
-									createdAt={data[0].createdAt}
+									createdAt={data[0].created_at}
 									slug={data[0].slug}
 									tag={data[0].tag}
 								/>
@@ -75,7 +77,7 @@ export const BlogCategorySection: FC<Props> = ({
 										key={idx}
 										image={r.image}
 										title={r.title}
-										createdAt={r.createdAt}
+										createdAt={r.created_at}
 										slug={r.slug}
 										tag={r.tag}
 									/>

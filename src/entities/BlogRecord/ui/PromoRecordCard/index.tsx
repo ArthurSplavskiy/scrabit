@@ -7,6 +7,7 @@ import { Button } from '@/shared/ui/Button';
 import { useDevice } from '@/app/context/Device/DeviceContext';
 import { ITag } from '../../interface';
 import Image from '@/shared/ui/Image';
+import { dateFormatter, formatter } from '@/shared/helpers';
 
 interface Props {
 	image: string;
@@ -19,11 +20,12 @@ interface Props {
 
 export const PromoRecordCard: FC<Props> = ({ image, title, createdAt, slug, tag, bgColor }) => {
 	const { isMobile } = useDevice();
+	console.log(createdAt);
 	return (
 		<div className={styles.card}>
 			<div className={styles.image}>
 				<Link to={`${tag.slug}/${slug}`} className={classNames(styles.imageLink)}>
-					<Image lazy scaleInScroll src={defaultImage} alt={title} />
+					<Image lazy scaleInScroll src={image || defaultImage} alt={title} />
 				</Link>
 			</div>
 			<div
@@ -40,7 +42,11 @@ export const PromoRecordCard: FC<Props> = ({ image, title, createdAt, slug, tag,
 					<h4 className='text-32-18'>{title}</h4>
 				</Link>
 				<div className={styles.controls}>
-					{!isMobile && <span className={classNames(styles.date, 'text-14')}>{createdAt}</span>}
+					{!isMobile && (
+						<span className={classNames(styles.date, 'text-14')}>
+							{dateFormatter.format(new Date(createdAt))}
+						</span>
+					)}
 					<Button
 						btnTo={`${tag.slug}/${slug}`}
 						customType='outline'

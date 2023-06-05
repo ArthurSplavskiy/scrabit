@@ -61,9 +61,4 @@ function useBlogTopRecords() {
 	return { data: blogPageData?.top_records, isLoading };
 }
 
-function useBlogCategories() {
-	const { blogPageData, isLoading } = useContext(BlogPageContext);
-	return { data: blogPageData?.categories_section, isLoading };
-}
-
-export { BlogPageProvider, useBlogHeroRecord, useBlogTopRecords, useBlogCategories };
+export { BlogPageProvider, useBlogHeroRecord, useBlogTopRecords };

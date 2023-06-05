@@ -23,6 +23,8 @@ export const HowItWorkSection: FC<Props> = ({ data, page }) => {
 		once: true
 	});
 
+	if (!data?.steps.length) return <div ref={ref}></div>;
+
 	return (
 		<section id='how-it-works' className={styles.section}>
 			<div className='container'>

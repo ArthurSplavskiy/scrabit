@@ -2,9 +2,9 @@ import { ReactSelect } from '@/shared/ui/FormComponents/ReactSelect/ReactSelect'
 import { InputField } from '@/shared/ui/FormComponents/InputField/InputField';
 import { useTextInput } from '@/shared/hooks/useTextInput/useTextInput';
 import { useSelect } from '@/shared/hooks/inputHooks/useSelect';
-import { ISelectOption } from '@/shared/interfaces/shared';
+import { FormField, ISelectOption } from '@/shared/interfaces/shared';
 import { Button } from '@/shared/ui/Button';
-import { notValidForm } from '@/shared/helpers/index';
+import { normalizeSelectData, notValidForm, setFieldId } from '@/shared/helpers/index';
 import styles from './index.module.scss';
 import useSessionStorage from '@/shared/hooks/useSessionStorage';
 import {
@@ -13,24 +13,42 @@ import {
 	initialOfferData,
 	initialOfferDataResponseInfo
 } from '../../initialOfferData';
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { setSelectedOrNull } from '../../utils';
 import { IStep } from '../../initialStep';
-import InfoIcon from './info.svg';
 import { ModalPopup } from '@/shared/ui/PopupSystem/ModalPopup/ModalPopup';
 import { TemplateModal } from '@/shared/ui/PopupSystem/TemplateModal/TemplateModal';
 import { useCommon } from '@/app/context/Common/CommonContext';
+import { statesDefault } from './states';
+import { IOfferCurrentStep, initialOfferCurrentStep } from '../../initialOfferCurrentStep';
+import { getApiError } from '@/shared/helpers/index';
+import api from '../api';
+import InfoIcon from './info.svg';
 
 interface Props {
 	setStep: (...args: any[]) => void;
 }
 
+export interface ITitleFormData {
+	title: FormField<string>;
+	vin: FormField<string>;
+	state: FormField<string>;
+	color: FormField<string>;
+}
+
 export const TitleForm: FC<Props> = ({ setStep }) => {
+	const [isLoading, setIsLoading] = useState(false);
 	const [offerData, setOfferData] = useSessionStorage<IOfferData>('offerData', initialOfferData);
 	const [offerDataResponseInfo] = useSessionStorage<IOfferDataResponseInfo>(
 		'offerDataResponseInfo',
 		initialOfferDataResponseInfo
 	);
+	const [currentOfferData, setCurrentOffer] = useSessionStorage<IOfferCurrentStep[]>(
+		'offerCurrentStep',
+		initialOfferCurrentStep
+	);
+	const [indexesList, setIndexesList] = useState<number[]>([]);
+	const { setError } = useCommon();
 
 	const {
 		// popup vin
@@ -45,60 +63,9 @@ export const TitleForm: FC<Props> = ({ setStep }) => {
 	const formData = {
 		title: useTextInput({ isRequired: true }),
 		vim: useTextInput({ isRequired: true, validators: ['vim'] }),
-		issue: useSelect<ISelectOption>({
+		state: useSelect<ISelectOption>({
 			isRequired: true,
-			options: [
-				{ label: 'Alabama', value: 'Alabama' },
-				{ label: 'Alaska', value: 'Alaska' },
-				{ label: 'Arizona', value: 'Arizona' },
-				{ label: 'Arkansas', value: 'Arkansas' },
-				{ label: 'California', value: 'California' },
-				{ label: 'Colorado', value: 'Colorado' },
-				{ label: 'Connecticut', value: 'Connecticut' },
-				{ label: 'Delaware', value: 'Delaware' },
-				{ label: 'Florida', value: 'Florida' },
-				{ label: 'Georgia', value: 'Georgia' },
-				{ label: 'Hawaii', value: 'Hawaii' },
-				{ label: 'Idaho', value: 'Idaho' },
-				{ label: 'Illinois', value: 'Illinois' },
-				{ label: 'Indiana', value: 'Indiana' },
-				{ label: 'Iowa', value: 'Iowa' },
-				{ label: 'Kansas', value: 'Kansas' },
-				{ label: 'Kentucky', value: 'Kentucky' },
-				{ label: 'Louisiana', value: 'Louisiana' },
-				{ label: 'Maine', value: 'Connecticut' },
-				{ label: 'Maryland', value: 'Maryland' },
-				{ label: 'Massachusetts', value: 'Massachusetts' },
-				{ label: 'Michigan', value: 'Michigan' },
-				{ label: 'Minnesota', value: 'Minnesota' },
-				{ label: 'Mississippi', value: 'Mississippi' },
-				{ label: 'Missouri', value: 'Missouri' },
-				{ label: 'Montana', value: 'Montana' },
-				{ label: 'Nebraska', value: 'Nebraska' },
-				{ label: 'Nevada', value: 'Nevada' },
-				{ label: 'New Hampshire', value: 'New Hampshire' },
-				{ label: 'New Jersey', value: 'New Jersey' },
-				{ label: 'New Mexico', value: 'New Mexico' },
-				{ label: 'New York', value: 'New York' },
-				{ label: 'North Carolina', value: 'North Carolina' },
-				{ label: 'North Dakota', value: 'North Dakota' },
-				{ label: 'Ohio', value: 'Ohio' },
-				{ label: 'Oklahoma', value: 'Oklahoma' },
-				{ label: 'Oregon', value: 'Oregon' },
-				{ label: 'Pennsylvania', value: 'Pennsylvania' },
-				{ label: 'Rhode Island', value: 'Rhode Island' },
-				{ label: 'South Carolina', value: 'South Carolina' },
-				{ label: 'South Dakota', value: 'South Dakota' },
-				{ label: 'Tennessee', value: 'Tennessee' },
-				{ label: 'Texas', value: 'Texas' },
-				{ label: 'Utah', value: 'Utah' },
-				{ label: 'Vermont', value: 'Vermont' },
-				{ label: 'Virginia', value: 'Virginia' },
-				{ label: 'Washington', value: 'Washington' },
-				{ label: 'West Virginia', value: 'West Virginia' },
-				{ label: 'Wisconsin', value: 'Wisconsin' },
-				{ label: 'Wyoming', value: 'Wyoming' }
-			]
+			options: statesDefault
 		}),
 		color: useSelect<ISelectOption>({
 			isRequired: true,
@@ -109,9 +76,39 @@ export const TitleForm: FC<Props> = ({ setStep }) => {
 		})
 	};
 
-	const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+	const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		if (notValidForm(formData)) return;
+
+		try {
+			setIsLoading(true);
+			const data: ITitleFormData = {
+				title: {
+					id: setFieldId(indexesList, 0),
+					value: formData.title.value
+				},
+				vin: {
+					id: setFieldId(indexesList, 1),
+					value: formData.vim.value
+				},
+				state: {
+					id: setFieldId(indexesList, 2),
+					value: formData.state.value
+				},
+				color: {
+					id: setFieldId(indexesList, 3),
+					value: formData.color.value
+				}
+			};
+			const res = await api.postTitleForm(data);
+			setCurrentOffer((prev) => [...prev, res]);
+			setIsLoading(false);
+		} catch (error) {
+			const { msg } = getApiError(error, formData);
+			setError({ type: 'error', text: msg || 'Error !' });
+		} finally {
+			setIsLoading(false);
+		}
 
 		setOfferData((prev) => ({
 			...prev,
@@ -119,7 +116,7 @@ export const TitleForm: FC<Props> = ({ setStep }) => {
 			titleForm: {
 				title: formData.title.value,
 				vim: formData.vim.value,
-				issue: formData.issue.value,
+				state: formData.state.value,
 				color: formData.color.value,
 				isFilled: true
 			}
@@ -132,9 +129,13 @@ export const TitleForm: FC<Props> = ({ setStep }) => {
 	};
 
 	useEffect(() => {
+		setIndexesList(currentOfferData[4].form_fields.map((field) => field.id));
+	}, [currentOfferData]);
+
+	useEffect(() => {
 		if (offerData.titleForm.title) formData.title.setValue(offerData.titleForm.title);
 		if (offerData.titleForm.vim) formData.vim.setValue(offerData.titleForm.vim);
-		if (offerData.titleForm.issue) formData.issue.setValue(offerData.titleForm.issue);
+		if (offerData.titleForm.state) formData.state.setValue(offerData.titleForm.state);
 		if (offerData.titleForm.color) formData.color.setValue(offerData.titleForm.color);
 	}, []);
 
@@ -145,14 +146,14 @@ export const TitleForm: FC<Props> = ({ setStep }) => {
 					<InputField
 						{...formData.title.inputProps}
 						errors={formData.title.errors}
-						label='Name on title'
-						placeholder='Name Last name'
+						label={currentOfferData?.[4]?.form_fields?.[0]?.name || 'Name on title'}
+						placeholder={currentOfferData?.[4]?.form_fields?.[0]?.placeholder || 'Name Last name'}
 					/>
 					<InputField
 						{...formData.vim.inputProps}
 						errors={formData.vim.errors}
-						label='VIN'
-						placeholder='Enter VIN'
+						label={currentOfferData?.[4]?.form_fields?.[1]?.name || 'VIN'}
+						placeholder={currentOfferData?.[4]?.form_fields?.[1]?.placeholder || 'Enter VIN'}
 						maxLength={17}
 						underElem={
 							<button
@@ -167,20 +168,28 @@ export const TitleForm: FC<Props> = ({ setStep }) => {
 						}
 					/>
 					<ReactSelect
-						errors={formData.issue.errors}
-						defaultValue={setSelectedOrNull(offerData.titleForm.issue)}
-						onChange={formData.issue.inputProps.onChange}
-						options={formData.issue.options}
-						label={'Title issue state'}
-						placeholder='Choose issue state'
+						errors={formData.state.errors}
+						defaultValue={setSelectedOrNull(offerData.titleForm.state)}
+						onChange={formData.state.inputProps.onChange}
+						options={
+							normalizeSelectData(currentOfferData?.[4]?.form_fields?.[2]?.items?.[0]) ||
+							formData.state.options
+						}
+						label={currentOfferData?.[4]?.form_fields?.[2]?.name || 'Title issue state'}
+						placeholder={
+							currentOfferData?.[4]?.form_fields?.[2]?.placeholder || 'Choose issue state'
+						}
 					/>
 					<ReactSelect
 						errors={formData.color.errors}
 						defaultValue={setSelectedOrNull(offerData.titleForm.color)}
 						onChange={formData.color.inputProps.onChange}
-						options={formData.color.options}
-						label={'Vehicle color'}
-						placeholder='Choose color'
+						options={
+							normalizeSelectData(currentOfferData?.[4]?.form_fields?.[3]?.items?.[0]) ||
+							formData.color.options
+						}
+						label={currentOfferData?.[4]?.form_fields?.[3]?.name || 'Vehicle color'}
+						placeholder={currentOfferData?.[4]?.form_fields?.[3]?.placeholder || 'Choose color'}
 					/>
 				</fieldset>
 				<div className={styles.expirePriceNav}>
@@ -188,7 +197,7 @@ export const TitleForm: FC<Props> = ({ setStep }) => {
 						<h2 className='text-40-24'>{offerDataResponseInfo.price}</h2>
 						<span className='text-16-14'>Offer expires in 7 days</span>
 					</div>
-					<Button customType='black' iconName='arrow' iconPosition='right'>
+					<Button customType='black' iconName='arrow' iconPosition='right' loading={isLoading}>
 						next
 					</Button>
 				</div>

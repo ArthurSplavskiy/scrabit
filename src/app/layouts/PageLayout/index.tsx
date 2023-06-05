@@ -1,7 +1,7 @@
 import { Footer } from '@/widgets/Footer';
 import { Header } from '@/widgets/Header';
 import { Preloader } from '@/widgets/Preloader';
-import { FC, Suspense } from 'react';
+import { FC, Suspense, memo } from 'react';
 import { Outlet, ScrollRestoration } from 'react-router-dom';
 import { ModalPopup } from '@/shared/ui/PopupSystem/ModalPopup/ModalPopup';
 import { TemplateModal } from '@/shared/ui/PopupSystem/TemplateModal/TemplateModal';
@@ -60,4 +60,4 @@ Looking forward to it!'>
 	);
 };
 
-export default PageLayout;
+export default memo(PageLayout);

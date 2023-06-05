@@ -72,7 +72,6 @@ export const useBuyerForm = () => {
 				feedback: formData.feedback.value,
 				file: formDataState
 			};
-			console.log('onSubmit data', data);
 			//await api.auth.registration(data);
 
 			setTimeout(() => {

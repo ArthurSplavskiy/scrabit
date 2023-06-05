@@ -36,7 +36,7 @@ function HelpCenterArticlePage() {
 			{data?.[0] ? (
 				<HelpArticleCardSingle
 					author={data[0].author}
-					createdAt={data[0].createdAt}
+					createdAt={data[0].created_at}
 					fullText={data[0].fullText}
 					question={data[0].question}
 					title={data[0].title}

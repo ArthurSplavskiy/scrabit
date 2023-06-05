@@ -1,8 +1,8 @@
 import { ReactSelect } from '@/shared/ui/FormComponents/ReactSelect/ReactSelect';
 import { useSelect } from '@/shared/hooks/inputHooks/useSelect';
-import { ISelectOption } from '@/shared/interfaces/shared';
+import { FormField, ISelectOption } from '@/shared/interfaces/shared';
 import { Button } from '@/shared/ui/Button';
-import { notValidForm } from '@/shared/helpers/index';
+import { normalizeSelectData, notValidForm, setFieldId } from '@/shared/helpers/index';
 import {
 	IOfferData,
 	IOfferDataResponseInfo,
@@ -13,21 +13,33 @@ import { ChangeEvent, FC, useEffect, useState } from 'react';
 import { setSelectedOrNull } from '../../utils';
 import { IStep } from '../../initialStep';
 import { BackButton } from '../../ui/BackButton';
-import useSessionStorage from '@/shared/hooks/useSessionStorage';
-import mainStyles from '../../index.module.scss';
-import styles from './index.module.scss';
 import { RadioButtonsGroup } from '@/shared/ui/RadioButtonsGroup';
 import { useCommon } from '@/app/context/Common/CommonContext';
 import { ModalPopup } from '@/shared/ui/PopupSystem/ModalPopup/ModalPopup';
 import { TemplateModal } from '@/shared/ui/PopupSystem/TemplateModal/TemplateModal';
-import classNames from 'classnames';
 import { useDevice } from '@/app/context/Device/DeviceContext';
 import { HeroAnimationCar } from '@/entities/HeroAnimationCar';
 import { CalcInfo } from '../../ui/CalcInfo/CalcInfo';
 import { CannotCalc } from '../../ui/CannotCalc';
+import { IOfferCurrentStep, initialOfferCurrentStep } from '../../initialOfferCurrentStep';
+import { getApiError } from '@/shared/helpers/index';
+import useSessionStorage from '@/shared/hooks/useSessionStorage';
+import mainStyles from '../../index.module.scss';
+import styles from './index.module.scss';
+import classNames from 'classnames';
+import api from '../api';
 
 interface Props {
 	setStep: (...args: any[]) => void;
+}
+
+export interface IDetailsFormData {
+	car_condition: FormField<string>;
+	wheels: FormField<string>;
+	damage: FormField<string>;
+	flood: FormField<string>;
+	converters: FormField<string>;
+	damageZone: FormField<number[]>;
 }
 
 export const DetailsForm: FC<Props> = ({ setStep }) => {
@@ -45,9 +57,13 @@ export const DetailsForm: FC<Props> = ({ setStep }) => {
 			'offerDataResponseInfo',
 			initialOfferDataResponseInfo
 		);
+	const [currentOfferData, setCurrentOffer] = useSessionStorage<IOfferCurrentStep[]>(
+		'offerCurrentStep',
+		initialOfferCurrentStep
+	);
 	const [damageZone, setDamageZone] = useState<number[]>([]);
 	const { isMobile } = useDevice();
-
+	const [isLoading, setIsLoading] = useState(false);
 	const {
 		// popup damage
 		openOfferDamagePopup,
@@ -62,6 +78,8 @@ export const DetailsForm: FC<Props> = ({ setStep }) => {
 		isPopupHide,
 		popupHide
 	} = useCommon();
+	const { setError } = useCommon();
+	const [indexesList, setIndexesList] = useState<number[]>([]);
 
 	const formData = {
 		wheels: useSelect<ISelectOption>({
@@ -101,9 +119,57 @@ export const DetailsForm: FC<Props> = ({ setStep }) => {
 		setRadioState(e.target.value);
 	};
 
-	const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+	const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		if (notValidForm(formData)) return;
+
+		try {
+			setIsLoading(true);
+			if (!offerData.calculateOfferCost) {
+				openCalcPopup();
+			}
+			const data: IDetailsFormData = {
+				car_condition: {
+					id: setFieldId(indexesList, 0),
+					value: radioState
+				},
+				wheels: {
+					id: setFieldId(indexesList, 1),
+					value: formData.wheels.value
+				},
+				damage: {
+					id: setFieldId(indexesList, 2),
+					value: formData.damage.value
+				},
+				flood: {
+					id: setFieldId(indexesList, 3),
+					value: formData.flood.value
+				},
+				converters: {
+					id: setFieldId(indexesList, 4),
+					value: formData.converters.value
+				},
+				damageZone: {
+					id: setFieldId(indexesList, 5),
+					value: damageZone
+				}
+			};
+
+			const res = await api.postDetailsForm(data);
+			setCurrentOffer((prev) => [...prev, res]);
+			if (!offerData.calculateOfferCost) {
+				closeCalcPopup();
+				setOfferPriceScreen(true);
+				setOfferDataResponseInfo({ price: res.price });
+			}
+
+			setIsLoading(false);
+		} catch (error) {
+			const { msg } = getApiError(error, formData);
+			setError({ type: 'error', text: msg || 'Error !' });
+		} finally {
+			setIsLoading(false);
+		}
 
 		setOfferData((prev) => ({
 			...prev,
@@ -125,36 +191,9 @@ export const DetailsForm: FC<Props> = ({ setStep }) => {
 			count: 2
 		}));
 
-		if (!offerData.calculateOfferCost) {
-			openCalcPopup();
-		}
-
-		const sendObj = {
-			vehicleForm: offerData.photos,
-			photos: offerData.photos,
-			detailsForm: {
-				car_condition: radioState,
-				wheels: formData.wheels.value,
-				damage: formData.damage.value,
-				flood: formData.flood.value,
-				converters: formData.converters.value,
-				damageZone: damageZone
-			}
-		};
-		// send sendObj
-
 		if (offerData.calculateOfferCost) {
 			setCalculateOfferCostStatus(true);
 		}
-
-		setTimeout(() => {
-			// remove
-			if (!offerData.calculateOfferCost) {
-				closeCalcPopup();
-				setOfferPriceScreen(true);
-				setOfferDataResponseInfo({ price: '$ 10,000-16,110' });
-			}
-		}, 1000);
 	};
 
 	const setDamageZoneCallback = (zone: number) => {
@@ -166,11 +205,19 @@ export const DetailsForm: FC<Props> = ({ setStep }) => {
 	};
 
 	useEffect(() => {
+		if (offerPriceScreen || calculateOfferCostStatus) return;
 		if (formData.damage.value === 'Yes') {
 			setDamageZone([]);
 			openOfferDamagePopup();
 		}
+		if (formData.damage.value === 'No') {
+			setDamageZone([]);
+		}
 	}, [formData.damage.value]);
+
+	useEffect(() => {
+		setIndexesList(currentOfferData[3].form_fields.map((field) => field.id));
+	}, [currentOfferData]);
 
 	useEffect(() => {
 		if (offerData.detailsForm.wheels) formData.wheels.setValue(offerData.detailsForm.wheels);
@@ -189,10 +236,26 @@ export const DetailsForm: FC<Props> = ({ setStep }) => {
 					<RadioButtonsGroup
 						handleRadioChange={handleRadioChange}
 						radioState={radioState}
-						label='Choose your car condition'
+						label={currentOfferData[3].form_fields[0].name || 'Choose your car condition'}
 						radioList={[
-							{ label: 'Car is driving', value: 'car-is-driving' },
-							{ label: 'The car only starting', value: 'the-car-only-starting' }
+							{
+								label:
+									currentOfferData?.[3]?.form_fields?.[0]?.items?.[0].label.split('$')[1] || '',
+								value:
+									currentOfferData?.[3]?.form_fields?.[0]?.items?.[0].value
+										.split('$')[1]
+										.replace(' ', '-')
+										.toLocaleLowerCase() || ''
+							},
+							{
+								label:
+									currentOfferData?.[3]?.form_fields?.[0]?.items?.[0].label.split('$')[0] || '',
+								value:
+									currentOfferData?.[3]?.form_fields?.[0]?.items?.[0].value
+										.split('$')[0]
+										.replace(' ', '-')
+										.toLocaleLowerCase() || ''
+							}
 						]}
 					/>
 					<fieldset>
@@ -200,9 +263,16 @@ export const DetailsForm: FC<Props> = ({ setStep }) => {
 							errors={formData.wheels.errors}
 							defaultValue={setSelectedOrNull(offerData.detailsForm.wheels)}
 							onChange={formData.wheels.inputProps.onChange}
-							options={formData.wheels.options}
-							label={'The number of wheels in the car'}
-							placeholder='Choose the number'
+							options={
+								normalizeSelectData(currentOfferData?.[3]?.form_fields?.[1]?.items?.[0]) ||
+								formData.wheels.options
+							}
+							label={
+								currentOfferData?.[3]?.form_fields?.[1]?.name || 'The number of wheels in the car'
+							}
+							placeholder={
+								currentOfferData?.[3]?.form_fields?.[1]?.placeholder || 'Choose the number'
+							}
 						/>
 						<ReactSelect
 							errors={formData.damage.errors}
@@ -217,30 +287,47 @@ export const DetailsForm: FC<Props> = ({ setStep }) => {
 								</button>
 							}
 							onChange={formData.damage.inputProps.onChange}
-							options={formData.damage.options}
-							label={'Does your car have any damage'}
-							placeholder='Choose option'
+							options={
+								normalizeSelectData(currentOfferData?.[3]?.form_fields?.[2]?.items?.[0]) ||
+								formData.damage.options
+							}
+							label={
+								currentOfferData?.[3]?.form_fields?.[2]?.name || 'Does your car have any damage'
+							}
+							placeholder={currentOfferData?.[3]?.form_fields?.[2]?.placeholder || 'Choose option'}
 						/>
 						<ReactSelect
 							errors={formData.flood.errors}
 							defaultValue={setSelectedOrNull(offerData.detailsForm.flood)}
 							onChange={formData.flood.inputProps.onChange}
-							options={formData.flood.options}
-							label='Any flood or fire damage?'
-							placeholder='Enter any information about damage'
+							options={
+								normalizeSelectData(currentOfferData?.[3]?.form_fields?.[3]?.items?.[0]) ||
+								formData.flood.options
+							}
+							label={currentOfferData?.[3]?.form_fields?.[3]?.name || 'Any flood or fire damage?'}
+							placeholder={
+								currentOfferData?.[3]?.form_fields?.[3]?.placeholder ||
+								'Enter any information about damage'
+							}
 						/>
 						<ReactSelect
 							errors={formData.converters.errors}
 							defaultValue={setSelectedOrNull(offerData.detailsForm.converters)}
 							onChange={formData.converters.inputProps.onChange}
-							options={formData.converters.options}
-							label={'Does it have catalytic converters?'}
-							placeholder='Choose option'
+							options={
+								normalizeSelectData(currentOfferData?.[3]?.form_fields?.[4]?.items?.[0]) ||
+								formData.converters.options
+							}
+							label={
+								currentOfferData?.[3]?.form_fields?.[4]?.name ||
+								'Does it have catalytic converters?'
+							}
+							placeholder={currentOfferData?.[3]?.form_fields?.[4]?.placeholder || 'Choose option'}
 						/>
 					</fieldset>
 					<div className={mainStyles.offerFormContentNav}>
 						<BackButton setStep={setStep} />
-						<Button customType='black' iconName='arrow' iconPosition='right'>
+						<Button customType='black' iconName='arrow' iconPosition='right' loading={isLoading}>
 							next
 						</Button>
 					</div>

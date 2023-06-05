@@ -75,7 +75,7 @@ export const OfferStepForm = () => {
 					title: 'Payment details',
 					subtitle: 'Who should receive the check? Is it you or someone else?',
 					optional: false,
-					form: <PaymentForm setStep={setStep} />
+					form: <PaymentForm />
 				}
 			]
 		});
@@ -119,21 +119,18 @@ export const OfferStepForm = () => {
 			<div className='container'>
 				<div className={styles.offerFormWrapper}>
 					<OfferStepSidebar sidebarSteps={sidebarSteps} stepCount={maxStep} setStep={setStep} />
-					{!offerData.isDone ? <OfferStepContent currentStep={currentStep} /> : null}
-					{offerData.isDone ? (
-						<OfferStepContent
-							currentStep={{
-								id: 6,
-								name: 'offer details',
-								title: 'offer details',
-								subtitle: 'Here are all the detailsto help you add the finishing touch',
-								optional: false,
-								form: <FinalInfo />
-							}}
-						/>
-					) : null}
 					{offerData.isDone ? (
 						<>
+							<OfferStepContent
+								currentStep={{
+									id: 6,
+									name: 'offer details',
+									title: 'offer details',
+									subtitle: 'Here are all the detailsto help you add the finishing touch',
+									optional: false,
+									form: <FinalInfo />
+								}}
+							/>
 							<div />
 							<div>
 								<p className={classNames(styles.cancelOffer, 'text-16-14')}>
@@ -153,7 +150,9 @@ export const OfferStepForm = () => {
 								</p>
 							</div>
 						</>
-					) : null}
+					) : (
+						<OfferStepContent currentStep={currentStep} />
+					)}
 				</div>
 			</div>
 		</div>

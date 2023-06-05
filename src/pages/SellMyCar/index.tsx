@@ -35,7 +35,7 @@ function SellMyCarPage() {
 	return (
 		<>
 			<Preloader />
-			{data && (
+			{data?.hero_title && (
 				<HeroSectionSellCar
 					title={data?.hero_title}
 					subtitle={data?.hero_subtitle}
@@ -45,7 +45,7 @@ function SellMyCarPage() {
 			<MovingTiters size='small' text='read more' />
 			<AboutSection data={aboutData} />
 			<HowItWorkSection data={howItWorkData} />
-			<SoldCarSection />
+			<SoldCarSection data={data?.sold_cars} />
 			<ReviewSection data={reviewData} />
 			<MessageSection
 				title={'Have questions?'}

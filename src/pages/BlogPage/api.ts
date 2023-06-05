@@ -12,6 +12,10 @@ const api = {
 	findRecordsByCategory: async (tagSlug: string) => {
 		const res = await axios.get(API_URL + `/blog_records?tag.slug=${tagSlug}&_limit=10`);
 		return res.data;
+	},
+	getBlogCategories: async () => {
+		const res = await axios.get(API_URL + '/tags');
+		return res.data;
 	}
 };
 

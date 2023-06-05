@@ -1,28 +1,39 @@
 import { InputField } from '@/shared/ui/FormComponents/InputField/InputField';
 import { useTextInput } from '@/shared/hooks/useTextInput/useTextInput';
 import { Button } from '@/shared/ui/Button';
-import { notValidForm } from '@/shared/helpers/index';
+import { normalizeSelectData, notValidForm, setFieldId } from '@/shared/helpers/index';
 import {
 	IOfferData,
 	IOfferDataResponseInfo,
 	initialOfferData,
 	initialOfferDataResponseInfo
 } from '../../initialOfferData';
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { ReactSelect } from '@/shared/ui/FormComponents/ReactSelect/ReactSelect';
 import { useSelect } from '@/shared/hooks/inputHooks/useSelect';
-import { ISelectOption } from '@/shared/interfaces/shared';
+import { FormField, ISelectOption } from '@/shared/interfaces/shared';
 import { setSelectedOrNull } from '../../utils';
 import { CalcInfo } from '../../ui/CalcInfo/CalcInfo';
+import { CannotCalc } from '../../ui/CannotCalc';
+import { useCommon } from '@/app/context/Common/CommonContext';
+import { IOfferCurrentStep, initialOfferCurrentStep } from '../../initialOfferCurrentStep';
+import { getApiError } from '@/shared/helpers/index';
 import useSessionStorage from '@/shared/hooks/useSessionStorage';
 import styles from './index.module.scss';
-import { CannotCalc } from '../../ui/CannotCalc';
+import api from '../api';
 
 interface Props {
-	setStep: (...args: any[]) => void;
+	//setStep: (...args: any[]) => void;
 }
 
-export const PaymentForm: FC<Props> = ({ setStep }) => {
+export interface IPaymentFormData {
+	name: FormField<string>;
+	time: FormField<string>;
+	date: FormField<string>;
+}
+
+export const PaymentForm: FC<Props> = () => {
+	const [isLoading, setIsLoading] = useState(false);
 	const [offerData, setOfferData] = useSessionStorage<IOfferData>('offerData', initialOfferData);
 	const [offerDataResponseInfo] = useSessionStorage<IOfferDataResponseInfo>(
 		'offerDataResponseInfo',
@@ -36,6 +47,12 @@ export const PaymentForm: FC<Props> = ({ setStep }) => {
 		'offerPriceScreen',
 		false
 	);
+	const [currentOfferData, setCurrentOffer] = useSessionStorage<IOfferCurrentStep[]>(
+		'offerCurrentStep',
+		initialOfferCurrentStep
+	);
+	const [indexesList, setIndexesList] = useState<number[]>([]);
+	const { setError } = useCommon();
 
 	let currentDate = new Date();
 	let months = [
@@ -88,9 +105,35 @@ export const PaymentForm: FC<Props> = ({ setStep }) => {
 		})
 	};
 
-	const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+	const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		if (notValidForm(formData)) return;
+
+		try {
+			setIsLoading(true);
+			const data: IPaymentFormData = {
+				name: {
+					id: setFieldId(indexesList, 0),
+					value: formData.name.value
+				},
+				time: {
+					id: setFieldId(indexesList, 1),
+					value: formData.time.value
+				},
+				date: {
+					id: setFieldId(indexesList, 2),
+					value: formData.date.value
+				}
+			};
+			const res = await api.postPaymentForm(data);
+			setCurrentOffer((prev) => [...prev, res]);
+			setIsLoading(false);
+		} catch (error) {
+			const { msg } = getApiError(error, formData);
+			setError({ type: 'error', text: msg || 'Error !' });
+		} finally {
+			setIsLoading(false);
+		}
 
 		setOfferData((prev) => ({
 			...prev,
@@ -110,12 +153,18 @@ export const PaymentForm: FC<Props> = ({ setStep }) => {
 		if (!offerData.calculateOfferCost) {
 			setOfferPriceScreen(true);
 		}
-
-		// setStep((prev: IStep) => ({
-		// 	...prev,
-		// 	count: 5
-		// }));
 	};
+
+	const normalizeDate = (data?: { label: string; value: string }[]) => {
+		return data?.map((item) => ({
+			label: item.label.replace('$', ', '),
+			value: item.value.replace('$', ', ')
+		}));
+	};
+
+	useEffect(() => {
+		setIndexesList(currentOfferData[4].form_fields.map((field) => field.id));
+	}, [currentOfferData]);
 
 	useEffect(() => {
 		if (offerData.paymentForm.name) formData.name.setValue(offerData.paymentForm.name);
@@ -131,25 +180,31 @@ export const PaymentForm: FC<Props> = ({ setStep }) => {
 						<InputField
 							{...formData.name.inputProps}
 							errors={formData.name.errors}
-							label='Payee’s full name'
-							placeholder='Full name'
+							label={currentOfferData?.[6]?.form_fields?.[0].name || 'Payee’s full name'}
+							placeholder={currentOfferData?.[6]?.form_fields?.[0].placeholder || 'Full name'}
 						/>
 						<div className={styles.fieldsetDouble}>
 							<ReactSelect
 								errors={formData.time.errors}
 								defaultValue={setSelectedOrNull(offerData.paymentForm.time)}
 								onChange={formData.time.inputProps.onChange}
-								options={formData.time.options}
-								label={'Choose a time'}
-								placeholder='Time'
+								options={
+									normalizeSelectData(currentOfferData?.[6]?.form_fields?.[1].items?.[0]) ||
+									formData.time.options
+								}
+								label={currentOfferData?.[6]?.form_fields?.[1].name || 'Choose a time'}
+								placeholder={currentOfferData?.[6]?.form_fields?.[1].placeholder || 'Time'}
 							/>
 							<ReactSelect
 								errors={formData.date.errors}
 								defaultValue={setSelectedOrNull(offerData.paymentForm.date)}
 								onChange={formData.date.inputProps.onChange}
-								options={formData.date.options}
-								label={'Choose a date'}
-								placeholder='Date'
+								options={
+									normalizeDate(currentOfferData?.[6]?.form_fields?.[2].items) ||
+									formData.date.options
+								}
+								label={currentOfferData?.[6]?.form_fields?.[2].name || 'Choose a date'}
+								placeholder={currentOfferData?.[6]?.form_fields?.[2].placeholder || 'Date'}
 							/>
 						</div>
 					</div>
@@ -158,7 +213,7 @@ export const PaymentForm: FC<Props> = ({ setStep }) => {
 							<h2>{offerDataResponseInfo.price}</h2>
 							<span className='text-16-14'>Offer expires in 7 days</span>
 						</div>
-						<Button customType='black' iconName='arrow' iconPosition='right'>
+						<Button customType='black' iconName='arrow' iconPosition='right' loading={isLoading}>
 							next
 						</Button>
 					</div>

@@ -30,7 +30,7 @@ export interface IOfferData {
 	titleForm: {
 		title: string;
 		vim: string;
-		issue: string;
+		state: string;
 		color: string;
 		isFilled: boolean;
 	};
@@ -89,7 +89,7 @@ export const initialOfferData: IOfferData = {
 	titleForm: {
 		title: '',
 		vim: '',
-		issue: '',
+		state: '',
 		color: '',
 		isFilled: false
 	},

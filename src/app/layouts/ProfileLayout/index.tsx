@@ -1,6 +1,6 @@
 import { Header } from '@/widgets/Header';
 import Cookies from 'js-cookie';
-import { FC, Suspense } from 'react';
+import { FC, Suspense, memo } from 'react';
 import { Outlet, ScrollRestoration, useLocation } from 'react-router-dom';
 import './index.module.scss';
 import { Preloader } from '@/widgets/Preloader';
@@ -40,4 +40,4 @@ const ProfileLayout: FC = () => {
 	);
 };
 
-export default ProfileLayout;
+export default memo(ProfileLayout);

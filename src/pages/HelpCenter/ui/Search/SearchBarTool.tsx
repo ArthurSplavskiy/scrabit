@@ -51,7 +51,7 @@ export const SearchBarTool: FC = () => {
 						<div key={idx} className={styles.searchBarBodyItem}>
 							<HelpArticleCardAuthor
 								slug={item.slug}
-								createdAt={item.createdAt}
+								createdAt={item.created_at}
 								title={item.title}
 								author={item.author}
 								subtitle={item.question}

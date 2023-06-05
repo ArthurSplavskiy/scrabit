@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import { useCommon } from '@/app/context/Common/CommonContext';
 import Cookies from 'js-cookie';
 import { CallCard } from './ui/CallCard';
+import { IOfferCurrentStep, initialOfferCurrentStep } from './initialOfferCurrentStep';
 
 interface Props {
 	sidebarSteps: ISidebarStep[];
@@ -28,6 +29,10 @@ export const OfferStepSidebar: FC<Props> = ({ sidebarSteps, stepCount, setStep }
 	const [, setCalculateOfferCostStatus] = useSessionStorage<boolean>(
 		'calculateOfferCostStatus',
 		false
+	);
+	const [currentOfferData] = useSessionStorage<IOfferCurrentStep[]>(
+		'offerCurrentStep',
+		initialOfferCurrentStep
 	);
 	const navigate = useNavigate();
 
@@ -45,7 +50,7 @@ export const OfferStepSidebar: FC<Props> = ({ sidebarSteps, stepCount, setStep }
 						year={offerData.carForm.year}
 						car={`${offerData.carForm.make} ${offerData.carForm.model}`}
 						place={'No data'}
-						offer_id='10058595'
+						offer_id={currentOfferData[3]?.offer_id || ''}
 					/>
 				) : null}
 				<ul
@@ -105,7 +110,7 @@ export const OfferStepSidebar: FC<Props> = ({ sidebarSteps, stepCount, setStep }
 						year={offerData.carForm.year}
 						car={`${offerData.carForm.make} ${offerData.carForm.model}`}
 						place={'No data'}
-						offer_id='10058595'
+						offer_id={currentOfferData[3]?.offer_id || ''}
 					/>
 				) : (
 					<div className={styles.offerFormHead}>

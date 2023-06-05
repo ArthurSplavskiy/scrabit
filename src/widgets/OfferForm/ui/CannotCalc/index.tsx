@@ -7,6 +7,7 @@ import { IOfferData, initialOfferData } from '../../initialOfferData';
 import { useCommon } from '@/app/context/Common/CommonContext';
 import useSessionStorage from '@/shared/hooks/useSessionStorage';
 import styles from './index.module.scss';
+import { IStep } from '../../initialStep';
 
 interface Props {
 	text: string | string[];
@@ -46,8 +47,11 @@ export const CannotCalc: FC<Props> = ({ setStep, nextStep, text }) => {
 						</button>
 						{nextStep ? (
 							<NextButton
-								setStep={setStep}
 								onClickFn={() => {
+									setStep?.((prev: IStep) => ({
+										...prev,
+										count: prev.count + 1
+									}));
 									setCalculateOfferCostStatus(false);
 									nextStep &&
 										setOfferData((prev) => ({
@@ -75,8 +79,11 @@ export const CannotCalc: FC<Props> = ({ setStep, nextStep, text }) => {
 						</Button>
 						{nextStep ? (
 							<NextButton
-								setStep={setStep}
 								onClickFn={() => {
+									setStep?.((prev: IStep) => ({
+										...prev,
+										count: prev.count + 1
+									}));
 									setCalculateOfferCostStatus(false);
 									nextStep &&
 										setOfferData((prev) => ({

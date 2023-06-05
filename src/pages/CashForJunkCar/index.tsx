@@ -28,7 +28,7 @@ function CashForJunkPage() {
 	return (
 		<>
 			<Preloader />
-			{data && (
+			{data?.hero_title && (
 				<HeroSectionSellCar
 					title={data?.hero_title}
 					subtitle={data?.hero_subtitle}

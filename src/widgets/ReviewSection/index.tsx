@@ -2,12 +2,12 @@ import { FC, useRef } from 'react';
 import { IReviewSection } from './interface';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation, Autoplay } from 'swiper';
-import styles from './ReviewSection.module.scss';
 import { Icon } from '@/shared/ui/Icon/Icon';
 import { uid } from '@/shared/helpers';
-import classNames from 'classnames';
 import { useDevice } from '@/app/context/Device/DeviceContext';
 import { Button } from '@/shared/ui/Button';
+import classNames from 'classnames';
+import styles from './ReviewSection.module.scss';
 import logo from './logo.svg';
 
 interface Props {
@@ -70,23 +70,25 @@ export const ReviewSection: FC<Props> = ({ data }) => {
 									</div>
 								</SwiperSlide>
 							))}
-							<div className='swiper-controls'>
-								<button
-									className={classNames('swiper-btn swiper-btn-prev', styles.sliderPrev)}
-									ref={prevBtn}>
-									<span>
-										<Icon icon='slider-arrow' color='black' />
-									</span>
-								</button>
-								<div className={styles.sliderPagination} ref={paginationRef}></div>
-								<button
-									className={classNames('swiper-btn swiper-btn-next', styles.sliderNext)}
-									ref={nextBtn}>
-									<span>
-										<Icon icon='slider-arrow' color='black' />
-									</span>
-								</button>
-							</div>
+							{!isDesktop && data?.length > 3 ? (
+								<div className='swiper-controls'>
+									<button
+										className={classNames('swiper-btn swiper-btn-prev', styles.sliderPrev)}
+										ref={prevBtn}>
+										<span>
+											<Icon icon='slider-arrow' color='black' />
+										</span>
+									</button>
+									<div className={styles.sliderPagination} ref={paginationRef}></div>
+									<button
+										className={classNames('swiper-btn swiper-btn-next', styles.sliderNext)}
+										ref={nextBtn}>
+										<span>
+											<Icon icon='slider-arrow' color='black' />
+										</span>
+									</button>
+								</div>
+							) : null}
 						</Swiper>
 					) : null}
 				</div>

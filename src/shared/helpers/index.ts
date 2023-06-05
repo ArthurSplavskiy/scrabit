@@ -1,3 +1,5 @@
+import { IFormComponentSelect } from '../interfaces/shared';
+
 export const dataOrEmptyArray = (data: any[] | undefined | null) => (data ? data : []);
 
 export function notValidForm<T>(data: T, scrollToFirstError = false) {
@@ -57,6 +59,13 @@ export const formatter = new Intl.NumberFormat('uk', {
 	unitDisplay: 'long'
 });
 
+export const dateFormatter = new Intl.DateTimeFormat('en-US', {
+	year: 'numeric',
+	month: 'long',
+	day: 'numeric',
+	hour12: false
+});
+
 export const withZero = (id: number) => (id < 10 ? '0' + id : id);
 
 export function getFileSize(number: number) {
@@ -68,3 +77,13 @@ export function getFileSize(number: number) {
 		return `${(number / 1048576).toFixed(1)} MB`;
 	}
 }
+
+export const normalizeSelectData = (data: IFormComponentSelect | undefined) => {
+	if (!data) return [{ label: 'option', value: 'option' }];
+	const valueArray = data.value.split('$');
+	return valueArray.map((item) => ({ label: String(item), value: String(item).toLowerCase() }));
+};
+
+export const setFieldId = (arr: number[] | undefined, idx: number): number => {
+	return arr?.[idx] || 0;
+};

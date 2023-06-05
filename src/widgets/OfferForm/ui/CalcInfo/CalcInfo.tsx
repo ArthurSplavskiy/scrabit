@@ -8,6 +8,7 @@ import { Button } from '@/shared/ui/Button';
 import useSessionStorage from '@/shared/hooks/useSessionStorage';
 import { IOfferData, initialOfferData } from '../../initialOfferData';
 import { useCommon } from '@/app/context/Common/CommonContext';
+import { IStep } from '../../initialStep';
 
 interface Props {
 	title: string;
@@ -52,8 +53,11 @@ export const CalcInfo: FC<Props> = ({
 					{!isSmallMobile && (
 						<div className={styles.btn}>
 							<NextButton
-								setStep={setStep}
 								onClickFn={() => {
+									setStep?.((prev: IStep) => ({
+										...prev,
+										count: prev.count + 1
+									}));
 									setOfferPriceScreen(false);
 									isDone && setOfferData((prev) => ({ ...prev, isDone: true }));
 									nextStep &&
@@ -86,8 +90,11 @@ export const CalcInfo: FC<Props> = ({
 						DECLINE OFFER
 					</Button>
 					<NextButton
-						setStep={setStep}
 						onClickFn={() => {
+							setStep?.((prev: IStep) => ({
+								...prev,
+								count: prev.count + 1
+							}));
 							setOfferPriceScreen(false);
 							isDone && setOfferData((prev) => ({ ...prev, isDone: true }));
 							nextStep &&

@@ -13,6 +13,7 @@ interface Props {
 }
 
 export const AboutSection: FC<Props> = ({ data }) => {
+	if (!data?.steps.length) return <></>;
 	return (
 		<section id='about-scrabit' className={styles.section}>
 			<div className='container'>

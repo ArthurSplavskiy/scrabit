@@ -22,7 +22,7 @@ export const CategoryRecordCard: FC<Props> = ({ image, title, createdAt, slug, t
 		<div className={styles.card}>
 			<div className={styles.image}>
 				<Link to={`${tag.slug}/${slug}`} className={classNames(styles.imageLink, '-img-ibg')}>
-					<Image lazy scaleInScroll src={defaultImage} alt={title} />
+					<Image lazy scaleInScroll src={image || defaultImage} alt={title} />
 				</Link>
 			</div>
 			<div className={styles.body}>

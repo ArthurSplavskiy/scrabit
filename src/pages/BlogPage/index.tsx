@@ -1,16 +1,20 @@
 import { ParallaxSection } from '@/widgets/ParallaxSection';
 import { MessageSection } from '@/widgets/MessageSection';
-import { useBlogCategories, useBlogTopRecords, withBlogContext } from './BlogPageContext';
+import { useBlogTopRecords, withBlogContext } from './BlogPageContext';
 import { BlogHeroSection } from './ui/BlogHeroSection';
 import { BlogPostSlider } from '@/widgets/BlogPostSlider';
 import { BlogCategorySection } from './ui/BlogCategorySection';
 import { useCommon } from '@/app/context/Common/CommonContext';
-import { useEffect, useLayoutEffect } from 'react';
+import { useLayoutEffect } from 'react';
 import { Preloader } from '@/widgets/Preloader';
+import { useQuery } from 'react-query';
+import { queryKeys } from '@/app/queryClient/queryKeys';
+import api from './api';
+import { IBlogTags } from './interface';
 
 function BlogPage() {
 	const { data: topRecords, isLoading } = useBlogTopRecords();
-	const { data: categories } = useBlogCategories();
+	const { data: categories } = useQuery<IBlogTags[]>(queryKeys.blogTags, api.getBlogCategories);
 	const { setPageIsLoaded } = useCommon();
 
 	useLayoutEffect(() => {
@@ -30,10 +34,10 @@ function BlogPage() {
 			{categories?.map((c, idx) => (
 				<BlogCategorySection
 					key={idx}
-					categoryTitle={c.tag.name}
+					categoryTitle={c.name}
 					subtitle={c.subtitle}
 					lastSection={idx === categories.length - 1}
-					slug={c.tag.slug}
+					slug={c.slug}
 					withBlueBg={idx % 2 ? true : false}
 					withTopOffset={idx === 0}
 				/>

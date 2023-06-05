@@ -37,9 +37,9 @@ export const ArticleContent: FC<Props> = ({ category, record }) => {
 					<div className={styles.nodes}>
 						<span className={classNames(styles.category, 'text-18')}>{record?.tag.name}</span>
 						<h1 className={classNames(styles.title, 'text-64-24')}>{record?.title}</h1>
-						<img src={img} alt={record?.title} />
+						<img src={record?.image || img} alt={record?.title} />
 						<div className={styles.share}>
-							<span className={classNames(styles.date, 'text-18-14')}>{record?.createdAt}</span>
+							<span className={classNames(styles.date, 'text-18-14')}>{record?.created_at}</span>
 							<div className={styles.info}>
 								<span className='text-18-14'>Share an article:</span>
 								<nav>

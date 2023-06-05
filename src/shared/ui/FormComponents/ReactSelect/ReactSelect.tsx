@@ -1,8 +1,8 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 import Select, { GroupBase, Props } from 'react-select';
-import './ReactSelect.scss';
 import { useDevice } from '@/app/context/Device/DeviceContext';
 import { useCommon } from '@/app/context/Common/CommonContext';
+import './ReactSelect.scss';
 
 export type tReactSelectProps<
 	Option,

@@ -1,9 +1,11 @@
+import { FormField } from '@/shared/interfaces/shared';
+
 export interface IOfferFormData {
-	car_year: number | string;
-	car_make: string;
-	car_model: string;
-	car_submodel: string;
-	car_zipcode: string;
-	phone_number: string;
-	customer_name: string;
+	car_year: FormField<number | string>;
+	car_make: FormField<string>;
+	car_model: FormField<string>;
+	car_submodel: FormField<string>;
+	car_zipcode: FormField<string>;
+	phone_number: FormField<string>;
+	customer_name: FormField<string>;
 }

@@ -1,28 +1,30 @@
-import { queryKeys } from '@/app/queryClient/queryKeys';
-import api from '@/pages/SellMyCar/api';
-import { Button } from '@/shared/ui/Button';
-import { FC, useState } from 'react';
-import { useQuery } from 'react-query';
+import { FC } from 'react';
 import { CarCard } from './CarCard';
-import styles from './index.module.scss';
 import { ICar } from './interface';
+import { usePageSoldAmount } from '@/pages/SellMyCar/SellMyCarPageContext';
 import point from './point.svg';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
-import { usePageSoldAmount } from '@/pages/SellMyCar/SellMyCarPageContext';
+import styles from './index.module.scss';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export const SoldCarSection: FC = () => {
-	const [pageNumber, setPageNumber] = useState(1);
-	const { data: cars } = useQuery<ICar[]>(
-		[queryKeys.cars, pageNumber],
-		() => api.getCars(1, 4 * pageNumber),
-		{
-			keepPreviousData: true
-		}
-	);
-	const { data } = usePageSoldAmount();
+interface Props {
+	data?: ICar[];
+}
+
+export const SoldCarSection: FC<Props> = ({ data: cars }) => {
+	//const [pageNumber, setPageNumber] = useState(1);
+	// const { data: cars } = useQuery<ICar[]>(
+	// 	[queryKeys.cars, pageNumber],
+	// 	() => api.getCars(1, 4 * pageNumber),
+	// 	{
+	// 		keepPreviousData: true
+	// 	}
+	// );
+	const { data: amount } = usePageSoldAmount();
+
+	if (!cars?.length) return <></>;
 
 	return (
 		<div className={styles.block}>
@@ -34,7 +36,7 @@ export const SoldCarSection: FC = () => {
 					flexDirection: 'column',
 					alignItems: 'center'
 				}}>
-				<h2>{data} cars sold this month</h2>
+				<h2>{amount} cars sold this month</h2>
 				<div className={styles.content}>
 					<div className={styles.cards} id='scroll-block'>
 						<div className={styles.indicator}>
@@ -55,9 +57,9 @@ export const SoldCarSection: FC = () => {
 							/>
 						))}
 					</div>
-					<Button className={styles.btn} onClick={() => setPageNumber((prev) => prev + 1)}>
+					{/* <Button className={styles.btn} onClick={() => setPageNumber((prev) => prev + 1)}>
 						Show more
-					</Button>
+					</Button> */}
 				</div>
 			</div>
 		</div>

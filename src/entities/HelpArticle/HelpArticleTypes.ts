@@ -13,7 +13,7 @@ export interface ArticlesCategoryFAQ {
 
 export interface ArticleFAQ {
 	slug: string;
-	createdAt: string;
+	created_at: string;
 	author: AuthorFAQ;
 	question: string;
 	title: string;

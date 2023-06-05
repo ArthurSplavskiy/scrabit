@@ -12,11 +12,11 @@ const api = {
 	getCarPageData: async () => {
 		const res = await axios.get(API_URL + '/car_page');
 		return res.data;
-	},
-	getCars: async (page: number, limit: number) => {
-		const res = await axios.get(API_URL + `/sold_cars?_page=${page}&_limit=${limit}`);
-		return res.data;
 	}
+	// getCars: async (page: number, limit: number) => {
+	// 	const res = await axios.get(API_URL + `/sold_cars?_page=${page}&_limit=${limit}`);
+	// 	return res.data;
+	// }
 };
 
 export default api;

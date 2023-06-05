@@ -1,4 +1,4 @@
-import { ISelectOption } from '@/shared/interfaces/shared';
+import { IFormComponent, ISelectOption } from '@/shared/interfaces/shared';
 import { IAboutSection } from '@/widgets/AboutSection/interface';
 import { IBlogPostSlider } from '@/widgets/BlogPostSlider/interface';
 import { IFaqSection } from '@/widgets/FaqSection/interface';
@@ -8,10 +8,15 @@ import { IReviewSection } from '@/widgets/ReviewSection/interface';
 export interface IHomePageData {
 	hero_title: string;
 	hero_subtitle: string;
-	offer_form_data: {
-		car_make: ISelectOption[];
-		car_model: ISelectOption[];
-		car_submodel: ISelectOption[];
+	offer_form: {
+		form_fields: IFormComponent[];
+		form_id: number;
+		form_identifier: string;
+		next_step: string;
+		title: string;
+		// car_make: ISelectOption[];
+		// car_model: ISelectOption[];
+		// car_submodel: ISelectOption[];
 	};
 	about_section: IAboutSection;
 	how_it_work_section: IHowItWorkSection;

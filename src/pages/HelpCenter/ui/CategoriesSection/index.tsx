@@ -37,7 +37,7 @@ export const CategoriesSection: FC<Props> = ({ data, type }) => (
 								title={a.title}
 								subtitle={a.question}
 								author={a.author}
-								createdAt={a.createdAt}
+								createdAt={a.created_at}
 							/>
 						))
 				  )

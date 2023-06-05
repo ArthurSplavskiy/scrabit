@@ -6,7 +6,6 @@ import classNames from 'classnames';
 import { Button } from '@/shared/ui/Button';
 import { useDevice } from '@/app/context/Device/DeviceContext';
 import { ITag } from '../../interface';
-import { AppRoutes } from '@/app/routes';
 
 interface Props {
 	image: string;
@@ -35,7 +34,7 @@ export const HeroRecordCard: FC<Props> = ({ image, title, slug, tag, descr }) =>
 						<Link
 							to={`/blog/${tag.slug}/${slug}`}
 							className={classNames(styles.imageLink, '-img-ibg')}>
-							<img src={defaultImage} alt={title} />
+							<img src={image || defaultImage} alt={title} />
 						</Link>
 					</div>
 				)}
@@ -50,7 +49,7 @@ export const HeroRecordCard: FC<Props> = ({ image, title, slug, tag, descr }) =>
 					<Link
 						to={`/blog/${tag.slug}/${slug}`}
 						className={classNames(styles.imageLink, '-img-ibg')}>
-						<img src={defaultImage} alt={title} />
+						<img src={image || defaultImage} alt={title} />
 					</Link>
 				</div>
 			)}

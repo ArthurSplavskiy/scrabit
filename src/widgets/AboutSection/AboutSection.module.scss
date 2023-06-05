@@ -23,8 +23,12 @@
 .sectionImg {
 	border: 1px solid var(--black-text);
 	overflow: hidden;
+	//height: 80vh !important;
 	@media (max-width: 1200px) {
 		padding-bottom: 116%;
+	}
+	@media (max-width: 480px) {
+		height: 382px !important;
 	}
 }
 .sectionStep {

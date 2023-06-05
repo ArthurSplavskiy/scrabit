@@ -5,7 +5,7 @@ export interface IBlogRecord {
 	slug: string;
 	image: string;
 	title: string;
-	createdAt: string;
+	created_at: string;
 	tag: ITag;
 	fullText?: string;
 }

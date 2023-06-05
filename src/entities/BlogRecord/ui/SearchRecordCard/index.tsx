@@ -18,7 +18,7 @@ export const SearchRecordCard: FC<Props> = ({ image, title, createdAt, slug, tag
 		<div className={styles.card}>
 			<div className={styles.image}>
 				<Link to={`${tag.slug}/${slug}`} className={classNames(styles.imageLink, '-img-ibg')}>
-					<img src={defaultImage} alt={title} />
+					<img src={image || defaultImage} alt={title} />
 				</Link>
 			</div>
 			<div className={styles.body}>

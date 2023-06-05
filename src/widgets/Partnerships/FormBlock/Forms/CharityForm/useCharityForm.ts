@@ -84,7 +84,6 @@ export const useCharityForm = () => {
 				website_url: formData.url.value,
 				platform: formData.platform.value
 			};
-			console.log('onSubmit data', data);
 			//await api.auth.registration(data);
 
 			setTimeout(() => {

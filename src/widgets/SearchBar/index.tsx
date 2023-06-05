@@ -52,7 +52,7 @@ export const SearchBar: FC = () => {
 							<SearchRecordCard
 								image={item.image}
 								title={item.title}
-								createdAt={item.createdAt}
+								createdAt={item.created_at}
 								slug={item.slug}
 								tag={item.tag}
 							/>

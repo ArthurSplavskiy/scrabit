@@ -21,6 +21,7 @@ export enum queryKeys {
 	// blog
 	blogSearch = 'blog.search',
 	blogCategories = 'blog.category',
+	blogTags = 'blog.tags',
 
 	// help-center
 	helpCenterSearch = 'helpCenter.search',
@@ -32,8 +33,5 @@ export enum queryKeys {
 	cars = 'cars',
 
 	// static
-	static = 'static',
-
-	// settings
-	calculateOfferCost = 'settings.calculateOfferCost'
+	static = 'static'
 }

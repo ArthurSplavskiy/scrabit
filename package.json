@@ -5,6 +5,7 @@
 	"type": "module",
 	"scripts": {
 		"dev-server": "concurrently \"npm run server\" \"npm run dev\"",
+		"prod": "vite --host --mode prod",
 		"dev": "vite --host",
 		"build": "tsc && vite build",
 		"preview": "vite preview",

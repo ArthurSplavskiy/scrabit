@@ -2,7 +2,7 @@ import { SectionHead } from '@/shared/ui/SectionHead';
 import { FC, useRef } from 'react';
 import { IBlogPostSlider } from './interface';
 import styles from './BlogPostSlider.module.scss';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
 import { useDevice } from '@/app/context/Device/DeviceContext';
 import { Navigation, Pagination } from 'swiper';
 import classNames from 'classnames';
@@ -52,29 +52,31 @@ export const BlogPostSlider: FC<Props> = ({ data, withoutBtn }) => {
 									<SliderRecordCard
 										image={slide?.image}
 										title={slide?.title}
-										createdAt={slide?.createdAt}
+										createdAt={slide?.created_at}
 										route={`/${AppRoutes.BLOG}/${slide?.tag.slug}/${slide?.slug}`}
 										tag={slide?.tag}
 									/>
 								</SwiperSlide>
 							))}
-							<div className='swiper-controls'>
-								<button
-									className={classNames('swiper-btn swiper-btn-prev', styles.sliderPrev)}
-									ref={prevBtn}>
-									<span>
-										<Icon icon='slider-arrow' color='black' />
-									</span>
-								</button>
-								<div className={styles.sliderPagination} ref={paginationRef}></div>
-								<button
-									className={classNames('swiper-btn swiper-btn-next', styles.sliderNext)}
-									ref={nextBtn}>
-									<span>
-										<Icon icon='slider-arrow' color='black' />
-									</span>
-								</button>
-							</div>
+							{!isDesktop && data?.blogposts?.length > 3 ? (
+								<div className='swiper-controls'>
+									<button
+										className={classNames('swiper-btn swiper-btn-prev', styles.sliderPrev)}
+										ref={prevBtn}>
+										<span>
+											<Icon icon='slider-arrow' color='black' />
+										</span>
+									</button>
+									<div className={styles.sliderPagination} ref={paginationRef}></div>
+									<button
+										className={classNames('swiper-btn swiper-btn-next', styles.sliderNext)}
+										ref={nextBtn}>
+										<span>
+											<Icon icon='slider-arrow' color='black' />
+										</span>
+									</button>
+								</div>
+							) : null}
 						</Swiper>
 					) : null}
 				</div>
