@@ -47,6 +47,7 @@ export const TitleForm: FC<Props> = ({ setStep }) => {
 		'offerCurrentStep',
 		initialOfferCurrentStep
 	);
+	const [uniqId] = useSessionStorage<string>('userUniqId', '');
 	const [indexesList, setIndexesList] = useState<number[]>([]);
 	const { setError } = useCommon();
 
@@ -100,7 +101,7 @@ export const TitleForm: FC<Props> = ({ setStep }) => {
 					value: formData.color.value
 				}
 			};
-			const res = await api.postTitleForm(data);
+			const res = await api.postTitleForm(data, uniqId);
 			setCurrentOffer((prev) => [...prev, res]);
 			setIsLoading(false);
 		} catch (error) {

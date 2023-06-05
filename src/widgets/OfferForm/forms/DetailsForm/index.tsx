@@ -61,6 +61,8 @@ export const DetailsForm: FC<Props> = ({ setStep }) => {
 		'offerCurrentStep',
 		initialOfferCurrentStep
 	);
+	const [uniqId] = useSessionStorage<string>('userUniqId', '');
+
 	const [damageZone, setDamageZone] = useState<number[]>([]);
 	const { isMobile } = useDevice();
 	const [isLoading, setIsLoading] = useState(false);
@@ -155,7 +157,7 @@ export const DetailsForm: FC<Props> = ({ setStep }) => {
 				}
 			};
 
-			const res = await api.postDetailsForm(data);
+			const res = await api.postDetailsForm(data, uniqId);
 			setCurrentOffer((prev) => [...prev, res]);
 			if (!offerData.calculateOfferCost) {
 				closeCalcPopup();

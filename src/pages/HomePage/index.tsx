@@ -19,6 +19,9 @@ import { BlogPostSlider } from '@/widgets/BlogPostSlider';
 import { useEffect, useLayoutEffect } from 'react';
 import { useCommon } from '@/app/context/Common/CommonContext';
 import { Preloader } from '@/widgets/Preloader';
+import useSessionStorage from '@/shared/hooks/useSessionStorage';
+import { getUniqueId } from '@/shared/helpers';
+import { useIsFirstRender } from 'usehooks-ts';
 
 function HomePage() {
 	const { data: homeAboutData } = useHomeAbout();
@@ -28,6 +31,7 @@ function HomePage() {
 	const { data: homeBlogPostData } = useHomeBlogposts();
 	const { isLoading } = useHomePageData();
 	const { setPageIsLoaded, closePartnershipPopup } = useCommon();
+	const [userUniqId, setUserUniqId] = useSessionStorage<string>('userUniqId', '');
 
 	useLayoutEffect(() => {
 		if (!isLoading) {
@@ -35,11 +39,12 @@ function HomePage() {
 		}
 		return () => {
 			setPageIsLoaded(false);
-		}
+		};
 	}, [isLoading]);
 
 	useEffect(() => {
 		closePartnershipPopup();
+		!userUniqId && setUserUniqId(getUniqueId());
 	}, []);
 
 	return (

@@ -35,6 +35,7 @@ export const VehicleForm: FC<Props> = ({ setStep }) => {
 		'offerCurrentStep',
 		initialOfferCurrentStep
 	);
+	const [uniqId] = useSessionStorage<string>('userUniqId', '');
 	const formData = {
 		mileage: useTextInput({
 			isRequired: true,
@@ -104,7 +105,7 @@ export const VehicleForm: FC<Props> = ({ setStep }) => {
 				}
 			};
 
-			const res = await api.postVehicleForm(data);
+			const res = await api.postVehicleForm(data, uniqId);
 			setCurrentOffer((prev) => [...prev, res]);
 			setIsLoading(false);
 		} catch (error) {

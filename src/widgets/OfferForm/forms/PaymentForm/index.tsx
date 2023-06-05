@@ -51,6 +51,7 @@ export const PaymentForm: FC<Props> = () => {
 		'offerCurrentStep',
 		initialOfferCurrentStep
 	);
+	const [uniqId] = useSessionStorage<string>('userUniqId', '');
 	const [indexesList, setIndexesList] = useState<number[]>([]);
 	const { setError } = useCommon();
 
@@ -125,7 +126,7 @@ export const PaymentForm: FC<Props> = () => {
 					value: formData.date.value
 				}
 			};
-			const res = await api.postPaymentForm(data);
+			const res = await api.postPaymentForm(data, uniqId);
 			setCurrentOffer((prev) => [...prev, res]);
 			setIsLoading(false);
 		} catch (error) {

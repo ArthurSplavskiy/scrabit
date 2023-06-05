@@ -38,6 +38,7 @@ export const PhotosForm: FC<Props> = ({ setStep }) => {
 		'offerCurrentStep',
 		initialOfferCurrentStep
 	);
+	const [uniqId] = useSessionStorage<string>('userUniqId', '');
 	const [images, setImages] = useState([]);
 	const maxNumber = 10;
 	const maxFileSize = 1 * 1024 * 1024; // 5 Мб
@@ -54,7 +55,7 @@ export const PhotosForm: FC<Props> = ({ setStep }) => {
 			const data: IImagesFormData = {
 				images
 			};
-			const res = await api.postImagesForm(data);
+			const res = await api.postImagesForm(data, uniqId);
 			setCurrentOffer((prev) => [...prev, res]);
 			setStep((prev: IStep) => ({
 				...prev,

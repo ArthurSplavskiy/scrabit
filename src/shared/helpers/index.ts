@@ -1,4 +1,5 @@
 import { IFormComponentSelect } from '../interfaces/shared';
+import { v4 as uuidv4 } from 'uuid';
 
 export const dataOrEmptyArray = (data: any[] | undefined | null) => (data ? data : []);
 
@@ -86,4 +87,8 @@ export const normalizeSelectData = (data: IFormComponentSelect | undefined) => {
 
 export const setFieldId = (arr: number[] | undefined, idx: number): number => {
 	return arr?.[idx] || 0;
+};
+
+export const getUniqueId = () => {
+	return uuidv4();
 };

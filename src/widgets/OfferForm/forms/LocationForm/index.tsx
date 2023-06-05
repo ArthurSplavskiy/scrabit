@@ -52,6 +52,7 @@ export const LocationForm: FC<Props> = ({ setStep }) => {
 		'offerCurrentStep',
 		initialOfferCurrentStep
 	);
+	const [uniqId] = useSessionStorage<string>('userUniqId', '');
 	const [indexesList, setIndexesList] = useState<number[]>([]);
 	const { setError } = useCommon();
 
@@ -129,7 +130,7 @@ export const LocationForm: FC<Props> = ({ setStep }) => {
 					value: textMe
 				}
 			};
-			const res = await api.postLocationForm(data);
+			const res = await api.postLocationForm(data, uniqId);
 			setCurrentOffer((prev) => [...prev, res]);
 			setIsLoading(false);
 		} catch (error) {

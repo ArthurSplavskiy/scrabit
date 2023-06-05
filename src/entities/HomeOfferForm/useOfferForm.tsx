@@ -30,6 +30,7 @@ export const useOfferForm = (indexesList: number[] | undefined) => {
 		'offerCurrentStep',
 		initialOfferCurrentStep
 	);
+	const [uniqId] = useSessionStorage<string>('userUniqId', '');
 
 	const formData = {
 		car_year: useSelect<ISelectOption>({
@@ -113,9 +114,9 @@ export const useOfferForm = (indexesList: number[] | undefined) => {
 					value: formData.customer_name.value
 				}
 			};
-
-			const res = await api.postOfferFormData(data);
+			const res = await api.postOfferFormData(data, uniqId);
 			setOfferCurrentStep((prev) => [...prev, res]);
+			console.log(res);
 			setIsLoading(false);
 			Cookies.set('first-offer-form-is-filled', 'true');
 			navigate('/offer');
