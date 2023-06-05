@@ -7,6 +7,7 @@ import { ITag } from '../../interface';
 import { Button } from '@/shared/ui/Button';
 import { useDevice } from '@/app/context/Device/DeviceContext';
 import Image from '@/shared/ui/Image';
+import { dateFormatter } from '@/shared/helpers';
 
 interface Props {
 	image: string;
@@ -38,7 +39,9 @@ export const CategoryRecordCard: FC<Props> = ({ image, title, createdAt, slug, t
 					<h4 className='text-24-14'>{title}</h4>
 				</Link>
 				<div className={styles.controls}>
-					<span className={classNames(styles.date, 'text-18-10')}>{createdAt}</span>
+					<span className={classNames(styles.date, 'text-18-10')}>
+						{dateFormatter.format(new Date(createdAt))}
+					</span>
 					<Button
 						btnTo={`${tag.slug}/${slug}`}
 						customType={!isMobile ? 'outline' : 'text-underline'}>

@@ -38,7 +38,7 @@ function CashForJunkPage() {
 			<MovingTiters size='small' text='read more' />
 			<AboutSection data={data?.about_section} />
 			<HowItWorkSection data={data?.how_it_work_section} />
-			<SoldCarSection />
+			<SoldCarSection data={data?.sold_cars} />
 			<ReviewSection data={data?.review_section} />
 			<MessageSection
 				title={'Have questions?'}

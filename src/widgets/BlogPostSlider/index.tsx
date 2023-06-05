@@ -52,7 +52,7 @@ export const BlogPostSlider: FC<Props> = ({ data, withoutBtn }) => {
 									<SliderRecordCard
 										image={slide?.image}
 										title={slide?.title}
-										createdAt={slide?.created_at}
+										createdAt={slide?.created_at || '10'}
 										route={`/${AppRoutes.BLOG}/${slide?.tag.slug}/${slide?.slug}`}
 										tag={slide?.tag}
 									/>

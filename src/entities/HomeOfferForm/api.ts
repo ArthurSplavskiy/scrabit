@@ -30,6 +30,10 @@ const api = {
 	getCarSubmodel: async (car: string, model: string) => {
 		const res = await axios.get(API_URL + `/get_car_submodel?car=${car}&model=${model}`);
 		return res.data;
+	},
+	getCarsByYear: async (year: string) => {
+		const res = await axios.get(API_URL + `/get_car_make?year=${year}`);
+		return res.data;
 	}
 };
 

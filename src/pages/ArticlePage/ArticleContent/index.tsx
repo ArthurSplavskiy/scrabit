@@ -19,7 +19,7 @@ export const ArticleContent: FC<Props> = ({ category, record }) => {
 		if (record?.fullText) {
 			const regex = /<h2>(.*?)<\/h2>/g;
 			const matches = record.fullText.match(regex) || [''];
-			const h2Texts = matches.map((match) => match.replace(/<\/?h2>/g, ''));
+			const h2Texts = matches.map((match) => match.replace(/<\/?h2>/g, '').replace('&rsquo;', "'"));
 			setTitles(h2Texts);
 		}
 	}, [record]);

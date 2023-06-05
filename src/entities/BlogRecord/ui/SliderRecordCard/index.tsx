@@ -7,6 +7,7 @@ import { Button } from '@/shared/ui/Button';
 import { useDevice } from '@/app/context/Device/DeviceContext';
 import { ITag } from '../../interface';
 import Image from '@/shared/ui/Image';
+import { dateFormatter } from '@/shared/helpers';
 
 interface Props {
 	image: string;
@@ -30,13 +31,21 @@ export const SliderRecordCard: FC<Props> = ({ image, title, createdAt, tag, rout
 					<Link key={tag.slug} to={`/blog#${tag.name.toLocaleLowerCase()}`} className={styles.tag}>
 						{tag.name}
 					</Link>
-					{isMobile && <span className={classNames('text-14', styles.date)}>{createdAt}</span>}
+					{isMobile && (
+						<span className={classNames('text-14', styles.date)}>
+							{dateFormatter.format(new Date(createdAt))}
+						</span>
+					)}
 				</div>
 				<Link to={route} className={styles.title}>
 					<h4 className='text-24-18'>{title}</h4>
 				</Link>
 				<div className={styles.controls}>
-					{!isMobile && <span className={classNames(styles.date, 'text-14')}>{createdAt}</span>}
+					{!isMobile && (
+						<span className={classNames(styles.date, 'text-14')}>
+							{dateFormatter.format(new Date(createdAt))}
+						</span>
+					)}
 					<Button btnTo={route} customType='outline' width={isMobile ? 'fullWidth' : undefined}>
 						read more
 					</Button>

@@ -20,7 +20,6 @@ interface Props {
 
 export const PromoRecordCard: FC<Props> = ({ image, title, createdAt, slug, tag, bgColor }) => {
 	const { isMobile } = useDevice();
-	console.log(createdAt);
 	return (
 		<div className={styles.card}>
 			<div className={styles.image}>

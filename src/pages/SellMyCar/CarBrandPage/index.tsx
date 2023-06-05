@@ -9,7 +9,7 @@ import { queryKeys } from '@/app/queryClient/queryKeys';
 import { FaqSection } from '@/widgets/FaqSection';
 import { ParallaxSection } from '@/widgets/ParallaxSection';
 import { useCommon } from '@/app/context/Common/CommonContext';
-import { useEffect, useLayoutEffect } from 'react';
+import { useLayoutEffect } from 'react';
 import api from '../api';
 import { Preloader } from '@/widgets/Preloader';
 
@@ -38,7 +38,7 @@ function CarBrandPage() {
 			)}
 			<MovingTiters size='small' text='read more' />
 			<AboutSection data={data?.about_section} />
-			<SoldCarSection />
+			<SoldCarSection data={data?.sold_cars} />
 			<ReviewSection data={data?.review_section} />
 			<ParallaxSection />
 			<FaqSection data={data?.faq_section} />

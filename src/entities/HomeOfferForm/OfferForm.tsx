@@ -6,14 +6,14 @@ import { useOfferForm } from './useOfferForm';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useCommon } from '@/app/context/Common/CommonContext';
 import { setSelectedOrNull } from '@/widgets/OfferForm/utils';
-import { normalizeSelectData } from '@/shared/helpers';
 import { IOfferData, initialOfferData } from '@/widgets/OfferForm/initialOfferData';
 import { getApiError } from '@/shared/helpers/index';
-import Cookies from 'js-cookie';
+import { ISelectOption } from '@/shared/interfaces/shared';
 import useSessionStorage from '@/shared/hooks/useSessionStorage';
+import Cookies from 'js-cookie';
 import styles from './OfferForm.module.scss';
 import api from './api';
-import { ISelectOption } from '@/shared/interfaces/shared';
+import classNames from 'classnames';
 
 export const OfferForm = () => {
 	const [offerData] = useSessionStorage<IOfferData>('offerData', initialOfferData);
@@ -24,9 +24,25 @@ export const OfferForm = () => {
 	const { focusFirstOfferFormField } = useCommon();
 	const [, setOfferData] = useSessionStorage<IOfferData>('offerData', initialOfferData);
 	const { setError } = useCommon();
+	const [carMake, setCarMake] = useState<ISelectOption[]>([]);
 	const [carModel, setCarModel] = useState<ISelectOption[]>([]);
 	const [carSubmodel, setCarSubmodel] = useState<ISelectOption[]>([]);
 	const firstFieldRef = useRef<HTMLDivElement>(null);
+
+	const carYearOnChange = async (e: any) => {
+		formData.car_year.setValue(e.value);
+		formData.car_make.setValue('');
+		formData.car_model.setValue('');
+		formData.car_submodel.setValue('');
+
+		try {
+			const res = await api.getCarsByYear(e.value);
+			setCarMake(res.map((model: string) => ({ label: model, value: model })));
+		} catch (error) {
+			const { msg } = getApiError(error, formData);
+			setError({ type: 'error', text: msg || 'Error !' });
+		}
+	};
 
 	const carMakeOnChange = async (e: any) => {
 		formData.car_make.setValue(e.value);
@@ -63,9 +79,23 @@ export const OfferForm = () => {
 		//formData.car_submodel.inputProps.onChange(e);
 	};
 
-	const other = useMemo(
+	const otherMake = useMemo(
 		() => ({
-			label: 'other',
+			label: 'Your car make was not found',
+			value: 'other'
+		}),
+		[]
+	);
+	const otherModel = useMemo(
+		() => ({
+			label: 'Your car model was not found',
+			value: 'other'
+		}),
+		[]
+	);
+	const otherSubmodel = useMemo(
+		() => ({
+			label: 'Your submodel was not found',
 			value: 'other'
 		}),
 		[]
@@ -81,6 +111,7 @@ export const OfferForm = () => {
 		if (offerFormData?.form_identifier === 'offer-without-calculation') {
 			setOfferData((prev) => ({ ...prev, calculateOfferCost: true }));
 		}
+		//offerFormData?.form_fields?.[1]?.items && setCarMake(offerFormData?.form_fields?.[1]?.items);
 	}, [offerFormData]);
 
 	useEffect(() => {
@@ -103,8 +134,8 @@ export const OfferForm = () => {
 					refOnInput={firstFieldRef}
 					defaultValue={setSelectedOrNull(offerData.carForm.year)}
 					errors={formData.car_year.errors}
-					onChange={formData.car_year.inputProps.onChange}
-					options={normalizeSelectData(offerFormData?.form_fields?.[0]?.items?.[0]).reverse()}
+					onChange={carYearOnChange}
+					options={[...(offerFormData?.form_fields?.[0]?.items || [])].reverse()}
 					label={offerFormData?.form_fields?.[0].name}
 					placeholder={offerFormData?.form_fields?.[0].placeholder}
 					className={styles.OfferFormItem}
@@ -113,10 +144,13 @@ export const OfferForm = () => {
 					defaultValue={setSelectedOrNull(offerData.carForm.make)}
 					errors={formData.car_make.errors}
 					onChange={carMakeOnChange}
-					options={normalizeSelectData(offerFormData?.form_fields?.[1]?.items?.[0])}
+					options={
+						carMake.length ? [...carMake, otherMake] : []
+						// normalizeSelectData(offerFormData?.form_fields?.[1]?.items?.[0])
+					}
 					label={offerFormData?.form_fields?.[1].name}
 					placeholder={offerFormData?.form_fields?.[1].placeholder}
-					className={styles.OfferFormItem}
+					className={classNames(styles.OfferFormItem, 'last-item-bold')}
 				/>
 				<ReactSelect
 					//value={formData.car_model.value}
@@ -124,7 +158,7 @@ export const OfferForm = () => {
 					errors={formData.car_model.errors}
 					onChange={carModelOnChange}
 					options={
-						carModel.length ? [...carModel, other] : []
+						carModel.length ? [...carModel, otherModel] : []
 						// normalizeSelectData(offerFormData?.form_fields?.[2]?.items?.[0])
 					}
 					label={offerFormData?.form_fields?.[2].name}
@@ -137,7 +171,7 @@ export const OfferForm = () => {
 					errors={formData.car_submodel.errors}
 					onChange={carSubmodelOnChange}
 					options={
-						carSubmodel.length ? [...carSubmodel, other] : []
+						carSubmodel.length ? [...carSubmodel, otherSubmodel] : []
 						// : normalizeSelectData(offerFormData?.form_fields?.[3]?.items?.[0])
 					}
 					label={offerFormData?.form_fields?.[3].name}

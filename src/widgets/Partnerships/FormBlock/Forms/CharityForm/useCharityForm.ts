@@ -1,5 +1,5 @@
 import { getApiError, notValidForm } from '@/shared/helpers/index';
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { useCommon } from '@/app/context/Common/CommonContext';
 import { useSelect } from '@/shared/hooks/inputHooks/useSelect';
 import { useTextInput } from '@/shared/hooks/useTextInput/useTextInput';
@@ -7,8 +7,11 @@ import { ICharityFormData } from './interface';
 import { errorsMessages } from '@/shared/hooks/useTextInput/validators';
 import { Validation } from '@/shared/helpers/validation';
 import Mask from '@/shared/helpers/mask';
+import { ImageListType } from 'react-images-uploading';
+import { IFormComponent } from '@/shared/interfaces/shared';
+import api from '../api';
 
-export const useCharityForm = () => {
+export const useCharityForm = (form: IFormComponent[], formIdentifier: string) => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [success, setIsSuccess] = useState(false);
 	const { setError, openPartnershipPopup } = useCommon();
@@ -16,21 +19,13 @@ export const useCharityForm = () => {
 	const { phoneMask } = new Mask();
 	const { isValidPhoneNumber } = new Validation();
 
-	const [fileList, setFileList] = useState<FileList | null>(null);
-	const [formDataState, setFormDataState] = useState<FormData | undefined>();
-	const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-		const fileFormData = new FormData();
-		setFileList(e.target.files);
-		const files = e.target.files ? [...e.target.files] : [];
-		files.forEach((file, i) => {
-			// проверим размер файла (<5 Мб)
-			if (file.size > 1 * 1024 * 1024) {
-				return;
-			}
-			console.log('append', file);
-			fileFormData.append(`file-${i}`, file);
-			setFormDataState(fileFormData);
-		});
+	const [fileList, setFileList] = useState([]);
+
+	const handleFileChange = async (
+		imageList: ImageListType,
+		addUpdateIndex: number[] | undefined
+	) => {
+		setFileList(imageList as never[]);
 	};
 
 	const [radioState, setRadioState] = useState<string>('');
@@ -39,6 +34,11 @@ export const useCharityForm = () => {
 		setRadioState(e.target.value);
 		setRadioStateError(false);
 	};
+
+	const [indexesList, setIndexesList] = useState<number[]>([]);
+	useEffect(() => {
+		setIndexesList(form.map((field) => field.id));
+	}, [form]);
 
 	const formData = {
 		first_name: useTextInput({ isRequired: true }),
@@ -52,7 +52,7 @@ export const useCharityForm = () => {
 		}),
 		company_name: useTextInput(),
 		city_name: useTextInput(),
-		state: useSelect(),
+		state: useSelect({ isRequired: true }),
 		url: useTextInput({ validators: ['website'] }),
 		platform: useSelect({ isRequired: true })
 	};
@@ -72,25 +72,22 @@ export const useCharityForm = () => {
 		try {
 			setIsLoading(true);
 			const data: ICharityFormData = {
-				first_name: formData.first_name.value,
-				last_name: formData.last_name.value,
-				email: formData.email.value,
-				phone_number: formData.phone_number.value,
-				company_name: formData.company_name.value,
-				city_name: formData.city_name.value,
-				state: formData.state.value,
-				file: formDataState,
-				is_your_organization: radioState,
-				website_url: formData.url.value,
-				platform: formData.platform.value
+				first_name: { id: indexesList[0], value: formData.first_name.value },
+				last_name: { id: indexesList[1], value: formData.last_name.value },
+				email: { id: indexesList[2], value: formData.email.value },
+				phone_number: { id: indexesList[3], value: formData.phone_number.value },
+				company_name: { id: indexesList[4], value: formData.company_name.value },
+				city_name: { id: indexesList[5], value: formData.city_name.value },
+				state: { id: indexesList[6], value: formData.state.value },
+				file: { id: null, value: fileList },
+				is_your_organization: { id: indexesList[8], value: radioState },
+				website_url: { id: indexesList[7], value: formData.url.value },
+				platform: { id: indexesList[9], value: formData.platform.value }
 			};
-			//await api.auth.registration(data);
-
-			setTimeout(() => {
-				setIsLoading(false);
-				setIsSuccess(true);
-				openPartnershipPopup();
-			}, 500);
+			await api.postCharityForm(data, formIdentifier);
+			setIsLoading(false);
+			setIsSuccess(true);
+			openPartnershipPopup();
 		} catch (error) {
 			const { msg } = getApiError(error, formData);
 			setError({ type: 'error', text: msg || 'Error !' });

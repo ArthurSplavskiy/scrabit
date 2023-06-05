@@ -52,8 +52,8 @@ function CarrierPage() {
 					formBlock={
 						<FormBlock
 							title={data.form.title}
-							category={data.form.category}
-							form={data.form.selects}
+							form={data.form.form_fields}
+							formIdentifier={data.form.form_identifier}
 							formType={'buyer'}
 						/>
 					}

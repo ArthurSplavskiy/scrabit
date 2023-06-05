@@ -39,6 +39,6 @@ export type FormStepName = 'first' | 'second';
 export type FormComponentType = 'select' | 'text';
 
 export type FormField<T> = {
-	id: string | number;
+	id: string | number | null;
 	value: T;
 };

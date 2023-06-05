@@ -6,6 +6,14 @@
 
 .ReactSelect {
 	height: 48px;
+	&.last-item-bold {
+		.ReactSelect-select__option {
+			&:last-child {
+				font-size: 14px;
+				font-weight: 700 !important;
+			}
+		}
+	}
 	&.focus {
 		.ReactSelect-select__control,
 		.ReactSelect-select__menu {

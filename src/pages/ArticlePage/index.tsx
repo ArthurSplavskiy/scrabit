@@ -14,9 +14,8 @@ import api from './api';
 function ArticlePage() {
 	const params = useParams();
 	const { data: record, isLoading } = useRecord(params.slug || '');
-	const { data: pageData } = useQuery<{ related_records: IBlogRecord[] }>(
-		queryKeys.pageArticle,
-		api.getRelatedRecords
+	const { data: related_records } = useQuery<IBlogRecord[]>(queryKeys.pageArticle, () =>
+		api.getRecordBySlug(params.slug || '')
 	);
 
 	const { setPageIsLoaded } = useCommon();
@@ -34,10 +33,12 @@ function ArticlePage() {
 		<>
 			<Preloader />
 			<ArticleContent category={params.category || ''} record={record} />
-			<BlogPostSlider
-				data={{ title: 'related articles', blogposts: pageData?.related_records }}
-				withoutBtn={true}
-			/>
+			{related_records?.length && (
+				<BlogPostSlider
+					data={{ title: 'related articles', blogposts: related_records }}
+					withoutBtn={true}
+				/>
+			)}
 			<MessageSection
 				title={'Scrabit’s buying'}
 				subtitle={'we’ll give your used car another chance'}

@@ -38,7 +38,7 @@ function CarModelPage() {
 			)}
 			<MovingTiters size='small' text='read more' />
 			<AboutSection data={data?.about_section} />
-			<SoldCarSection />
+			<SoldCarSection data={data?.sold_cars} />
 			<ReviewSection data={data?.review_section} />
 			<ParallaxSection />
 			<FaqSection data={data?.faq_section} />
