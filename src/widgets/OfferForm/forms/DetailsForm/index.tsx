@@ -206,7 +206,7 @@ export const DetailsForm: FC<Props> = ({ setStep }) => {
 
 	useEffect(() => {
 		if (offerPriceScreen || calculateOfferCostStatus) return;
-		if (formData.damage.value === 'Yes') {
+		if (formData.damage.value.toLocaleLowerCase() === 'yes') {
 			setDamageZone([]);
 			openOfferDamagePopup();
 		}
@@ -239,22 +239,12 @@ export const DetailsForm: FC<Props> = ({ setStep }) => {
 						label={currentOfferData[3].form_fields[0].name || 'Choose your car condition'}
 						radioList={[
 							{
-								label:
-									currentOfferData?.[3]?.form_fields?.[0]?.items?.[0].label.split('$')[1] || '',
-								value:
-									currentOfferData?.[3]?.form_fields?.[0]?.items?.[0].value
-										.split('$')[1]
-										.replace(' ', '-')
-										.toLocaleLowerCase() || ''
+								label: currentOfferData?.[3]?.form_fields?.[0]?.items?.[0].label || '',
+								value: currentOfferData?.[3]?.form_fields?.[0]?.items?.[0]?.value || ''
 							},
 							{
-								label:
-									currentOfferData?.[3]?.form_fields?.[0]?.items?.[0].label.split('$')[0] || '',
-								value:
-									currentOfferData?.[3]?.form_fields?.[0]?.items?.[0].value
-										.split('$')[0]
-										.replace(' ', '-')
-										.toLocaleLowerCase() || ''
+								label: currentOfferData?.[3]?.form_fields?.[0]?.items?.[1].label || '',
+								value: currentOfferData?.[3]?.form_fields?.[0]?.items?.[1]?.value || ''
 							}
 						]}
 					/>
